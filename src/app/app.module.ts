@@ -11,7 +11,8 @@ import { MaterialModule } from './material/material.module';
 import { AdminComponent } from './admin/admin.component';
 import { DashAdminComponent } from './Administrator/dash-admin/dash-admin.component';
 import { HomeComponent } from './Administrator/home/home.component';
-
+import { HomePatientComponent } from './Patient/home-patient/home-patient.component';
+import { NavbarPatientComponent } from './Patient/navbar-patient/navbar-patient.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,8 @@ import { HomeComponent } from './Administrator/home/home.component';
     AdminComponent,
     DashAdminComponent,
     HomeComponent,
+    HomePatientComponent,
+    NavbarPatientComponent
   ],
   imports: [
     BrowserModule,

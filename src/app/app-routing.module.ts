@@ -11,6 +11,8 @@ const routes: Routes = [
   {path:'register', component:RegisterComponent},
   { path: 'dashboard', loadChildren: () => import('./topbar/topbar.module').then(x => x.TopbarModule) },
   { path: 'administrator', loadChildren: () => import('./Administrator/dash-admin/dash-admin.module').then(x => x.DashAdminModule) },
+  { path: 'patient', loadChildren: () => import('./Patient/navbar-patient/navbar-patient.module').then(x => x.NavbarPatientModule) },
+
 ];
 
 @NgModule({
