@@ -1,53 +1,92 @@
 <mat-toolbar class="mat-elevation-z8">
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-        <mat-icon *ngIf="!sidenav.opened">
-            menu
-        </mat-icon>
-        <mat-icon *ngIf="sidenav.opened">
-            close
-        </mat-icon>
-    </button>
-    Responsive side navigation
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+
+
+  <div>
+    <a class="logo-icon">
+      
+      <span class="links_name">Hospital App</span>
+      <i class="fad fa-hospital-symbol"></i>
+    </a>
+  </div>
+
+
+
+
 </mat-toolbar>
 
 <mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <ul class="nav-list">
+      <li>
+        <a href="#">
+          <i class="fad fa-first-aid"></i>
+          <span class="links_name">Agendar Cita</span>
+        </a>
 
-        <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+      </li>
+      <li>
+        <a href="#">
+          <i class="fad fa-vial"></i>
+          <span class="links_name">Solicitar Examen</span>
+        </a>
 
-        <h4 class="name">John Smith</h4>
-        <p class="designation">Software Engineer</p>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fad fa-user-md"></i>
+          <span class="links_name">Doctores</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fad fa-stethoscope"></i>
+          <span class="links_name">Servicios</span>
+        </a>
+      </li>
+     
+    </ul>
+    <mat-divider></mat-divider>
+    <ul class="nav-list">
+      <li>
+        <a href="#">
+          <i class="fad fa-bell"></i>
+          <span class="links_name">Notificaciones</span>
+        </a>
 
-        <mat-divider></mat-divider>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fad fa-cog"></i>
+          <span class="links_name">Configuracion</span>
+        </a>
+      </li>
+      </ul>
+      <mat-divider></mat-divider>
+      <ul>
+      <li>
+        <a href="#">
+          <span class="links_name">Cerrar Sesion</span>
+          <i class="fad fa-sign-out"></i>
+        </a>
 
-        <button mat-button class="menu-button">
-            <mat-icon>home</mat-icon>
-            <span>Home</span>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon>person</mat-icon>
-            <span>Profile</span>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon>info</mat-icon>
-            <span>About</span>
-        </button>
+      </li>
+      </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet>
 
-        <mat-divider></mat-divider>
+      </router-outlet>
 
-        <button mat-button class="menu-button">
-            <mat-icon>help</mat-icon>
-            <span>Help</span>
-        </button>
 
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <div class="content mat-elevation-z8">
-            <router-outlet>
-                
-            </router-outlet>
-
-            
-        </div>
-    </mat-sidenav-content>
+    </div>
+  </mat-sidenav-content>
 </mat-sidenav-container>

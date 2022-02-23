@@ -1,13 +1,13 @@
 mat-toolbar {
-  background: #004a9f;
+  background: var(--main-color);
   color: white;
 }
 
 mat-sidenav {
   margin: 16px;
-  width: 250px;
+  width: 300px;
   border-right: none;
-  background: #002b5c;
+  background: var(--main-color);
   color: white;
   border-radius: 10px;
   padding: 16px;
@@ -30,3 +30,64 @@ mat-sidenav {
 mat-sidenav-container{
   height: calc(100vh - 65px);
 }
+
+ .nav-list{
+  margin-top: 20px;
+ 
+}
+ li {
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+
+ li a{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  font-size: 4vh;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: var(--main-color);
+  color: #fff;
+  padding: 0.4rem;
+}
+ li a:hover{
+  background: #FFF;
+  color: var(--main-color);
+}
+ li a .links_name{
+  color: #fff;
+  font-size: 50%;
+  font-weight: 400;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0.4s;
+  padding: 0.5rem;
+}
+
+ li a:hover .links_name,
+ li a:hover i{
+  transition: all 0.5s ease;
+  color: var(--main-color);
+}
+ li i{
+  height: 50px;
+  line-height: 50px;
+  font-size: x-large;
+  border-radius: 12px;
+}
+
+.logo-icon{
+  color: #fff;
+  text-decoration: none;
+  font-size: x-large;
+}
+
+.logo-icon .links_name{
+  padding-right: 0.25rem;
+}
+
+
