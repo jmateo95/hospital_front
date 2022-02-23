@@ -25,32 +25,66 @@
   <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
       <ul class="nav-list">
+
         <li>
           <a href="#">
-            <i class="fad fa-first-aid"></i>
-            <span class="links_name">Agendar Cita</span>
+            <i class="fad fa-book-medical"></i>
+            <span class="links_name">Especialidades</span>
           </a>
-  
+        </li>
+
+        <li>
+          <a href="#doctor_side" data-bs-toggle="collapse">
+            <i class="fad fa-user-md"></i>
+            <span class="links_name">Doctores</span>
+          </a>
+          
+          <div class="collapse" id="doctor_side">
+            <ul class="nav-second-level">
+              <li>
+                  <a href="#">Crear Doctor</a>
+                </li>
+    
+                <li>
+                  <a href="#">Lista de Doctores</a>
+                </li>
+            </ul>
+          </div>
         </li>
         <li>
           <a href="#">
             <i class="fad fa-vial"></i>
-            <span class="links_name">Solicitar Examen</span>
+            <span class="links_name">Laboratorista</span>
           </a>
   
         </li>
-        <li>
-          <a href="#">
-            <i class="fad fa-user-md"></i>
-            <span class="links_name">Doctores</span>
-          </a>
-        </li>
+        
         <li>
           <a href="#">
             <i class="fad fa-stethoscope"></i>
-            <span class="links_name">Servicios</span>
+            <span class="links_name">Consultas</span>
           </a>
         </li>
+
+        <li>
+          <a href="#">
+            <i class="fad fa-first-aid"></i>
+            <span class="links_name">Examenes</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <i style="font-size: x-large;" class="fad fa-solid fa-bed-pulse"></i>
+            <span class="links_name">Pacientes</span>
+          </a>
+        </li>
+
+        
+
+        
+        
+        
        
       </ul>
       <mat-divider></mat-divider>
