@@ -22,7 +22,7 @@ html {
     font-weight: 600;
     text-transform: uppercase;
     display:inline-block;
-    margin: 40px 8px 10px 8px; 
+    margin: 20px 8px 5px 8px; 
     color: #999999;
   }
   
@@ -92,7 +92,7 @@ html {
     box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
-    margin: 5px 20px 40px 20px;
+    margin: 10px 20px 40px 20px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
@@ -112,7 +112,7 @@ html {
     transform: scale(0.95);
   }
   
-  select {
+  select, input {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -155,7 +155,7 @@ html {
     border-radius: 5px 5px 5px 5px;
   }
   
-  select:focus {
+  select:focus, input:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
   }
@@ -165,7 +165,7 @@ html {
     border-bottom: 2px solid #5fbae9;
   }
   
-  select:placeholder {
+  select:placeholder, input::placeholder {
     color: #cccccc;
   }
 
