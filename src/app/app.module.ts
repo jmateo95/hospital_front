@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TopbarComponent } from './topbar/topbar.component';
 import { MaterialModule } from './material/material.module';
 import { AdminComponent } from './admin/admin.component';
+import { DashAdminComponent } from './Administrator/dash-admin/dash-admin.component';
+import { HomeComponent } from './Administrator/home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { AdminComponent } from './admin/admin.component';
     RegisterComponent,
     TopbarComponent,
     AdminComponent,
+    DashAdminComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
