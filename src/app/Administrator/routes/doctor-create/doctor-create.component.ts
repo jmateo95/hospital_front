@@ -26,7 +26,7 @@ export class DoctorCreateComponent {
 hide = true;
 
 constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
-  this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
+  this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 }
 
 
