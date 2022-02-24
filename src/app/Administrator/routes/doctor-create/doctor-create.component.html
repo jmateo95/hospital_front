@@ -1,0 +1,108 @@
+<form [formGroup]="profileForm">
+  <mat-card style="border-radius: 25px; padding: 5vh!important; min-width:40vw; ">
+    <mat-card-header>
+      <mat-card-title>Crear Doctor</mat-card-title>
+    </mat-card-header>
+    <mat-card-content >
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <input formControlName="codigo" matInput placeholder="Código">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <input formControlName="nombre" matInput placeholder="Nombre">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <input formControlName="correo" matInput placeholder="Correo elecronico">
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Contraseña">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width" appearance="outline">
+            <input formControlName="colegiado" matInput type="number" placeholder="No. Colegiado">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-6">
+          <mat-form-field class="full-width" appearance="outline">
+            <input formControlName="dpi" matInput placeholder="No. DPI">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width" appearance="outline">
+            <input formControlName="horai"  type="time" matInput min="09:00" max="18:00" placeholder="Hora de inicio">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-6">
+          <mat-form-field class="full-width" appearance="outline">
+            <input formControlName="horaf" type="time" matInput min="09:00" max="18:00" placeholder="Hora de fin">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <input formControlName="telefono" matInput placeholder="No. Teléfono">
+          </mat-form-field>
+        </div>
+
+
+        
+
+
+        <div class="col-md-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Fecha de inicio</mat-label>
+            <input  formControlName="fecha" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>  
+        </div>
+      </div>
+
+
+
+      
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Crear</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
