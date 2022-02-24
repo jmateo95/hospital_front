@@ -5,14 +5,16 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { DoctorTopbarComponent } from './Doctor/DoctorTopbar/doctorTopbar.component';
+import { LabTopbarComponent } from './Lab/LapTopbar/LabTopbar.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
   { path: 'dashboard', loadChildren: () => import('./topbar/topbar.module').then(x => x.TopbarModule) },
-  {path:'doctor', loadChildren: () => import('./Doctor/DoctorTopbar/doctorTopbar.module').then(x => x.DoctorTopbarModule)},
   { path: 'administrator', loadChildren: () => import('./Administrator/dash-admin/dash-admin.module').then(x => x.DashAdminModule) },
+  {path:'doctor', loadChildren: () => import('./Doctor/DoctorTopbar/doctorTopbar.module').then(x => x.DoctorTopbarModule)},
+  {path:'lab', loadChildren: () => import('./Lab/LapTopbar/LabTopbar.module').then(x => x.LabTopbarModule)},
 ];
 
 @NgModule({

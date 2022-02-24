@@ -5,6 +5,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -18,6 +19,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatFormFieldModule
   ],
   exports:[
     MatToolbarModule,
@@ -25,6 +27,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatFormFieldModule
   ]
 })
 export class MaterialModule { }

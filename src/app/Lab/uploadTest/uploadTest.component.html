@@ -1,0 +1,21 @@
+<div class="wrapper fadeInDown">
+  <h2>Resultados de examen</h2>
+  <div id="formContent">
+    <form>
+      <div id="content">      
+      <label>Archivo </label>            
+      <input type="file" id="fileChooser" accept=".pdf" onchange="cambiar()" hidden/>
+      <br>
+      <label id="fileChooser" for="fileChooser">Choose File</label>
+<script>
+  function cambiar(){
+    var pdrs = document.getElementById('actual-btn').files[0].name;
+    document.getElementById('fileChooser').innerHTML = pdrs;
+}
+document.getElementById("fileChooser").addEventListener("change", fileChooser, false);
+</script>
+    </div>  
+      <input type="submit"  value="Crear orden">
+    </form>
+  </div>
+</div>
