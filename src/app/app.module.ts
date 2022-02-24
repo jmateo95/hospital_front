@@ -13,6 +13,10 @@ import { DashAdminComponent } from './Administrator/dash-admin/dash-admin.compon
 import { HomeComponent } from './Administrator/home/home.component';
 import { HomePatientComponent } from './Patient/home-patient/home-patient.component';
 import { NavbarPatientComponent } from './Patient/navbar-patient/navbar-patient.component';
+import { DoctorCreateComponent } from './Administrator/routes/doctor-create/doctor-create.component';
+import { LabCreateComponent } from './Administrator/routes/lab-create/lab-create.component';
+import { EspeCreateComponent } from './Administrator/routes/espe-create/espe-create.component';
+import { ConsCreateComponent } from './Administrator/routes/cons-create/cons-create.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +27,11 @@ import { NavbarPatientComponent } from './Patient/navbar-patient/navbar-patient.
     DashAdminComponent,
     HomeComponent,
     HomePatientComponent,
-    NavbarPatientComponent
+    NavbarPatientComponent,
+    DoctorCreateComponent,
+    LabCreateComponent,
+    EspeCreateComponent,
+    ConsCreateComponent
   ],
   imports: [
     BrowserModule,

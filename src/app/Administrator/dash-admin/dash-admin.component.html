@@ -27,7 +27,7 @@
       <ul class="nav-list">
 
         <li>
-          <a href="#">
+          <a routerLink="espe/create">
             <i class="fad fa-book-medical"></i>
             <span class="links_name">Especialidades</span>
           </a>
@@ -42,28 +42,56 @@
           <div class="collapse" id="doctor_side">
             <ul class="nav-second-level">
               <li>
-                  <a href="#">Crear Doctor</a>
-                </li>
+                <a routerLink="doctor/create">Crear Doctor</a>
+              </li>
     
-                <li>
-                  <a href="#">Lista de Doctores</a>
-                </li>
+              
+              <li>
+                <a href="#">Lista de Doctores</a>
+              </li>
             </ul>
           </div>
+          
         </li>
         <li>
-          <a href="#">
+          <a href="#lab_side" data-bs-toggle="collapse">
             <i class="fad fa-vial"></i>
             <span class="links_name">Laboratorista</span>
           </a>
+
+          <div class="collapse" id="lab_side">
+            <ul class="nav-second-level">
+              <li>
+                <a routerLink="lab/create">Crear Laboratorista</a>
+              </li>
+    
+              
+              <li>
+                <a href="#">Lista de Laboratorista</a>
+              </li>
+            </ul>
+          </div>
   
         </li>
         
         <li>
-          <a href="#">
+          <a href="#cons_side" data-bs-toggle="collapse">
             <i class="fad fa-stethoscope"></i>
             <span class="links_name">Consultas</span>
           </a>
+
+          <div class="collapse" id="cons_side">
+            <ul class="nav-second-level">
+              <li>
+                <a routerLink="cons/create">Crear típo de consulta</a>
+              </li>
+    
+              
+              <li>
+                <a href="#">Lista de típos de consultas</a>
+              </li>
+            </ul>
+          </div>
         </li>
 
         <li>
@@ -114,8 +142,8 @@
         </li>
         </ul>
     </mat-sidenav>
-    <mat-sidenav-content>
-      <div class="content mat-elevation-z8">
+    <mat-sidenav-content >
+      <div class="content mat-elevation-z8" style="border-radius: 25px;">
         <router-outlet>
   
         </router-outlet>
