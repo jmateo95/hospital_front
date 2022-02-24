@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'administrator', loadChildren: () => import('./Administrator/dash-admin/dash-admin.module').then(x => x.DashAdminModule) },
   {path:'doctor', loadChildren: () => import('./Doctor/DoctorTopbar/doctorTopbar.module').then(x => x.DoctorTopbarModule)},
   {path:'lab', loadChildren: () => import('./Lab/LapTopbar/LabTopbar.module').then(x => x.LabTopbarModule)},
+  { path: 'patient', loadChildren: () => import('./Patient/navbar-patient/navbar-patient.module').then(x => x.NavbarPatientModule) },
 ];
 
 @NgModule({

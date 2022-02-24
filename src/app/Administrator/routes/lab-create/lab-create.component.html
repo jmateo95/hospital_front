@@ -1,0 +1,116 @@
+<form [formGroup]="profileForm">
+    <mat-card style="border-radius: 25px; padding: 5vh!important; min-width:40vw; ">
+      <mat-card-header>
+        <mat-card-title>Crear Laboratorista</mat-card-title>
+      </mat-card-header>
+      <mat-card-content >
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <input formControlName="codigo" matInput placeholder="Código">
+            </mat-form-field>
+          </div>
+  
+  
+          <div class="col-md-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <input formControlName="nombre" matInput placeholder="Nombre">
+            </mat-form-field>
+          </div>
+        </div>
+  
+  
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <input formControlName="correo" matInput placeholder="Correo elecronico">
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+  
+  
+          <div class="col-md-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Contraseña">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width" appearance="outline">
+              <input formControlName="registro" matInput type="number" placeholder="Registro ante el Ministerio de Salud">
+            </mat-form-field>
+          </div>
+  
+  
+          <div class="col-md-6">
+            <mat-form-field class="full-width" appearance="outline">
+              <input formControlName="dpi" matInput placeholder="No. DPI">
+            </mat-form-field>
+          </div>
+        </div>
+  
+  
+        
+  
+  
+        
+  
+  
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <input formControlName="telefono" matInput placeholder="No. Teléfono">
+            </mat-form-field>
+          </div>
+  
+  
+          
+          <div class="col-md-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Tipo de Examen</mat-label>
+              <mat-select>
+                <mat-option value="one">Examen 1</mat-option>
+                <mat-option value="two">Examen 2</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+  
+  
+          <div class="col-md-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Fecha de inicio</mat-label>
+              <input  formControlName="fecha" matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>  
+          </div>
+        </div>
+
+        
+        
+
+        <div class="row">
+          <div class="col-md-12" style="text-align: center;">
+            <mat-checkbox formControlName="dia1" style="padding-right: 10px;">Lunes</mat-checkbox>
+            <mat-checkbox formControlName="dia2" style="padding-right: 10px;">Martes</mat-checkbox>
+            <mat-checkbox formControlName="dia3" style="padding-right: 10px;">Miercoles</mat-checkbox>
+            <mat-checkbox formControlName="dia4" style="padding-right: 10px;">Jueves</mat-checkbox>
+            <mat-checkbox formControlName="dia5" style="padding-right: 10px;">Viernes</mat-checkbox>
+          </div>
+        </div>
+  
+  
+    
+  
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Crear</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>

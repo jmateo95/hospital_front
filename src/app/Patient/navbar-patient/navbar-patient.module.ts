@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DashAdminRoutingModule } from './dash-admin-routing.module';
+import { NavBarRoutingModule } from './navbar-patient-routing.module';
 import { MaterialModule } from '../../material/material.module';
 
 
@@ -9,8 +9,9 @@ import { MaterialModule } from '../../material/material.module';
   declarations: [],
   imports: [
     CommonModule,
-    DashAdminRoutingModule,
-    MaterialModule
+    MaterialModule,
+    NavBarRoutingModule,
+    
   ]
 })
-export class DashAdminModule { }
+export class NavbarPatientModule { }
