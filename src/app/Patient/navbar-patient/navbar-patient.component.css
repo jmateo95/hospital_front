@@ -33,6 +33,7 @@ mat-toolbar {
   
    .nav-list{
     margin-top: 20px;
+    padding-left: 0;
    
   }
    li {
@@ -50,9 +51,11 @@ mat-toolbar {
     align-items: center;
     text-decoration: none;
     transition: all 0.4s ease;
-    background: var(--main-color);
+    background: transparent;
     color: #fff;
-    padding: 0.4rem;
+    padding-left: 0.7rem;
+    
+    padding-right: 0.4rem;
   }
    li a:hover{
     background: #FFF;
