@@ -1,0 +1,14 @@
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight"><i class="fad fa-calendar-alt"></i> Calendario</button>
+
+<div class="row">
+  <div class="col-md-12">
+    <mat-grid-list [cols]="breakpoint" rowHeight="10rem"  >
+      <mat-grid-tile *ngFor="let card of cards">
+        <app-tests-card></app-tests-card>
+      </mat-grid-tile>
+    </mat-grid-list> 
+  </div>
+  <div >
+    <app-calendar-card></app-calendar-card>
+  </div>
+</div>
