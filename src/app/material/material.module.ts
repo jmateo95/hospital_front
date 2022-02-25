@@ -15,8 +15,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-
 
 
 
@@ -38,7 +36,6 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxMatTimepickerModule,
     MatCheckboxModule,
 
     
@@ -59,7 +56,6 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxMatTimepickerModule,
     MatCheckboxModule,
   ]
 })
