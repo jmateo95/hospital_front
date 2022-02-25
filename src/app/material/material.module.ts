@@ -14,11 +14,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-
-
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -38,8 +36,11 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxMatTimepickerModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
+    AngularFileUploaderModule,
+    MatGridListModule
+    
 
     
 
@@ -59,8 +60,10 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxMatTimepickerModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
+    AngularFileUploaderModule,
+    MatGridListModule
   ]
 })
 export class MaterialModule { }

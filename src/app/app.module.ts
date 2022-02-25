@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +16,19 @@ import { DoctorCreateComponent } from './Administrator/routes/doctor-create/doct
 import { LabCreateComponent } from './Administrator/routes/lab-create/lab-create.component';
 import { EspeCreateComponent } from './Administrator/routes/espe-create/espe-create.component';
 import { ConsCreateComponent } from './Administrator/routes/cons-create/cons-create.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { CreateAppointmentComponent } from './Patient/component/appointment/create-appointment/create-appointment.component';
+import { CreateTestComponent } from './Patient/component/test/create-test/create-test.component';
+import { DoctorCardComponent } from './Patient/component/helpers/doctor-card/doctor-card.component';
+import { SeeDoctorsComponent } from './Patient/component/views/see-doctors/see-doctors.component';
+import { SeeServicesComponent } from './Patient/component/views/see-services/see-services.component';
+import { ServiceCardComponent } from './Patient/component/helpers/service-card/service-card.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { SeeAppointmentsComponent } from './Patient/component/views/see-appointments/see-appointments.component';
+FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin]);
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,13 +43,23 @@ import { ConsCreateComponent } from './Administrator/routes/cons-create/cons-cre
     DoctorCreateComponent,
     LabCreateComponent,
     EspeCreateComponent,
-    ConsCreateComponent
+    ConsCreateComponent,
+    CreateAppointmentComponent,
+    CreateTestComponent,
+    DoctorCardComponent,
+    SeeDoctorsComponent,
+    SeeServicesComponent,
+    ServiceCardComponent,
+    SeeAppointmentsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    NgbModule,
+    FormsModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
