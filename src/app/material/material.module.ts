@@ -14,9 +14,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -37,6 +37,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
+    AngularFileUploaderModule,
+    MatGridListModule
+    
 
     
 
@@ -57,6 +61,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
+    AngularFileUploaderModule,
+    MatGridListModule
   ]
 })
 export class MaterialModule { }

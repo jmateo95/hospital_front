@@ -26,27 +26,60 @@
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
     <ul class="nav-list">
       <li>
-        <a href="#">
-          <i class="fad fa-first-aid"></i>
-          <span class="links_name">Agendar Cita</span>
+        <a href="#appointment_side" data-bs-toggle="collapse">
+          <i class="fad fa-book-medical"></i>
+          <span class="links_name">Citas</span>
         </a>
 
+        <div class="collapse" id="appointment_side">
+          <ul class="nav-second-level">
+            <li>
+              <a routerLink="appointment/create">Agendar cita</a>
+            </li>
+  
+            
+            <li>
+              <a routerLink="appointment/see-all">Proximas citas</a>
+            </li>
+            <li>
+              <a href="#">Historial</a>
+            </li>
+          </ul>
+        </div>
       </li>
       <li>
-        <a href="#">
-          <i class="fad fa-vial"></i>
-          <span class="links_name">Solicitar Examen</span>
+        <a href="#test_side" data-bs-toggle="collapse">
+         
+          <i class="fad fa-vials"></i>
+          <span class="links_name">Examenes</span>
         </a>
 
+        <div class="collapse" id="test_side">
+          <ul class="nav-second-level">
+            <li>
+              <a routerLink="test/create">Solicitar examen</a>
+            </li>
+  
+            
+            <li>
+              <a href="#">Proximos Examenes</a>
+            </li>
+            <li>
+              <a href="#">Historial</a>
+            </li>
+          </ul>
+        </div>
       </li>
+  
+
       <li>
-        <a href="#">
+        <a  routerLink="doctors">
           <i class="fad fa-user-md"></i>
           <span class="links_name">Doctores</span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a  routerLink="services">
           <i class="fad fa-stethoscope"></i>
           <span class="links_name">Servicios</span>
         </a>
@@ -70,7 +103,7 @@
       </li>
       </ul>
       <mat-divider></mat-divider>
-      <ul>
+      <ul class="nav-list">
       <li>
         <a href="#">
           <span class="links_name">Cerrar Sesion</span>
@@ -81,7 +114,7 @@
       </ul>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="content mat-elevation-z8">
+    <div class="content ">
       <router-outlet>
 
       </router-outlet>
