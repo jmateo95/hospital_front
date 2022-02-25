@@ -1,72 +1,69 @@
-import { HttpClient } from '@angular/common/http';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/angular';
-
+import { delay } from 'rxjs/operators';
 @Component({
   selector: 'app-see-appointments',
   templateUrl: './see-appointments.component.html',
   styleUrls: ['./see-appointments.component.css']
 })
-export class SeeAppointmentsComponent  {
-  calendarVisible = true;
-  calendarOptions: CalendarOptions = {
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-    },
-    initialView: 'dayGridMonth',
-    initialEvents: '0', // alternatively, use the `events` setting to fetch from a feed
-    weekends: true,
-    editable: true,
-    selectable: true,
-    selectMirror: true,
-    dayMaxEvents: true,
-    select: this.handleDateSelect.bind(this),
-    eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this)
-    /* you can update a remote database when these fire:
-    eventAdd:
-    eventChange:
-    eventRemove:
-    */
-  };
-  currentEvents: EventApi[] = [];
+export class SeeAppointmentsComponent implements OnInit {
+  breakpoint = 3;
+  cards = [
+    { title: 'Title 1', content: 'Content 1' },
+    { title: 'Title 2', content: 'Content 2' },
+    { title: 'Title 3', content: 'Content 3' },
+    { title: 'Title 4', content: 'Content 4' }
+  ];
+  constructor(private observer: BreakpointObserver) { }
 
-  handleCalendarToggle() {
-    this.calendarVisible = !this.calendarVisible;
+
+
+  ngOnInit() {
   }
 
-  handleWeekendsToggle() {
-    const { calendarOptions } = this;
-    calendarOptions.weekends = !calendarOptions.weekends;
-  }
-
-  handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('Please enter a new title for your event');
-    const calendarApi = selectInfo.view.calendar;
-
-    calendarApi.unselect(); // clear date selection
-
-    if (title) {
-      calendarApi.addEvent({
-        id: 'RS#',
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
+  ngAfterViewInit() {
+    this.observer
+      .observe(['(min-width: 1200px)'])
+      .pipe(delay(1))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.breakpoint = 3;
+        }
       });
-    }
-  }
+    this.observer
+      .observe(['(max-width: 1200px) and (min-width: 925px)'])
+      .pipe(delay(1))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.breakpoint = 2;
+        }
+      });
 
-  handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove();
-    }
-  }
+    this.observer
+      .observe(['(max-width: 925px) and (min-width: 800px)'])
+      .pipe(delay(1))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.breakpoint = 1;
+        }
+      });
+    this.observer
+      .observe(['(max-width: 800px) and (min-width: 625px)'])
+      .pipe(delay(1))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.breakpoint = 2;
+        }
+      });
+    this.observer
+      .observe(['(max-width: 625px)'])
+      .pipe(delay(1))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.breakpoint = 1;
+        }
+      });
 
-  handleEvents(events: EventApi[]) {
-    this.currentEvents = events;
   }
 
 }
