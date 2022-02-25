@@ -1,92 +1,154 @@
 <mat-toolbar class="mat-elevation-z8">
-  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-    <mat-icon *ngIf="!sidenav.opened">
-      menu
-    </mat-icon>
-    <mat-icon *ngIf="sidenav.opened">
-      close
-    </mat-icon>
-  </button>
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">
+        menu
+      </mat-icon>
+      <mat-icon *ngIf="sidenav.opened">
+        close
+      </mat-icon>
+    </button>
+  
+  
+    <div>
+      <a class="logo-icon">
+        
+        <span class="links_name">Hospital App</span>
+        <i class="fad fa-hospital-symbol"></i>
+      </a>
+    </div>
+  
+  
+  
+  
+  </mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+      <ul class="nav-list">
 
+        <li>
+          <a routerLink="espe/create">
+            <i class="fad fa-book-medical"></i>
+            <span class="links_name">Especialidades</span>
+          </a>
+        </li>
 
-  <div>
-    <a class="logo-icon">
-      
-      <span class="links_name">Hospital App</span>
-      <i class="fad fa-hospital-symbol"></i>
-    </a>
-  </div>
+        <li>
+          <a href="#doctor_side" data-bs-toggle="collapse">
+            <i class="fad fa-user-md"></i>
+            <span class="links_name">Doctores</span>
+          </a>
+          
+          <div class="collapse" id="doctor_side">
+            <ul class="nav-second-level">
+              <li>
+                <a routerLink="doctor/create">Crear Doctor</a>
+              </li>
+    
+              
+              <li>
+                <a href="#">Lista de Doctores</a>
+              </li>
+            </ul>
+          </div>
+          
+        </li>
+        <li>
+          <a href="#lab_side" data-bs-toggle="collapse">
+            <i class="fad fa-vial"></i>
+            <span class="links_name">Laboratorista</span>
+          </a>
 
+          <div class="collapse" id="lab_side">
+            <ul class="nav-second-level">
+              <li>
+                <a routerLink="lab/create">Crear Laboratorista</a>
+              </li>
+    
+              
+              <li>
+                <a href="#">Lista de Laboratorista</a>
+              </li>
+            </ul>
+          </div>
+  
+        </li>
+        
+        <li>
+          <a href="#cons_side" data-bs-toggle="collapse">
+            <i class="fad fa-stethoscope"></i>
+            <span class="links_name">Consultas</span>
+          </a>
 
+          <div class="collapse" id="cons_side">
+            <ul class="nav-second-level">
+              <li>
+                <a routerLink="cons/create">Crear típo de consulta</a>
+              </li>
+    
+              
+              <li>
+                <a href="#">Lista de típos de consultas</a>
+              </li>
+            </ul>
+          </div>
+        </li>
 
+        <li>
+          <a href="#">
+            <i class="fad fa-first-aid"></i>
+            <span class="links_name">Examenes</span>
+          </a>
+        </li>
 
-</mat-toolbar>
+        <li>
+          <a href="#">
+            <i style="font-size: x-large;" class="fad fa-solid fa-bed-pulse"></i>
+            <span class="links_name">Pacientes</span>
+          </a>
+        </li>
 
-<mat-sidenav-container>
-  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-    <ul class="nav-list">
-      <li>
-        <a href="#">
-          <i class="fad fa-first-aid"></i>
-          <span class="links_name">Agendar Cita</span>
-        </a>
+        
 
-      </li>
-      <li>
-        <a href="#">
-          <i class="fad fa-vial"></i>
-          <span class="links_name">Solicitar Examen</span>
-        </a>
-
-      </li>
-      <li>
-        <a href="#">
-          <i class="fad fa-user-md"></i>
-          <span class="links_name">Doctores</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fad fa-stethoscope"></i>
-          <span class="links_name">Servicios</span>
-        </a>
-      </li>
-     
-    </ul>
-    <mat-divider></mat-divider>
-    <ul class="nav-list">
-      <li>
-        <a href="#">
-          <i class="fad fa-bell"></i>
-          <span class="links_name">Notificaciones</span>
-        </a>
-
-      </li>
-      <li>
-        <a href="#">
-          <i class="fad fa-cog"></i>
-          <span class="links_name">Configuracion</span>
-        </a>
-      </li>
+        
+        
+        
+       
       </ul>
       <mat-divider></mat-divider>
-      <ul>
-      <li>
-        <a href="#">
-          <span class="links_name">Cerrar Sesion</span>
-          <i class="fad fa-sign-out"></i>
-        </a>
-
-      </li>
-      </ul>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div class="content mat-elevation-z8">
-      <router-outlet>
-
-      </router-outlet>
-
-
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+      <ul class="nav-list">
+        <li>
+          <a href="#">
+            <i class="fad fa-bell"></i>
+            <span class="links_name">Notificaciones</span>
+          </a>
+  
+        </li>
+        <li>
+          <a href="#">
+            <i class="fad fa-cog"></i>
+            <span class="links_name">Configuracion</span>
+          </a>
+        </li>
+        </ul>
+        <mat-divider></mat-divider>
+        <ul>
+        <li>
+          <a href="#">
+            <span class="links_name">Cerrar Sesion</span>
+            <i class="fad fa-sign-out"></i>
+          </a>
+  
+        </li>
+        </ul>
+    </mat-sidenav>
+    <mat-sidenav-content >
+      <div class="content mat-elevation-z8" style="border-radius: 25px;">
+        <router-outlet>
+  
+        </router-outlet>
+  
+  
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

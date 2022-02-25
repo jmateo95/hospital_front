@@ -1,0 +1,35 @@
+<form [formGroup]="profileForm">
+  <mat-card style="border-radius: 25px; padding: 5vh!important; min-width:40vw; ">
+    <mat-card-header>
+      <mat-card-title>Informe de paciente</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+
+
+        <div class="col-md-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Paciente</mat-label>
+            <mat-select formControlName="patient">
+              <mat-option *ngFor="let patient of patients" [value]="patient">
+                {{patient}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Descripcion</mat-label>
+            <textarea formControlName="nombre" matInput placeholder="Nombre"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Guardar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DoctorTopbarComponent } from './doctorTopbar.component';
-import { informeComponent } from '../informe/informe.component';
-import { appointmentComponent } from '../appointment/appointment.component';
-import { OrderComponent } from '../Order/order.component';
+import { AppointmentComponent } from '../routes/appointment/appointment.component'; 
+import { CreateReportComponent } from '../routes/createReport/createReport.component';
+import { OrderComponent } from '../routes/Order/order.component';
 
 const routes: Routes = [
   {path:'', component:DoctorTopbarComponent, children:[
-    {path:'', redirectTo:'informe', pathMatch:'full'},
-    {path:'informe', component:informeComponent},
-    {path:'cita/crear', component:appointmentComponent},
+    {path:'', redirectTo:'report', pathMatch:'full'},
+    {path:'report', component:CreateReportComponent},    
+    {path:'cita/crear', component:AppointmentComponent},
     {path:'cita/orden', component:OrderComponent}
   ]},
   

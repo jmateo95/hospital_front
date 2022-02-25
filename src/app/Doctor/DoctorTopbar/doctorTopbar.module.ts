@@ -3,12 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { DoctorTopbarRoutingModule } from './doctorTopbar-routing.module';
 import { MaterialModule } from '../../material/material.module';
-import { appointmentComponent } from '../appointment/appointment.component';
 
 
 @NgModule({
-  declarations: [
-    appointmentComponent
+  declarations: [    
   ],
   imports: [
     CommonModule,
