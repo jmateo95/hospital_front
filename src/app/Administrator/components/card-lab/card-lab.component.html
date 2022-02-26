@@ -1,0 +1,11 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Nombre del laboratorista</mat-card-title>
+      <mat-card-subtitle>Examen</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-actions>
+      <a *ngIf="admin" mat-button [routerLink]="['edit', id]"> Editar Informacion </a>
+    </mat-card-actions>
+  </mat-card>

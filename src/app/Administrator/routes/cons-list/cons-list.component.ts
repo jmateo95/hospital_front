@@ -3,12 +3,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-test-list',
-  templateUrl: './test-list.component.html',
-  styleUrls: ['./test-list.component.css']
+  selector: 'app-cons-list',
+  templateUrl: './cons-list.component.html',
+  styleUrls: ['./cons-list.component.css']
 })
-export class TestListComponent {
-  columnas: string[] = ['codigo', 'descripcion', 'precio', 'editar'];
+export class ConsListComponent implements OnInit {
+  columnas: string[] = ['codigo', 'nombre', 'precio', 'editar'];
   datos: Articulo[] = [];
   dataSource:any;
 
@@ -16,7 +16,7 @@ export class TestListComponent {
   
   ngOnInit() {
     for (let x = 1; x <= 100; x++)
-      this.datos.push(new Articulo(x, `Exámen ${x}`, Math.trunc(Math.random() * 1000)));
+      this.datos.push(new Articulo(x, `Consulta ${x}`, Math.trunc(Math.random() * 1000)));
     this.dataSource = new MatTableDataSource<Articulo>(this.datos);
     this.dataSource.paginator = this.paginator;
   }
