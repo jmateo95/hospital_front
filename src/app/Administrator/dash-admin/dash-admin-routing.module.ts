@@ -6,6 +6,7 @@ import { DoctorCreateComponent } from '../routes/doctor-create/doctor-create.com
 import { EspeCreateComponent } from '../routes/espe-create/espe-create.component';
 import { LabCreateComponent } from '../routes/lab-create/lab-create.component';
 import { DashAdminComponent } from './dash-admin.component';
+import { SeeDoctorAdminComponent } from '../views/see-doctor-admin/see-doctor-admin.component';
 
 const routes: Routes = [
   {path:'', component:DashAdminComponent, children:[
@@ -15,6 +16,7 @@ const routes: Routes = [
     {path:'lab/create', component:LabCreateComponent},
     {path:'espe/create', component:EspeCreateComponent},
     {path:'cons/create', component:ConsCreateComponent},
+    {path:'see/doctors', component:SeeDoctorAdminComponent},
   ]},
   
 ];
