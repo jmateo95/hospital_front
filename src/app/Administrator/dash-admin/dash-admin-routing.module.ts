@@ -11,6 +11,7 @@ import { TestCreateComponent } from '../routes/test-create/test-create.component
 import { TestEditComponent } from '../routes/test-edit/test-edit.component';
 import { TestListComponent } from '../routes/test-list/test-list.component';
 import { DashAdminComponent } from './dash-admin.component';
+import { SeeDoctorAdminComponent } from '../views/see-doctor-admin/see-doctor-admin.component';
 
 const routes: Routes = [
   {path:'', component:DashAdminComponent, children:[
@@ -22,9 +23,13 @@ const routes: Routes = [
     {path:'lab/list/edit/:id_lab', component:LabEditComponent},
     {path:'espe/create', component:EspeCreateComponent},
     {path:'cons/create', component:ConsCreateComponent},
+<<<<<<< HEAD
     {path:'test/create', component:TestCreateComponent},
     {path:'test/list', component:TestListComponent},
     {path:'test/list/edit/:id_test', component:TestEditComponent},
+=======
+    {path:'see/doctors', component:SeeDoctorAdminComponent},
+>>>>>>> devJ
   ]},
   
 ];

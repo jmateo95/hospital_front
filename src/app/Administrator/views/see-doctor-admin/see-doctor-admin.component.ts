@@ -2,11 +2,12 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { delay } from 'rxjs/operators';
 @Component({
-  selector: 'app-see-appointments',
-  templateUrl: './see-appointments.component.html',
-  styleUrls: ['./see-appointments.component.css']
+  selector: 'app-see-doctor-admin',
+  templateUrl: './see-doctor-admin.component.html',
+  styleUrls: ['./see-doctor-admin.component.css']
 })
-export class SeeAppointmentsComponent implements OnInit {
+export class SeeDoctorAdminComponent implements OnInit {
+
   breakpoint = 3;
   cards = [
     { title: 'Title 1', content: 'Content 1' },
@@ -65,5 +66,4 @@ export class SeeAppointmentsComponent implements OnInit {
       });
 
   }
-
 }

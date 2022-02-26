@@ -1,12 +1,14 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { delay } from 'rxjs/operators';
+
 @Component({
-  selector: 'app-see-appointments',
-  templateUrl: './see-appointments.component.html',
-  styleUrls: ['./see-appointments.component.css']
+  selector: 'app-see-tests',
+  templateUrl: './see-tests.component.html',
+  styleUrls: ['./see-tests.component.css']
 })
-export class SeeAppointmentsComponent implements OnInit {
+export class SeeTestsComponent implements OnInit {
+
   breakpoint = 3;
   cards = [
     { title: 'Title 1', content: 'Content 1' },
