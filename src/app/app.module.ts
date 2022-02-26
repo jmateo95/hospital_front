@@ -36,6 +36,8 @@ import { SeeAppointmentsComponent } from './Patient/component/views/see-appointm
 import { TestCreateComponent } from './Administrator/routes/test-create/test-create.component';
 import { TestListComponent } from './Administrator/routes/test-list/test-list.component';
 import { TestEditComponent } from './Administrator/routes/test-edit/test-edit.component';
+import { DoctorEditComponent } from './Administrator/routes/doctor-edit/doctor-edit.component';
+import { LabEditComponent } from './Administrator/routes/lab-edit/lab-edit.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin]);
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin]);
     SeeAppointmentsComponent,
     TestCreateComponent,
     TestListComponent,
-    TestEditComponent
+    TestEditComponent,
+    DoctorEditComponent,
+    LabEditComponent
   ],
   imports: [
     BrowserModule,

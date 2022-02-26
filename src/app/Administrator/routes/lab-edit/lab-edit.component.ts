@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import {FormControl, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
-
-
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -16,26 +15,32 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
+
 @Component({
-  selector: 'app-lab-create',
-  templateUrl: './lab-create.component.html',
-  styleUrls: ['./lab-create.component.css']
+  selector: 'app-lab-edit',
+  templateUrl: './lab-edit.component.html',
+  styleUrls: ['./lab-edit.component.css']
 })
-export class LabCreateComponent  {
-  hide = true;
-  
-  constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
+export class LabEditComponent implements OnInit {
+  id_lab: string;
+
+  constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>, private route: ActivatedRoute){
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
   }
-  
+  ngOnInit(): void {
+    var params=(this.route.snapshot.params);
+      this.id_lab = params['id_lab'];
+      console.log(this.id_lab);
+  }
    email = new FormControl('', [Validators.required, Validators.email]);
+   
    profileForm = this.formBuilder.group({
+     codigo:[''],
      nombre:[''],
      registro:[''],
      dpi:[''],
      telefono:[''],
      correo:this.email,
-     password:[''],
      fecha:[''],
      dia1:[''],
      dia2:[''],

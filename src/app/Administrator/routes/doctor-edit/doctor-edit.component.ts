@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import {FormControl, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
-
-
-
+import { ActivatedRoute } from '@angular/router';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -17,31 +15,35 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-lab-create',
-  templateUrl: './lab-create.component.html',
-  styleUrls: ['./lab-create.component.css']
+  selector: 'app-doctor-edit',
+  templateUrl: './doctor-edit.component.html',
+  styleUrls: ['./doctor-edit.component.css']
 })
-export class LabCreateComponent  {
-  hide = true;
-  
-  constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
-    this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
+export class DoctorEditComponent implements OnInit {
+  id_doctor: string;
+
+  constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>, private route: ActivatedRoute){
+    this.dateAdapter.setLocale('en-GB');
   }
   
+  
+    ngOnInit() {
+      var params=(this.route.snapshot.params);
+      this.id_doctor = params['id_doctor'];
+      console.log(this.id_doctor);
+    }
+
    email = new FormControl('', [Validators.required, Validators.email]);
+   
    profileForm = this.formBuilder.group({
      nombre:[''],
-     registro:[''],
+     colegiado:[''],
      dpi:[''],
      telefono:[''],
      correo:this.email,
-     password:[''],
-     fecha:[''],
-     dia1:[''],
-     dia2:[''],
-     dia3:[''],
-     dia4:[''],
-     dia5:[''],
+     horai:[''],
+     horaf:[''],
+     fecha:['']
    });
   
    
