@@ -34,21 +34,18 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
 import { SeeAppointmentsComponent } from './Patient/component/views/see-appointments/see-appointments.component';
-<<<<<<< HEAD
 import { TestCreateComponent } from './Administrator/routes/test-create/test-create.component';
 import { TestListComponent } from './Administrator/routes/test-list/test-list.component';
 import { TestEditComponent } from './Administrator/routes/test-edit/test-edit.component';
 import { DoctorEditComponent } from './Administrator/routes/doctor-edit/doctor-edit.component';
 import { LabEditComponent } from './Administrator/routes/lab-edit/lab-edit.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin]);
-=======
 import { CalendarCardComponent } from './Patient/component/helpers/calendar-card/calendar-card.component';
 import { AppointmentCardComponent } from './Patient/component/helpers/appointment-card/appointment-card.component';
 import { SeeTestsComponent } from './Patient/component/views/see-tests/see-tests.component';
 import { TestsCardComponent } from './Patient/component/helpers/tests-card/tests-card.component';
 import { SeeDoctorAdminComponent } from './Administrator/views/see-doctor-admin/see-doctor-admin.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
->>>>>>> devJ
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,19 +73,16 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     SeeServicesComponent,
     ServiceCardComponent,
     SeeAppointmentsComponent,
-<<<<<<< HEAD
     TestCreateComponent,
     TestListComponent,
     TestEditComponent,
     DoctorEditComponent,
-    LabEditComponent
-=======
+    LabEditComponent,
     CalendarCardComponent,
     AppointmentCardComponent,
     SeeTestsComponent,
     TestsCardComponent,
     SeeDoctorAdminComponent
->>>>>>> devJ
   ],
   imports: [
     BrowserModule,

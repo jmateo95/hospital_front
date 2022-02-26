@@ -7,6 +7,7 @@
 
     <mat-card-actions>
       <button *ngIf="pacient" mat-button>Agendar Consulta</button>
-      <button *ngIf="admin" mat-button>Editar</button>
+      <a *ngIf="admin" mat-button [routerLink]="['edit', id]"> Editar Informacion </a>
+      <button *ngIf="admin" mat-button>Editar Especialidad</button>
     </mat-card-actions>
   </mat-card>

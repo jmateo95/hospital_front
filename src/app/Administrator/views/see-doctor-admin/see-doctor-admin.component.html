@@ -1,5 +1,5 @@
 <mat-grid-list [cols]="breakpoint" rowHeight="10rem"  >
     <mat-grid-tile *ngFor="let card of cards">
-      <app-doctor-card [admin]="true"></app-doctor-card>
+      <app-doctor-card [admin]="true" id="{{card.id}}"></app-doctor-card>
     </mat-grid-tile>
   </mat-grid-list> 

@@ -18,7 +18,7 @@ const routes: Routes = [
     {path:'', redirectTo:'home', pathMatch:'full'},
     {path:'home', component:HomeComponent},
     {path:'doctor/create', component:DoctorCreateComponent},
-    {path:'doctor/list/edit/:id_doctor', component:DoctorEditComponent},
+    {path:'doctor/see/edit/:id_doctor', component:DoctorEditComponent},
     {path:'lab/create', component:LabCreateComponent},
     {path:'lab/list/edit/:id_lab', component:LabEditComponent},
     {path:'espe/create', component:EspeCreateComponent},
@@ -26,7 +26,7 @@ const routes: Routes = [
     {path:'test/create', component:TestCreateComponent},
     {path:'test/list', component:TestListComponent},
     {path:'test/list/edit/:id_test', component:TestEditComponent},
-    {path:'see/doctors', component:SeeDoctorAdminComponent},
+    {path:'doctor/see', component:SeeDoctorAdminComponent},
   ]},
   
 ];

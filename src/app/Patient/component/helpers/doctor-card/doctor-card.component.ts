@@ -9,6 +9,7 @@ export class DoctorCardComponent implements OnInit {
 
   @Input() admin: boolean = false;
   @Input() pacient: boolean  = false;
+  @Input() id:string='';
 
 
   constructor() { }
