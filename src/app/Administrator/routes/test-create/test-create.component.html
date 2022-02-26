@@ -1,0 +1,59 @@
+<form [formGroup]="profileForm">
+    <mat-card style="border-radius: 25px; padding: 5vh!important; min-width:40vw; ">
+      <mat-card-header>
+        <mat-card-title>Crear un nuevo típo de exámen</mat-card-title>
+      </mat-card-header>
+      <mat-card-content >
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <input formControlName="codigo" matInput placeholder="Código">
+            </mat-form-field>
+          </div>
+  
+  
+          <div class="col-md-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <input formControlName="nombre" matInput placeholder="Nombre">
+            </mat-form-field>
+          </div>
+        
+            <div class="col-md-12" style="margin-bottom: 1vh;">
+                <mat-label style="margin-right: 1.5vh;">Requiere Orden</mat-label>
+                <mat-radio-group formControlName="orden" class="margin-left">
+                    <mat-radio-button value="True" > Si </mat-radio-button>
+                    <mat-radio-button value="False"> No </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            
+
+            <div class="col-md-12">
+                <mat-form-field class="full-width" appearance="outline">
+                  <input formControlName="descripcion" matInput placeholder="Deescripcion">
+                </mat-form-field>
+            </div>
+        
+
+          <div class="col-md-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <input formControlName="costo" matInput placeholder="Costo" type="number"  min="0" step="0.1">
+            </mat-form-field>
+          </div>
+
+            <div class="col-md-12">
+                <mat-label style="margin-right: 1.5vh;">Formato del Reporte</mat-label>
+                <mat-radio-group formControlName="formato" class="margin-left">
+                    <mat-radio-button value="True" > PDF </mat-radio-button>
+                    <mat-radio-button value="False"> JPG </mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+
+        </div>
+  
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Crear</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>

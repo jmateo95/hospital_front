@@ -95,10 +95,21 @@
         </li>
 
         <li>
-          <a href="#">
+          <a href="#test_side" data-bs-toggle="collapse">
             <i class="fad fa-first-aid"></i>
-            <span class="links_name">Examenes</span>
+            <span class="links_name">Exámenes</span>
           </a>
+        
+          <div class="collapse" id="test_side">
+            <ul class="nav-second-level">
+              <li>
+                <a routerLink="test/create">Crear típo de exámen</a>
+              </li>
+              <li>
+                <a routerLink="test/list">Lista de típos de exámen</a>
+              </li>
+            </ul>
+          </div>
         </li>
 
         <li>

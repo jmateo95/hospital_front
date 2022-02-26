@@ -5,6 +5,9 @@ import { ConsCreateComponent } from '../routes/cons-create/cons-create.component
 import { DoctorCreateComponent } from '../routes/doctor-create/doctor-create.component';
 import { EspeCreateComponent } from '../routes/espe-create/espe-create.component';
 import { LabCreateComponent } from '../routes/lab-create/lab-create.component';
+import { TestCreateComponent } from '../routes/test-create/test-create.component';
+import { TestEditComponent } from '../routes/test-edit/test-edit.component';
+import { TestListComponent } from '../routes/test-list/test-list.component';
 import { DashAdminComponent } from './dash-admin.component';
 
 const routes: Routes = [
@@ -15,6 +18,9 @@ const routes: Routes = [
     {path:'lab/create', component:LabCreateComponent},
     {path:'espe/create', component:EspeCreateComponent},
     {path:'cons/create', component:ConsCreateComponent},
+    {path:'test/create', component:TestCreateComponent},
+    {path:'test/list', component:TestListComponent},
+    {path:'test/list/edit/:id_test', component:TestEditComponent},
   ]},
   
 ];

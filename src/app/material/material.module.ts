@@ -17,6 +17,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [],
@@ -39,8 +42,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatCheckboxModule,
     MatAutocompleteModule,
     AngularFileUploaderModule,
-    MatGridListModule
-    
+    MatGridListModule,
+    MatPaginatorModule,
+    MatTableModule
 
     
 
@@ -64,7 +68,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatCheckboxModule,
     MatAutocompleteModule,
     AngularFileUploaderModule,
-    MatGridListModule
+    MatGridListModule,
+    MatPaginatorModule,
+    MatTableModule
+    
   ]
 })
 export class MaterialModule { }
