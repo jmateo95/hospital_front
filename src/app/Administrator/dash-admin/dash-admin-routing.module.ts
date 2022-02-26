@@ -23,13 +23,10 @@ const routes: Routes = [
     {path:'lab/list/edit/:id_lab', component:LabEditComponent},
     {path:'espe/create', component:EspeCreateComponent},
     {path:'cons/create', component:ConsCreateComponent},
-<<<<<<< HEAD
     {path:'test/create', component:TestCreateComponent},
     {path:'test/list', component:TestListComponent},
     {path:'test/list/edit/:id_test', component:TestEditComponent},
-=======
     {path:'see/doctors', component:SeeDoctorAdminComponent},
->>>>>>> devJ
   ]},
   
 ];
