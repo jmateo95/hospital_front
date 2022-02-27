@@ -1,5 +1,61 @@
-<mat-grid-list [cols]="breakpoint" rowHeight="10rem"  >
-  <mat-grid-tile *ngFor="let card of cards">
-    <app-doctor-card></app-doctor-card>
-  </mat-grid-tile>
-</mat-grid-list> 
+<div class="row">
+  <div class="col-md-12">
+    <mat-grid-list [cols]="breakpoint" rowHeight="10rem">
+      <mat-grid-tile [colspan]="breakpoint" rowspan="2">
+        <div class="d-flex justify-content-between greeting-card content mat-elevation-z8">
+          <div class="greeting">
+            <label style="color: #3B2965; padding: 5px; ">Filtros</label>
+            <mat-divider></mat-divider>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Doctor</mat-label>
+                  <input type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput
+                    [formControl]="controlDoctors" [matAutocomplete]="auto" formControlName="doctor">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let optiond of filteredOptionsDoctors | async" [value]="optiond">
+                      {{optiond}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field  appearance="outline" style="width: 100%;">
+                  <mat-label>Fecha</mat-label>
+                  <mat-date-range-input [formGroup]="filtroFecha" [rangePicker]="campaignOnePicker">
+                    <input matStartDate placeholder="Start date" formControlName="start">
+                    <input matEndDate placeholder="End date" formControlName="end">
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                  <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field  appearance="outline">
+                <mat-label>Especialidad</mat-label>
+                <input type="text" placeholder="Seleccione una" aria-label="Especialidad" matInput [formControl]="controlDoctors"
+                  [matAutocomplete]="autoDoctor" formControlName="especialidad">
+                <mat-autocomplete #autoDoctor="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredOptionsSpecialties | async" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+            </div>
+
+
+            
+          </div>
+          <div class="col-4" style="align-self: center;" [hidden]="hidepicture">
+            <img width="200rem" src="assets/img/Consult2.png">
+          </div>
+        </div>
+
+      </mat-grid-tile>
+      <mat-grid-tile *ngFor="let card of cards">
+        <app-doctor-card [pacient]="true"></app-doctor-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

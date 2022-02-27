@@ -28,12 +28,9 @@ export class LabCreateComponent  {
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
   }
   
-  
-  
    email = new FormControl('', [Validators.required, Validators.email]);
-   
    profileForm = this.formBuilder.group({
-     codigo:[''],
+     codigo:[''], 
      nombre:[''],
      registro:[''],
      dpi:[''],

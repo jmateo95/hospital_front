@@ -23,10 +23,18 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario" style="margin-bottom:1vh;">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña" style="margin-bottom:1vh;">
-      <input type="submit" class="fadeIn fourth" value="Iniciar sesión">
+    <form style="text-align: -webkit-center;">
+      <div class="row col-md-8" style="padding: 2rem;">
+        <mat-form-field class="example-full-width" appearance="outline" >
+          <mat-label><i class="fal fa-user"></i> Usuario</mat-label>
+          <input matInput placeholder="Usuario" >
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label><i class="fal fa-lock-alt"></i> Contraseña</mat-label>
+          <input matInput type="password" placeholder="Contraseña" >
+        </mat-form-field>  
+        <button mat-raised-button color="primary">Iniciar Sesion</button>
+      </div>
     </form>
 
     <!-- Remind Passowrd -->

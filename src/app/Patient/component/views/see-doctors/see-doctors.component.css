@@ -1,9 +1,14 @@
 
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
 
-  :host {
-   width: 100%;
-  }
+:host {
+  width: 100%;
+ }
+ .greeting-card{
+  border-radius: 15px;
+  height: 70%;
+}
+
+.greeting{
+padding: 1rem;
+align-self: center;
+}

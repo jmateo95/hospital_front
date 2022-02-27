@@ -1,4 +1,4 @@
-<mat-toolbar class="mat-elevation-z8">
+<mat-toolbar class="mat-elevation-z8 d-flex justify-content-between">
   <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened">
       menu
@@ -10,15 +10,19 @@
 
 
   <div>
-    <a class="logo-icon">
-      
+    <a routerLink="home" class="logo-icon">
+
       <span class="links_name">Hospital App</span>
       <i class="fad fa-hospital-symbol"></i>
     </a>
   </div>
+<div>
+  
+  <button mat-stroked-button color="basic" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight"><i  class="fal fa-calendar-alt"></i></button>
+                  
+</div>
 
-
-
+ 
 
 </mat-toolbar>
 
@@ -36,8 +40,8 @@
             <li>
               <a routerLink="appointment/create">Agendar cita</a>
             </li>
-  
-            
+
+
             <li>
               <a routerLink="appointment/see-all">Proximas citas</a>
             </li>
@@ -49,7 +53,7 @@
       </li>
       <li>
         <a href="#test_side" data-bs-toggle="collapse">
-         
+
           <i class="fad fa-vials"></i>
           <span class="links_name">Examenes</span>
         </a>
@@ -59,10 +63,10 @@
             <li>
               <a routerLink="test/create">Solicitar examen</a>
             </li>
-  
-            
+
+
             <li>
-              <a href="#">Proximos Examenes</a>
+              <a routerLink="tests/see-all">Proximos Examenes</a>
             </li>
             <li>
               <a href="#">Historial</a>
@@ -70,21 +74,21 @@
           </ul>
         </div>
       </li>
-  
+
 
       <li>
-        <a  routerLink="doctors">
+        <a routerLink="doctors">
           <i class="fad fa-user-md"></i>
           <span class="links_name">Doctores</span>
         </a>
       </li>
       <li>
-        <a  routerLink="services">
+        <a routerLink="services">
           <i class="fad fa-stethoscope"></i>
           <span class="links_name">Servicios</span>
         </a>
       </li>
-     
+
     </ul>
     <mat-divider></mat-divider>
     <ul class="nav-list">
@@ -96,14 +100,14 @@
 
       </li>
       <li>
-        <a href="#">
+        <a routerLink="edit-profile">
           <i class="fad fa-cog"></i>
           <span class="links_name">Configuracion</span>
         </a>
       </li>
-      </ul>
-      <mat-divider></mat-divider>
-      <ul class="nav-list">
+    </ul>
+    <mat-divider></mat-divider>
+    <ul class="nav-list">
       <li>
         <a href="#">
           <span class="links_name">Cerrar Sesion</span>
@@ -111,15 +115,19 @@
         </a>
 
       </li>
-      </ul>
+    </ul>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="content ">
+    <div class="content " >
       <router-outlet>
 
+      
       </router-outlet>
+      
 
-
+    </div>
+    <div >
+      <app-calendar-card></app-calendar-card>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

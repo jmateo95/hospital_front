@@ -36,8 +36,27 @@ import { ServiceCardComponent } from './Patient/component/helpers/service-card/s
 import { FullCalendarModule } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import listPlugin from '@fullcalendar/list';
 import { SeeAppointmentsComponent } from './Patient/component/views/see-appointments/see-appointments.component';
+import { TestCreateComponent } from './Administrator/routes/test-create/test-create.component';
+import { TestListComponent } from './Administrator/routes/test-list/test-list.component';
+import { TestEditComponent } from './Administrator/routes/test-edit/test-edit.component';
+import { DoctorEditComponent } from './Administrator/routes/doctor-edit/doctor-edit.component';
+import { LabEditComponent } from './Administrator/routes/lab-edit/lab-edit.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin]);
+import { CalendarCardComponent } from './Patient/component/helpers/calendar-card/calendar-card.component';
+import { AppointmentCardComponent } from './Patient/component/helpers/appointment-card/appointment-card.component';
+import { SeeTestsComponent } from './Patient/component/views/see-tests/see-tests.component';
+import { TestsCardComponent } from './Patient/component/helpers/tests-card/tests-card.component';
+import { SeeDoctorAdminComponent } from './Administrator/views/see-doctor-admin/see-doctor-admin.component';
+import { ConsListComponent } from './Administrator/routes/cons-list/cons-list.component';
+import { ConsEditComponent } from './Administrator/routes/cons-edit/cons-edit.component';
+import { CardLabComponent } from './Administrator/components/card-lab/card-lab.component';
+import { SeeLabAdminComponent } from './Administrator/views/see-lab-admin/see-lab-admin.component';
+import { EditProfileComponent } from './Patient/component/edit-profile/edit-profile.component';
+import { DoctorProfileComponent } from './Patient/component/helpers/doctor-profile/doctor-profile.component';
+import { AppointmentInformationComponent } from './Patient/component/helpers/appointment-information/appointment-information.component';
+FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +88,24 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin]);
     PatientListComponent,
     ViewTestComponent,
     PatientReportsComponent,
+    SeeAppointmentsComponent,
+    TestCreateComponent,
+    TestListComponent,
+    TestEditComponent,
+    DoctorEditComponent,
+    LabEditComponent,
+    CalendarCardComponent,
+    AppointmentCardComponent,
+    SeeTestsComponent,
+    TestsCardComponent,
+    SeeDoctorAdminComponent,
+    ConsListComponent,
+    ConsEditComponent,
+    CardLabComponent,
+    SeeLabAdminComponent,
+    EditProfileComponent,
+    DoctorProfileComponent,
+    AppointmentInformationComponent,
   ],
   imports: [
     BrowserModule,
