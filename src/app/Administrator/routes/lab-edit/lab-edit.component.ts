@@ -35,7 +35,6 @@ export class LabEditComponent implements OnInit {
    email = new FormControl('', [Validators.required, Validators.email]);
    
    profileForm = this.formBuilder.group({
-     codigo:[''],
      nombre:[''],
      registro:[''],
      dpi:[''],

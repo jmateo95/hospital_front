@@ -30,6 +30,7 @@ export class LabCreateComponent  {
   
    email = new FormControl('', [Validators.required, Validators.email]);
    profileForm = this.formBuilder.group({
+     codigo:[''], 
      nombre:[''],
      registro:[''],
      dpi:[''],
