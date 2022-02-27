@@ -8,7 +8,7 @@ import { SeeDoctorsComponent } from '../component/views/see-doctors/see-doctors.
 import { SeeServicesComponent } from '../component/views/see-services/see-services.component';
 import { SeeAppointmentsComponent } from '../component/views/see-appointments/see-appointments.component';
 import { SeeTestsComponent } from '../component/views/see-tests/see-tests.component';
-
+import { EditProfileComponent } from '../component/edit-profile/edit-profile.component';
 const routes: Routes = [
   {path:'', component:NavbarPatientComponent, children:[
     {path:'', redirectTo:'home', pathMatch:'full'},
@@ -19,6 +19,7 @@ const routes: Routes = [
     {path:'services', component:SeeServicesComponent},
     {path:'appointment/see-all', component:SeeAppointmentsComponent},
     {path:'tests/see-all', component:SeeTestsComponent},
+    {path:'edit-profile', component:EditProfileComponent},
   ]},
   
 ];

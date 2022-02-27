@@ -39,6 +39,7 @@ import { AppointmentCardComponent } from './Patient/component/helpers/appointmen
 import { SeeTestsComponent } from './Patient/component/views/see-tests/see-tests.component';
 import { TestsCardComponent } from './Patient/component/helpers/tests-card/tests-card.component';
 import { SeeDoctorAdminComponent } from './Administrator/views/see-doctor-admin/see-doctor-admin.component';
+import { EditProfileComponent } from './Patient/component/edit-profile/edit-profile.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     AppointmentCardComponent,
     SeeTestsComponent,
     TestsCardComponent,
-    SeeDoctorAdminComponent
+    SeeDoctorAdminComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
