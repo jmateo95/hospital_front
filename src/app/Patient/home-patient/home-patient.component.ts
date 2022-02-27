@@ -12,6 +12,7 @@ export class HomePatientComponent implements OnInit {
   constructor(private observer: BreakpointObserver) { }
 
   ngOnInit(): void {
+    
   }
 
   ngAfterViewInit() {
