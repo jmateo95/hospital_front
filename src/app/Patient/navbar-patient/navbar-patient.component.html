@@ -1,4 +1,4 @@
-<mat-toolbar class="mat-elevation-z8">
+<mat-toolbar class="mat-elevation-z8 d-flex justify-content-between">
   <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened">
       menu
@@ -10,15 +10,19 @@
 
 
   <div>
-    <a class="logo-icon">
+    <a routerLink="home" class="logo-icon">
 
       <span class="links_name">Hospital App</span>
       <i class="fad fa-hospital-symbol"></i>
     </a>
   </div>
+<div>
+  
+  <button mat-stroked-button color="basic" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight"><i  class="fal fa-calendar-alt"></i></button>
+                  
+</div>
 
-
-
+ 
 
 </mat-toolbar>
 
@@ -96,7 +100,7 @@
 
       </li>
       <li>
-        <a href="#">
+        <a routerLink="edit-profile">
           <i class="fad fa-cog"></i>
           <span class="links_name">Configuracion</span>
         </a>
@@ -114,12 +118,16 @@
     </ul>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="content ">
+    <div class="content " >
       <router-outlet>
 
+      
       </router-outlet>
+      
 
-
+    </div>
+    <div >
+      <app-calendar-card></app-calendar-card>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

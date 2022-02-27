@@ -49,6 +49,9 @@ import { ConsListComponent } from './Administrator/routes/cons-list/cons-list.co
 import { ConsEditComponent } from './Administrator/routes/cons-edit/cons-edit.component';
 import { CardLabComponent } from './Administrator/components/card-lab/card-lab.component';
 import { SeeLabAdminComponent } from './Administrator/views/see-lab-admin/see-lab-admin.component';
+import { EditProfileComponent } from './Patient/component/edit-profile/edit-profile.component';
+import { DoctorProfileComponent } from './Patient/component/helpers/doctor-profile/doctor-profile.component';
+import { AppointmentInformationComponent } from './Patient/component/helpers/appointment-information/appointment-information.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 @NgModule({
   declarations: [
@@ -90,7 +93,10 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     ConsListComponent,
     ConsEditComponent,
     CardLabComponent,
-    SeeLabAdminComponent
+    SeeLabAdminComponent,
+    EditProfileComponent,
+    DoctorProfileComponent,
+    AppointmentInformationComponent,
   ],
   imports: [
     BrowserModule,
