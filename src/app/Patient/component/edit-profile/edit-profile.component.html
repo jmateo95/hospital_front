@@ -1,0 +1,78 @@
+<div class="rounded bg-white">
+    <div class="row">
+        <div class="col-md-4 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+                    src="https://i.imgur.com/0eg0aG0.jpg" width="90"><span class="font-weight-bold">Nombre del Paciente</span><span
+                    class="text-black-50">correo</span></div>
+        </div>
+        <div class="col-md-8">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    
+                    <h1 class="text-right">Editar Perfil</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="input-style" appearance="outline">
+                            <mat-label><i class="fal fa-user"></i> Nombre</mat-label>
+                            <input matInput placeholder="Nombre">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="input-style" appearance="outline">
+                            <mat-label><i class="fal fa-id-card-alt"></i> DPI</mat-label>
+                            <input matInput type="number" placeholder="DPI">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-6">
+                        <mat-form-field class="input-style" appearance="outline">
+                            <mat-label><i class="fal fa-at"></i> Correo Electronico</mat-label>
+                            <input matInput type="email" placeholder="Correo Electronico">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="input-style" appearance="outline">
+                            <mat-label><i class="fal fa-phone"></i> Telefono</mat-label>
+                            <input matInput type="tel" placeholder="Telefono">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-6">
+                        <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
+                            <mat-label>Sexo</mat-label>
+                            <select matNativeControl required>
+                                <option value="hombre">Hombre</option>
+                                <option value="mujer">Mujer</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
+                            <mat-label>Fecha de Nacimiento</mat-label>
+                            <input matInput [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-6"><mat-form-field class="input-style" style="width: 100%;" appearance="outline">
+                        <mat-label><i class="fal fa-weight"></i> Peso Kg</mat-label>
+                        <input matInput type="number" placeholder="Peso">
+                      </mat-form-field></div>
+                    <div class="col-md-6"><mat-form-field class="input-style" appearance="outline"  style="width: 100%;">
+                        <mat-label>Tipo Sangre</mat-label>
+                        <select matNativeControl required>
+                          <option value="O+">O+</option>
+                          <option value="O-">O-</option>
+                        </select>
+                      </mat-form-field></div>
+                </div>
+                <button mat-raised-button color="primary">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
