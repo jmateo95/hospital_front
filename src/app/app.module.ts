@@ -43,7 +43,6 @@ import { TestListComponent } from './Administrator/routes/test-list/test-list.co
 import { TestEditComponent } from './Administrator/routes/test-edit/test-edit.component';
 import { DoctorEditComponent } from './Administrator/routes/doctor-edit/doctor-edit.component';
 import { LabEditComponent } from './Administrator/routes/lab-edit/lab-edit.component';
-FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin]);
 import { CalendarCardComponent } from './Patient/component/helpers/calendar-card/calendar-card.component';
 import { AppointmentCardComponent } from './Patient/component/helpers/appointment-card/appointment-card.component';
 import { SeeTestsComponent } from './Patient/component/views/see-tests/see-tests.component';
@@ -57,6 +56,7 @@ import { EditProfileComponent } from './Patient/component/edit-profile/edit-prof
 import { DoctorProfileComponent } from './Patient/component/helpers/doctor-profile/doctor-profile.component';
 import { AppointmentInformationComponent } from './Patient/component/helpers/appointment-information/appointment-information.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
+
 @NgModule({
   declarations: [
     AppComponent,
