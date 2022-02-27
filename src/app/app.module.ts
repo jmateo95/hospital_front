@@ -10,10 +10,14 @@ import { AdminComponent } from './admin/admin.component';
 import { DashAdminComponent } from './Administrator/dash-admin/dash-admin.component';
 import { HomeComponent } from './Administrator/home/home.component';
 import { DoctorTopbarComponent } from './Doctor/DoctorTopbar/doctorTopbar.component';
+import { PatientReportsComponent } from './Doctor/routes/patientWithMoreReports/patientReports.component';
+import { PatientListComponent } from './Doctor/routes/patientList/patientList.component';
 import { LabTopbarComponent } from './Lab/LapTopbar/LabTopbar.component';
+import { ViewTestComponent } from './Lab/routes/viewTest/viewTest.component';
 import { HomePatientComponent } from './Patient/home-patient/home-patient.component';
 import { NavbarPatientComponent } from './Patient/navbar-patient/navbar-patient.component';
 import { DoctorCreateComponent } from './Administrator/routes/doctor-create/doctor-create.component';
+import { ViewAppointmentComponent } from './Doctor/routes/viewAppintments/viewAppintments.component';
 import { LabCreateComponent } from './Administrator/routes/lab-create/lab-create.component';
 import { EspeCreateComponent } from './Administrator/routes/espe-create/espe-create.component';
 import { ConsCreateComponent } from './Administrator/routes/cons-create/cons-create.component';
@@ -60,7 +64,11 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin]);
     SeeDoctorsComponent,
     SeeServicesComponent,
     ServiceCardComponent,
-    SeeAppointmentsComponent
+    SeeAppointmentsComponent, 
+    ViewAppointmentComponent,
+    PatientListComponent,
+    ViewTestComponent,
+    PatientReportsComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import {FormControl, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
+import {MatTableDataSource} from '@angular/material/table';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -13,33 +14,40 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
+export interface Patient {
+  name: string;
+  hour: string;
+}
+
+const ELEMENT_DATA: Patient[] = [
+  {hour: '14:00', name: 'Paciente 1'},
+  {hour: '15:00', name: 'Paciente 2'},
+  {hour: '16:00', name: 'Paciente 3'},
+  {hour: '17:00', name: 'Paciente 4'},
+  {hour: '18:00', name: 'Paciente 5'},
+  {hour: '19:00', name: 'Paciente 6'},
+  {hour: '20:00', name: 'Paciente 7'},
+];
 
 @Component({
   selector: 'app-createReport',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  templateUrl: './viewAppintments.component.html',
+  styleUrls: ['./viewAppintments.component.css']
 })
 
-export class OrderComponent {
+export class ViewAppointmentComponent {
 hide = true;
-
-patients = ['Jose', 'Andrea', 'David', 'Gabrihela'];
-tests = ['test 1 ', 'test 2', 'test 3'];
+ 
 
 constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 }
   
+  displayedColumns: string[] = ['hour', 'demo-name'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-
- profileForm = this.formBuilder.group({
-   codigo:[''],
-   nombre:[''],
- });
-   
- 
- saveForm(){
-   console.log('Form data is ', this.profileForm.value);
- }
-
+  /*applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue;
+  }*/
 }

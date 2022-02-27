@@ -13,7 +13,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
-
 @Component({
   selector: 'app-createReport',
   templateUrl: './uploadTest.component.html',
@@ -23,27 +22,41 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class UploadTestComponent {
 hide = true;
 
+patients = ['Jose', 'Andrea', 'David', 'Gabrihela'];
+tests = ['test 1 ', 'test 2', 'test 3'];
+
 constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 }
-  
-
 
  profileForm = this.formBuilder.group({
    codigo:[''],
-   nombre:[''],
-   colegiado:[''],
-   dpi:[''],
-   telefono:[''],   
-   password:[''],
-   horai:[''],
-   horaf:[''],
-   fecha:['']
+   nombre:[''],   
  });
    
  
  saveForm(){
    console.log('Form data is ', this.profileForm.value);
  }
+
+ afuConfig = {
+  formatsAllowed: ".jpg,.png,.pdf",
+  uploadAPI: {
+    url:"https://example-file-upload-api"
+  },
+  theme: "dragNDrop",
+  hideProgressBar: true,
+  hideResetBtn: true,
+  replaceTexts: {
+    selectFileBtn: 'Selecciona el archivo',
+    resetBtn: 'Reset',
+    uploadBtn: 'Cargar',
+    dragNDropBox: 'Arrastra y suelta el archivo',
+    attachPinBtn: 'Adjunta el documento',
+    afterUploadMsg_success: 'Archivo cargado exitosamente',
+    afterUploadMsg_error: 'La carga del archivo fallo',
+    sizeLimit: 'Tamaño limite'
+  }
+};
 
 }

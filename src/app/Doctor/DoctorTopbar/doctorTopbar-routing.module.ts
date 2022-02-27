@@ -4,13 +4,19 @@ import { DoctorTopbarComponent } from './doctorTopbar.component';
 import { AppointmentComponent } from '../routes/appointment/appointment.component'; 
 import { CreateReportComponent } from '../routes/createReport/createReport.component';
 import { OrderComponent } from '../routes/Order/order.component';
+import { ViewAppointmentComponent } from '../routes/viewAppintments/viewAppintments.component';
+import { PatientListComponent } from '../routes/patientList/patientList.component';
+import { PatientReportsComponent } from '../routes/patientWithMoreReports/patientReports.component';
 
 const routes: Routes = [
   {path:'', component:DoctorTopbarComponent, children:[
-    {path:'', redirectTo:'report', pathMatch:'full'},
+    {path:'', redirectTo:'citas', pathMatch:'full'},
     {path:'report', component:CreateReportComponent},    
     {path:'cita/crear', component:AppointmentComponent},
-    {path:'cita/orden', component:OrderComponent}
+    {path:'cita/orden', component:OrderComponent},
+    {path:'citas',component:ViewAppointmentComponent},
+    {path:'pacientes',component:PatientListComponent},
+    {path:'pacientes/reportes', component:PatientReportsComponent}
   ]},
   
 ];

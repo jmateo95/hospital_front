@@ -27,6 +27,13 @@
       <ul class="nav-list">
 
         <li>
+          <a routerLink="/doctor/citas">
+            <i class="fa-regular fa-hospital"></i>
+            <span class="links_name">Home</span>
+          </a>
+        </li>
+
+        <li>
           <a routerLink="/doctor/report">
             <i class="fad fa-book-medical"></i>
             <span class="links_name">Informe Cita</span>
@@ -52,63 +59,27 @@
             </ul>
           </div>
           
-        </li>
-        <li>
-          <a href="#lab_side" data-bs-toggle="collapse">
-            <i class="fad fa-vial"></i>
-            <span class="links_name">Laboratorista</span>
-          </a>
-
-          <div class="collapse" id="lab_side">
-            <ul class="nav-second-level">
-              <li>
-                <a routerLink="lab/create">Crear Laboratorista</a>
-              </li>
-    
-              
-              <li>
-                <a href="#">Lista de Laboratorista</a>
-              </li>
-            </ul>
-          </div>
-  
-        </li>
+        </li>        
         
         <li>
           <a href="#cons_side" data-bs-toggle="collapse">
-            <i class="fad fa-stethoscope"></i>
-            <span class="links_name">Consultas</span>
+            <i class="fad fa-solid fa-bed-pulse"></i>
+            <span class="links_name">Pacientes</span>
           </a>
 
           <div class="collapse" id="cons_side">
             <ul class="nav-second-level">
               <li>
-                <a routerLink="cons/create">Crear típo de consulta</a>
+                <a href="doctor/pacientes">Listado de pacientes</a>
               </li>
     
               
               <li>
-                <a href="#">Lista de típos de consultas</a>
+                <a href="doctor/pacientes/reportes">Pacientes con más informes</a>
               </li>
             </ul>
           </div>
-        </li>
-
-        <li>
-          <a href="#">
-            <i class="fad fa-first-aid"></i>
-            <span class="links_name">Examenes</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#">
-            <i style="font-size: x-large;" class="fad fa-solid fa-bed-pulse"></i>
-            <span class="links_name">Pacientes</span>
-          </a>
-        </li>
-
-        
+        </li>                     
 
         
         
