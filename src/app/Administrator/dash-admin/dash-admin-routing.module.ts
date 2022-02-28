@@ -16,6 +16,8 @@ import { ConsListComponent } from '../routes/cons-list/cons-list.component';
 import { ConsEditComponent } from '../routes/cons-edit/cons-edit.component';
 import { SeeLabAdminComponent } from '../views/see-lab-admin/see-lab-admin.component';
 import { TestRepAdminComponent } from '../routes/test-rep-admin/test-rep-admin.component';
+import { PatientListComponent } from 'src/app/Doctor/routes/patientList/patientList.component';
+import { PatientRepAdminComponent } from '../routes/patient-rep-admin/patient-rep-admin.component';
 
 const routes: Routes = [
   {path:'', component:DashAdminComponent, children:[
@@ -35,6 +37,7 @@ const routes: Routes = [
     {path:'test/list/edit/:id_test', component:TestEditComponent},
     {path:'test/rep', component:TestRepAdminComponent},
     {path:'doctor/see', component:SeeDoctorAdminComponent},
+    {path:'patient/rep', component:PatientRepAdminComponent},
   ]},
   
 ];
