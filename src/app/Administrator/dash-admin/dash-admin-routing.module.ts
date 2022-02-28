@@ -15,6 +15,7 @@ import { SeeDoctorAdminComponent } from '../views/see-doctor-admin/see-doctor-ad
 import { ConsListComponent } from '../routes/cons-list/cons-list.component';
 import { ConsEditComponent } from '../routes/cons-edit/cons-edit.component';
 import { SeeLabAdminComponent } from '../views/see-lab-admin/see-lab-admin.component';
+import { TestRepAdminComponent } from '../routes/test-rep-admin/test-rep-admin.component';
 
 const routes: Routes = [
   {path:'', component:DashAdminComponent, children:[
@@ -32,6 +33,7 @@ const routes: Routes = [
     {path:'test/create', component:TestCreateComponent},
     {path:'test/list', component:TestListComponent},
     {path:'test/list/edit/:id_test', component:TestEditComponent},
+    {path:'test/rep', component:TestRepAdminComponent},
     {path:'doctor/see', component:SeeDoctorAdminComponent},
   ]},
   

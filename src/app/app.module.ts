@@ -55,6 +55,7 @@ import { SeeLabAdminComponent } from './Administrator/views/see-lab-admin/see-la
 import { EditProfileComponent } from './Patient/component/edit-profile/edit-profile.component';
 import { DoctorProfileComponent } from './Patient/component/helpers/doctor-profile/doctor-profile.component';
 import { AppointmentInformationComponent } from './Patient/component/helpers/appointment-information/appointment-information.component';
+import { TestRepAdminComponent } from './Administrator/routes/test-rep-admin/test-rep-admin.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -106,6 +107,7 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     EditProfileComponent,
     DoctorProfileComponent,
     AppointmentInformationComponent,
+    TestRepAdminComponent,
   ],
   imports: [
     BrowserModule,
