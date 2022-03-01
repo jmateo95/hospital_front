@@ -1,0 +1,86 @@
+<mat-grid-list [cols]="breakpoint" rowHeight="fit" style="height: 80vh;" >
+    <mat-grid-tile [colspan]="breakpoint" rowspan="1" >
+            <div class="d-flex justify-content-between greeting-card content mat-elevation-z8">
+                <div class="greeting">
+                    <label style="color: #3B2965; padding: 5px; ">Hola, </label>
+                    <label style="color: #447DEF;font-weight: 500;"> Nombre Paciente</label>
+                    
+              <mat-divider></mat-divider>
+                    <p>
+                        Ten un buen día, no olvides de tus citas y examenes agendados
+                    </p>
+                    <button mat-stroked-button [hidden]="hidepicture" color="primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight"><i  class="fal fa-calendar-alt"></i> Calendario</button>
+                   
+                </div>
+                <div class="col-4" style="align-self: center;" [hidden]="hidepicture">
+                    <img width="200rem" src="assets/img/Doctors-pana.png">
+                </div>
+            </div>
+
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+        
+            <div class="card-info content mat-elevation-z8 d-flex justify-content-evenly">
+                <div  class="icon-card">
+                    <img width="50rem" src="assets/img/icons/blood.png">
+                </div>
+                <div class="text-card">
+                    <label class="box">Tipo de sangre </label>
+                    <br>
+                    <label class="box2">O+ </label>
+    
+                </div>
+            </div>
+        
+        
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="card-info content mat-elevation-z8 d-flex justify-content-evenly">
+            <div class="icon-card">
+                <img width="50rem" src="assets/img/icons/weight.png">
+            </div>
+            <div class="text-card">
+                <label class="box">Peso</label>
+                <br>
+                <label class="box2">18 Kg </label>
+
+            </div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="card-info content mat-elevation-z8 d-flex justify-content-evenly">
+            <div class="icon-card">
+                <img width="50rem" src="assets/img/icons/medicalappointment.png">
+            </div>
+            <div class="text-card">
+                <a routerLink="../appointment/see-all" style="text-decoration: none;">
+
+                    <span class="box">Proximas Consultas</span>
+                  </a>
+                <br>
+                <label class="box2">2 </label>
+
+            </div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="card-info content mat-elevation-z8 d-flex justify-content-evenly">
+            <div class="icon-card">
+                <img width="50rem" src="assets/img/icons/tests.png">
+            </div>
+            <div class="text-card">
+                <a routerLink="../tests/see-all" style="text-decoration: none;">
+
+                    <span class="box">Proximos Examenes</span>
+                  </a>
+                <br>
+                <label class="box2">5 </label>
+
+            </div>
+        </div>
+    </mat-grid-tile>
+
+
+
+
+</mat-grid-list>

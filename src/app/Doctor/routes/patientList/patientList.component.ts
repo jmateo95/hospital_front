@@ -1,20 +1,10 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
-import {FormControl, Validators} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { DateAdapter } from '@angular/material/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { delay, map, startWith } from 'rxjs/operators';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 export interface Patient {
   name: string;
@@ -37,24 +27,96 @@ const ELEMENT_DATA: Patient[] = [
   styleUrls: ['./patientList.component.css']
 })
 
-export class PatientListComponent {
-hide = true;
+export class PatientListComponent implements OnInit{
+  hide = true;
  
 
 @ViewChild(MatPaginator) paginator: MatPaginator;
-@ViewChild(MatSort) sort: MatSort;
 
-
-constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
-  this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
-}
-  
   displayedColumns: string[] = ['name', 'apellido'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
+  breakpoint = 3;
+  cards = [
+    { title: 'Title 1', content: 'Content 1' },
+    { title: 'Title 2', content: 'Content 2' },
+    { title: 'Title 3', content: 'Content 3' },
+    { title: 'Title 4', content: 'Content 4' }
+  ];
+  hidepicture = false;
+  filtroFecha!: FormGroup;
+  controlTipoExamen = new FormControl();
+  optionsTipoExamen: string[] = ['Rayos X', 'Ultrasonido', 'Examen de Sangre'];
+  filteredOptionsTipoExamen!: Observable<string[]>;
+  constructor(private observer: BreakpointObserver) { }
+
+
+  ngOnInit() {
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    this.filtroFecha = new FormGroup({
+      start: new FormControl(new Date(year, month, 13)),
+      end: new FormControl(new Date(year, month, 16)),
+    });
+    this.filteredOptionsTipoExamen = this.controlTipoExamen.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter_doctors(value)),
+    );
+  }
+
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.observer
+      .observe(['(min-width: 1200px)'])
+      .pipe(delay(1))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.breakpoint = 3;
+          this.hidepicture = false;
+        }
+      });
+    this.observer
+      .observe(['(max-width: 1200px) and (min-width: 925px)'])
+      .pipe(delay(1))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.breakpoint = 2;
+          this.hidepicture = false;
+        }
+      });
+
+    this.observer
+      .observe(['(max-width: 925px) and (min-width: 800px)'])
+      .pipe(delay(1))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.breakpoint = 1;
+          this.hidepicture = true;
+        }
+      });
+    this.observer
+      .observe(['(max-width: 800px) and (min-width: 625px)'])
+      .pipe(delay(1))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.breakpoint = 2;
+          
+          this.hidepicture = true;
+        }
+      });
+    this.observer
+      .observe(['(max-width: 625px)'])
+      .pipe(delay(1))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.breakpoint = 1;
+          this.hidepicture = true;
+        }
+      });
+
   }
 
   applyFilter(event: Event) {
@@ -64,6 +126,12 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  private _filter_doctors(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.optionsTipoExamen.filter(optiond => optiond.toLowerCase().includes(filterValue));
   }
 }
 

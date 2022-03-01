@@ -18,6 +18,7 @@ import { HomePatientComponent } from './Patient/home-patient/home-patient.compon
 import { NavbarPatientComponent } from './Patient/navbar-patient/navbar-patient.component';
 import { DoctorCreateComponent } from './Administrator/routes/doctor-create/doctor-create.component';
 import { ViewAppointmentComponent } from './Doctor/routes/viewAppintments/viewAppintments.component';
+import { HistoryReportPatientComponent } from './Doctor/routes/historyReportPatient/historyReportPatient.component';
 import { LabCreateComponent } from './Administrator/routes/lab-create/lab-create.component';
 import { EspeCreateComponent } from './Administrator/routes/espe-create/espe-create.component';
 import { ConsCreateComponent } from './Administrator/routes/cons-create/cons-create.component';
@@ -30,6 +31,8 @@ import { FormsModule } from '@angular/forms';
 import { CreateAppointmentComponent } from './Patient/component/appointment/create-appointment/create-appointment.component';
 import { CreateTestComponent } from './Patient/component/test/create-test/create-test.component';
 import { DoctorCardComponent } from './Patient/component/helpers/doctor-card/doctor-card.component';
+import { DayWithMoreTestMadeComponent } from './Lab/routes/DayWithMoreTestMade/dayWithMoreTestMade.component';
+import { ExamsMadeComponent } from './Lab/routes/examsMade/examsMade.component';
 import { SeeDoctorsComponent } from './Patient/component/views/see-doctors/see-doctors.component';
 import { ServiceCardComponent } from './Patient/component/helpers/service-card/service-card.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -57,6 +60,9 @@ import { AppointmentInformationComponent } from './Patient/component/helpers/app
 import { ServicesAppointmentComponent } from './Patient/component/views/services-appointment/services-appointment.component';
 import { ServicesTestComponent } from './Patient/component/views/services-test/services-test.component';
 import { ServiceInformationComponent } from './Patient/component/helpers/service-information/service-information.component';
+import { TestRepAdminComponent } from './Administrator/routes/test-rep-admin/test-rep-admin.component';
+import { PatientRepAdminComponent } from './Administrator/routes/patient-rep-admin/patient-rep-admin.component';
+import { DoctorRep1AdminComponent } from './Administrator/routes/doctor-rep1-admin/doctor-rep1-admin.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -110,6 +116,12 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     ServicesAppointmentComponent,
     ServicesTestComponent,
     ServiceInformationComponent,
+    DayWithMoreTestMadeComponent,
+    ExamsMadeComponent,
+    HistoryReportPatientComponent,
+    TestRepAdminComponent,
+    PatientRepAdminComponent,
+    DoctorRep1AdminComponent,
   ],
   imports: [
     BrowserModule,

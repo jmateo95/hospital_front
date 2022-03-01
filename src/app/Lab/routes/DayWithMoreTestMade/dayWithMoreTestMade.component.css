@@ -2,16 +2,18 @@
     width: 100%;
   }
   
-  .mat-column-hour {
+  .mat-column-date {
     width: 32px;
     border-right: 1px solid currentColor;
     padding-right: 24px;
     text-align: center;
   }
   
-  .mat-column-demo-name {
+  .mat-column-tests {  
+    width: 32px;
     padding-left: 16px;
     font-size: 20px;
+    text-align: center;
   }  
 
   table {
@@ -20,7 +22,7 @@
     width: 100%;
   }
   
-  td, th{
+  td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
@@ -50,3 +52,4 @@
   font-size: 14px;
   width: 100%;
 }
+

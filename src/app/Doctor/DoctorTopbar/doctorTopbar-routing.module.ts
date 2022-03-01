@@ -7,6 +7,7 @@ import { OrderComponent } from '../routes/Order/order.component';
 import { ViewAppointmentComponent } from '../routes/viewAppintments/viewAppintments.component';
 import { PatientListComponent } from '../routes/patientList/patientList.component';
 import { PatientReportsComponent } from '../routes/patientWithMoreReports/patientReports.component';
+import { HistoryReportPatientComponent } from '../routes/historyReportPatient/historyReportPatient.component';
 
 const routes: Routes = [
   {path:'', component:DoctorTopbarComponent, children:[
@@ -16,7 +17,8 @@ const routes: Routes = [
     {path:'cita/orden', component:OrderComponent},
     {path:'citas',component:ViewAppointmentComponent},
     {path:'pacientes',component:PatientListComponent},
-    {path:'pacientes/reportes', component:PatientReportsComponent}
+    {path:'pacientes/reportes', component:PatientReportsComponent},
+    {path: 'historial/paciente', component:HistoryReportPatientComponent}
   ]},
   
 ];
