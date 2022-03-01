@@ -17,8 +17,19 @@
     </a>
   </div>
 <div>
-  
-  <button mat-stroked-button color="basic" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight"><i  class="fal fa-calendar-alt"></i></button>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight" mat-menu-item>
+      <mat-icon><i  class="fal fa-calendar-alt"></i></mat-icon>
+      <span>Calendario</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon><i class="fa fa-sign-out"></i></mat-icon>
+      <span>Cerrar Sesion</span>
+    </button>
+  </mat-menu>
                   
 </div>
 
