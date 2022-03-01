@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Component, ViewChild,OnInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 export interface Patient {
@@ -33,6 +35,9 @@ const ELEMENT_DATA: Patient[] = [
 })
 
 export class HistoryReportPatientComponent{
+  breakpoint = 3;
+  hidepicture = false;
+  filtroFecha!: FormGroup;
 
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   columnsToDisplay: string[] = ['date', 'doctor'];
@@ -40,7 +45,22 @@ export class HistoryReportPatientComponent{
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
+  constructor(private observer: BreakpointObserver) { 
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    this.filtroFecha = new FormGroup({
+      start: new FormControl(new Date(year, month, 13)),
+      end: new FormControl(new Date(year, month, 16)),
+    });
+  }
+
   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  ngOnInit() {
     this.dataSource.paginator = this.paginator;
   }
 }

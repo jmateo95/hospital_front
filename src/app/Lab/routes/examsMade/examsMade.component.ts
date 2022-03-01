@@ -1,3 +1,5 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Component, ViewChild,OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -24,15 +26,34 @@ const ELEMENT_DATA: Patient[] = [
   styleUrls: ['./examsMade.component.css']
 })
 
-export class ExamsMadeComponent {
+export class ExamsMadeComponent implements OnInit{
+  breakpoint = 3;
+  hidepicture = false;
+  filtroFecha!: FormGroup;
+
 
   displayedColumns: string[] = ['hour', 'patient', 'date'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
+  constructor(private observer: BreakpointObserver) { 
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    this.filtroFecha = new FormGroup({
+      start: new FormControl(new Date(year, month, 13)),
+      end: new FormControl(new Date(year, month, 16)),
+    });
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  
+
+  ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 }
+  

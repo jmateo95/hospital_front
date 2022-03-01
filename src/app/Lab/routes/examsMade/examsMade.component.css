@@ -14,40 +14,36 @@
     margin: 200px;
 }
 
- .mat-column-hour {
-    width: 32px;
-    border-right: 1px solid currentColor;
-    padding-right: 24px;
-    text-align: center;
-  }
-  
-  .mat-column-date {
-    padding-left: 16px;
-    font-size: 20px;
-  }  
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
 
-  .mat-column-patient {
-    padding-left: 16px;
-    font-size: 20px;
-  }  
+:host {
+  width: 100%;
+ }
+ .greeting-card{
+  border-radius: 15px;
+  height: 70%;
+}
 
-  .mat-column-test {
-    padding-left: 16px;
-    font-size: 20px;
-  }  
+.greeting{
+padding: 1rem;
+align-self: center;
+}
 
-  table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}

@@ -1,5 +1,35 @@
-table {
+.full-width{
   width: 100%;
+}
+
+.top-padding{
+  padding-top: 3px;
+}
+
+.margin-left mat-radio-button:not(:first-child){
+  margin-left:10px;
+}
+
+.form-container{
+  margin: 200px;
+}
+
+.mat-form-field {
+font-size: 14px;
+width: 100%;
+}
+
+:host {
+width: 100%;
+}
+.greeting-card{
+border-radius: 15px;
+height: 70%;
+}
+
+.greeting{
+padding: 1rem;
+align-self: center;
 }
 
 tr.example-detail-row {
@@ -23,8 +53,6 @@ tr.example-element-row:not(.example-expanded-row):active {
   display: flex;
 }
 
-
-
 .example-element-description {
   padding: 16px;
 }
@@ -39,7 +67,7 @@ tr.example-element-row:not(.example-expanded-row):active {
     width: 100%;
   }
   
-  td, th{
+  td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
@@ -48,24 +76,3 @@ tr.example-element-row:not(.example-expanded-row):active {
   tr:nth-child(even) {
     background-color: #dddddd;
   }
-
-.full-width{
-    width: 100%;
-}
-
-.top-padding{
-    padding-top: 3px;
-}
-
-.margin-left mat-radio-button:not(:first-child){
-    margin-left:10px;
-}
-
-.form-container{
-    margin: 200px;
-}
-
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
-}
