@@ -13,10 +13,10 @@ export class SeeTestsComponent implements OnInit {
 
   breakpoint = 3;
   cards = [
-    { name: 'Tomografia', date: '12/08/2020' },
-    { name: 'Rayos X', date: '14/08/2020' },
-    { name: 'Ultrasonido', date: '15/12/2020' },
-    { name: 'Examen de la Glucosa', date: '12/05/2020' }
+    { name: 'Tomografia', date: '12/08/2020', code:'1'},
+    { name: 'Rayos X', date: '14/08/2020', code:'2' },
+    { name: 'Ultrasonido', date: '15/12/2020',code:'3' },
+    { name: 'Examen de la Glucosa', date: '12/05/2020', code:'4' }
   ];
   hidepicture = false;
   filtroFecha!: FormGroup;

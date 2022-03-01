@@ -11,6 +11,8 @@ import { EditProfileComponent } from '../component/edit-profile/edit-profile.com
 import { DoctorProfileComponent } from '../component/helpers/doctor-profile/doctor-profile.component';
 import { ServicesTestComponent } from '../component/views/services-test/services-test.component';
 import { ServicesAppointmentComponent } from '../component/views/services-appointment/services-appointment.component';
+import { ServiceInformationComponent } from '../component/helpers/service-information/service-information.component';
+
 const routes: Routes = [
   {path:'', component:NavbarPatientComponent, children:[
     {path:'', redirectTo:'home', pathMatch:'full'},
@@ -18,6 +20,7 @@ const routes: Routes = [
     {path:'appointment/create/:speciality/:doctor', component:CreateAppointmentComponent},
     {path:'appointment/create/:speciality', component:CreateAppointmentComponent},
     {path:'appointment/create', component:CreateAppointmentComponent},
+    {path:'test/create/:type', component:CreateTestComponent},
     {path:'test/create', component:CreateTestComponent},
     {path:'doctors', component:SeeDoctorsComponent},
     {path:'services/appointment', component:ServicesAppointmentComponent},
@@ -30,6 +33,7 @@ const routes: Routes = [
     {path:'doctor/:id/view-profile', component:DoctorProfileComponent},
     {path:'appointment/see/:id', component:SeeAppointmentsComponent},
     {path:'test/see/:id', component:SeeTestsComponent},
+    {path:'service/:type/:id', component:ServiceInformationComponent},
     
   ]},
   

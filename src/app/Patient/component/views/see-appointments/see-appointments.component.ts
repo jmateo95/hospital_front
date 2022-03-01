@@ -14,10 +14,10 @@ export class SeeAppointmentsComponent implements OnInit {
   filtroFecha!: FormGroup;
    
   cards = [
-    { date: '12/05/2021', doctor: 'Dr. Fernado Rojas',type:'Pediatria' },
-    { date: '14/04/2021', doctor: 'Dr. Luis Juarez',type:'Odontologia' },
-    { date: '18/03/2021', doctor: 'Dra. Camila Estrada',type:'Consulta General' },
-    { date: '19/02/2021', doctor: 'Dra. Fernanda Carrillo',type:'Neurologia' }
+    { code: '1',date: '12/05/2021', doctor: 'Dr. Fernado Rojas',type:'Pediatria' },
+    { code: '2',date: '14/04/2021', doctor: 'Dr. Luis Juarez',type:'Odontologia' },
+    { code: '3',date: '18/03/2021', doctor: 'Dra. Camila Estrada',type:'Consulta General' },
+    { code: '4',date: '19/02/2021', doctor: 'Dra. Fernanda Carrillo',type:'Neurologia' }
   ];
   constructor(private observer: BreakpointObserver) { 
     const today = new Date();

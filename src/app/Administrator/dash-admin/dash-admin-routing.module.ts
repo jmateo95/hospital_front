@@ -19,6 +19,7 @@ import { TestRepAdminComponent } from '../routes/test-rep-admin/test-rep-admin.c
 import { PatientListComponent } from 'src/app/Doctor/routes/patientList/patientList.component';
 import { PatientRepAdminComponent } from '../routes/patient-rep-admin/patient-rep-admin.component';
 import { DoctorRep1AdminComponent } from '../routes/doctor-rep1-admin/doctor-rep1-admin.component';
+import { DoctorRepComponent } from '../routes/doctor-rep/doctor-rep.component';
 
 const routes: Routes = [
   {path:'', component:DashAdminComponent, children:[
@@ -40,6 +41,7 @@ const routes: Routes = [
     {path:'test/rep', component:TestRepAdminComponent},
     {path:'doctor/see', component:SeeDoctorAdminComponent},
     {path:'patient/rep', component:PatientRepAdminComponent},
+    {path:'doctor/rep/lower-performance', component:DoctorRepComponent},
   ]},
   
 ];

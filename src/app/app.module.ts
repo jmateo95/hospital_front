@@ -56,13 +56,13 @@ import { CardLabComponent } from './Administrator/components/card-lab/card-lab.c
 import { SeeLabAdminComponent } from './Administrator/views/see-lab-admin/see-lab-admin.component';
 import { EditProfileComponent } from './Patient/component/edit-profile/edit-profile.component';
 import { DoctorProfileComponent } from './Patient/component/helpers/doctor-profile/doctor-profile.component';
-import { AppointmentInformationComponent } from './Patient/component/helpers/appointment-information/appointment-information.component';
 import { ServicesAppointmentComponent } from './Patient/component/views/services-appointment/services-appointment.component';
 import { ServicesTestComponent } from './Patient/component/views/services-test/services-test.component';
 import { ServiceInformationComponent } from './Patient/component/helpers/service-information/service-information.component';
 import { TestRepAdminComponent } from './Administrator/routes/test-rep-admin/test-rep-admin.component';
 import { PatientRepAdminComponent } from './Administrator/routes/patient-rep-admin/patient-rep-admin.component';
 import { DoctorRep1AdminComponent } from './Administrator/routes/doctor-rep1-admin/doctor-rep1-admin.component';
+import { DoctorRepComponent } from './Administrator/routes/doctor-rep/doctor-rep.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -112,7 +112,6 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     SeeLabAdminComponent,
     EditProfileComponent,
     DoctorProfileComponent,
-    AppointmentInformationComponent,
     ServicesAppointmentComponent,
     ServicesTestComponent,
     ServiceInformationComponent,
@@ -122,6 +121,7 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     TestRepAdminComponent,
     PatientRepAdminComponent,
     DoctorRep1AdminComponent,
+    DoctorRepComponent,
   ],
   imports: [
     BrowserModule,

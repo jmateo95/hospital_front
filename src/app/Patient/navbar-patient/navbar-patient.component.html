@@ -21,6 +21,10 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
+    <a routerLink="edit-profile"  mat-menu-item>
+      <mat-icon><i class="fal fa-user-circle"></i></mat-icon>
+      <span>Mi Perfil</span>
+    </a>
     <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight" mat-menu-item>
       <mat-icon><i  class="fal fa-calendar-alt"></i></mat-icon>
       <span>Calendario</span>
@@ -38,7 +42,7 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" >
     <ul class="nav-list">
       <li>
         <a href="#appointment_side" data-bs-toggle="collapse">
@@ -117,32 +121,8 @@
       
 
     </ul>
-    <mat-divider></mat-divider>
-    <ul class="nav-list">
-      <li>
-        <a href="#">
-          <i class="fad fa-bell"></i>
-          <span class="links_name">Notificaciones</span>
-        </a>
-
-      </li>
-      <li>
-        <a routerLink="edit-profile">
-          <i class="fad fa-cog"></i>
-          <span class="links_name">Configuracion</span>
-        </a>
-      </li>
-    </ul>
-    <mat-divider></mat-divider>
-    <ul class="nav-list">
-      <li>
-        <a href="#">
-          <span class="links_name">Cerrar Sesion</span>
-          <i class="fad fa-sign-out"></i>
-        </a>
-
-      </li>
-    </ul>
+    
+   
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="content " >

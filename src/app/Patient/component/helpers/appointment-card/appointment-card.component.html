@@ -3,8 +3,9 @@
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>Consulta Medica</mat-card-title>
       <mat-card-subtitle>{{appointment.date}}</mat-card-subtitle>
-      <mat-card-subtitle>{{appointment.doctor}}</mat-card-subtitle>
-      <mat-card-subtitle>{{appointment.type}}</mat-card-subtitle>
+      <mat-card-subtitle>{{appointment.doctor}} - {{appointment.type}}</mat-card-subtitle>
+
     </mat-card-header>
+    <a [routerLink]="['/patient/service/appointment/',appointment.code]" mat-button>Ver</a>
 
   </mat-card>
