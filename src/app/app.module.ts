@@ -18,6 +18,7 @@ import { HomePatientComponent } from './Patient/home-patient/home-patient.compon
 import { NavbarPatientComponent } from './Patient/navbar-patient/navbar-patient.component';
 import { DoctorCreateComponent } from './Administrator/routes/doctor-create/doctor-create.component';
 import { ViewAppointmentComponent } from './Doctor/routes/viewAppintments/viewAppintments.component';
+import { HistoryReportPatientComponent } from './Doctor/routes/historyReportPatient/historyReportPatient.component';
 import { LabCreateComponent } from './Administrator/routes/lab-create/lab-create.component';
 import { EspeCreateComponent } from './Administrator/routes/espe-create/espe-create.component';
 import { ConsCreateComponent } from './Administrator/routes/cons-create/cons-create.component';
@@ -30,6 +31,8 @@ import { FormsModule } from '@angular/forms';
 import { CreateAppointmentComponent } from './Patient/component/appointment/create-appointment/create-appointment.component';
 import { CreateTestComponent } from './Patient/component/test/create-test/create-test.component';
 import { DoctorCardComponent } from './Patient/component/helpers/doctor-card/doctor-card.component';
+import { DayWithMoreTestMadeComponent } from './Lab/routes/DayWithMoreTestMade/dayWithMoreTestMade.component';
+import { ExamsMadeComponent } from './Lab/routes/examsMade/examsMade.component';
 import { SeeDoctorsComponent } from './Patient/component/views/see-doctors/see-doctors.component';
 import { SeeServicesComponent } from './Patient/component/views/see-services/see-services.component';
 import { ServiceCardComponent } from './Patient/component/helpers/service-card/service-card.component';
@@ -106,6 +109,9 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     EditProfileComponent,
     DoctorProfileComponent,
     AppointmentInformationComponent,
+    DayWithMoreTestMadeComponent,
+    ExamsMadeComponent,
+    HistoryReportPatientComponent,
   ],
   imports: [
     BrowserModule,

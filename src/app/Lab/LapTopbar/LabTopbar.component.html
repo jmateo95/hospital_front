@@ -39,21 +39,39 @@
             <span class="links_name">Resultados</span>
           </a>
         </li>                        
-                
+        
+        <li>
+          <a href="#doctor_side" data-bs-toggle="collapse">
+            <i style="font-size: x-large;" class="fad fa-book-medical"></i>
+            <span class="links_name">Reportes</span>
+          </a>
+          
+          <div class="collapse" id="doctor_side">
+            <ul class="nav-second-level">
+              <li>
+                <a routerLink="/lab/testmade">Examenes realizados</a>
+              </li>                  
+              <li>
+                <a routerLink="/lab/dayMoretest">Dias con más examenes</a>
+              </li>
+            </ul>
+          </div>
+
+
        
       </ul>
       <mat-divider></mat-divider>
       <ul class="nav-list">
         <li>
           <a href="#">
-            <i class="fad fa-bell"></i>
+            <i style="font-size: x-large;" class="fad fa-bell"></i>
             <span class="links_name">Notificaciones</span>
           </a>
   
         </li>
         <li>
           <a href="#">
-            <i class="fad fa-cog"></i>
+            <i style="font-size: x-large;" class="fad fa-cog"></i>
             <span class="links_name">Configuracion</span>
           </a>
         </li>

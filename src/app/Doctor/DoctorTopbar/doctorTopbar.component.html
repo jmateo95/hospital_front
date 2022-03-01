@@ -10,8 +10,7 @@
   
   
     <div>
-      <a class="logo-icon">
-        
+      <a class="logo-icon">        
         <span class="links_name">Hospital App</span>
         <i class="fad fa-hospital-symbol"></i>
       </a>
@@ -28,7 +27,7 @@
 
         <li>
           <a routerLink="/doctor/citas">
-            <i class="fa-regular fa-hospital"></i>
+            <i style="font-size: x-large;" class="fa-regular fa-hospital"></i>
             <span class="links_name">Home</span>
           </a>
         </li>
@@ -42,7 +41,7 @@
 
         <li>
           <a href="#doctor_side" data-bs-toggle="collapse">
-            <i class="fad fa-user-md"></i>
+            <i style="font-size: x-large;" class="fad fa-user-md"></i>
             <span class="links_name">Laboratorio</span>
           </a>
           
@@ -63,19 +62,19 @@
         
         <li>
           <a href="#cons_side" data-bs-toggle="collapse">
-            <i class="fad fa-solid fa-bed-pulse"></i>
+            <i style="font-size: x-large;" class="fad fa-solid fa-bed-pulse"></i>
             <span class="links_name">Pacientes</span>
           </a>
 
           <div class="collapse" id="cons_side">
             <ul class="nav-second-level">
               <li>
-                <a href="doctor/pacientes">Listado de pacientes</a>
+                <a routerLink="/doctor/pacientes">Listado de pacientes</a>
               </li>
     
               
               <li>
-                <a href="doctor/pacientes/reportes">Pacientes con más informes</a>
+                <a routerLink="/doctor/pacientes/reportes">Pacientes con más informes</a>
               </li>
             </ul>
           </div>
