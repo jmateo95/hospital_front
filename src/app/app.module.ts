@@ -58,6 +58,9 @@ import { SeeLabAdminComponent } from './Administrator/views/see-lab-admin/see-la
 import { EditProfileComponent } from './Patient/component/edit-profile/edit-profile.component';
 import { DoctorProfileComponent } from './Patient/component/helpers/doctor-profile/doctor-profile.component';
 import { AppointmentInformationComponent } from './Patient/component/helpers/appointment-information/appointment-information.component';
+import { TestRepAdminComponent } from './Administrator/routes/test-rep-admin/test-rep-admin.component';
+import { PatientRepAdminComponent } from './Administrator/routes/patient-rep-admin/patient-rep-admin.component';
+import { DoctorRep1AdminComponent } from './Administrator/routes/doctor-rep1-admin/doctor-rep1-admin.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -112,6 +115,9 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     DayWithMoreTestMadeComponent,
     ExamsMadeComponent,
     HistoryReportPatientComponent,
+    TestRepAdminComponent,
+    PatientRepAdminComponent,
+    DoctorRep1AdminComponent,
   ],
   imports: [
     BrowserModule,

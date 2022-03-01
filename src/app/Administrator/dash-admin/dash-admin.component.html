@@ -49,6 +49,27 @@
               <li>
                 <a routerLink="doctor/see">Lista de Doctores</a>
               </li>
+
+              <li>
+                <a href ="#doctor_side_2" data-bs-toggle="collapse">Reportes</a>
+
+
+                <div class="collapse" id="doctor_side_2">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a routerLink="doctor/rep1">Mas ingresos</a>
+                    </li>
+                    <li>
+                      <a routerLink="#">Mas citas</a>
+                    </li>
+                  </ul>
+                </div>
+
+
+
+              </li>
+
+
             </ul>
           </div>
           
@@ -87,7 +108,7 @@
               </li>
     
               
-              <li>
+              <li style="text-align: left;">
                 <a routerLink="cons/list">Lista de típos de consultas</a>
               </li>
             </ul>
@@ -108,15 +129,26 @@
               <li>
                 <a routerLink="test/list">Lista de típos de exámen</a>
               </li>
+              <li style="text-align: left;">
+                <a routerLink="test/rep">Exámenes con mayor demanda</a>
+              </li>
             </ul>
           </div>
         </li>
 
         <li>
-          <a href="#">
+          <a href="#patient_side" data-bs-toggle="collapse">
             <i style="font-size: x-large;" class="fad fa-solid fa-bed-pulse"></i>
             <span class="links_name">Pacientes</span>
           </a>
+          <div class="collapse" id="patient_side">
+            <ul class="nav-second-level">
+              <li style="text-align: left;">
+                <a routerLink="patient/rep">Pacienes con mayor demanda</a>
+              </li>
+            </ul>
+          </div>
+
         </li>
 
         
