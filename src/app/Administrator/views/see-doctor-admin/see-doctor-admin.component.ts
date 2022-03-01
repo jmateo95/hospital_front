@@ -10,10 +10,10 @@ export class SeeDoctorAdminComponent implements OnInit {
 
   breakpoint = 3;
   cards = [
-    { id: '1', title: 'Title 1', content: 'Content 1' },
-    { id: '2', title: 'Title 2', content: 'Content 2' },
-    { id: '3', title: 'Title 3', content: 'Content 3' },
-    { id: '4', title: 'Title 4', content: 'Content 4' }
+    { name: 'Dr. Fernando Robles', speciality: 'Pediatria', code:'1' },
+    { name: 'Dr. Jose Perez', speciality: 'Medicina General', code:'2' },
+    { name: 'Dra. Karla Batres', speciality: 'Odontologia', code:'3' },
+    { name: 'Dra. Jimena Reyes', speciality: 'Neurologia' , code:'4'}
   ];
   constructor(private observer: BreakpointObserver) { }
 
