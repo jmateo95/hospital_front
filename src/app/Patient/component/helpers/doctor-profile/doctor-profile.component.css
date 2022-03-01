@@ -124,7 +124,6 @@ html {
   input[type=text] {
     background-color: #f6f6f6;
     border: none;
-    color: #0d0d0d;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -145,6 +144,7 @@ html {
   input[type=text]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
+    
   }
   
   input[type=text]:placeholder {
@@ -166,7 +166,20 @@ html {
 
 .input-style{
   height: 4rem;
+  width: 100%;
 }
 .contenido {
   height: 75vh;
+}
+
+:host{
+  width: -webkit-fill-available;
+}
+
+h1{
+  color: #000;
+}
+
+.font-style{
+  color: #000;
 }

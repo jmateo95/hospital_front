@@ -8,10 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DoctorProfileComponent implements OnInit {
   id="";
-  @Input() admin: boolean = true;
-  @Input() patient: boolean = true;
   constructor(private route:ActivatedRoute) { }
-  displayedColumns = ['position', 'name','editar'];
+  displayedColumns = ['position', 'name'];
   dataSource = ELEMENT_DATA;
   ngOnInit(): void {
     var params=(this.route.snapshot.params);
@@ -22,11 +20,10 @@ export class DoctorProfileComponent implements OnInit {
 export interface PeriodicElement {
   name: string;
   position: number;
-  editar: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Pediatria' ,editar: 'si'},
-  {position: 2, name: 'Cirugia',editar: 'si' },
-  {position: 3, name: 'Cardiologia',editar: 'si'}
+  {position: 1, name: 'Pediatria' },
+  {position: 2, name: 'Cirugia' },
+  {position: 3, name: 'Cardiologia'}
 ];
