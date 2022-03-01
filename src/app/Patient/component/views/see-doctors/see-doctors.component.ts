@@ -12,19 +12,15 @@ import { delay, map, startWith } from 'rxjs/operators';
 export class SeeDoctorsComponent implements OnInit {
   breakpoint = 3;
   hidepicture = false;
-  filtroFecha!: FormGroup;
-  controlSpecialties = new FormControl();
-  controlDoctors = new FormControl();
-  optionsSpecialties: string[] = ['Pediatria', 'Odontologia', 'Consulta General'];
-  optionsDoctors: string[] = ['Dr. Jose Perez', 'Dra. Maria Mendez', 'Dra. Luisa Gonzalez'];
-  filteredOptionsDoctors!: Observable<string[]>;
-  filteredOptionsSpecialties!: Observable<string[]>;
-  
+  filtroFecha = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+});
   cards = [
-    { title: 'Title 1', content: 'Content 1' },
-    { title: 'Title 2', content: 'Content 2' },
-    { title: 'Title 3', content: 'Content 3' },
-    { title: 'Title 4', content: 'Content 4' }
+    { name: 'Dr. Fernando Robles', speciality: 'Pediatria', code:'1' },
+    { name: 'Dr. Jose Perez', speciality: 'Medicina General', code:'2' },
+    { name: 'Dra. Karla Batres', speciality: 'Odontologia', code:'3' },
+    { name: 'Dra. Jimena Reyes', speciality: 'Neurologia' , code:'4'}
   ];
   constructor(private observer: BreakpointObserver) { 
     const today = new Date();
@@ -35,14 +31,7 @@ export class SeeDoctorsComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
-    this.filteredOptionsDoctors = this.controlDoctors.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter_doctors(value)),
-    );
-    this.filteredOptionsSpecialties = this.controlSpecialties.valueChanges.pipe(
-      startWith(''),
-      map(valued => this._filter_specialties(valued)),
-    );
+   
     
   }
 
@@ -102,14 +91,5 @@ export class SeeDoctorsComponent implements OnInit {
 
   }
 
-  private _filter_doctors(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.optionsDoctors.filter(optiond => optiond.toLowerCase().includes(filterValue));
-  }
-  private _filter_specialties(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.optionsSpecialties.filter(option => option.toLowerCase().includes(filterValue));
-  }
+  
 }

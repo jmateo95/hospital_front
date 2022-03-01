@@ -13,16 +13,13 @@ export class SeeTestsComponent implements OnInit {
 
   breakpoint = 3;
   cards = [
-    { title: 'Title 1', content: 'Content 1' },
-    { title: 'Title 2', content: 'Content 2' },
-    { title: 'Title 3', content: 'Content 3' },
-    { title: 'Title 4', content: 'Content 4' }
+    { name: 'Tomografia', date: '12/08/2020' },
+    { name: 'Rayos X', date: '14/08/2020' },
+    { name: 'Ultrasonido', date: '15/12/2020' },
+    { name: 'Examen de la Glucosa', date: '12/05/2020' }
   ];
   hidepicture = false;
   filtroFecha!: FormGroup;
-  controlTipoExamen = new FormControl();
-  optionsTipoExamen: string[] = ['Rayos X', 'Ultrasonido', 'Examen de Sangre'];
-  filteredOptionsTipoExamen!: Observable<string[]>;
   constructor(private observer: BreakpointObserver) { }
 
 
@@ -36,10 +33,7 @@ export class SeeTestsComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
-    this.filteredOptionsTipoExamen = this.controlTipoExamen.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter_doctors(value)),
-    );
+    
   }
 
   ngAfterViewInit() {
@@ -93,10 +87,6 @@ export class SeeTestsComponent implements OnInit {
 
 
   }
-  private _filter_doctors(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.optionsTipoExamen.filter(optiond => optiond.toLowerCase().includes(filterValue));
-  }
+  
 
 }

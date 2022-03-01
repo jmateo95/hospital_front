@@ -1,73 +1,142 @@
-<div class="rounded bg-white">
+<div class="rounded bg-white mat-elevation-z8" style="border-radius: 25px;">
+
     <div class="row">
         <div class="col-md-4 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
-                    src="https://i.imgur.com/0eg0aG0.jpg" width="90"><span class="font-weight-bold">Nombre del Doctor</span><span
-                    class="text-black-50">correo</span></div>
+                    src="https://i.imgur.com/0eg0aG0.jpg" width="90"><span class="font-weight-bold">Nombre del
+                    Doctor</span><span class="text-black-50">correo</span></div>
         </div>
-        <div class="col-md-8">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    
-                    <h1 class="text-right">Ver Perfil</h1>
+        <mat-tab-group class="col-md-8">
+            <mat-tab label="Perfil">
+                <div class="contenido">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <h1 class="text-right">Codigo Doctor: {{id}}</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field class="input-style" appearance="outline">
+                                    <mat-label><i class="fal fa-user"></i> Nombre</mat-label>
+                                    <input matInput [readonly]="true" placeholder="Nombre">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="input-style" appearance="outline">
+                                    <mat-label><i class="fal fa-id-card-alt"></i> DPI</mat-label>
+                                    <input matInput [readonly]="true" type="number" placeholder="DPI">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <mat-form-field class="input-style" appearance="outline">
+                                    <mat-label><i class="fal fa-at"></i> Correo Electronico</mat-label>
+                                    <input matInput [readonly]="true" type="email" placeholder="Correo Electronico">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="input-style" appearance="outline">
+                                    <mat-label><i class="fal fa-phone"></i> Telefono</mat-label>
+                                    <input matInput [readonly]="true" type="tel" placeholder="Telefono">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <mat-form-field class="input-style" appearance="outline">
+                                    <mat-label><i class="fal fa-id-card-alt"></i> Colegiado</mat-label>
+                                    <input matInput [readonly]="true" type="number" placeholder="Colegiado">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
+                                    <mat-label>Fecha de Inicio</mat-label>
+                                    <input [readonly]="true" matInput [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Hora de Inicio</mat-label>
+                                    <input [readonly]="true" type="time" matInput min="09:00" max="18:00"
+                                        placeholder="Hora de fin">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Hora de Fin</mat-label>
+                                    <input [readonly]="true" type="time" matInput min="09:00" max="18:00"
+                                        placeholder="Hora de fin">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <button mat-raised-button color="primary" *ngIf="patient">Agendar Cita</button>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <mat-form-field class="input-style" appearance="outline">
-                            <mat-label><i class="fal fa-user"></i> Nombre</mat-label>
-                            <input matInput readonly placeholder="Nombre">
-                        </mat-form-field>
+            </mat-tab>
+            <mat-tab label="Especialidades" >
+                <div class="contenido" style="padding: 2rem;">
+                    <mat-accordion class="example-headers-align" *ngIf="admin" multi>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Agregar Especialidad
+                                </mat-panel-title>
+
+                            </mat-expansion-panel-header>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Especialidad</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+
+                            <button mat-raised-button color="primary">Agregar</button>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <hr>
+                    <div class="example-container " >
+                        <table mat-table [dataSource]="dataSource" matSort 
+                            >
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef
+                                   >
+                                    No.
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef >
+                                    Name
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="editar" *ngIf="admin">
+                                <th mat-header-cell *matHeaderCellDef >
+                                    Acciones
+                                </th>
+                                <td mat-cell *matCellDef="let element">  <a href="#" class="action-icon" title="Eliminar Especialidad"><i class="fa-solid fa-trash"></i></a> </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
                     </div>
-                    <div class="col-md-6">
-                        <mat-form-field class="input-style" appearance="outline">
-                            <mat-label><i class="fal fa-id-card-alt"></i> DPI</mat-label>
-                            <input matInput readonly type="number" placeholder="DPI">
-                        </mat-form-field>
-                    </div>
+
                 </div>
-                <div class="row ">
-                    <div class="col-md-6">
-                        <mat-form-field class="input-style" appearance="outline">
-                            <mat-label><i class="fal fa-at"></i> Correo Electronico</mat-label>
-                            <input matInput readonly type="email" placeholder="Correo Electronico">
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                        <mat-form-field class="input-style" appearance="outline">
-                            <mat-label><i class="fal fa-phone"></i> Telefono</mat-label>
-                            <input matInput readonly type="tel" placeholder="Telefono">
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row ">
-                    <div class="col-md-6">
-                        <mat-form-field class="input-style" appearance="outline">
-                            <mat-label><i class="fal fa-id-card-alt"></i> Colegiado</mat-label>
-                            <input matInput readonly type="number" placeholder="Colegiado">
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                        <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
-                            <mat-label>Fecha de Inicio</mat-label>
-                            <input readonly matInput [matDatepicker]="picker">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row ">
-                    <div class="col-md-6"><mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Hora de Inicio</mat-label>
-                        <input  readonly type="time" matInput min="09:00" max="18:00" placeholder="Hora de fin">
-                      </mat-form-field></div>
-                    <div class="col-md-6">
-                        <mat-form-field class="full-width" appearance="outline">
-                            <mat-label>Hora de Fin</mat-label>
-                            <input readonly type="time" matInput min="09:00" max="18:00" placeholder="Hora de fin">
-                          </mat-form-field></div>
-                </div>
-                <button mat-raised-button color="primary">Guardar Cambios</button>
-            </div>
-        </div>
+            </mat-tab>
+        </mat-tab-group>
+
     </div>
+
 </div>

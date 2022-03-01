@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import {map, startWith} from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,16 +14,13 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class CreateAppointmentComponent implements OnInit {
 
+  doctor_name="";
+  speciality="";
   time = {hour: 13, minute: 30};
-    controlSpecialties = new FormControl();
-    controlDoctors = new FormControl();
-    optionsSpecialties: string[] = ['Pediatria', 'Odontologia', 'Consulta General'];
-    optionsDoctors: string[] = ['Dr. Jose Perez', 'Dra. Maria Mendez', 'Dra. Luisa Gonzalez'];
-    filteredOptionsDoctors!: Observable<string[]>;
-    filteredOptionsSpecialties!: Observable<string[]>;
-
-  constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
+    
+  constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>, private route: ActivatedRoute){
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
+
 }
   
   appointmentForm = this.formBuilder.group({
@@ -33,29 +31,14 @@ export class CreateAppointmentComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.filteredOptionsDoctors = this.controlDoctors.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter_doctors(value)),
-    );
-    this.filteredOptionsSpecialties = this.controlSpecialties.valueChanges.pipe(
-      startWith(''),
-      map(valued => this._filter_specialties(valued)),
-    );
-   
+    var params=(this.route.snapshot.params);
+    this.speciality = params['speciality'];
+  this.doctor_name = params['doctor'];
   }
 
   saveForm(){
     console.log('Form data is ', this.appointmentForm.value);
   }
-  private _filter_specialties(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.optionsSpecialties.filter(option => option.toLowerCase().includes(filterValue));
-  }
-  private _filter_doctors(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.optionsDoctors.filter(optiond => optiond.toLowerCase().includes(filterValue));
-  }
+ 
 
 }

@@ -12,15 +12,12 @@ export class SeeAppointmentsComponent implements OnInit {
   breakpoint = 3;
   hidepicture = false;
   filtroFecha!: FormGroup;
-  controlDoctors = new FormControl();
-  optionsDoctors: string[] = ['Dr. Jose Perez', 'Dra. Maria Mendez', 'Dra. Luisa Gonzalez'];
-  filteredOptionsDoctors!: Observable<string[]>;
-  
+   
   cards = [
-    { title: 'Title 1', content: 'Content 1' },
-    { title: 'Title 2', content: 'Content 2' },
-    { title: 'Title 3', content: 'Content 3' },
-    { title: 'Title 4', content: 'Content 4' }
+    { date: '12/05/2021', doctor: 'Dr. Fernado Rojas',type:'Pediatria' },
+    { date: '14/04/2021', doctor: 'Dr. Luis Juarez',type:'Odontologia' },
+    { date: '18/03/2021', doctor: 'Dra. Camila Estrada',type:'Consulta General' },
+    { date: '19/02/2021', doctor: 'Dra. Fernanda Carrillo',type:'Neurologia' }
   ];
   constructor(private observer: BreakpointObserver) { 
     const today = new Date();
@@ -31,10 +28,7 @@ export class SeeAppointmentsComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
-    this.filteredOptionsDoctors = this.controlDoctors.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter_doctors(value)),
-    );
+    
   }
 
 
@@ -93,9 +87,5 @@ export class SeeAppointmentsComponent implements OnInit {
 
   }
 
-  private _filter_doctors(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.optionsDoctors.filter(optiond => optiond.toLowerCase().includes(filterValue));
-  }
+  
 }

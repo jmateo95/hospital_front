@@ -4,6 +4,7 @@
       <mat-grid-tile [colspan]="breakpoint" rowspan="2">
         <div class="d-flex justify-content-between greeting-card content mat-elevation-z8">
           <div class="greeting">
+            <h1>Consultas</h1>
             <label style="color: #3B2965; padding: 5px; ">Filtros</label>
             <mat-divider></mat-divider>
             <div class="row">
@@ -11,12 +12,8 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Doctor</mat-label>
                   <input type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput
-                    [formControl]="controlDoctors" [matAutocomplete]="auto" formControlName="doctor">
-                  <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let optiond of filteredOptionsDoctors | async" [value]="optiond">
-                      {{optiond}}
-                    </mat-option>
-                  </mat-autocomplete>
+                   >
+                  
                 </mat-form-field>
               </div>
               <div class="col-md-6">
@@ -45,7 +42,7 @@
 
       </mat-grid-tile>
       <mat-grid-tile *ngFor="let card of cards">
-        <app-appointment-card></app-appointment-card>
+        <app-appointment-card [appointment]="card"></app-appointment-card>
       </mat-grid-tile>
     </mat-grid-list>
   </div>

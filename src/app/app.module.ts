@@ -31,7 +31,6 @@ import { CreateAppointmentComponent } from './Patient/component/appointment/crea
 import { CreateTestComponent } from './Patient/component/test/create-test/create-test.component';
 import { DoctorCardComponent } from './Patient/component/helpers/doctor-card/doctor-card.component';
 import { SeeDoctorsComponent } from './Patient/component/views/see-doctors/see-doctors.component';
-import { SeeServicesComponent } from './Patient/component/views/see-services/see-services.component';
 import { ServiceCardComponent } from './Patient/component/helpers/service-card/service-card.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -55,6 +54,9 @@ import { SeeLabAdminComponent } from './Administrator/views/see-lab-admin/see-la
 import { EditProfileComponent } from './Patient/component/edit-profile/edit-profile.component';
 import { DoctorProfileComponent } from './Patient/component/helpers/doctor-profile/doctor-profile.component';
 import { AppointmentInformationComponent } from './Patient/component/helpers/appointment-information/appointment-information.component';
+import { ServicesAppointmentComponent } from './Patient/component/views/services-appointment/services-appointment.component';
+import { ServicesTestComponent } from './Patient/component/views/services-test/services-test.component';
+import { ServiceInformationComponent } from './Patient/component/helpers/service-information/service-information.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -81,7 +83,6 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     CreateTestComponent,
     DoctorCardComponent,
     SeeDoctorsComponent,
-    SeeServicesComponent,
     ServiceCardComponent,
     SeeAppointmentsComponent, 
     ViewAppointmentComponent,
@@ -106,6 +107,9 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     EditProfileComponent,
     DoctorProfileComponent,
     AppointmentInformationComponent,
+    ServicesAppointmentComponent,
+    ServicesTestComponent,
+    ServiceInformationComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,13 @@ html {
     color: #cccccc;
   }
   
+  table {
+    width: 100%;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
 
   
   /* STRUCTURE */
@@ -159,4 +166,7 @@ html {
 
 .input-style{
   height: 4rem;
+}
+.contenido {
+  height: 75vh;
 }

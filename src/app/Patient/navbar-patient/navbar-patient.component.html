@@ -43,10 +43,10 @@
 
 
             <li>
-              <a routerLink="appointment/see-all">Proximas citas</a>
+              <a routerLink="appointment/upcoming">Proximas citas</a>
             </li>
             <li>
-              <a href="#">Historial</a>
+              <a routerLink="appointment/history" href="#">Historial</a>
             </li>
           </ul>
         </div>
@@ -66,10 +66,10 @@
 
 
             <li>
-              <a routerLink="tests/see-all">Proximos Examenes</a>
+              <a routerLink="tests/upcoming">Proximos Examenes</a>
             </li>
             <li>
-              <a href="#">Historial</a>
+              <a routerLink="tests/history">Historial</a>
             </li>
           </ul>
         </div>
@@ -83,11 +83,27 @@
         </a>
       </li>
       <li>
-        <a routerLink="services">
+        <a href="#services_side" data-bs-toggle="collapse">
+
           <i class="fad fa-stethoscope"></i>
           <span class="links_name">Servicios</span>
         </a>
+
+        <div class="collapse" id="services_side">
+          <ul class="nav-second-level">
+            <li>
+              <a routerLink="services/appointment">Tipo de Consultas</a>
+            </li>
+
+
+            <li>
+              <a routerLink="services/test">Tipo de Examenes</a>
+            </li>
+            
+          </ul>
+        </div>
       </li>
+      
 
     </ul>
     <mat-divider></mat-divider>

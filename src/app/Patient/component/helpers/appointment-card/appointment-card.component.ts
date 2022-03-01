@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-appointment-card',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appointment-card.component.css']
 })
 export class AppointmentCardComponent implements OnInit {
+
+  @Input() appointment: any;
 
   constructor() { }
 

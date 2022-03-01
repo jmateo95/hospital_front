@@ -4,19 +4,16 @@
       <mat-grid-tile [colspan]="breakpoint" rowspan="2">
         <div class="d-flex justify-content-between greeting-card content mat-elevation-z8">
           <div class="greeting">
+            <h1>Doctores</h1>
             <label style="color: #3B2965; padding: 5px; ">Filtros</label>
             <mat-divider></mat-divider>
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <mat-form-field appearance="outline">
                   <mat-label>Doctor</mat-label>
-                  <input type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput
-                    [formControl]="controlDoctors" [matAutocomplete]="auto" formControlName="doctor">
-                  <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let optiond of filteredOptionsDoctors | async" [value]="optiond">
-                      {{optiond}}
-                    </mat-option>
-                  </mat-autocomplete>
+                  <input type="text" placeholder="Escriba uno" aria-label="Doctor" matInput
+                   >
+
                 </mat-form-field>
               </div>
               <div class="col-md-6">
@@ -33,13 +30,9 @@
               <div class="col-md-6">
                 <mat-form-field  appearance="outline">
                 <mat-label>Especialidad</mat-label>
-                <input type="text" placeholder="Seleccione una" aria-label="Especialidad" matInput [formControl]="controlDoctors"
-                  [matAutocomplete]="autoDoctor" formControlName="especialidad">
-                <mat-autocomplete #autoDoctor="matAutocomplete">
-                  <mat-option *ngFor="let option of filteredOptionsSpecialties | async" [value]="option">
-                    {{option}}
-                  </mat-option>
-                </mat-autocomplete>
+                <input type="text" placeholder="Escriba" aria-label="Especialidad" matInput 
+                   >
+ 
               </mat-form-field>
             </div>
             </div>
@@ -54,7 +47,7 @@
 
       </mat-grid-tile>
       <mat-grid-tile *ngFor="let card of cards">
-        <app-doctor-card [pacient]="true"></app-doctor-card>
+        <app-doctor-card [pacient]="true" [doctor]="card"></app-doctor-card>
       </mat-grid-tile>
     </mat-grid-list>
   </div>
