@@ -57,6 +57,7 @@ import { DoctorProfileComponent } from './Patient/component/helpers/doctor-profi
 import { AppointmentInformationComponent } from './Patient/component/helpers/appointment-information/appointment-information.component';
 import { TestRepAdminComponent } from './Administrator/routes/test-rep-admin/test-rep-admin.component';
 import { PatientRepAdminComponent } from './Administrator/routes/patient-rep-admin/patient-rep-admin.component';
+import { DoctorRep1AdminComponent } from './Administrator/routes/doctor-rep1-admin/doctor-rep1-admin.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -110,6 +111,7 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     AppointmentInformationComponent,
     TestRepAdminComponent,
     PatientRepAdminComponent,
+    DoctorRep1AdminComponent,
   ],
   imports: [
     BrowserModule,

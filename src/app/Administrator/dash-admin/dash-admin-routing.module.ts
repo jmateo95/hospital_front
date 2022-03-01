@@ -18,6 +18,7 @@ import { SeeLabAdminComponent } from '../views/see-lab-admin/see-lab-admin.compo
 import { TestRepAdminComponent } from '../routes/test-rep-admin/test-rep-admin.component';
 import { PatientListComponent } from 'src/app/Doctor/routes/patientList/patientList.component';
 import { PatientRepAdminComponent } from '../routes/patient-rep-admin/patient-rep-admin.component';
+import { DoctorRep1AdminComponent } from '../routes/doctor-rep1-admin/doctor-rep1-admin.component';
 
 const routes: Routes = [
   {path:'', component:DashAdminComponent, children:[
@@ -25,6 +26,7 @@ const routes: Routes = [
     {path:'home', component:HomeComponent},
     {path:'doctor/create', component:DoctorCreateComponent},
     {path:'doctor/see/edit/:id_doctor', component:DoctorEditComponent},
+    {path:'doctor/rep1', component:DoctorRep1AdminComponent},
     {path:'lab/create', component:LabCreateComponent},
     {path:'lab/see', component:SeeLabAdminComponent},
     {path:'lab/see/edit/:id_lab', component:LabEditComponent},
