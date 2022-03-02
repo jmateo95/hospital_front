@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-service-information',
   templateUrl: './service-information.component.html',
@@ -12,7 +14,7 @@ export class ServiceInformationComponent implements OnInit {
   displayedColumns = ['position', 'name','pdf'];
   dataSource = ELEMENT_DATA;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private location:Location) { }
 
   ngOnInit(): void {
     var params = (this.route.snapshot.params);
@@ -25,6 +27,10 @@ export class ServiceInformationComponent implements OnInit {
       this.type = 'Examen';
       this.isExam = true;
     }
+  }
+
+  back(): void {
+    this.location.back()
   }
 
 

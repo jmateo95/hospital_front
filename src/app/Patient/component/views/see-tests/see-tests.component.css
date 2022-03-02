@@ -3,10 +3,13 @@
    }
    .greeting-card{
     border-radius: 15px;
-    height: 70%;
   }
   
   .greeting{
   padding: 1rem;
   align-self: center;
+  }
+
+  h1{
+    color: black;
   }

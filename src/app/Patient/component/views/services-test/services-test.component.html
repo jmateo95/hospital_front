@@ -2,7 +2,11 @@
     <div class="col-md-12">
       <mat-grid-list [cols]="breakpoint" rowHeight="10rem">
         <mat-grid-tile [colspan]="breakpoint" rowspan="2">
+          
           <div class="d-flex justify-content-between greeting-card content mat-elevation-z8">
+            <div class="col-4" style="align-self: center;" [hidden]="hidepicture">
+              <img width="200rem" src="assets/img/Test.png">
+            </div>
             <div class="greeting">
             <h1>Examenes</h1>
               <label style="color: #3B2965; padding: 5px; ">Filtros</label>
@@ -35,9 +39,7 @@
                   class="fal fa-calendar-alt"></i> Calendario</button>
   
             </div>
-            <div class="col-4" style="align-self: center;" [hidden]="hidepicture">
-              <img width="200rem" src="assets/img/Consult2.png">
-            </div>
+            
           </div>
   
         </mat-grid-tile>

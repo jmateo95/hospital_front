@@ -1,50 +1,68 @@
 <form [formGroup]="appointmentForm">
-    <mat-card style="border-radius: 25px; padding: 5vh!important; min-width:40vw; ">
-      <mat-card-header>
-        <mat-card-title>Agendar Cita</mat-card-title>
-      </mat-card-header>
-      <hr>
-      <mat-card-content>
-        <div class="row">
-          <div class="col-md-12">
-  
-            <mat-form-field appearance="outline">
-              <mat-label>Selecciona una fecha</mat-label>
-              <input required matInput [matDatepicker]="picker" formControlName="fecha">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
-  
-  
-          <div class="col-md-12">
-              <mat-form-field  appearance="outline">
-                <mat-label>Selecciona una hora</mat-label>
-                <input formControlName="hora"  type="time" matInput min="09:00" max="18:00" placeholder="Hora de inicio">
-              </mat-form-field>
-          </div>
-  
-          <div class="col-md-12">
-              <mat-form-field  appearance="outline">
-              <mat-label>Especialidad</mat-label>
-              <input type="text" placeholder="Seleccione una" aria-label="Especialidad" matInput  [(ngModel)]="speciality" formControlName="especialidad">
-              
-            </mat-form-field>
-          </div>
-          <div class="col-md-12">
-            <mat-form-field  appearance="outline">
-              <mat-label>Doctor</mat-label>
-              <input type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput  [(ngModel)]="doctor_name" formControlName="doctor" >
-             
-            </mat-form-field>
-          </div>
-  
+<div class="rounded bg-white mat-elevation-z8" style="border-radius: 25px;">
+  <mat-card>
+    <div class="row">
+      <div class="col-md-6 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img src="assets/img/Appointment.png"
+            style="width: calc(100% - 30px);"></div>
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+
         </div>
-  
-      </mat-card-content>
-      <mat-card-actions>
-        <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Agendar</button>
-        <button  mat-raised-button color="primary" style="min-width: 5vw;">Cancelar</button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+      </div>
+      <div class="col-md-6">
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h1 class="text-right">Agendar Cita</h1>
+          </div>
+          <mat-card-content>
+          <div class="row">
+            <div class="col-md-12">
+
+              <mat-form-field appearance="outline">
+                <mat-label>Selecciona una fecha</mat-label>
+                <input required matInput [matDatepicker]="picker" formControlName="fecha">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-md-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Selecciona una hora</mat-label>
+                <input formControlName="hora" type="time" matInput min="09:00" max="18:00" placeholder="Hora de inicio">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Especialidad</mat-label>
+                <input type="text" placeholder="Seleccione una" aria-label="Especialidad" matInput
+                  [(ngModel)]="speciality" formControlName="especialidad">
+
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Doctor</mat-label>
+                <input type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput [(ngModel)]="doctor_name"
+                  formControlName="doctor">
+
+              </mat-form-field>
+            </div>
+
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Agendar</button>
+          <button mat-raised-button color="primary" style="min-width: 5vw;">Cancelar</button>
+        </mat-card-actions>
+        </div>
+      </div>
+
+    </div>
+  </mat-card>
+</div>
+
+</form>

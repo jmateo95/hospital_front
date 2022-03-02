@@ -4,7 +4,7 @@
       <mat-grid-tile [colspan]="breakpoint" rowspan="2">
         <div class="d-flex justify-content-between greeting-card content mat-elevation-z8">
           <div class="greeting">
-            <h1>Consultas</h1>
+            <h1>{{title}}</h1>
             <label style="color: #3B2965; padding: 5px; ">Filtros</label>
             <mat-divider></mat-divider>
             <div class="row">
@@ -36,7 +36,7 @@
 
           </div>
           <div class="col-4" style="align-self: center;" [hidden]="hidepicture">
-            <img width="200rem" src="assets/img/Consult2.png">
+            <img width="200rem" [src]="url">
           </div>
         </div>
 
