@@ -1,55 +1,39 @@
-.demo-table {
-    width: 100%;
-  }
-  
-  .mat-column-date {
-    width: 32px;
-    border-right: 1px solid currentColor;
-    padding-right: 24px;
-    text-align: center;
-  }
-  
-  .mat-column-tests {  
-    width: 32px;
-    padding-left: 16px;
-    font-size: 20px;
-    text-align: center;
-  }  
-
-  table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
-
 .full-width{
-    width: 100%;
+  width: 100%;
 }
 
 .top-padding{
-    padding-top: 3px;
+  padding-top: 3px;
 }
 
 .margin-left mat-radio-button:not(:first-child){
-    margin-left:10px;
+  margin-left:10px;
 }
 
 .form-container{
-    margin: 200px;
+  margin: 200px;
 }
 
-.mat-form-field {
-  font-size: 14px;
+table {
   width: 100%;
 }
+
+
+:host {
+    width: 100%;
+   }
+   .greeting-card{
+    border-radius: 15px;
+    height: 70%;
+  }
+  
+  .greeting{
+  padding: 1rem;
+  align-self: center;
+  }
+  
+  .class-tab{
+    margin: 16px;
+    margin-left: 32px;
+  }
 

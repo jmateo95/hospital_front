@@ -14,23 +14,28 @@
   margin: 200px;
 }
 
-.mat-form-field {
-font-size: 14px;
-width: 100%;
+table {
+  width: 100%;
 }
+
 
 :host {
-width: 100%;
-}
-.greeting-card{
-border-radius: 15px;
-height: 70%;
-}
-
-.greeting{
-padding: 1rem;
-align-self: center;
-}
+    width: 100%;
+   }
+   .greeting-card{
+    border-radius: 15px;
+    height: 70%;
+  }
+  
+  .greeting{
+  padding: 1rem;
+  align-self: center;
+  }
+  
+  .class-tab{
+    margin: 16px;
+    margin-left: 32px;
+  }
 
 tr.example-detail-row {
   height: 0;
@@ -56,19 +61,3 @@ tr.example-element-row:not(.example-expanded-row):hover {
 .example-element-description-attribution {
   opacity: 0.5;
 }
-
-  table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #006b96;
-  }

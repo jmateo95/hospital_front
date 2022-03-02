@@ -1,0 +1,47 @@
+
+
+:host {
+    width: 100%;
+    height: 80vh;
+   }
+
+   label{
+       font-size: 1rem;
+   }
+   p{
+       font-size: medium;
+       color: black;
+       padding: 0.7rem;
+   }
+
+   .box{
+       color: #000;
+       font-size: medium;
+   }
+   .box2{
+    color: rgb(63, 61, 61);
+    font-size: medium;
+   }
+
+   .card-info{
+       text-align: center;
+       padding: 1rem;
+       width: 75%;
+       border-radius: 15px;
+   }
+   .icon-card{
+
+   }
+   .text-card{
+       
+   }
+
+   .greeting-card{
+       border-radius: 15px;
+       height: 90%;
+   }
+
+   .greeting{
+    padding: 1rem;
+    align-self: center;
+   }

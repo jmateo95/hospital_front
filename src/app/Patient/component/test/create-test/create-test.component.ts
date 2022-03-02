@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import {map, startWith} from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-test',
@@ -16,7 +17,7 @@ export class CreateTestComponent implements OnInit {
   time = {hour: 13, minute: 30};
   type = "";
 
-constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>, private route: ActivatedRoute){
+constructor(private formBuilder:FormBuilder, private location:Location, private dateAdapter: DateAdapter<Date>, private route: ActivatedRoute){
 this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 }
 
@@ -56,6 +57,10 @@ ngOnInit(): void {
 
 saveForm(){
   console.log('Form data is ', this.appointmentForm.value);
+}
+
+back(): void {
+  this.location.back()
 }
 
 }

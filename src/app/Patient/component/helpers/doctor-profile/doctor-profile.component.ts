@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,12 +9,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DoctorProfileComponent implements OnInit {
   id="";
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute, private location: Location) { }
   displayedColumns = ['position', 'name'];
   dataSource = ELEMENT_DATA;
   ngOnInit(): void {
     var params=(this.route.snapshot.params);
     this.id = params['id'];
+  }
+  back(): void {
+    this.location.back()
   }
 
 }

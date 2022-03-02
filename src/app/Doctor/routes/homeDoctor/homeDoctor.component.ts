@@ -2,11 +2,11 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { delay } from 'rxjs/operators';
 @Component({
-  selector: 'app-home-patient',
-  templateUrl: './home-patient.component.html',
-  styleUrls: ['./home-patient.component.css']
+  selector: 'app-homeDoctor',
+  templateUrl: './homeDoctor.component.html',
+  styleUrls: ['./homeDoctor.component.css']
 })
-export class HomePatientComponent implements OnInit {
+export class HomeDoctorComponent implements OnInit {
   breakpoint = 4;
   hidepicture = false;
   constructor(private observer: BreakpointObserver) { }
