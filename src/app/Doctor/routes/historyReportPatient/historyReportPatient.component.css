@@ -37,6 +37,28 @@ table {
     margin-left: 32px;
   }
 
+.form-container{
+    margin: 200px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+:host {
+  width: 100%;
+ }
+ .greeting-card{
+  border-radius: 15px;
+  height: 70%;
+}
+
+.greeting{
+padding: 1rem;
+align-self: center;
+}
+
 tr.example-detail-row {
   height: 0;
 }

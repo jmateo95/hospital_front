@@ -23,9 +23,9 @@ export class CalendarCardComponent {
     dayMaxEvents: true,
     events: [
       {
-        "title": "Event 1",
-        "start": "2022-02-02T10:00:00",
-        "end": "2022-02-02"
+        "title": "Consulta Doc. Carlos Rojas",
+        "start": "2022-03-02T10:00:00",
+        "end": "2022-03-02"
       },
     ],
     locale: esLocale
