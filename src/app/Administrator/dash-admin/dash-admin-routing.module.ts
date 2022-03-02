@@ -26,7 +26,7 @@ const routes: Routes = [
     {path:'', redirectTo:'home', pathMatch:'full'},
     {path:'home', component:HomeComponent},
     {path:'doctor/create', component:DoctorCreateComponent},
-    {path:'doctor/see/edit/:id_doctor', component:DoctorEditComponent},
+    {path:'doctor/see/edit/:id', component:DoctorEditComponent},
     {path:'doctor/rep1', component:DoctorRep1AdminComponent},
     {path:'lab/create', component:LabCreateComponent},
     {path:'lab/see', component:SeeLabAdminComponent},

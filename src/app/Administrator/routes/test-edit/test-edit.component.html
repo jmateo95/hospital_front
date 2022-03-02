@@ -1,59 +1,81 @@
-<form [formGroup]="profileForm">
-    <mat-card style="border-radius: 25px; padding: 5vh!important; min-width:40vw; ">
-      <mat-card-header>
-        <mat-card-title>Editar el examen con codigo: {{id_test}} </mat-card-title>
-      </mat-card-header>
-      <mat-card-content >
-        <div class="row">
-          <div class="col-md-12">
-            <mat-form-field class="full-width" appearance="outline">
-              <input formControlName="codigo" matInput placeholder="Código">
-            </mat-form-field>
+<form [formGroup]="profileForm" >
+  <mat-card style="border-radius: 25px; padding: 5vh!important; min-width:40vw; ">
+    <h2 style="text-align: center;">Editar el examen con codigo: {{id_test}}</h2>
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+    </mat-card-header>
+    <mat-card-content >
+      <div class="row" style="display: flex; justify-content: center; align-items: center;">
+
+        <div class="col-sm-4">
+          <div class="row">
+              <div style="padding-left: 2vw;"><img class="rounded-circle"src="https://previews.123rf.com/images/krisdog/krisdog1409/krisdog140900059/31465450-cliboard-et-st%C3%A9thoscope-notion-relative-aux-r%C3%A9sultats-des-tests-m%C3%A9dicaux-de-l-administration-de-l-h%C3%B4.jpg" width="190"></div>
           </div>
-  
-  
-          <div class="col-md-12">
-            <mat-form-field class="full-width" appearance="outline">
-              <input formControlName="nombre" matInput placeholder="Nombre">
-            </mat-form-field>
-          </div>
-        
-            <div class="col-md-12" style="margin-bottom: 1vh;">
-                <mat-label style="margin-right: 1.5vh;">Requiere Orden</mat-label>
-                <mat-radio-group formControlName="orden" class="margin-left">
-                    <mat-radio-button value="True" > Si </mat-radio-button>
-                    <mat-radio-button value="False"> No </mat-radio-button>
-                </mat-radio-group>
-            </div>
+
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
             
+            <div class="col-md-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label><i class="fa-solid fa-barcode"></i> Código</mat-label>
+                
+                <input formControlName="codigo" matInput placeholder="Código">
+              </mat-form-field>
+            </div>
 
             <div class="col-md-12">
-                <mat-form-field class="full-width" appearance="outline">
-                  <input formControlName="descripcion" matInput placeholder="Deescripcion">
-                </mat-form-field>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label><i class="fa-solid fa-stethoscope"></i> Nombre</mat-label>
+                <input formControlName="nombre" matInput placeholder="Nombre">
+              </mat-form-field>
             </div>
-        
-
-          <div class="col-md-12">
-            <mat-form-field class="full-width" appearance="outline">
-              <input formControlName="costo" matInput placeholder="Costo" type="number"  min="0" step="0.1">
-            </mat-form-field>
+          
+              <div class="col-md-12" style="margin-bottom: 1vh;">
+                  <mat-label style="margin-right: 1.5vh;">Requiere Orden</mat-label>
+                  <mat-radio-group formControlName="orden" class="margin-left">
+                      <mat-radio-button value="True" > Si </mat-radio-button>
+                      <mat-radio-button value="False"> No </mat-radio-button>
+                  </mat-radio-group>
+              </div>
           </div>
 
+
+          <div class="row">
+            
             <div class="col-md-12">
-                <mat-label style="margin-right: 1.5vh;">Formato del Reporte</mat-label>
-                <mat-radio-group formControlName="formato" class="margin-left">
-                    <mat-radio-button value="True" > PDF </mat-radio-button>
-                    <mat-radio-button value="False"> JPG </mat-radio-button>
-                </mat-radio-group>
-            </div>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label><i class="fa-solid fa-file-lines"></i>  Descripción</mat-label>
+                <input formControlName="descripcion" matInput placeholder="Deescripcion">
+              </mat-form-field>
+          </div>
+      
+
+        <div class="col-md-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label><i class="fa-solid fa-q"></i> Costo</mat-label>
+            <input formControlName="costo" matInput placeholder="Costo" type="number"  min="0" step="0.1">
+          </mat-form-field>
+        </div>
+
+          <div class="col-md-12">
+              <mat-label style="margin-right: 1.5vh;">Formato del Reporte</mat-label>
+              <mat-radio-group formControlName="formato" class="margin-left">
+                  <mat-radio-button value="True" > PDF </mat-radio-button>
+                  <mat-radio-button value="False"> JPG </mat-radio-button>
+              </mat-radio-group>
+          </div>
+          </div>
 
 
         </div>
-  
-      </mat-card-content>
-      <mat-card-actions>
-        <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Editar</button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+
+
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions style="text-align: end;">
+      <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Editar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
