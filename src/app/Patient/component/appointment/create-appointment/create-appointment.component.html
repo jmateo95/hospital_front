@@ -2,14 +2,15 @@
 <div class="rounded bg-white mat-elevation-z8" style="border-radius: 25px;">
   <mat-card>
     <div class="row">
-      <div class="col-md-6 border-right">
-        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img src="assets/img/Appointment.png"
-            style="width: calc(100% - 30px);"></div>
+      <div class="col-md-6 border-right" [hidden]="hidepicture" >
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+          <img src="assets/img/Appointment.png"
+            width="300rem" ></div>
         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 col-sm-12 col-12">
         <div class="p-3 py-5">
           <div class="d-flex justify-content-between align-items-center mb-3">
 
@@ -56,7 +57,7 @@
         </mat-card-content>
         <mat-card-actions>
           <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Agendar</button>
-          <button mat-raised-button color="primary" style="min-width: 5vw;">Cancelar</button>
+          <button mat-raised-button color="primary" style="min-width: 5vw;" (click)="back()" >Cancelar</button>
         </mat-card-actions>
         </div>
       </div>

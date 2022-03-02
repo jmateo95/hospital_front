@@ -1,7 +1,7 @@
 
   
   .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-image: url('/assets/img/icons/test.png');
     background-size: cover;
   }
   :host{
