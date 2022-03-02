@@ -7,13 +7,21 @@
     <mat-card-content>
 
       <div class="row">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Fecha</mat-label>
-          <input type = "date" required="true" matInput>
-        </mat-form-field>
-      </div>
 
-      <div class="row">
+        <div class="col-4">
+          <div class="row">
+              <div style="padding-left: 0;"><img style="margin-top: 15px;" src="data:image/png;base64,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" width="175" height="175"></div>
+          </div>
+        </div>
+      
+      <div class="col-8">
+        <div class="col-md-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label> Fecha</mat-label>
+            <input type="date" required="true" matInput>
+          </mat-form-field>
+        </div>
+
         <div class="col-md-12">
           <mat-form-field class="full-width" appearance="outline">
             <mat-label><i class="fa-solid fa-user"></i> Paciente</mat-label>
@@ -24,13 +32,10 @@
             </mat-select>
           </mat-form-field>
         </div>
-                
-      </div>
 
-      <div class="row">
 
         <div class="col-md-12">
-          <mat-form-field class="full-width" appearance="outline"> 
+          <mat-form-field class="full-width" appearance="outline">
             <mat-label><i class="fa-solid fa-vial"></i> Examen</mat-label>
             <mat-select required="true">
               <mat-option *ngFor="let test of tests" [value]="test">
@@ -39,9 +44,8 @@
             </mat-select>
           </mat-form-field>
         </div>
-                
       </div>
-
+    </div>
     </mat-card-content>
     <mat-card-actions>
       <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Guardar</button>

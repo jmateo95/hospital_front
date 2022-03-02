@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { AdminComponent } from './admin/admin.component';
 import { DashAdminComponent } from './Administrator/dash-admin/dash-admin.component';
+import { DoctorReportsAdminComponent } from './Administrator/routes/doctor-more-reports-admin/doctor-more-reports-admin.component';
 import { HomeComponent } from './Administrator/home/home.component';
 import { DoctorTopbarComponent } from './Doctor/DoctorTopbar/doctorTopbar.component';
 import { PatientReportsComponent } from './Doctor/routes/patientWithMoreReports/patientReports.component';
@@ -122,6 +123,7 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     TestRepAdminComponent,
     PatientRepAdminComponent,
     DoctorRep1AdminComponent,
+    DoctorReportsAdminComponent,
   ],
   imports: [
     BrowserModule,
