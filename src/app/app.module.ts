@@ -11,10 +11,14 @@ import { DashAdminComponent } from './Administrator/dash-admin/dash-admin.compon
 import { DoctorReportsAdminComponent } from './Administrator/routes/doctor-more-reports-admin/doctor-more-reports-admin.component';
 import { HomeComponent } from './Administrator/home/home.component';
 import { DoctorTopbarComponent } from './Doctor/DoctorTopbar/doctorTopbar.component';
+import { EditProfileLabComponent } from './Lab/routes/editProfileLab/editProfileLab.component';
+import { homeLabComponent } from './Lab/routes/homeLab/homeLab.component';
+import { HomeDoctorComponent } from './Doctor/routes/homeDoctor/homeDoctor.component';
 import { PatientReportsComponent } from './Doctor/routes/patientWithMoreReports/patientReports.component';
 import { PatientListComponent } from './Doctor/routes/patientList/patientList.component';
 import { LabTopbarComponent } from './Lab/LapTopbar/LabTopbar.component';
 import { ViewTestComponent } from './Lab/routes/viewTest/viewTest.component';
+import { editProfileDoctorComponent } from './Doctor/routes/editProfileDoctor/editProfileDoctor.component';
 import { HomePatientComponent } from './Patient/home-patient/home-patient.component';
 import { NavbarPatientComponent } from './Patient/navbar-patient/navbar-patient.component';
 import { DoctorCreateComponent } from './Administrator/routes/doctor-create/doctor-create.component';
@@ -124,6 +128,11 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     DoctorRep1AdminComponent,
     DoctorReportsAdminComponent,
     DoctorRepComponent,
+    HomeDoctorComponent,
+    homeLabComponent,
+    editProfileDoctorComponent,
+    EditProfileLabComponent,
+    
   ],
   imports: [
     BrowserModule,

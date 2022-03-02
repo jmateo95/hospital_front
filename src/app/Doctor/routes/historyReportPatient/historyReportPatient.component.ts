@@ -23,7 +23,7 @@ const ELEMENT_DATA: Patient[] = [
 ];
 
 @Component({
-  selector: 'app-createReport',
+  selector: 'app-historyReportPatient',
   templateUrl: './historyReportPatient.component.html',
   styleUrls: ['./historyReportPatient.component.css'],
   animations: [
