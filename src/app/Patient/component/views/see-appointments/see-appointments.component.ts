@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay, map, startWith } from 'rxjs/operators';
 @Component({
@@ -12,14 +13,39 @@ export class SeeAppointmentsComponent implements OnInit {
   breakpoint = 3;
   hidepicture = false;
   filtroFecha!: FormGroup;
+  title = "";
+  navigationSubscription;
+  url = "";
    
   cards = [
-    { date: '12/05/2021', doctor: 'Dr. Fernado Rojas',type:'Pediatria' },
-    { date: '14/04/2021', doctor: 'Dr. Luis Juarez',type:'Odontologia' },
-    { date: '18/03/2021', doctor: 'Dra. Camila Estrada',type:'Consulta General' },
-    { date: '19/02/2021', doctor: 'Dra. Fernanda Carrillo',type:'Neurologia' }
+    { code: '1',date: '12/05/2021', doctor: 'Dr. Fernado Rojas',type:'Pediatria' },
+    { code: '2',date: '14/04/2021', doctor: 'Dr. Luis Juarez',type:'Odontologia' },
+    { code: '3',date: '18/03/2021', doctor: 'Dra. Camila Estrada',type:'Consulta General' },
+    { code: '4',date: '19/02/2021', doctor: 'Dra. Fernanda Carrillo',type:'Neurologia' }
   ];
-  constructor(private observer: BreakpointObserver) { 
+  constructor(private observer: BreakpointObserver,private router: Router, private route: ActivatedRoute) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.initialiseInvites();
+      }
+    });
+
+   }
+   initialiseInvites() {
+    var params = (this.route.snapshot.params);
+    this.title = params['type'];
+    if(this.title == 'history'){
+      this.title = 'Consultas Realizadas';
+      this.url = 'assets/img/Consult2.png';
+    }else if (this.title == 'upcoming'){
+      this.title = 'Proximas Consultas';
+      this.url = 'assets/img/Consult4.png';
+    }
+  }
+
+
+  ngOnInit() {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -28,12 +54,6 @@ export class SeeAppointmentsComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
-    
-  }
-
-
-
-  ngOnInit() {
   }
 
   ngAfterViewInit() {

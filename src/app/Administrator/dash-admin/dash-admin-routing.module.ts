@@ -20,13 +20,14 @@ import { PatientListComponent } from 'src/app/Doctor/routes/patientList/patientL
 import { PatientRepAdminComponent } from '../routes/patient-rep-admin/patient-rep-admin.component';
 import { DoctorRep1AdminComponent } from '../routes/doctor-rep1-admin/doctor-rep1-admin.component';
 import { DoctorReportsAdminComponent } from '../routes/doctor-more-reports-admin/doctor-more-reports-admin.component';
+import { DoctorRepComponent } from '../routes/doctor-rep/doctor-rep.component';
 
 const routes: Routes = [
   {path:'', component:DashAdminComponent, children:[
     {path:'', redirectTo:'home', pathMatch:'full'},
     {path:'home', component:HomeComponent},
     {path:'doctor/create', component:DoctorCreateComponent},
-    {path:'doctor/see/edit/:id_doctor', component:DoctorEditComponent},
+    {path:'doctor/see/edit/:id', component:DoctorEditComponent},
     {path:'doctor/rep1', component:DoctorRep1AdminComponent},
     {path:'lab/create', component:LabCreateComponent},
     {path:'lab/see', component:SeeLabAdminComponent},
@@ -41,7 +42,8 @@ const routes: Routes = [
     {path:'test/rep', component:TestRepAdminComponent},
     {path:'doctor/see', component:SeeDoctorAdminComponent},
     {path:'patient/rep', component:PatientRepAdminComponent},
-    {path: 'doctor/reportes', component:DoctorReportsAdminComponent}
+    {path: 'doctor/reportes', component:DoctorReportsAdminComponent},
+    {path:'doctor/rep/lower-performance', component:DoctorRepComponent},
   ]},
   
 ];

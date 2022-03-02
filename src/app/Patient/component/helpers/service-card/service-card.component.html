@@ -8,7 +8,7 @@
     </mat-card-header>
 
     <mat-card-actions>
-      <a routerLink="/paciente" mat-button>Solicitar Examen</a>
+      <a [routerLink]="['/patient/test/create',test.name]" mat-button>Solicitar Examen</a>
 
     </mat-card-actions>
   </mat-card>

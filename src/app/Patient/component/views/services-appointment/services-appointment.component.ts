@@ -22,6 +22,13 @@ export class ServicesAppointmentComponent implements OnInit {
     { name: 'Medicina General', cost: 'Q. 260' }
   ];
   constructor(private observer: BreakpointObserver, private route:ActivatedRoute) { 
+  
+    
+  }
+
+
+
+  ngOnInit() {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -30,13 +37,6 @@ export class ServicesAppointmentComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
-    
-  }
-
-
-
-  ngOnInit() {
-
   }
 
   ngAfterViewInit() {
