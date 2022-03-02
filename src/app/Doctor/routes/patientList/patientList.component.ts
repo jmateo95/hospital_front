@@ -33,7 +33,7 @@ export class PatientListComponent implements OnInit{
 
 @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['name', 'apellido'];
+  displayedColumns: string[] = ['name', 'apellido', 'editar'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   breakpoint = 3;

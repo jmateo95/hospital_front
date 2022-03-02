@@ -2,16 +2,24 @@
     width: 100%;
   }
   
-  .mat-column-hour {
-    width: 32px;
+  .mat-column-name {    
     border-right: 1px solid currentColor;
-    padding-right: 24px;
-    text-align: center;
-  }
-  
-  .mat-column-demo-name {
     padding-left: 16px;
     font-size: 20px;
+    text-align: left;
+  }
+  
+  .mat-column-apellido {
+    padding-left: 16px;
+    font-size: 20px;
+    text-align: left;
+  }  
+
+  .mat-column-editar{
+    width: 50px;
+    padding-left: 16px;
+    font-size: 20px;
+    text-align: center;
   }  
 
   table {

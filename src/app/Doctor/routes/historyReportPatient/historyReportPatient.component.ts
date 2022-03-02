@@ -1,24 +1,25 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Component, ViewChild,OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { ActivatedRoute } from '@angular/router';
 
 export interface Patient {
-  date: string;
-  description: string;
-  doctor: string;
+  Fecha: string;
+  Descripcion: string;
+  Doctor: string;
 }
 
 const ELEMENT_DATA: Patient[] = [
-  {date:'28-02-2022', description: "Descripcion cita 1", doctor:'A'},
-  {date:'20-02-2022', description: "Descripcion cita 2", doctor:'B'},
-  {date:'12-02-2022', description: "Descripcion cita 3", doctor:'C'},
-  {date:'04-02-2022', description: "Descripcion cita 4", doctor:'D'},
-  {date:'26-01-2022', description: "Descripcion cita 5", doctor:'E'},
-  {date:'18-01-2022', description: "Descripcion cita 6" ,doctor:'F'},
-  {date:'10-01-2022', description: "Descripcion cita 7", doctor:'A'},
+  {Fecha:'28-02-2022', Descripcion: "Descripcion cita 1", Doctor:'A'},
+  {Fecha:'20-02-2022', Descripcion: "Descripcion cita 2", Doctor:'B'},
+  {Fecha:'12-02-2022', Descripcion: "Descripcion cita 3", Doctor:'C'},
+  {Fecha:'04-02-2022', Descripcion: "Descripcion cita 4", Doctor:'D'},
+  {Fecha:'26-01-2022', Descripcion: "Descripcion cita 5", Doctor:'E'},
+  {Fecha:'18-01-2022', Descripcion: "Descripcion cita 6" ,Doctor:'F'},
+  {Fecha:'10-01-2022', Descripcion: "Descripcion cita 7", Doctor:'A'},
 ];
 
 @Component({
@@ -34,18 +35,20 @@ const ELEMENT_DATA: Patient[] = [
   ],
 })
 
-export class HistoryReportPatientComponent{
+export class HistoryReportPatientComponent implements OnInit{
+  name_patient:string;
+  
   breakpoint = 3;
   hidepicture = false;
-  filtroFecha!: FormGroup;
+  filtroFecha!: FormGroup;  
 
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  columnsToDisplay: string[] = ['date', 'doctor'];
+  columnsToDisplay: string[] = ['Fecha', 'Doctor'];
   expandedElement: Patient | null;
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
-  constructor(private observer: BreakpointObserver) { 
+  constructor(private observer: BreakpointObserver, private route: ActivatedRoute) { 
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -60,7 +63,9 @@ export class HistoryReportPatientComponent{
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    var params = (this.route.snapshot.params);
+    this.name_patient = params['name_patient'];
     this.dataSource.paginator = this.paginator;
   }
 }

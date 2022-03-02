@@ -18,7 +18,7 @@ const routes: Routes = [
     {path:'citas',component:ViewAppointmentComponent},
     {path:'pacientes',component:PatientListComponent},
     {path:'pacientes/reportes', component:PatientReportsComponent},
-    {path: 'historial/paciente', component:HistoryReportPatientComponent}
+    {path: 'historial/paciente/:name_patient', component:HistoryReportPatientComponent}
   ]},
   
 ];

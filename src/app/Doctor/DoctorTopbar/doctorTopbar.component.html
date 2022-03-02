@@ -24,7 +24,7 @@
   <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
       <ul class="nav-list">
-
+        <!--HOME-->
         <li>
           <a routerLink="/doctor/citas">
             <i style="font-size: x-large;" class="fa-regular fa-hospital"></i>
@@ -32,13 +32,29 @@
           </a>
         </li>
 
+        <!--CITAS-->
         <li>
-          <a routerLink="/doctor/report">
-            <i class="fad fa-book-medical"></i>
-            <span class="links_name">Informe Cita</span>
-          </a>
-        </li>
 
+        <li>
+          <a href="#appointment" data-bs-toggle="collapse">
+            <i style="font-size: x-large;" class="fad fa-book-medical"></i>
+            <span class="links_name">Citas</span>
+          </a>
+          
+          <div class="collapse" id="appointment">
+            <ul class="nav-second-level">
+              <li>
+                <a routerLink="/doctor/report">Crear informe</a>
+              </li>
+                  
+              <li>
+                <a routerLink="/doctor/citas">Citas para hoy</a>
+              </li>
+            </ul>
+          </div>          
+        </li>  
+
+        <!--LABORATORIO-->
         <li>
           <a href="#doctor_side" data-bs-toggle="collapse">
             <i style="font-size: x-large;" class="fad fa-user-md"></i>
@@ -50,16 +66,15 @@
               <li>
                 <a routerLink="/doctor/cita/crear">Agendar cita</a>
               </li>
-    
-              
+                  
               <li>
                 <a routerLink="/doctor/cita/orden">Crear Orden</a>
               </li>
             </ul>
-          </div>
-          
-        </li>        
+          </div>          
+        </li>   
         
+        <!--PACIENTES-->
         <li>
           <a href="#cons_side" data-bs-toggle="collapse">
             <i style="font-size: x-large;" class="fad fa-solid fa-bed-pulse"></i>
