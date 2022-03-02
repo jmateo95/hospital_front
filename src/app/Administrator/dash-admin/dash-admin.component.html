@@ -1,26 +1,41 @@
-<mat-toolbar class="mat-elevation-z8">
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-      <mat-icon *ngIf="!sidenav.opened">
-        menu
-      </mat-icon>
-      <mat-icon *ngIf="sidenav.opened">
-        close
-      </mat-icon>
+<mat-toolbar class="mat-elevation-z8 d-flex justify-content-between">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+
+
+  <div>
+    <a routerLink="home" class="logo-icon">
+
+      <span class="links_name">Hospital App</span>
+      <i class="fad fa-hospital-symbol"></i>
+    </a>
+  </div>
+<div>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <a routerLink="edit-profile"  mat-menu-item>
+      <mat-icon><i class="fal fa-user-circle"></i></mat-icon>
+      <span>Mi Perfil</span>
+    </a>
+    <button mat-menu-item>
+      <mat-icon><i class="fa fa-sign-out"></i></mat-icon>
+      <span>Cerrar Sesion</span>
     </button>
-  
-  
-    <div>
-      <a class="logo-icon">
-        
-        <span class="links_name">Hospital App</span>
-        <i class="fad fa-hospital-symbol"></i>
-      </a>
-    </div>
-  
-  
-  
-  
-  </mat-toolbar>
+  </mat-menu>
+                  
+</div>
+
+ 
+
+</mat-toolbar>
   
   <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
@@ -154,42 +169,9 @@
               </li>
             </ul>
           </div>
-
         </li>
-
-        
-
-        
-        
-        
-       
       </ul>
-      <mat-divider></mat-divider>
-      <ul class="nav-list">
-        <li>
-          <a href="#">
-            <i class="fad fa-bell"></i>
-            <span class="links_name">Notificaciones</span>
-          </a>
-  
-        </li>
-        <li>
-          <a href="#">
-            <i class="fad fa-cog"></i>
-            <span class="links_name">Configuracion</span>
-          </a>
-        </li>
-        </ul>
-        <mat-divider></mat-divider>
-        <ul>
-        <li>
-          <a href="#">
-            <span class="links_name">Cerrar Sesion</span>
-            <i class="fad fa-sign-out"></i>
-          </a>
-  
-        </li>
-        </ul>
+      
     </mat-sidenav>
     <mat-sidenav-content >
       <div class="content mat-elevation-z8" style="border-radius: 25px;">
