@@ -69,6 +69,7 @@ import { PatientRepAdminComponent } from './Administrator/routes/patient-rep-adm
 import { DoctorRep1AdminComponent } from './Administrator/routes/doctor-rep1-admin/doctor-rep1-admin.component';
 import { DoctorRepComponent } from './Administrator/routes/doctor-rep/doctor-rep.component';
 import { ProfileAdminComponent } from './Administrator/routes/profile-admin/profile-admin.component';
+import { HttpClientModule } from '@angular/common/http'
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -143,7 +144,8 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     MaterialModule,
     NgbModule,
     FormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
