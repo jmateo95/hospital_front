@@ -64,6 +64,8 @@ import { TestRepAdminComponent } from './Administrator/routes/test-rep-admin/tes
 import { PatientRepAdminComponent } from './Administrator/routes/patient-rep-admin/patient-rep-admin.component';
 import { DoctorRep1AdminComponent } from './Administrator/routes/doctor-rep1-admin/doctor-rep1-admin.component';
 import { DoctorRepComponent } from './Administrator/routes/doctor-rep/doctor-rep.component';
+import {PatientService} from './Patient/Patient.service';
+
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -134,7 +136,7 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     FormsModule,
     FullCalendarModule
   ],
-  providers: [],
+  providers: [PatientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
