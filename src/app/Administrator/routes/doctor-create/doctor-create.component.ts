@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import {FormControl, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
+import { AdministratorDoctorsService } from 'src/app/services/administrator-doctors.service';
+
 
 
 
@@ -22,10 +24,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './doctor-create.component.html',
   styleUrls: ['./doctor-create.component.css']
 })
-export class DoctorCreateComponent {
+
+
+export class DoctorCreateComponent implements OnInit{
 hide = true;
 
-constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
+constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>, private AdministratorDoctorsService: AdministratorDoctorsService){
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 }
 
@@ -57,6 +61,14 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
  
  saveForm(){
    console.log('Form data is ', this.profileForm.value);
+ } 
+
+ ngOnInit(): void {
+     console.log("Componente inicializado");
+     this.AdministratorDoctorsService.getUsers()
+      .subscribe((res)=>{
+        console.log(res);
+      });
  }
 
 }
