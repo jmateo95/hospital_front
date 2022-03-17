@@ -5,5 +5,4 @@ export interface User{
     codigo: string;
     email: string;
     password: string;
-    rol: Rol;
 }

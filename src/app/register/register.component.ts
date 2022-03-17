@@ -42,14 +42,10 @@ export class RegisterComponent implements OnInit {
     tipo_sangre: ["string"],
     usuario: this.formBuilder.group({
       nombre: ["string"],
+      dpi: [0],
       codigo: ["string"],
       email: ["string"],
-      password: ["string"],
-      rol: this.formBuilder.group({
-        id: 4,
-        nombre:[ "string"],
-        descripcion: ["string"]
-      })
+      password: ["string"]
     })
   });
 
@@ -62,12 +58,10 @@ export class RegisterComponent implements OnInit {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
   public onAddPatient(): void {
-    console.log(JSON.stringify(this.profileForm.value));
-    let datos: Patient = this.profileForm.value;
-    console.log(datos);
     this.patientService.addPatient(this.profileForm.value).subscribe(
       (response: Patient) => {
         console.log(response);
+        alert('Paciente registrado');
         this.profileForm.reset();
       },
       (error: HttpErrorResponse) => {
