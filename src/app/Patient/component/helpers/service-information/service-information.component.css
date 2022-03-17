@@ -169,7 +169,7 @@ html {
   width: 100%;
 }
 .contenido {
-  height: 75vh;
+  min-height: 50vh;
 }
 
 :host{

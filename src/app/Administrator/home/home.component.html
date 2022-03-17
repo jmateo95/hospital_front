@@ -1,1 +1,82 @@
-<p>home works!</p>
+<mat-grid-list [cols]="breakpoint" rowHeight="fit" style="height: 80vh;" >
+    <mat-grid-tile [colspan]="breakpoint" rowspan="1" >
+            <div class="d-flex justify-content-between greeting-card content mat-elevation-z8" style="min-width: 32vw;">
+                <div class="greeting">
+                    <label style="color: #3B2965; padding: 5px; ">Hola, </label>
+                    <label style="color: #447DEF;font-weight: 500;"> Nombre Administrador</label>
+                    
+              <mat-divider></mat-divider>
+                    <p>
+                        Bienvenido al sistema de nuevo 
+                    </p>
+                   
+                </div>
+                <div class="col-4" style="align-self: center;" [hidden]="hidepicture">
+                    <img width="200rem" src="assets/img/Doctors.png">
+                </div>
+            </div>
+
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+        
+            <div class="card-info content mat-elevation-z8 d-flex justify-content-evenly">
+                <div  class="icon-card">
+                    <img width="50rem" src="assets/img/icons/doctor.png">
+                </div>
+                <div class="text-card">
+                    <label class="box">Medicos</label>
+                    <br>
+                    <label class="box2">XX </label>
+    
+                </div>
+            </div>
+        
+        
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="card-info content mat-elevation-z8 d-flex justify-content-evenly">
+            <div  class="icon-card">
+                <img width="50rem" src="assets/img/icons/lab.png">
+            </div>
+            <div class="text-card">
+                <label class="box">Laboratoristas</label>
+                <br>
+                <label class="box2">XX</label>
+
+            </div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="card-info content mat-elevation-z8 d-flex justify-content-evenly">
+            <div  class="icon-card">
+                <img width="50rem" src="assets/img/icons/test.png">
+            </div>
+            <div class="text-card">
+                    <span class="box">Tipos de examenes</span>
+                <br>
+                <label class="box2">XX</label>
+
+            </div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="card-info content mat-elevation-z8 d-flex justify-content-evenly">
+            <div  class="icon-card">
+                <img width="50rem" src="assets/img/icons/patient.png">
+            </div>
+            <div class="text-card">
+                
+
+                    <span class="box">Pacientes Registrados</span>
+                
+                <br>
+                <label class="box2">XX</label>
+
+            </div>
+        </div>
+    </mat-grid-tile>
+
+
+
+
+</mat-grid-list>

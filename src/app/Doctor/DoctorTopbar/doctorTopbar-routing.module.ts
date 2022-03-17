@@ -8,10 +8,14 @@ import { ViewAppointmentComponent } from '../routes/viewAppintments/viewAppintme
 import { PatientListComponent } from '../routes/patientList/patientList.component';
 import { PatientReportsComponent } from '../routes/patientWithMoreReports/patientReports.component';
 import { HistoryReportPatientComponent } from '../routes/historyReportPatient/historyReportPatient.component';
+import { HomeDoctorComponent } from '../routes/homeDoctor/homeDoctor.component';
+import { editProfileDoctorComponent } from '../routes/editProfileDoctor/editProfileDoctor.component';
 
 const routes: Routes = [
   {path:'', component:DoctorTopbarComponent, children:[
-    {path:'', redirectTo:'citas', pathMatch:'full'},
+    {path:'', redirectTo:'home', pathMatch:'full'},
+    {path:'perfil', component:editProfileDoctorComponent},
+    {path: 'home', component:HomeDoctorComponent},
     {path:'report', component:CreateReportComponent},    
     {path:'cita/crear', component:AppointmentComponent},
     {path:'cita/orden', component:OrderComponent},

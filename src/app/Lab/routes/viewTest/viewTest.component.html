@@ -8,12 +8,7 @@
     <!-- CONTENIDO -->
     <mat-card-content>
 
-     <!-- <mat-form-field appearance="standard">
-        <mat-label>Filtro por nombre</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Name" #input>
-      </mat-form-field>-->
-
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+      <table mat-table [dataSource]="dataSource">
         <!-- Position Column -->
         <ng-container matColumnDef="hour">
           <th mat-header-cell *matHeaderCellDef> Hour </th>

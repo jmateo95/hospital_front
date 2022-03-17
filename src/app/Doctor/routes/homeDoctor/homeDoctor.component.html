@@ -1,0 +1,25 @@
+<mat-grid-list [cols]="breakpoint" rowHeight="fit" style="height: 80vh;" >
+    <mat-grid-tile [colspan]="breakpoint" rowspan="1" >
+            <div class="d-flex justify-content-between greeting-card content mat-elevation-z8">
+                <div class="greeting">
+                    <label style="color: #3B2965; padding: 5px; ">Hola, </label>
+                    <label style="color: #447DEF;font-weight: 500;"> Nombre Doctor</label>
+                    
+              <mat-divider></mat-divider>
+                    <p>
+                        Hoy tiene n citas por atender, revise su horario para mayor información
+                    </p>
+                                      
+                </div>
+                <div class="col-4" style="align-self: center;" [hidden]="hidepicture">
+                    <img width="200rem" src="https://www.sehat.com/sht-new-img/new/doctor.png">
+                </div>
+            </div>
+
+    </mat-grid-tile>           
+
+    
+    <mat-grid-tile>
+    </mat-grid-tile>
+
+</mat-grid-list>

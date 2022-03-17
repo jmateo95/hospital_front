@@ -11,10 +11,14 @@ import { DashAdminComponent } from './Administrator/dash-admin/dash-admin.compon
 import { DoctorReportsAdminComponent } from './Administrator/routes/doctor-more-reports-admin/doctor-more-reports-admin.component';
 import { HomeComponent } from './Administrator/home/home.component';
 import { DoctorTopbarComponent } from './Doctor/DoctorTopbar/doctorTopbar.component';
+import { EditProfileLabComponent } from './Lab/routes/editProfileLab/editProfileLab.component';
+import { homeLabComponent } from './Lab/routes/homeLab/homeLab.component';
+import { HomeDoctorComponent } from './Doctor/routes/homeDoctor/homeDoctor.component';
 import { PatientReportsComponent } from './Doctor/routes/patientWithMoreReports/patientReports.component';
 import { PatientListComponent } from './Doctor/routes/patientList/patientList.component';
 import { LabTopbarComponent } from './Lab/LapTopbar/LabTopbar.component';
 import { ViewTestComponent } from './Lab/routes/viewTest/viewTest.component';
+import { editProfileDoctorComponent } from './Doctor/routes/editProfileDoctor/editProfileDoctor.component';
 import { HomePatientComponent } from './Patient/home-patient/home-patient.component';
 import { NavbarPatientComponent } from './Patient/navbar-patient/navbar-patient.component';
 import { DoctorCreateComponent } from './Administrator/routes/doctor-create/doctor-create.component';
@@ -66,6 +70,9 @@ import { DoctorRep1AdminComponent } from './Administrator/routes/doctor-rep1-adm
 import { DoctorRepComponent } from './Administrator/routes/doctor-rep/doctor-rep.component';
 import {PatientService} from './Patient/Patient.service';
 
+import { ProfileAdminComponent } from './Administrator/routes/profile-admin/profile-admin.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -126,6 +133,12 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     DoctorRep1AdminComponent,
     DoctorReportsAdminComponent,
     DoctorRepComponent,
+    ProfileAdminComponent,
+    HomeDoctorComponent,
+    homeLabComponent,
+    editProfileDoctorComponent,
+    EditProfileLabComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -134,7 +147,9 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     MaterialModule,
     NgbModule,
     FormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    HttpClientModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [PatientService],
   bootstrap: [AppComponent]
