@@ -69,7 +69,8 @@ import { PatientRepAdminComponent } from './Administrator/routes/patient-rep-adm
 import { DoctorRep1AdminComponent } from './Administrator/routes/doctor-rep1-admin/doctor-rep1-admin.component';
 import { DoctorRepComponent } from './Administrator/routes/doctor-rep/doctor-rep.component';
 import { ProfileAdminComponent } from './Administrator/routes/profile-admin/profile-admin.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -145,7 +146,8 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     NgbModule,
     FormsModule,
     FullCalendarModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

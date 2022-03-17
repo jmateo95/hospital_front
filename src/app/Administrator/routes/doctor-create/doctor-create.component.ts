@@ -5,6 +5,8 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
 import { DoctorService } from '../../../services/doctores/doctor.service'
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute , Router, ParamMap} from '@angular/router';
 
 
 
@@ -28,7 +30,9 @@ hide = true;
 constructor(
   private formBuilder:FormBuilder, 
   private dateAdapter: DateAdapter<Date>,
-  private doctorService: DoctorService
+  private doctorService: DoctorService,
+  private toastrSvc:ToastrService,
+  private route : ActivatedRoute, private router : Router
   ){
 
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
@@ -50,11 +54,7 @@ constructor(
  });
 
  ngOnInit(): void {
-   this.doctorService.getAllDoctor().subscribe(resp=>{
-     console.log(resp);
-   },
-   error=>{console.error(error)}
-   );
+   
     
 }
 
@@ -64,14 +64,12 @@ constructor(
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
-
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
  
+
  pipe = new DatePipe('en-US');
  saveForm(){
-   console.log('Form data is ', this.profileForm.value);
-   
    var fecha = parseInt(""+this.pipe.transform(this.profileForm.value.fecha, 'yyyyMMdd'),10);
    var horaInicio= parseInt((""+this.profileForm.value.horai).replace(":",""),10);
    var horaFin=    parseInt((""+this.profileForm.value.horaf).replace(":",""),10);
@@ -91,12 +89,14 @@ constructor(
           "dpi": this.profileForm.value.dpi
         }
       };
-    console.log('Form data is ', doctor);
 
    this.doctorService.saveDoctor(doctor).subscribe(
     resp=>{
+      this.toastrSvc.success(`Medico agregado exitosamente`);
+      this.router.navigate(['/administrator/doctor/see'])
     },
     error=>{
+      this.toastrSvc.error(`Hubo un error al añadir al medico`);
       console.error(error);
     }
    );
