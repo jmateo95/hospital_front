@@ -68,6 +68,9 @@ import { TestRepAdminComponent } from './Administrator/routes/test-rep-admin/tes
 import { PatientRepAdminComponent } from './Administrator/routes/patient-rep-admin/patient-rep-admin.component';
 import { DoctorRep1AdminComponent } from './Administrator/routes/doctor-rep1-admin/doctor-rep1-admin.component';
 import { DoctorRepComponent } from './Administrator/routes/doctor-rep/doctor-rep.component';
+import { ProfileAdminComponent } from './Administrator/routes/profile-admin/profile-admin.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
 
 @NgModule({
@@ -128,6 +131,7 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     DoctorRep1AdminComponent,
     DoctorReportsAdminComponent,
     DoctorRepComponent,
+    ProfileAdminComponent,
     HomeDoctorComponent,
     homeLabComponent,
     editProfileDoctorComponent,
@@ -141,7 +145,9 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     MaterialModule,
     NgbModule,
     FormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    HttpClientModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]
