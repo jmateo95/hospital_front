@@ -1,25 +1,41 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { delay } from 'rxjs/operators';
+import { DoctorService } from '../../../services/doctores/doctor.service'
+
+
 @Component({
   selector: 'app-see-doctor-admin',
   templateUrl: './see-doctor-admin.component.html',
   styleUrls: ['./see-doctor-admin.component.css']
 })
+
 export class SeeDoctorAdminComponent implements OnInit {
 
   breakpoint = 3;
-  cards = [
-    { name: 'Dr. Fernando Robles', speciality: 'Pediatria', code:'1' },
-    { name: 'Dr. Jose Perez', speciality: 'Medicina General', code:'2' },
-    { name: 'Dra. Karla Batres', speciality: 'Odontologia', code:'3' },
-    { name: 'Dra. Jimena Reyes', speciality: 'Neurologia' , code:'4'}
-  ];
-  constructor(private observer: BreakpointObserver) { }
+  // cards = [
+  //   { name: 'Dr. Fernando Robles', speciality: 'Pediatria', code:'1' },
+  //   { name: 'Dr. Jose Perez', speciality: 'Medicina General', code:'2' },
+  //   { name: 'Dra. Karla Batres', speciality: 'Odontologia', code:'3' },
+  //   { name: 'Dra. Jimena Reyes', speciality: 'Neurologia' , code:'4'}
+  // ];
+  doctors:any;
 
-
+  constructor(private observer: BreakpointObserver, private doctorService: DoctorService,) { }
 
   ngOnInit() {
+
+    this.doctorService.getAllDoctor().subscribe(resp=>{
+      console.log(resp.content);
+      this.doctors=resp.content;
+     
+    },
+    error=>{
+      console.error(error);
+     }
+    );
+
+
   }
 
   ngAfterViewInit() {

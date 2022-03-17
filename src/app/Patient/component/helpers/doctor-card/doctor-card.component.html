@@ -1,13 +1,13 @@
 <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{doctor.name}}</mat-card-title>
+      <mat-card-title>Dr. {{doctor.usuario.nombre}}</mat-card-title>
       <mat-card-subtitle>{{doctor.speciality}}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-actions>
-      <a *ngIf="pacient" mat-button [routerLink]="['/patient/appointment/create',doctor.speciality,doctor.name]" > Agendar Consulta </a>
-      <a *ngIf="pacient" mat-button [routerLink]="['/patient/doctor/',doctor.code,'view-profile']" > Ver Perfil </a>
+      <a *ngIf="pacient" mat-button [routerLink]="['/patient/appointment/create',doctor.speciality,doctor.usuario.name]" > Agendar Consulta </a>
+      <a *ngIf="pacient" mat-button [routerLink]="['/patient/doctor/',doctor.usuario.id,'view-profile']" > Ver Perfil </a>
       <a *ngIf="admin" mat-button [routerLink]="['edit', id]"> Editar Informacion </a>
     </mat-card-actions>
   </mat-card>
