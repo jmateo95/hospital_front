@@ -10,7 +10,7 @@
           
               <ng-container matColumnDef="codigo">
                 <th mat-header-cell *matHeaderCellDef> Código </th>
-                <td mat-cell *matCellDef="let articulo"> {{articulo.codigo}} </td>
+                <td mat-cell *matCellDef="let articulo"> {{articulo.id}} </td>
               </ng-container>
           
               <ng-container matColumnDef="descripcion">
@@ -18,15 +18,15 @@
                 <td mat-cell *matCellDef="let articulo"> {{articulo.descripcion}} </td>
               </ng-container>
           
-              <ng-container matColumnDef="precio">
+              <ng-container matColumnDef="costo">
                 <th mat-header-cell *matHeaderCellDef> Precio </th>
-                <td mat-cell *matCellDef="let articulo"> {{articulo.precio}} </td>
+                <td mat-cell *matCellDef="let articulo"> {{articulo.costo}} </td>
               </ng-container>
 
               <ng-container matColumnDef="editar">
                 <th mat-header-cell *matHeaderCellDef style="text-align: end;"> Editar </th>
                 <td mat-cell *matCellDef="let articulo" style="text-align: end;">
-                    <a [routerLink]="['edit', articulo.codigo]" class="action-icon" title="Editar exámen" style="padding-right: 1vh;"> <i class="fa-solid fa-pen-to-square"></i></a>
+                    <a [routerLink]="['edit', articulo.id]" class="action-icon" title="Editar exámen" style="padding-right: 1vh;"> <i class="fa-solid fa-pen-to-square"></i></a>
 
                     <a href="#" class="action-icon" title="Desactivar exámen"><i class="fa-solid fa-trash"></i></a>
                 </td>

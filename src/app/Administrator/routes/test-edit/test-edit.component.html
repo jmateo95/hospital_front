@@ -7,6 +7,8 @@
     <mat-card-content >
       <div class="row" style="display: flex; justify-content: center; align-items: center;">
 
+        <input type="hidden" formControlName="id">
+
         <div class="col-sm-4">
           <div class="row">
               <div style="padding-left: 2vw;"><img class="rounded-circle"src="https://previews.123rf.com/images/krisdog/krisdog1409/krisdog140900059/31465450-cliboard-et-st%C3%A9thoscope-notion-relative-aux-r%C3%A9sultats-des-tests-m%C3%A9dicaux-de-l-administration-de-l-h%C3%B4.jpg" width="190"></div>
@@ -34,8 +36,8 @@
               <div class="col-md-12" style="margin-bottom: 1vh;">
                   <mat-label style="margin-right: 1.5vh;">Requiere Orden</mat-label>
                   <mat-radio-group formControlName="orden" class="margin-left">
-                      <mat-radio-button value="True" > Si </mat-radio-button>
-                      <mat-radio-button value="False"> No </mat-radio-button>
+                      <mat-radio-button value="true"> Si </mat-radio-button>
+                      <mat-radio-button value="false"> No </mat-radio-button>
                   </mat-radio-group>
               </div>
           </div>
@@ -61,8 +63,8 @@
           <div class="col-md-12">
               <mat-label style="margin-right: 1.5vh;">Formato del Reporte</mat-label>
               <mat-radio-group formControlName="formato" class="margin-left">
-                  <mat-radio-button value="True" > PDF </mat-radio-button>
-                  <mat-radio-button value="False"> JPG </mat-radio-button>
+                  <mat-radio-button value="PDF" > PDF </mat-radio-button>
+                  <mat-radio-button value="JGP"> JPG </mat-radio-button>
               </mat-radio-group>
           </div>
           </div>
