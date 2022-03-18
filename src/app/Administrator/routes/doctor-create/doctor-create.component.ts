@@ -81,13 +81,12 @@ constructor(
         "horaInicio": horaInicio,
         "horaFin": horaFin,
         "telefono": this.profileForm.value.telefono,
-        "usuario": {
-          "nombre": this.profileForm.value.nombre,
-          "codigo": this.profileForm.value.codigo,
-          "email": this.profileForm.value.correo,
-          "password": this.profileForm.value.password,
-          "dpi": this.profileForm.value.dpi
-        }
+        "nombre": this.profileForm.value.nombre,
+        "codigo": this.profileForm.value.codigo,
+        "email": this.profileForm.value.correo,
+        "password": this.profileForm.value.password,
+        "dpi": this.profileForm.value.dpi
+    
       };
 
    this.doctorService.saveDoctor(doctor).subscribe(
