@@ -31,8 +31,7 @@ export class TestListComponent {
       error=>{
         
       }
-    )   
-    
+    )       
   }
 }
 

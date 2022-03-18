@@ -35,6 +35,7 @@ export class TestCreateComponent implements OnInit {
     
     console.log('Form data is ', this.profileForm.value);
     var tipoExamen = {
+      "codigo": this.profileForm.value.codigo,
       "nombre": this.profileForm.value.nombre,
       "costo": this.profileForm.value.costo,
       "orden": this.profileForm.value.orden,

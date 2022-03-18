@@ -48,7 +48,7 @@ export class TestEditComponent implements OnInit {
   private Build(res:any){
     this.profileForm = this.formBuilder.group({ 
         id:res["id"],
-        codigo:res["id"],
+        codigo:res["codigo"],
         nombre:res["nombre"],
         costo:res["costo"],        
         orden:JSON.stringify(res["orden"]),

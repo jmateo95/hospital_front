@@ -23,7 +23,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class CreateReportComponent {
 hide = true;
 
-patients = ['Jose', 'Andrea', 'David', 'Gabrihela'];
+patients = ['Jose', 'Andrea', 'David', 'ss'];
 
 constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
