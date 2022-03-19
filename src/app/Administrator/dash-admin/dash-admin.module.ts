@@ -10,7 +10,7 @@ import { MaterialModule } from '../../material/material.module';
   imports: [
     CommonModule,
     DashAdminRoutingModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class DashAdminModule { }

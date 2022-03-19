@@ -20,8 +20,16 @@ export class DoctorService extends ExceptionHandlerApi {
     return this.httpClient.get(this.API_SERVER);
   }
 
-  public saveDoctor(persona:any): Observable<any>{
-    return this.httpClient.post(this.API_SERVER,persona);
+  public saveDoctor(doctor:any): Observable<any>{
+    return this.httpClient.post(this.API_SERVER,doctor);
+  }
+
+  public getDoctorId(id:any):Observable<any>{
+    return this.httpClient.get(this.API_SERVER+"/"+id);
+  }
+
+  public editDoctor(doctor:any):Observable<any>{
+    return this.httpClient.put(this.API_SERVER, doctor)
   }
 
   public filterDoctor(name: string): Observable<any> {

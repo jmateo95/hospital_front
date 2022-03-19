@@ -32,7 +32,7 @@ constructor(
   private dateAdapter: DateAdapter<Date>,
   private doctorService: DoctorService,
   private toastrSvc:ToastrService,
-  private route : ActivatedRoute, private router : Router
+  private router : Router
   ){
 
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy

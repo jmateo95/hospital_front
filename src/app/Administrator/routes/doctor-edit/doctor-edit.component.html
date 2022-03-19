@@ -11,70 +11,76 @@
               <div class="contenido">
                   <div class="p-3 py-5">
                       <div class="d-flex justify-content-between align-items-center mb-3">
+                          <h1 class="text-right">Codigo Doctor: {{doctor.codigo}}</h1>
+                      </div>
 
-                          <h1 class="text-right">Codigo Doctor: {{id}}</h1>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-6">
-                              <mat-form-field class="input-style" appearance="outline">
-                                  <mat-label><i class="fal fa-user"></i> Nombre</mat-label>
-                                  <input matInput class="font-style" placeholder="Nombre">
-                              </mat-form-field>
-                          </div>
-                          <div class="col-md-6">
-                              <mat-form-field class="input-style" appearance="outline">
-                                  <mat-label><i class="fal fa-id-card-alt"></i> DPI</mat-label>
-                                  <input matInput class="font-style" type="number" placeholder="DPI">
-                              </mat-form-field>
-                          </div>
-                      </div>
-                      <div class="row ">
-                          <div class="col-md-6">
-                              <mat-form-field class="input-style" appearance="outline">
-                                  <mat-label><i class="fal fa-at"></i> Correo Electronico</mat-label>
-                                  <input matInput class="font-style" type="email" placeholder="Correo Electronico">
-                              </mat-form-field>
-                          </div>
-                          <div class="col-md-6">
-                              <mat-form-field class="input-style" appearance="outline">
-                                  <mat-label><i class="fal fa-phone"></i> Telefono</mat-label>
-                                  <input matInput class="font-style" type="tel" placeholder="Telefono">
-                              </mat-form-field>
-                          </div>
-                      </div>
-                      <div class="row ">
-                          <div class="col-md-6">
-                              <mat-form-field class="input-style" appearance="outline">
-                                  <mat-label><i class="fal fa-id-card-alt"></i> Colegiado</mat-label>
-                                  <input matInput class="font-style" type="number" placeholder="Colegiado">
-                              </mat-form-field>
-                          </div>
-                          <div class="col-md-6">
-                              <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
-                                  <mat-label>Fecha de Inicio</mat-label>
-                                  <input class="font-style" matInput [matDatepicker]="picker">
-                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                  <mat-datepicker #picker></mat-datepicker>
-                              </mat-form-field>
-                          </div>
-                      </div>
-                      <div class="row ">
-                          <div class="col-md-6">
-                              <mat-form-field class="full-width" class="input-style" appearance="outline">
-                                  <mat-label>Hora de Inicio</mat-label>
-                                  <input class="font-style" type="time" matInput min="09:00" max="18:00"
-                                      placeholder="Hora de fin">
-                              </mat-form-field>
-                          </div>
-                          <div class="col-md-6">
-                              <mat-form-field class="full-width" class="input-style" appearance="outline">
-                                  <mat-label>Hora de Fin</mat-label>
-                                  <input class="font-style" style="color: #0d0d0d;" type="time" matInput min="09:00" max="18:00"
-                                      placeholder="Hora de fin">
-                              </mat-form-field>
-                          </div>
-                      </div>
-                      <button mat-raised-button color="primary" >Editar</button>
+                        <form [formGroup]="profileForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="input-style" appearance="outline">
+                                        <mat-label><i class="fal fa-user"></i> Nombre</mat-label>
+                                        <input matInput class="font-style" placeholder="Nombre" value="{{doctor.nombre}}" formControlName="nombre" id="nombre">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="input-style" appearance="outline">
+                                        <mat-label><i class="fal fa-id-card-alt"></i> DPI</mat-label>
+                                        <input matInput class="font-style" type="number" placeholder="DPI" value="{{doctor.dpi}}" formControlName="dpi" id="dpi">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <mat-form-field class="input-style" appearance="outline">
+                                        <mat-label><i class="fal fa-at"></i> Correo Electronico</mat-label>
+                                        <input matInput class="font-style" type="email" placeholder="Correo Electronico"  value="{{doctor.email}}" formControlName="email" id="email">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="input-style" appearance="outline">
+                                        <mat-label><i class="fal fa-phone"></i> Telefono</mat-label>
+                                        <input matInput class="font-style" type="tel" placeholder="Telefono" value="{{doctor.telefono}}" formControlName="telefono" id="telefono">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <mat-form-field class="input-style" appearance="outline">
+                                        <mat-label><i class="fal fa-id-card-alt"></i> Colegiado</mat-label>
+                                        <input matInput class="font-style" type="number" placeholder="Colegiado" value="{{doctor.colegiado}}" formControlName="colegiado" id="colegiado">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
+                                        <mat-label>Fecha de Inicio</mat-label>
+                                        <input class="font-style" matInput [matDatepicker]="picker"  [formControl]="date1" formControlName="fecha" id="fecha">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <mat-form-field class="full-width" class="input-style" appearance="outline">
+                                        <mat-label>Hora de Inicio</mat-label>
+                                        <input class="font-style" type="time" matInput min="09:00" max="18:00" value="{{horaInicio}}" formControlName="horaInicio" id="horaInicio"
+                                            placeholder="Hora de fin">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="full-width" class="input-style" appearance="outline">
+                                        <mat-label>Hora de Fin</mat-label>
+                                        <input class="font-style"  type="time" matInput min="09:00" max="18:00" value="{{horaFin}}" formControlName="horaFin" id="horaFin"
+                                            placeholder="Hora de fin">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <button (click)="saveForm()" mat-raised-button color="primary" >Editar</button>
+                        
+                        </form>
+
+                            
                   </div>
               </div>
           </mat-tab>
