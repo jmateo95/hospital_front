@@ -46,8 +46,8 @@
         </div>
 
       </mat-grid-tile>
-      <mat-grid-tile *ngFor="let card of cards">
-        <app-doctor-card [pacient]="true" [doctor]="card"></app-doctor-card>
+      <mat-grid-tile *ngFor="let card of doctors">
+        <app-doctor-card [pacient]="true" id="{{card.id}}" [doctor]="card" ></app-doctor-card>
       </mat-grid-tile>
     </mat-grid-list>
   </div>

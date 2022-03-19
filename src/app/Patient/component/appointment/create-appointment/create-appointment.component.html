@@ -1,4 +1,4 @@
-<form [formGroup]="appointmentForm">
+<form >
 <div class="rounded bg-white mat-elevation-z8" style="border-radius: 25px;">
   <mat-card>
     <div class="row">
@@ -22,7 +22,7 @@
 
               <mat-form-field appearance="outline">
                 <mat-label>Selecciona una fecha</mat-label>
-                <input required matInput [matDatepicker]="picker" formControlName="fecha">
+                <input required matInput [matDatepicker]="picker" [(ngModel)]="cita_save.fecha" name="fecha" >
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -32,7 +32,7 @@
             <div class="col-md-12">
               <mat-form-field appearance="outline">
                 <mat-label>Selecciona una hora</mat-label>
-                <input formControlName="hora" type="time" matInput min="09:00" max="18:00" placeholder="Hora de inicio">
+                <input  type="time" [(ngModel)]="cita_save.hora" matInput min="09:00" max="18:00" placeholder="Hora de inicio" name="hora">
               </mat-form-field>
             </div>
 
@@ -40,15 +40,24 @@
               <mat-form-field appearance="outline">
                 <mat-label>Especialidad</mat-label>
                 <input type="text" placeholder="Seleccione una" aria-label="Especialidad" matInput
-                  [(ngModel)]="speciality" formControlName="especialidad">
-
+                  [formControl]="especialidadFilter"  [matAutocomplete]="autoEspecialidad">
+                  <mat-autocomplete autoActiveFirstOption #autoEspecialidad="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredEspecialidades " (onSelectionChange)="updateIdEspecialidad(option.id)" [value]="option.nombre">
+                      {{option.nombre}}
+                    </mat-option>
+                  </mat-autocomplete>
               </mat-form-field>
             </div>
             <div class="col-md-12">
               <mat-form-field appearance="outline">
                 <mat-label>Doctor</mat-label>
-                <input type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput [(ngModel)]="doctor_name"
-                  formControlName="doctor">
+                <input type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput matInput
+                [formControl]="doctorFilter"  [matAutocomplete]="autoDoctor">
+                <mat-autocomplete autoActiveFirstOption #autoDoctor="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredDoctores" (onSelectionChange)="updateIdDoctor(option.id)" [value]="option.nombre">
+                    {{option.nombre}}
+                  </mat-option>
+                </mat-autocomplete>
 
               </mat-form-field>
             </div>
@@ -56,7 +65,7 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button (click)="saveForm()" mat-raised-button color="primary" style="min-width: 5vw;">Agendar</button>
+          <button  mat-raised-button color="primary" (click)="save()" style="min-width: 5vw;">Agendar</button>
           <button mat-raised-button color="primary" style="min-width: 5vw;" (click)="back()" >Cancelar</button>
         </mat-card-actions>
         </div>

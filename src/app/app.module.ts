@@ -68,12 +68,11 @@ import { TestRepAdminComponent } from './Administrator/routes/test-rep-admin/tes
 import { PatientRepAdminComponent } from './Administrator/routes/patient-rep-admin/patient-rep-admin.component';
 import { DoctorRep1AdminComponent } from './Administrator/routes/doctor-rep1-admin/doctor-rep1-admin.component';
 import { DoctorRepComponent } from './Administrator/routes/doctor-rep/doctor-rep.component';
-import {PatientService} from './Patient/Patient.service';
-
+import { PatientService } from './services/pacientes/Patient.service';
 import { ProfileAdminComponent } from './Administrator/routes/profile-admin/profile-admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]);
+FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin, listPlugin]);
 
 @NgModule({
   declarations: [
@@ -100,7 +99,7 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     DoctorCardComponent,
     SeeDoctorsComponent,
     ServiceCardComponent,
-    SeeAppointmentsComponent, 
+    SeeAppointmentsComponent,
     ViewAppointmentComponent,
     PatientListComponent,
     ViewTestComponent,
@@ -137,8 +136,8 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin,listPlugin]
     HomeDoctorComponent,
     homeLabComponent,
     editProfileDoctorComponent,
-    EditProfileLabComponent,
-    
+    EditProfileLabComponent
+
   ],
   imports: [
     BrowserModule,

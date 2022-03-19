@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { PatientService } from '../Patient/Patient.service';
-import { Patient } from '../Patient/Patient';
+import { PatientService } from '../services/pacientes/Patient.service';
+import { Patient } from '../services/pacientes/Patient';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DateAdapter, ErrorStateMatcher } from '@angular/material/core';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -21,9 +23,15 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterComponent implements OnInit {
 
-  patient_add: Patient;
-
-  constructor(private formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>, private patientService: PatientService) {
+  patient_add = new Patient();
+  constructor(
+    private formBuilder: FormBuilder, 
+    private dateAdapter: DateAdapter<Date>, 
+    private patientService: PatientService,
+    private toastrSvc:ToastrService,
+    private route : ActivatedRoute, 
+    private router : Router
+    ) {
     this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
   }
 
@@ -34,20 +42,7 @@ export class RegisterComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
-  profileForm = this.formBuilder.group({
-    sexo:[0],
-    fecha_nacimiento: [0],
-    telefono: ["string"],
-    peso:[ 0],
-    tipo_sangre: ["string"],
-    usuario: this.formBuilder.group({
-      nombre: ["string"],
-      dpi: [0],
-      codigo: ["string"],
-      email: ["string"],
-      password: ["string"]
-    })
-  });
+
 
 
   getErrorMessage() {
@@ -58,15 +53,13 @@ export class RegisterComponent implements OnInit {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
   public onAddPatient(): void {
-    this.patientService.addPatient(this.profileForm.value).subscribe(
-      (response: Patient) => {
-        console.log(response);
-        alert('Paciente registrado');
-        this.profileForm.reset();
+    this.patientService.addPatient(this.patient_add).subscribe(
+      (response) => {
+        this.toastrSvc.success(`Registro Exitoso`);
+        this.router.navigate(['/patient/home'])
       },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        this.profileForm.reset();
+      (error) => {
+        this.toastrSvc.error(error);
       }
     );
   }

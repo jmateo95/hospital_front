@@ -6,40 +6,38 @@
 
     <!-- Icon -->
     <div class="fadeIn first" style="font-size: 4vh;  margin-top: 1vh; padding-top: 1vh;">
-     Registrate</div>
+      Registrate</div>
 
     <!-- Login Form -->
-    <form [formGroup]="profileForm"  style="text-align: -webkit-center;" (ngSubmit)="onAddPatient()" >
+    <form  style="text-align: -webkit-center;" (ngSubmit)="onAddPatient()">
       <div class="row col-md-12" style="padding: 2rem;">
-        <div formGroupName="usuario" class="col-md-12">
           <mat-form-field class="input-style" appearance="outline">
             <mat-label><i class="fal fa-user"></i> Nombre</mat-label>
-            <input matInput placeholder="Nombre"    formControlName="nombre">
+            <input matInput placeholder="Nombre"  [(ngModel)]="patient_add.nombre" required name="nombre">
           </mat-form-field>
           <mat-form-field class="input-style" appearance="outline">
             <mat-label><i class="fal fa-lock-alt"></i> Contraseña</mat-label>
-            <input matInput type="password" placeholder="Contraseña"   formControlName="password">
+            <input matInput type="password" placeholder="Contraseña"  [(ngModel)]="patient_add.password" required name="password">
           </mat-form-field>
           <mat-form-field class="input-style" appearance="outline">
             <mat-label><i class="fal fa-at"></i> Correo Electronico</mat-label>
-            <input matInput type="email" placeholder="Correo Electronico"   formControlName="email" >
+            <input matInput type="email" placeholder="Correo Electronico"  [(ngModel)]="patient_add.email" required name="email">
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
-        </div>
-       
-        <mat-form-field class="input-style"  appearance="outline">
+        <mat-form-field class="input-style" appearance="outline">
           <mat-label><i class="fal fa-id-card-alt"></i> DPI</mat-label>
-          <input matInput type="number" placeholder="DPI" >
+          <input matInput type="number" placeholder="DPI"  [(ngModel)]="patient_add.dpi" required name="dpi">
         </mat-form-field>
-       
+
         <mat-form-field class="input-style" appearance="outline">
           <mat-label><i class="fal fa-phone"></i> Telefono</mat-label>
-          <input matInput type="tel" placeholder="Telefono"    formControlName="telefono">
+          <input matInput type="tel" placeholder="Telefono"  [(ngModel)]="patient_add.telefono" required name="telefono" >
         </mat-form-field>
         <div class="row">
           <div class="col-md-5">
             <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
               <mat-label>Sexo</mat-label>
-              <select matNativeControl required    formControlName="sexo">
+              <select matNativeControl required  [(ngModel)]="patient_add.sexo" name="sexo">
                 <option value="0">Hombre</option>
                 <option value="1">Mujer</option>
               </select>
@@ -48,7 +46,7 @@
           <div class="col-md-7 col-sm-12">
             <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
               <mat-label>Fecha de Nacimiento</mat-label>
-              <input matInput [matDatepicker]="picker"    >
+              <input matInput [matDatepicker]="picker"  [(ngModel)]="patient_add.fecha_nacimiento" required name="fecha_nacimiento">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -58,13 +56,19 @@
           <div class="col-md-5">
             <mat-form-field class="input-style" style="width: 100%;" appearance="outline">
               <mat-label><i class="fal fa-weight"></i> Peso Kg</mat-label>
-              <input matInput type="number" placeholder="Peso"    formControlName="peso">
+              <input matInput type="number" step="0.01" required placeholder="Peso"  [(ngModel)]="patient_add.peso" name="peso" >
             </mat-form-field>
           </div>
           <div class="col-md-7 col-sm-12">
-            <mat-form-field class="input-style" appearance="outline"  style="width: 100%;">
+            <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
               <mat-label>Tipo Sangre</mat-label>
-              <select matNativeControl required   formControlName="tipo_sangre">
+              <select matNativeControl required  [(ngModel)]="patient_add.tipo_sangre" name="tipo_sangre">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>
               </select>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { delay, map, startWith } from 'rxjs/operators';
+import { DoctorService } from '../../../../services/doctores/doctor.service'
 
 @Component({
   selector: 'app-see-doctors',
@@ -15,14 +16,9 @@ export class SeeDoctorsComponent implements OnInit {
   filtroFecha = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
-});
-  cards = [
-    { name: 'Dr. Fernando Robles', speciality: 'Pediatria', code:'1' },
-    { name: 'Dr. Jose Perez', speciality: 'Medicina General', code:'2' },
-    { name: 'Dra. Karla Batres', speciality: 'Odontologia', code:'3' },
-    { name: 'Dra. Jimena Reyes', speciality: 'Neurologia' , code:'4'}
-  ];
-  constructor(private observer: BreakpointObserver) { 
+  });
+  doctors:any;
+  constructor(private observer: BreakpointObserver, private doctorService: DoctorService) {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -31,13 +27,23 @@ export class SeeDoctorsComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
-   
-    
+
+
   }
 
 
 
   ngOnInit() {
+    this.doctorService.getAllDoctor().subscribe(resp => {
+      console.log(resp.content);
+      this.doctors = resp.content;
+
+    },
+      error => {
+        console.error(error);
+      }
+    );
+
   }
 
   ngAfterViewInit() {
@@ -75,7 +81,7 @@ export class SeeDoctorsComponent implements OnInit {
       .subscribe((res) => {
         if (res.matches) {
           this.breakpoint = 2;
-          
+
           this.hidepicture = true;
         }
       });
@@ -91,5 +97,5 @@ export class SeeDoctorsComponent implements OnInit {
 
   }
 
-  
+
 }
