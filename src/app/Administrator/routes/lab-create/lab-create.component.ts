@@ -7,6 +7,7 @@ import { DatePipe } from '@angular/common';
 import { LaboratoristaService } from 'src/app/services/laboratoristas/laboratorista.service';
 import { TipoExamenService } from 'src/app/services/tipoExamenes/tipo-examenes.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute , Router, ParamMap} from '@angular/router';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -28,7 +29,8 @@ export class LabCreateComponent  implements OnInit{
   constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>,
     private tipoExamenService: TipoExamenService,
     private laboratoristaService: LaboratoristaService,
-    private toastrSvc: ToastrService   
+    private toastrSvc: ToastrService,
+    private route : ActivatedRoute, private router : Router
     ){
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
   }
@@ -80,7 +82,7 @@ export class LabCreateComponent  implements OnInit{
      var laboratorista = {
         "nombre": this.profileForm.value.nombre,
         "codigo": this.profileForm.value.codigo,
-        "email": 'l@gmail.com',
+        "email": this.profileForm.value.correo,
         "password": this.profileForm.value.password,
         "dpi": this.profileForm.value.dpi,
         "registro": this.profileForm.value.registro,
@@ -92,6 +94,7 @@ export class LabCreateComponent  implements OnInit{
      this.laboratoristaService.saveLaboratorista(laboratorista).subscribe(
        res=>{
         this.toastrSvc.success(`Medico agregado exitosamente`);
+        this.router.navigate(['/administrator/lab/see'])
        },
        error=>{
         this.toastrSvc.error(`Hubo un error al añadir al medico`);

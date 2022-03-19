@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { delay } from 'rxjs/operators';
+import { LaboratoristaService } from 'src/app/services/laboratoristas/laboratorista.service';
 
 @Component({
   selector: 'app-see-lab-admin',
@@ -10,18 +11,23 @@ import { delay } from 'rxjs/operators';
 export class SeeLabAdminComponent implements OnInit {
 
   breakpoint = 3;
-  cards = [
-    { id: '1', title: 'Title 1', content: 'Content 1' },
-    { id: '2', title: 'Title 2', content: 'Content 2' },
-    { id: '3', title: 'Title 3', content: 'Content 3' },
-    { id: '4', title: 'Title 4', content: 'Content 4' }
-  ];
-  constructor(private observer: BreakpointObserver) { }
-
-
+  cards:any
+  examenes:any
+  constructor(private observer: BreakpointObserver,
+    private laboratoristaService:LaboratoristaService
+    ) { }
 
   ngOnInit() {
-  }
+    this.laboratoristaService.getAllLaboratoristas().subscribe(
+      res=>{
+        this.cards = res["content"]                
+       console.log(this.cards)
+      },
+      error=>{
+        console.log(error)
+      }
+    )}
+  
 
   ngAfterViewInit() {
     this.observer

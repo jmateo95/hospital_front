@@ -16,4 +16,16 @@ export class LaboratoristaService {
   public saveLaboratorista(laboratorista:any): Observable<any>{
     return this.httpClient.post(this.API_SERVER, laboratorista);
   }
+
+  public updateLaboratorista(laboratorista:any): Observable<any>{
+    return this.httpClient.put(this.API_SERVER, laboratorista);
+  }
+
+  public getAllLaboratoristas(): Observable<any>{
+    return this.httpClient.get(this.API_SERVER);
+  }
+
+  public getLaboratoristaId(id:any): Observable<any>{
+    return this.httpClient.get(this.API_SERVER+"/"+id);
+  }
 }
