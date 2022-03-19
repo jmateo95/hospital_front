@@ -72,7 +72,7 @@ constructor(
  saveForm(){
    var fecha = parseInt(""+this.pipe.transform(this.profileForm.value.fecha, 'yyyyMMdd'),10);
    var horaInicio= parseInt((""+this.profileForm.value.horai).replace(":",""),10);
-   var horaFin=    parseInt((""+this.profileForm.value.horaf).replace(":",""),10);
+   var horaFin = parseInt((""+this.profileForm.value.horaf).replace(":",""),10);
 
    var doctor = 
       {
@@ -85,8 +85,7 @@ constructor(
         "codigo": this.profileForm.value.codigo,
         "email": this.profileForm.value.correo,
         "password": this.profileForm.value.password,
-        "dpi": this.profileForm.value.dpi
-    
+        "dpi": this.profileForm.value.dpi    
       };
 
    this.doctorService.saveDoctor(doctor).subscribe(

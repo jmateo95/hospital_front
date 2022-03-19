@@ -10,11 +10,15 @@ export class CardLabComponent implements OnInit {
 
   @Input() admin: boolean = false;
   @Input() id:string='';
+  @Input() lab:any;  
+
+  constructor() { }  
 
 
-  constructor() { }
-
-  ngOnInit(): void {
+  test:any
+  ngOnInit(): void {   
+    this.test = this.lab.tipoExamen
+    console.log(this.test.nombre);
   }
 
 }

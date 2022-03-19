@@ -23,6 +23,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
@@ -51,8 +52,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatSortModule,
     MatTabsModule,
     MatExpansionModule,
-    MatMenuModule
-
+    MatMenuModule,  
 
   ],
   exports: [
@@ -80,7 +80,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatSortModule,
     MatTabsModule,
     MatExpansionModule,
-    MatMenuModule
+    MatMenuModule,
+    HttpClientModule
   ]
 })
 export class MaterialModule { }
