@@ -75,42 +75,34 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-
                             <button (click)="saveForm()" mat-raised-button color="primary" >Editar</button>
-                        
-                        </form>
-
-                            
+                        </form>    
                   </div>
               </div>
           </mat-tab>
           <mat-tab label="Especialidades" >
               <div class="contenido" style="padding: 2rem;">
+                <form [formGroup]="especialidad_doctor">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <mat-form-field class="input-style" appearance="outline">
+                                <mat-label>Especialidad</mat-label>
+                                <mat-select formControlName="id_especialidad">
+                                    <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
+                                    {{especialidad.nombre}}
+                                    </mat-option>
+                                </mat-select>
+                                </mat-form-field>
+                            </div>
 
-                <div class="row">
-
-                    <div class="col-sm-9">
-                        <mat-form-field class="input-style" appearance="outline">
-                          <mat-label>Especialidad</mat-label>
-                          <mat-select>
-                            <mat-option value="one">Especialidad 1</mat-option>
-                            <mat-option value="two">Especialidad 2</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-
-                      <div class="col-sm-3" >
-                        <button mat-raised-button color="primary" style="height: 5.5vh;" >Add</button>
-                      </div>
-
-
-
-                </div>
-                
-
+                            <div class="col-sm-3" >
+                                <button mat-raised-button color="primary" style="height: 5.5vh;" (click)="saveEspecialidad()" >Add</button>
+                            </div>
+                        </div>
+                </form>
                   <hr>
                   <div class="example-container " >
-                      <table mat-table [dataSource]="dataSource" matSort 
+                      <table mat-table [dataSource]="doctorespecialidad" matSort 
                           >
 
                           <!-- Position Column -->
@@ -119,7 +111,7 @@
                                  >
                                   No.
                               </th>
-                              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                              <td mat-cell *matCellDef="let doctorespecialidad"> {{doctorespecialidad.especialidad.codigo}} </td>
                           </ng-container>
 
                           <!-- Name Column -->
@@ -127,27 +119,20 @@
                               <th mat-header-cell *matHeaderCellDef >
                                   Name
                               </th>
-                              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                              <td mat-cell *matCellDef="let doctorespecialidad"> {{doctorespecialidad.especialidad.nombre}} </td>
                           </ng-container>
                           <ng-container matColumnDef="editar" >
                             <th mat-header-cell *matHeaderCellDef  style="text-align: center;">
                                 Acciones
                             </th>
-                            <td mat-cell *matCellDef="let element" style="text-align: center;">  <a href="#" class="action-icon" title="Eliminar Especialidad"><i class="fa-solid fa-trash"></i></a> </td>
+                            <td mat-cell *matCellDef="let doctorespecialidad" style="text-align: center;">  <button (click)="deleteespecialidad(doctorespecialidad.id)" class="action-icon" title="Eliminar Especialidad"><i class="fa-solid fa-trash"></i></button> </td>
                         </ng-container>
-                          
-
-
                           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                          
                       </table>
                   </div>
-
               </div>
           </mat-tab>
       </mat-tab-group>
-
   </div>
-
 </div>
