@@ -5,13 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { debounceTime, delay, finalize, switchMap, tap } from 'rxjs/operators';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
-import { EspecialidadService } from 'src/app/services/especialidades/especialidad.service';
-import { Especialidad } from 'src/app/services/especialidades/especialidad';
 import { DoctorService } from 'src/app/services/doctores/doctor.service';
 import { Cita } from 'src/app/services/cita/cita';
 import { CitaService } from 'src/app/services/cita/cita.service';
 import { ToastrService } from 'ngx-toastr';
+import { EspecialidadesService } from 'src/app/services/especialidades/especialidades.service';
 
 
 
@@ -24,7 +22,6 @@ export class CreateAppointmentComponent implements OnInit {
   hidepicture = false;
   doctor_name = "";
   speciality = "";
-  time = { hour: 13, minute: 30 };
   filteredEspecialidades: any;
   especialidadFilter = new FormControl();
   filteredDoctores: any;
@@ -37,7 +34,7 @@ export class CreateAppointmentComponent implements OnInit {
     private observer: BreakpointObserver,
     private dateAdapter: DateAdapter<Date>,
     private route: ActivatedRoute,
-    private especialidadService: EspecialidadService,
+    private especialidadService: EspecialidadesService,
     private doctorService: DoctorService,
     private citaService: CitaService,
     private toastrSvc:ToastrService,
@@ -106,11 +103,13 @@ export class CreateAppointmentComponent implements OnInit {
 
   }
 
-  public onAddPatient(): void {
+  public onAddCita(): void {
+    this.cita_save.paciente.id = 1
+    this.cita_save.hora = this.cita_save.hora+":00"
     this.citaService.addCita(this.cita_save).subscribe(
       (response) => {
         this.toastrSvc.success(`Registro Exitoso`);
-        this.router.navigate(['/patient/home'])
+        this.router.navigate(['/patient/services/upcoming/appointments'])
       },
       (error) => {
         this.toastrSvc.error(error);

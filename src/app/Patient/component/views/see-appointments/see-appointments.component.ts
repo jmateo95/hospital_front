@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay, map, startWith } from 'rxjs/operators';
+import { CitaService } from 'src/app/services/cita/cita.service';
 @Component({
   selector: 'app-see-appointments',
   templateUrl: './see-appointments.component.html',
@@ -16,17 +17,22 @@ export class SeeAppointmentsComponent implements OnInit {
   title = "";
   navigationSubscription;
   url = "";
-   
+  appointments: any; 
+
   cards = [
     { code: '1',date: '12/05/2021', doctor: 'Dr. Fernado Rojas',type:'Pediatria' },
     { code: '2',date: '14/04/2021', doctor: 'Dr. Luis Juarez',type:'Odontologia' },
     { code: '3',date: '18/03/2021', doctor: 'Dra. Camila Estrada',type:'Consulta General' },
     { code: '4',date: '19/02/2021', doctor: 'Dra. Fernanda Carrillo',type:'Neurologia' }
   ];
-  constructor(private observer: BreakpointObserver,private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private observer: BreakpointObserver,
+    private router: Router, 
+    private route: ActivatedRoute,
+    private citaService: CitaService
+    ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
+         if (e instanceof NavigationEnd) {
         this.initialiseInvites();
       }
     });
@@ -54,6 +60,16 @@ export class SeeAppointmentsComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
+
+    this.citaService.getCitas().subscribe(resp => {
+      console.log(resp.content);
+      this.appointments = resp.content;
+
+    },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
   ngAfterViewInit() {

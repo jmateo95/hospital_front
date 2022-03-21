@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-md-4 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
-                    src="/assets/img/icons/doctor.png" width="90"><span class="font-weight-bold font-style">Nombre del
-                    Doctor</span><span class="text-black-50">correo</span></div>
+                    src="/assets/img/icons/doctor.png" width="90"><span class="font-weight-bold font-style">{{doctor.nombre}}
+                    </span><span class="text-black-50">{{doctor.email}}</span></div>
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                         <button mat-raised-button color="primary" (click)="back()" >Regresar</button>
           
@@ -23,13 +23,13 @@
                             <div class="col-md-6">
                                 <mat-form-field class="input-style" appearance="outline">
                                     <mat-label><i class="fal fa-user"></i> Nombre</mat-label>
-                                    <input matInput class="font-style" [readonly]="true" placeholder="Nombre">
+                                    <input matInput class="font-style" [readonly]="true" placeholder="Nombre" value="{{doctor.nombre}}">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6">
                                 <mat-form-field class="input-style" appearance="outline">
                                     <mat-label><i class="fal fa-id-card-alt"></i> DPI</mat-label>
-                                    <input matInput class="font-style" [readonly]="true" type="number" placeholder="DPI">
+                                    <input matInput class="font-style" [readonly]="true" type="number" value="{{doctor.dpi}}" placeholder="DPI">
                                 </mat-form-field>
                             </div>
                         </div>
@@ -37,13 +37,13 @@
                             <div class="col-md-6">
                                 <mat-form-field class="input-style" appearance="outline">
                                     <mat-label><i class="fal fa-at"></i> Correo Electronico</mat-label>
-                                    <input matInput class="font-style" [readonly]="true" type="email" placeholder="Correo Electronico">
+                                    <input matInput class="font-style" [readonly]="true" type="email" value="{{doctor.email}}" placeholder="Correo Electronico">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6">
                                 <mat-form-field class="input-style" appearance="outline">
                                     <mat-label><i class="fal fa-phone"></i> Telefono</mat-label>
-                                    <input matInput class="font-style" [readonly]="true" type="tel" placeholder="Telefono">
+                                    <input matInput class="font-style" [readonly]="true" type="tel" value="{{doctor.telefono}}" placeholder="Telefono">
                                 </mat-form-field>
                             </div>
                         </div>
@@ -51,13 +51,13 @@
                             <div class="col-md-6">
                                 <mat-form-field class="input-style" appearance="outline">
                                     <mat-label><i class="fal fa-id-card-alt"></i> Colegiado</mat-label>
-                                    <input matInput class="font-style" [readonly]="true" type="number" placeholder="Colegiado">
+                                    <input matInput class="font-style" [readonly]="true" type="number" value="{{doctor.colegiado}}" placeholder="Colegiado">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6">
                                 <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
                                     <mat-label>Fecha de Inicio</mat-label>
-                                    <input [readonly]="true" class="font-style" matInput [matDatepicker]="picker">
+                                    <input [readonly]="true" class="font-style" matInput value="{{doctor.fecha}}" [matDatepicker]="picker">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
@@ -67,14 +67,14 @@
                             <div class="col-md-6">
                                 <mat-form-field class="full-width" class="input-style" appearance="outline">
                                     <mat-label>Hora de Inicio</mat-label>
-                                    <input [readonly]="true" class="font-style" type="time" matInput min="09:00" max="18:00"
+                                    <input [readonly]="true" class="font-style" type="time" value="{{doctor.horaInicio}}" matInput min="09:00" max="18:00"
                                         placeholder="Hora de fin">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6">
                                 <mat-form-field class="full-width" class="input-style" appearance="outline">
                                     <mat-label>Hora de Fin</mat-label>
-                                    <input [readonly]="true" class="font-style" style="color: #0d0d0d;" type="time" matInput min="09:00" max="18:00"
+                                    <input [readonly]="true" class="font-style" style="color: #0d0d0d;" value="{{doctor.horaFin}}" type="time" matInput min="09:00" max="18:00"
                                         placeholder="Hora de fin">
                                 </mat-form-field>
                             </div>

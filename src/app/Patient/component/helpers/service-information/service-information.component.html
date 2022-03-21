@@ -15,19 +15,19 @@
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
 
-                            <h1 class="text-right">No. {{type}}: {{id}} </h1>
+                            <h1 class="text-right">Codigo de la Cita: {{id}} </h1>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <mat-form-field class="input-style" appearance="outline">
                                     <mat-label><i class="fal fa-user"></i> Tipo</mat-label>
-                                    <input matInput [readonly]="true" placeholder="Tipo" value="">
+                                    <input matInput [readonly]="true" placeholder="Tipo" value="{{dataInformation.especialidad.nombre}}">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6">
                                 <mat-form-field class="input-style" appearance="outline">
                                     <mat-label><i class="fal fa-id-card-alt"></i> Doctor</mat-label>
-                                    <input matInput [readonly]="true" placeholder="Doctor">
+                                    <input matInput [readonly]="true" placeholder="Doctor" value="{{dataInformation.doctor.nombre}}">
                                 </mat-form-field>
                             </div>
                         </div>
@@ -37,15 +37,13 @@
                                 <mat-form-field class="full-width input-style" appearance="outline">
                                     <mat-label>Hora</mat-label>
                                     <input [readonly]="true" type="time" matInput min="09:00" max="18:00"
-                                        placeholder="Hora">
+                                        placeholder="Hora" value="{{dataInformation.hora}}">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6">
                                 <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
                                     <mat-label>Fecha</mat-label>
-                                    <input [readonly]="true" matInput [matDatepicker]="picker">
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
+                                    <input [readonly]="true" type="date" matInput value="{{dataInformation.fecha}}">
                                 </mat-form-field>
                             </div>
                         </div>
