@@ -11,7 +11,7 @@ import { ExceptionHandlerApi } from "../../exception/exception";
 })
 
 export class CitaService extends ExceptionHandlerApi{
-    private apiServerUrl = environment.apiBaseUrl+"/cita";
+    private apiServerUrl = environment.apiBaseUrl+"/Cita";
 
     constructor(private http: HttpClient) {
         super()
@@ -34,4 +34,7 @@ export class CitaService extends ExceptionHandlerApi{
         return this.http.delete<void>(`${this.apiServerUrl}/Patient/delete/${citaId}`);
     }
 
+    public getTodayDoctorAppoiment(DoctorId: number): Observable<any>{
+        return this.http.get<any>(`${this.apiServerUrl}/today/${DoctorId}`);
+    }    
 }

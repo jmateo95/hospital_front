@@ -1,8 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import {FormControl, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
+import { CitaService } from 'src/app/services/cita/cita.service';
+import { LaboratoristaService } from 'src/app/services/laboratoristas/laboratorista.service';
+import { CitaExamenesService } from 'src/app/services/CitaExamenes/cita-examenes.service';
+import { DoctorService } from 'src/app/services/doctores/doctor.service';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute , Router, ParamMap} from '@angular/router';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -13,40 +19,106 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
-
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
   styleUrls: ['./appointment.component.css']
 })
 
-export class AppointmentComponent {
+
+export class AppointmentComponent implements OnInit{
 hide = true;
 
-patients = ['Jose', 'Andrea', 'David', 'Gabrihela'];
-tests = ['test 1 ', 'test 2', 'test 3'];
+citas: Cita[] = [];
+labs: Laboratorista[] = []
+doctor = ""
 
-constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
+
+constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>,
+  private laboratoristaService: LaboratoristaService,
+  private citasService: CitaService,
+  private toastrSvc: ToastrService,
+  private citaExamen: CitaExamenesService,
+  private doctorService : DoctorService,
+  private route : ActivatedRoute, private router : Router,
+  ){
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 }
   
 
 
  profileForm = this.formBuilder.group({
-   codigo:[''],
-   nombre:[''],
-   colegiado:[''],
-   dpi:[''],
-   telefono:[''],   
-   password:[''],
-   horai:[''],
-   horaf:[''],
-   fecha:['']
+   laboratorista:[''],
+   paciente:[''],
+   fecha:[''],
+   hora:[''],
  });
    
+ ngOnInit(): void {      
+     var id_doctor = 80;
+      this.doctorService.getDoctorId(id_doctor).subscribe(
+        res=>{
+          this.doctor = res;
+          console.log(res);
+        },eror=>{
+
+        }
+      )
+     this.laboratoristaService.getAllLaboratoristas().subscribe(
+       res=>{
+        this.labs = res.content;         
+       },error=>{
+
+       }
+     )
+     this.citasService.getTodayDoctorAppoiment(id_doctor).subscribe(
+       res=>{         
+          this.citas = res;
+          console.log(this.citas);
+       },error=>{
+
+       }
+     )
+ }
  
  saveForm(){
    console.log('Form data is ', this.profileForm.value);
+   var cita = {
+     "laboratorista": this.profileForm.value.laboratorista,
+     "paciente": this.profileForm.value.paciente.paciente,   
+     "doctor": this.doctor,
+     "fecha":this.profileForm.value.fecha,
+     "hora":this.profileForm.value.hora+":00",
+   }
+
+   console.log(cita);
+   
+   this.citaExamen.saveAppimentTest(cita).subscribe(
+    res=>{
+      this.toastrSvc.success(`cita agregada exitosamente`);
+      this.router.navigate(['/doctor/home'])
+     },
+     error=>{
+      this.toastrSvc.error(`Hubo un error al crear la cita`);
+      console.error(error);
+     }
+   )
  }
 
+}
+
+export class Examen{
+  constructor(public id: number, public codigo: string, public costo: number, public orden: boolean, public description: string, public formatoInforma: string, public nombre:string){}
+}
+
+export class Laboratorista{
+  constructor(public id: number, public codigo: string, public tipoExamen: Examen){}
+}
+
+export class Patients{
+  constructor(public id: number, public codigo: string, public nombre: string){}
+}
+
+export class Cita{
+  constructor(public id: number, public paciente: Patients){}
 }
