@@ -91,7 +91,7 @@ export class LabEditComponent implements OnInit {
       dpi:res.dpi,
       telefono:res.telefono,
       correo:res.email,
-      fecha:Date.now(),
+      fecha:res.fecha_inicio,
       examen:this.examenes.filter(element => element.id == res.tipoExamen.id)      
      })          
    }
@@ -105,8 +105,7 @@ export class LabEditComponent implements OnInit {
 
     pipe = new DatePipe('en-US');
 
-   saveForm(){    
-     var fecha = parseInt(""+this.pipe.transform(this.profileForm.value.fecha, 'yyyyMMdd'),10);
+   saveForm(){        
      var laboratorista = {
        "id": this.id_lab,
         "nombre": this.profileForm.value.nombre,
@@ -115,7 +114,7 @@ export class LabEditComponent implements OnInit {
         "password": this.pass,
         "dpi": this.profileForm.value.dpi,
         "registro": this.profileForm.value.registro,
-        "fecha_inicio": fecha,
+        "fecha_inicio": this.profileForm.value.fecha,
         "telefono": this.profileForm.value.telefono, 
         "tipoExamen": this.profileForm.value.examen       
      }

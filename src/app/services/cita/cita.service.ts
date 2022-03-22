@@ -40,4 +40,7 @@ export class CitaService extends ExceptionHandlerApi{
         return this.http.delete<void>(`${this.apiServerUrl}/Patient/delete/${citaId}`);
     }
 
+    public getTodayDoctorAppoiment(DoctorId: number): Observable<any>{
+        return this.http.get<any>(`${this.apiServerUrl}/today/${DoctorId}`);
+    }    
 }

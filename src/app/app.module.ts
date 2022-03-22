@@ -73,6 +73,9 @@ import { ProfileAdminComponent } from './Administrator/routes/profile-admin/prof
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { TestInformationComponent } from './Patient/component/helpers/test-information/test-information.component';
+import { CookieService } from 'ngx-cookie-service';
+
+
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin, listPlugin]);
 
 @NgModule({
@@ -138,7 +141,6 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin, listPlugin
     homeLabComponent,
     editProfileDoctorComponent,
     EditProfileLabComponent,
-    TestInformationComponent
 
   ],
   imports: [

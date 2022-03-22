@@ -3,7 +3,6 @@ import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import {FormControl, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
-import { DatePipe } from '@angular/common';
 import { LaboratoristaService } from 'src/app/services/laboratoristas/laboratorista.service';
 import { TipoExamenService } from 'src/app/services/tipoExamenes/tipo-examenes.service';
 import { ToastrService } from 'ngx-toastr';
@@ -74,11 +73,9 @@ export class LabCreateComponent  implements OnInit{
   
       return this.email.hasError('email') ? 'Not a valid email' : '';
     }
-   
-  pipe = new DatePipe('en-US');
+     
    saveForm(){
-     console.log('Form data is ', this.profileForm.value);
-     var fecha = parseInt(""+this.pipe.transform(this.profileForm.value.fecha, 'yyyyMMdd'),10);
+     console.log('Form data is ', this.profileForm.value);     
      var laboratorista = {
         "nombre": this.profileForm.value.nombre,
         "codigo": this.profileForm.value.codigo,
@@ -86,7 +83,7 @@ export class LabCreateComponent  implements OnInit{
         "password": this.profileForm.value.password,
         "dpi": this.profileForm.value.dpi,
         "registro": this.profileForm.value.registro,
-        "fecha_inicio": fecha,
+        "fecha_inicio": this.profileForm.value.fecha,
         "telefono": this.profileForm.value.telefono, 
         "tipoExamen": this.profileForm.value.examen       
      }
