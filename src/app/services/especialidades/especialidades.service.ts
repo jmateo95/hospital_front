@@ -13,6 +13,12 @@ export class EspecialidadesService {
     private httpClient: HttpClient
   ) { }
 
+
+  public getAllEspecialidad():Observable<any>{
+    return this.httpClient.get(this.API_SERVER);
+  }
+
+
   public saveEspecialidad(especialidad:any): Observable<any>{
     return this.httpClient.post(this.API_SERVER,especialidad);
   }
