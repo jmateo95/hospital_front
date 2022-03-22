@@ -131,9 +131,12 @@ export class CreateTestComponent implements OnInit {
     if(formato=='PDF'){
      this.ordenpdf = !orden;
      this.ordenimg = orden;
-    }else{
+    }else if(formato=='PDF'){
       this.ordenimg = !orden;
       this.ordenpdf = orden;
+    }else{
+      this.ordenimg = true;
+      this.ordenpdf = true;
     }
   }
 
