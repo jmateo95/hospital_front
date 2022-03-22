@@ -72,7 +72,6 @@ import { PatientService } from './services/pacientes/Patient.service';
 import { ProfileAdminComponent } from './Administrator/routes/profile-admin/profile-admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { TestInformationComponent } from './Patient/component/helpers/test-information/test-information.component';
 import { CookieService } from 'ngx-cookie-service';
 
 
