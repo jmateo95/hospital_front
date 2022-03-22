@@ -46,13 +46,11 @@
             <div class="col-md-10">
               <angular-file-uploader 
               #fileUpload1 [hidden]="ordenpdf" 
-              (fileSelected)="fileSelected($event)" 
               [config]="afuConfig"
-              (ApiResponse)="DocUpload($event)"
               >
 
               </angular-file-uploader>
-              <angular-file-uploader [hidden]="ordenimg"  (ApiResponse)="DocUpload($event)" [config]="afuConfig2">
+              <angular-file-uploader [hidden]="ordenimg"   [config]="afuConfig2">
 
               </angular-file-uploader>
             </div>
