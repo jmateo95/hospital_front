@@ -1,4 +1,4 @@
-<form >
+<form>
   <mat-card style="border-radius: 25px; padding: 5vh!important; min-width:40vw; ">
     <mat-card-header>
       <mat-card-title>Solicitar Examen</mat-card-title>
@@ -6,64 +6,62 @@
     <hr>
     <mat-card-content>
       <div class="row">
-<div class="col-md-5">
-  <div class="col-md-12">
+        <div class="col-md-5">
+          <div class="col-md-12">
 
-    <mat-form-field appearance="outline">
-      <mat-label>Selecciona una fecha</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="examen_save.fecha" name="fecha" >
-      <mat-datepicker-toggle matSuffix [for]="picker"  ></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
-
-
-  <div class="col-md-12">
-    <mat-form-field appearance="outline">
-      <mat-label>Selecciona una hora</mat-label>
-      <input  type="time" matInput min="09:00" max="18:00" [(ngModel)]="examen_save.hora" name="hora" placeholder="Hora de inicio">
-    </mat-form-field>
-  </div>
-
-  <div class="col-md-12">
-    <mat-form-field appearance="outline">
-      <mat-label>Tipo</mat-label>
-      <input type="text" placeholder="Seleccione una" aria-label="Especialidad" matInput
-      [formControl]="tipoExamenFilter"  [matAutocomplete]="autoEspecialidad">
-      <mat-autocomplete autoActiveFirstOption #autoEspecialidad="matAutocomplete">
-        <mat-option *ngFor="let option of filteredTipoExamen " (onSelectionChange)="updateIdTipo(option.id, option.orden, option.formatoInforme)" [value]="option.nombre">
-          {{option.nombre}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </div>
-</div>
-<div  class="col-md-7"  >
-  <div class="col-md-10">
-    <div class="col-md-10">
-      <angular-file-uploader [hidden]="ordenpdf"
-      [config]="afuConfig"
-      >
-
-      </angular-file-uploader>
-      <angular-file-uploader [hidden]="ordenimg"
-      [config]="afuConfig2"
-      >
-
-      </angular-file-uploader>
-    </div>
-  </div>
-</div>
-</div>
-     
+            <mat-form-field appearance="outline">
+              <mat-label>Selecciona una fecha</mat-label>
+              <input matInput [matDatepicker]="picker" [(ngModel)]="examen_save.fecha" name="fecha">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
 
 
+          <div class="col-md-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Selecciona una hora</mat-label>
+              <input type="time" matInput min="09:00" max="18:00" [(ngModel)]="examen_save.hora" name="hora"
+                placeholder="Hora de inicio">
+            </mat-form-field>
+          </div>
 
+          <div class="col-md-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Tipo</mat-label>
+              <input type="text" placeholder="Seleccione una" aria-label="Especialidad" matInput
+                [formControl]="tipoExamenFilter" [matAutocomplete]="autoEspecialidad">
+              <mat-autocomplete autoActiveFirstOption #autoEspecialidad="matAutocomplete">
+                <mat-option *ngFor="let option of filteredTipoExamen "
+                  (onSelectionChange)="updateIdTipo(option.id, option.orden, option.formatoInforme)"
+                  [value]="option.nombre">
+                  {{option.nombre}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="col-md-10">
+            <div class="col-md-10">
+              <angular-file-uploader 
+              #fileUpload1 [hidden]="ordenpdf" 
+              [config]="afuConfig"
+              >
 
+              </angular-file-uploader>
+              <angular-file-uploader [hidden]="ordenimg"   [config]="afuConfig2">
+
+              </angular-file-uploader>
+            </div>
+          </div>
+        </div>
+      </div>
     </mat-card-content>
     <mat-card-actions>
-      <button  mat-raised-button color="primary" style="min-width: 5vw;">Agendar</button>
-      <button mat-raised-button color="primary" style="min-width: 5vw;" (click)="back()" >Cancelar</button>
+      <button mat-raised-button color="primary" style="min-width: 5vw;">Agendar</button>
+      <button mat-raised-button color="primary" style="min-width: 5vw;" (click)="back()">Cancelar</button>
     </mat-card-actions>
   </mat-card>
 </form>
+

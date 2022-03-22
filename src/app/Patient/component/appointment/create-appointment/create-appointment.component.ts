@@ -104,7 +104,7 @@ export class CreateAppointmentComponent implements OnInit {
   }
 
   public onAddCita(): void {
-    this.cita_save.paciente.id = 1
+    this.cita_save.paciente.id = 3
     this.cita_save.hora = this.cita_save.hora+":00"
     this.citaService.addCita(this.cita_save).subscribe(
       (response) => {
