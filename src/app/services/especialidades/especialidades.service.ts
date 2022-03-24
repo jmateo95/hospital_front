@@ -14,15 +14,28 @@ export class EspecialidadesService extends ExceptionHandlerApi {
   constructor(
     private httpClient: HttpClient) {
     super()
+   
+   }
+
+
+  public getAllEspecialidad():Observable<any>{
+    return this.httpClient.get(this.API_SERVER);
   }
 
-  public saveEspecialidad(especialidad: any): Observable<any> {
-    return this.httpClient.post(this.API_SERVER, especialidad);
+
+  public saveEspecialidad(especialidad:any): Observable<any>{
+    return this.httpClient.post(this.API_SERVER,especialidad);
   }
+
+
 
   public filterEspecialidad(name: string): Observable<Especialidad[]> {
     return this.httpClient.get<Especialidad[]>(this.API_SERVER + '/findname/' + name).pipe(catchError(err => this.errorHandler(err, 'ver')),);
   }
+  
+ 
+
+  
 
   public getEspecialidades():Observable<any> {
     return this.httpClient

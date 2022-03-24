@@ -32,6 +32,4 @@ export class PatientService extends ExceptionHandlerApi{
 
     public deletePatient(PatientId: number): Observable<void> {
         return this.http.delete<void>(`${this.apiServerUrl}/Patient/delete/${PatientId}`);
-    }
-
-}
+    }}

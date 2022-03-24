@@ -70,16 +70,13 @@ constructor(
 
  pipe = new DatePipe('en-US');
  saveForm(){
-   var fecha = parseInt(""+this.pipe.transform(this.profileForm.value.fecha, 'yyyyMMdd'),10);
-   var horaInicio= parseInt((""+this.profileForm.value.horai).replace(":",""),10);
-   var horaFin = parseInt((""+this.profileForm.value.horaf).replace(":",""),10);
-
+   var fecha = this.pipe.transform(this.profileForm.value.fecha, 'yyyy-MM-dd');
    var doctor = 
       {
         "colegiado": this.profileForm.value.colegiado,
         "fecha": fecha,
-        "horaInicio": horaInicio,
-        "horaFin": horaFin,
+        "horaInicio": this.profileForm.value.horai,
+        "horaFin": this.profileForm.value.horaf,
         "telefono": this.profileForm.value.telefono,
         "nombre": this.profileForm.value.nombre,
         "codigo": this.profileForm.value.codigo,
