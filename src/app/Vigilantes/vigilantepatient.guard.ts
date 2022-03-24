@@ -25,10 +25,10 @@ export class VigilantepatientGuard implements CanActivate, CanActivateChild {
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  boolean {
     const rol=this.usuarioService.getRolId();
       if(!rol){
-          this.router.navigate(['/','login'])
+          this.router.navigate(['/login'])
       }else{
         if(rol!='4'){
-          this.router.navigate(['/','login'])
+          this.router.navigate(['/login'])
         }
       }
     return true;

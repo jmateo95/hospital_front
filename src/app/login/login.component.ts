@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
  });
 
   ngOnInit(): void {
+    console.log(this.usuarioService.getRolId());
     if(this.usuarioService.getRolId()){
       this.redirectsUser(Number(this.usuarioService.getRolId()));
     }
@@ -51,12 +52,12 @@ export class LoginComponent implements OnInit {
 
   loginForm(){
     console.log(this.profileForm.value);
-    this.usuarioService.Login(this.profileForm.value).pipe(first()).subscribe(
+    this.usuarioService.Login(this.profileForm.value).subscribe(
       Response=>{
         if(Response.id){
           this.toastrSvc.success(`Bienvenido: `+Response.nombre);
           this.usuarioService.setUser(Response);
-          this.ngOnInit();
+          this.redirectsUser(Response.id);
         }else{
           this.toastrSvc.error(`Usuario o contraseña incorrectos`);
         }
