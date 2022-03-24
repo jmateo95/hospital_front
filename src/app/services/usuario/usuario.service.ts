@@ -12,22 +12,28 @@ export class UsuarioService {
   constructor(private cookies: CookieService, private httpClient: HttpClient) { }
 
   setUser(user: any) {
-    this.cookies.set("id_user", user.id);
-    this.cookies.set("id_rol", user.rol.id);
+    localStorage.setItem('id_user', user.id);
+    localStorage.setItem('id_rol', user.rol.id);
+    //this.cookies.set('id_user', user.id, 4, '/');
+    //this.cookies.set('id_rol', user.rol.id, 4, '/');
   }
 
 
   getUserId() {
-    return this.cookies.get("id_user");
+    return  localStorage.getItem('id_user');
+    //return this.cookies.get('id_user');
   }
   getRolId() {
-    return this.cookies.get("id_rol");
+    return  localStorage.getItem('id_rol');
+    //return this.cookies.get('id_rol');
   }
 
   logout(){
-    this.cookies.delete("id_user");
-    this.cookies.delete("id_rol");
-    this.cookies.delete("token");
+    localStorage.removeItem('id_user');
+    localStorage.removeItem('id_rol');
+    // this.cookies.delete('id_user');
+    // this.cookies.delete('id_rol');
+    // this.cookies.delete('token');
   }
 
   public Login(login:any): Observable<any>{

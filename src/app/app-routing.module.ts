@@ -8,7 +8,7 @@ import { VigilantelabGuard } from './Vigilantes/vigilantelab.guard';
 import { VigilantepatientGuard } from './Vigilantes/vigilantepatient.guard';
 
 const routes: Routes = [
-  {path:'', redirectTo:'login', pathMatch:'full'},
+  {path:'', component:LoginComponent},
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
   {
