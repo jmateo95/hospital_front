@@ -9,19 +9,13 @@ export class Examen {
     public fecha : Date;
     public hora : String;
     public paciente: Patient;
-    public tipoExamen: TipoExamen;
-    public doctor: Doctor;
-    public laboratorista: Laboratorista;
-    public cita: Cita;
+    public tipo: TipoExamen;
     public ordenDoc: String;
     public informeDoc: String;
 
     constructor(){
-        this.doctor = new Doctor();
-        this.tipoExamen = new TipoExamen();
+        this.tipo = new TipoExamen();
         this.paciente = new Patient();
-        this.laboratorista = new Laboratorista();
-        this.cita = new Cita();
     }
 
 }

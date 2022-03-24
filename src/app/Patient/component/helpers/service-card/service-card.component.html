@@ -2,23 +2,23 @@
 <mat-card *ngIf="test" class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{test.name}}</mat-card-title>
-      <mat-card-subtitle>Costo: {{test.cost}}</mat-card-subtitle>
-      <mat-card-subtitle>Requiere orden: {{test.orden}}</mat-card-subtitle>
+      <mat-card-title>{{test.nombre}}</mat-card-title>
+      <mat-card-subtitle>Costo: {{test.costo}}</mat-card-subtitle>
+      <mat-card-subtitle>Requiere orden: {{test.orden_}}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-actions>
-      <a [routerLink]="['/patient/test/create',test.name]" mat-button>Solicitar Examen</a>
+      <a [routerLink]="['/patient/test/create',test.id]" mat-button>Solicitar Examen</a>
 
     </mat-card-actions>
   </mat-card>
   <mat-card *ngIf="appointment" class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{appointment.name}}</mat-card-title>
-      <mat-card-subtitle>{{appointment.cost}}</mat-card-subtitle>
+      <mat-card-title>{{appointment.nombre}}</mat-card-title>
+      <mat-card-subtitle>Q. {{appointment.costo}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions>
-      <a [routerLink]="['/patient/appointment/create',appointment.name]" mat-button>Agendar Consulta</a>
+      <a [routerLink]="['/patient/appointment/create',appointment.id]" mat-button>Agendar Consulta</a>
     </mat-card-actions>
   </mat-card>

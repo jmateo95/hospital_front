@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { delay } from 'rxjs/operators';
+import { TipoExamenService } from 'src/app/services/tipoExamenes/tipo-examenes.service';
 @Component({
   selector: 'app-services-test',
   templateUrl: './services-test.component.html',
@@ -13,6 +14,7 @@ export class ServicesTestComponent implements OnInit {
   breakpoint = 3;
   hidepicture = false;
   filtroFecha!: FormGroup;
+  tipoExamenes:any;
    
   cards = [
     { name: 'Tomografia', cost: 'Q. 300', orden:'Si' },
@@ -20,7 +22,10 @@ export class ServicesTestComponent implements OnInit {
     { name: 'Ultrasonido', cost: 'Q.150', orden:'Si' },
     { name: 'Examen de la Glucosa', cost: 'Q.200', orden:'No' }
   ];
-  constructor(private observer: BreakpointObserver, private route:ActivatedRoute) { 
+  constructor(
+    private observer: BreakpointObserver, 
+    private route:ActivatedRoute,
+    private tipoExamenesService:TipoExamenService) { 
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -35,6 +40,23 @@ export class ServicesTestComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.tipoExamenesService.getAllTiposExamen().subscribe(resp => {
+      console.log(resp.content);
+      this.tipoExamenes = resp.content;
+      this.tipoExamenes.forEach((element: { orden: any; orden_:any }) => {
+        if(element.orden){
+          element.orden_ = "Si";
+        }else{
+          element.orden_ = "No";
+        }
+      });
+
+    },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
   ngAfterViewInit() {

@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { delay } from 'rxjs/operators';
+import { UsuarioService } from '../../services/usuario/usuario.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-dash-admin',
@@ -12,7 +15,11 @@ export class DashAdminComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver) { }
+  constructor(private observer: BreakpointObserver, 
+    private usuarioService: UsuarioService,
+    private toastrSvc:ToastrService,
+    private router : Router
+    ) { }
 
   ngAfterViewInit() {
     this.observer
@@ -28,4 +35,12 @@ export class DashAdminComponent {
         }
       });
   }
+
+
+  Logout(){
+    this.usuarioService.logout();
+    this.toastrSvc.success(`Adios`);
+    this.router.navigate(['/login']);
+  }
+
 }

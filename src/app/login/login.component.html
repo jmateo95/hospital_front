@@ -24,20 +24,21 @@
 
     <!-- Login Form -->
     
+    
       <div class="row ">
         
         <div class="col-md-9 mx-auto" style="padding-bottom: 2rem;">
-          <form style="text-align: -webkit-center;">
+          <form style="text-align: -webkit-center;" [formGroup]="profileForm">
             <mat-form-field class="example-full-width" appearance="outline" >
-              <mat-label><i class="fal fa-user"></i> Usuario</mat-label>
-              <input matInput placeholder="Usuario" >
+              <mat-label><i class="fal fa-user"></i> Correo</mat-label>
+              <input matInput placeholder="Correo" formControlName="email" >
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label><i class="fal fa-lock-alt"></i> Contraseña</mat-label>
-              <input matInput type="password" placeholder="Contraseña" >
+              <input matInput type="password" placeholder="Contraseña" formControlName="password" >
             </mat-form-field>  
             <br>
-            <button mat-raised-button color="primary">Iniciar Sesion</button>  
+            <button mat-raised-button color="primary" (click)="loginForm()">Iniciar Sesion</button>  
           </form>
         </div>
        </div>

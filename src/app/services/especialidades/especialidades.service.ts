@@ -37,4 +37,14 @@ export class EspecialidadesService extends ExceptionHandlerApi {
 
   
 
+  public getEspecialidades():Observable<any> {
+    return this.httpClient
+        .get(this.API_SERVER ).pipe(catchError(err => this.errorHandler(err,'ver')),);
+}
+
+public getEspecialidad(id:any):Observable<any>{
+  return this.httpClient
+  .get(this.API_SERVER+'/'+id ).pipe(catchError(err => this.errorHandler(err,'ver')),);
+}
+
 }

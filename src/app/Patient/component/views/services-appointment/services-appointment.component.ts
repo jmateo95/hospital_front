@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { delay } from 'rxjs/operators';
+import { EspecialidadesService } from 'src/app/services/especialidades/especialidades.service';
 
 @Component({
   selector: 'app-services-appointment',
@@ -14,6 +15,7 @@ export class ServicesAppointmentComponent implements OnInit {
   breakpoint = 3;
   hidepicture = false;
   filtroFecha!: FormGroup;
+  tipoEspecialidad:any;
    
   cards = [
     { name: 'Pediatria', cost: 'Q. 350' },
@@ -21,7 +23,11 @@ export class ServicesAppointmentComponent implements OnInit {
     { name: 'Ginecologia', cost: 'Q. 180' },
     { name: 'Medicina General', cost: 'Q. 260' }
   ];
-  constructor(private observer: BreakpointObserver, private route:ActivatedRoute) { 
+  constructor(
+    private observer: BreakpointObserver, 
+    private route:ActivatedRoute,
+    private especialidad:EspecialidadesService
+    ) { 
   
     
   }
@@ -37,6 +43,18 @@ export class ServicesAppointmentComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
+
+    this.especialidad.getEspecialidades().subscribe(resp => {
+      console.log(resp.content);
+      this.tipoEspecialidad = resp.content;
+
+    },
+      error => {
+        console.error(error);
+      }
+    );
+
+    
   }
 
   ngAfterViewInit() {

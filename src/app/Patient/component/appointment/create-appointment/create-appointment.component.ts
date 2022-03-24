@@ -20,8 +20,8 @@ import { EspecialidadesService } from 'src/app/services/especialidades/especiali
 })
 export class CreateAppointmentComponent implements OnInit {
   hidepicture = false;
-  doctor_name = "";
-  speciality = "";
+  doctor_name :number;
+  speciality :number;
   filteredEspecialidades: any;
   especialidadFilter = new FormControl();
   filteredDoctores: any;
@@ -48,6 +48,23 @@ export class CreateAppointmentComponent implements OnInit {
     var params = (this.route.snapshot.params);
     this.speciality = params['speciality'];
     this.doctor_name = params['doctor'];
+    if(this.speciality!=null){
+      if(this.speciality!=0){
+        this.especialidadService.getEspecialidad(this.speciality).subscribe(
+          (response) => {
+           this.cita_save.especialidad.id = +this.speciality;
+           this.cita_save.especialidad.nombre = response.nombre;
+          },
+          (error) => {
+            this.toastrSvc.error(error);
+          }
+        );
+        if(this.doctor_name!=null){
+          
+        }
+      }
+    }
+
     this.especialidadFilter.valueChanges.pipe(
       debounceTime(50),
       tap(() => {
@@ -104,7 +121,7 @@ export class CreateAppointmentComponent implements OnInit {
   }
 
   public onAddCita(): void {
-    this.cita_save.paciente.id = 3
+    this.cita_save.paciente.id = 2
     this.cita_save.hora = this.cita_save.hora+":00"
     this.citaService.addCita(this.cita_save).subscribe(
       (response) => {

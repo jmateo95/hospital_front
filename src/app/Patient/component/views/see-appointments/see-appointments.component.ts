@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { delay, map, startWith } from 'rxjs/operators';
+import { debounceTime, delay, finalize, map, startWith, switchMap, tap } from 'rxjs/operators';
 import { CitaService } from 'src/app/services/cita/cita.service';
+import { DoctorService } from 'src/app/services/doctores/doctor.service';
 @Component({
   selector: 'app-see-appointments',
   templateUrl: './see-appointments.component.html',
@@ -12,13 +13,21 @@ import { CitaService } from 'src/app/services/cita/cita.service';
 })
 export class SeeAppointmentsComponent implements OnInit {
   breakpoint = 3;
+  doctor_id :number;
   hidepicture = false;
   filtroFecha!: FormGroup;
   title = "";
   navigationSubscription;
   url = "";
   appointments: any; 
-
+  start_date:any;
+  end_date: any;
+  filteredDoctores: any;
+  doctorFilter = new FormControl();
+  errorMsg: string;
+  isLoading = false;
+  formatYmd = (date: { toISOString: () => string | any[]; }) => date.toISOString().slice(0, 10);
+   
   cards = [
     { code: '1',date: '12/05/2021', doctor: 'Dr. Fernado Rojas',type:'Pediatria' },
     { code: '2',date: '14/04/2021', doctor: 'Dr. Luis Juarez',type:'Odontologia' },
@@ -29,7 +38,8 @@ export class SeeAppointmentsComponent implements OnInit {
     private observer: BreakpointObserver,
     private router: Router, 
     private route: ActivatedRoute,
-    private citaService: CitaService
+    private citaService: CitaService,
+    private doctorService: DoctorService,
     ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
          if (e instanceof NavigationEnd) {
@@ -44,9 +54,28 @@ export class SeeAppointmentsComponent implements OnInit {
     if(this.title == 'history'){
       this.title = 'Consultas Realizadas';
       this.url = 'assets/img/Consult2.png';
+      this.citaService.getRecordCitas(2).subscribe(resp => {
+        console.log(resp);
+        this.appointments = resp;
+  
+      },
+        error => {
+          console.error(error);
+        }
+      );
+
     }else if (this.title == 'upcoming'){
       this.title = 'Proximas Consultas';
       this.url = 'assets/img/Consult4.png';
+      this.citaService.getUpcomingCitas(2).subscribe(resp => {
+        console.log(resp);
+        this.appointments = resp;
+  
+      },
+        error => {
+          console.error(error);
+        }
+      );
     }
   }
 
@@ -60,16 +89,48 @@ export class SeeAppointmentsComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
+    this.doctorFilter.valueChanges.pipe(
+      debounceTime(50),
+      tap(() => {
+        this.filteredDoctores = [];
+        this.errorMsg = "";
+        this.isLoading = true;
+      }),
+      switchMap(value =>
+        this.doctorService.filterDoctor(value).pipe(
+          finalize(() => {
+            this.isLoading = false;
+          }),
+        )))
+      .subscribe(data => {
+        if (data == undefined) {
+          this.errorMsg = "Error";
+          this.filteredDoctores = []
 
-    this.citaService.getCitas().subscribe(resp => {
-      console.log(resp.content);
-      this.appointments = resp.content;
-
-    },
-      error => {
-        console.error(error);
+        } else {
+          console.log(data);
+          this.errorMsg = ""
+          this.filteredDoctores = data;
+        }
       }
-    );
+    )
+
+    
+  }
+  updateIdDoctor(id: number) {
+    this.doctor_id = id;
+  }
+
+  filtrar(){
+    if(this.start_date!=null || this.end_date!=null || this.doctor_id!=null){
+      this.start_date = this.formatYmd(this.start_date)
+    }
+    if(this.end_date!=null){
+      this.end_date = this.formatYmd(this.end_date)
+    }
+    if(this.doctor_id!=null){
+
+    }
   }
 
   ngAfterViewInit() {
