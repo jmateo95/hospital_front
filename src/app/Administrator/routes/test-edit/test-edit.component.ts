@@ -53,7 +53,7 @@ export class TestEditComponent implements OnInit {
         costo:res["costo"],        
         orden:JSON.stringify(res["orden"]),
         descripcion:res["descripcion"],
-        formato:res["formatoInforma"]
+        formato:res["formatoInforme"]
     });
   }
 
@@ -65,7 +65,7 @@ export class TestEditComponent implements OnInit {
       "costo": this.profileForm.value.costo,
       "orden": this.profileForm.value.orden,
       "descripcion": this.profileForm.value.descripcion,
-      "formatoInforma": this.profileForm.value.formato
+      "formatoInforme": this.profileForm.value.formato
     }
 
     this.tipoExamenService.updateTipoExamen(tipoExamen).subscribe(

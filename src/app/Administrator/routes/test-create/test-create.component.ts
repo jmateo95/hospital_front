@@ -40,7 +40,7 @@ export class TestCreateComponent implements OnInit {
       "costo": this.profileForm.value.costo,
       "orden": this.profileForm.value.orden,
       "descripcion": this.profileForm.value.descripcion,
-      "formatoInforma": this.profileForm.value.formato
+      "formatoInforme": this.profileForm.value.formato
     }
 
     this.tipoExamenService.saveTipoExamen(tipoExamen).subscribe(

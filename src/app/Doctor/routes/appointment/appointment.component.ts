@@ -56,14 +56,14 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
    
  ngOnInit(): void {      
      var id_doctor = 80;
-      this.doctorService.getDoctorId(id_doctor).subscribe(
+   /*   this.doctorService.getDoctorId(id_doctor).subscribe(
         res=>{
           this.doctor = res;
           console.log(res);
         },eror=>{
 
         }
-      )
+      )*/
      this.laboratoristaService.getAllLaboratoristas().subscribe(
        res=>{
         this.labs = res.content;         
@@ -82,15 +82,16 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
  }
  
  saveForm(){
-   console.log('Form data is ', this.profileForm.value);
+   console.log('Form data is ', this.profileForm.value.paciente);
    var cita = {
      "laboratorista": this.profileForm.value.laboratorista,
-     "paciente": this.profileForm.value.paciente.paciente,   
-     "doctor": this.doctor,
+     "paciente": this.profileForm.value.paciente.paciente,     
      "fecha":this.profileForm.value.fecha,
      "hora":this.profileForm.value.hora+":00",
+     "cita": this.profileForm.value.paciente
    }
 
+   console.log("CITA:")
    console.log(cita);
    
    this.citaExamen.saveAppimentTest(cita).subscribe(
