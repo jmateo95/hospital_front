@@ -45,12 +45,17 @@
           <div class="col-md-10">
             <div class="col-md-10">
               <angular-file-uploader 
-              #fileUpload1 [hidden]="ordenpdf" 
+               [hidden]="ordenpdf" 
               [config]="afuConfig"
+              (ApiResponse)="docUpload($event)"
               >
 
               </angular-file-uploader>
-              <angular-file-uploader [hidden]="ordenimg"   [config]="afuConfig2">
+              <angular-file-uploader 
+              [hidden]="ordenimg"   
+              [config]="afuConfig2"
+              (ApiResponse)="docUpload($event)"
+              >
 
               </angular-file-uploader>
             </div>
@@ -59,7 +64,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" style="min-width: 5vw;">Agendar</button>
+      <button mat-raised-button color="primary" style="min-width: 5vw;" (click)="onAddExamen()">Agendar</button>
       <button mat-raised-button color="primary" style="min-width: 5vw;" (click)="back()">Cancelar</button>
     </mat-card-actions>
   </mat-card>

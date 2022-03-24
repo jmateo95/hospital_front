@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay, map, startWith } from 'rxjs/operators';
+import { ExamenService } from 'src/app/services/examenes/examen.service';
 
 @Component({
   selector: 'app-see-tests',
@@ -17,14 +18,14 @@ export class SeeTestsComponent implements OnInit {
   image = "";
   filtroFecha!: FormGroup;
   navigationSubscription : any;
-  cards = [
-    { name: 'Tomografia', date: '12/08/2020', code:'1'},
-    { name: 'Rayos X', date: '14/08/2020', code:'2' },
-    { name: 'Ultrasonido', date: '15/12/2020',code:'3' },
-    { name: 'Examen de la Glucosa', date: '12/05/2020', code:'4' }
-  ];
+  tests : any;
  
-  constructor(private observer: BreakpointObserver,private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private observer: BreakpointObserver,
+    private router: Router, 
+    private route: ActivatedRoute,
+    private testService: ExamenService
+    ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
@@ -55,6 +56,14 @@ export class SeeTestsComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
+    this.testService.getExamenes().subscribe(resp => {
+      console.log(resp.content);
+      this.tests = resp.content;
+    },
+      error => {
+        console.error(error);
+      }
+    );
   }
   
   ngOnDestroy() {

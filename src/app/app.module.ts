@@ -72,7 +72,6 @@ import { PatientService } from './services/pacientes/Patient.service';
 import { ProfileAdminComponent } from './Administrator/routes/profile-admin/profile-admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { TestInformationComponent } from './Patient/component/helpers/test-information/test-information.component';
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin, listPlugin]);
 
 @NgModule({
@@ -138,7 +137,6 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin, listPlugin
     homeLabComponent,
     editProfileDoctorComponent,
     EditProfileLabComponent,
-    TestInformationComponent
 
   ],
   imports: [

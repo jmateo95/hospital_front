@@ -24,6 +24,7 @@ export class CreateTestComponent implements OnInit {
   examen_save = new Examen();
   ordenpdf = true;
   ordenimg = true;
+  orden = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,7 +44,7 @@ export class CreateTestComponent implements OnInit {
   afuConfig = {
     formatsAllowed: '.pdf',
     uploadAPI: {
-      url: "https://localhost"
+      url: "http://localhost:8080/Files/upload/ordenTest"
     },
     theme: "dragNDrop",
     hideProgressBar: true,
@@ -61,9 +62,9 @@ export class CreateTestComponent implements OnInit {
   };
 
   afuConfig2 = {
-    formatsAllowed: '.jpa, .png',
+    formatsAllowed: '.jpg, .png',
     uploadAPI: {
-      url: "https://localhost"
+      url: "http://localhost:8080/Files/upload/ordenTest"
     },
     theme: "dragNDrop",
     hideProgressBar: true,
@@ -113,27 +114,48 @@ export class CreateTestComponent implements OnInit {
 
   }
 
-  public onAddCita(): void {
-    this.examen_save.paciente.id = 1
+  public onAddExamen(): void {
+    this.examen_save.paciente.id = 2
     this.examen_save.hora = this.examen_save.hora+":00"
-    this.examenService.addExamen(this.examen_save).subscribe(
-      (response) => {
-        this.toastrSvc.success(`Registro Exitoso`);
-      },
-      (error) => {
-        this.toastrSvc.error(error);
-      }
-    );
+    console.log(this.examen_save.ordenDoc)
+
+    if((this.orden && this.examen_save.ordenDoc!=null)||(!this.orden && this.examen_save.ordenDoc==null)){
+      this.examenService.addExamen(this.examen_save).subscribe(
+        (response) => {
+          this.toastrSvc.success(`Registro Exitoso`);
+          this.router.navigate(['/patient/services/upcoming/tests'])
+        },
+        (error) => {
+          this.toastrSvc.error(error);
+        }
+      );
+    }else{
+      this.toastrSvc.error("Falta orden para realizar el examen");
+    }
+
+    
+  }
+
+  docUpload(e:any){
+    this.examen_save.ordenDoc = ""+e.body.message;
+    console.log( this.examen_save.ordenDoc)
   }
   
   updateIdTipo(id: number, orden: boolean, formato:String) {
-    this.examen_save.tipoExamen.id = id;
-    if(formato=='PDF'){
-     this.ordenpdf = !orden;
-     this.ordenimg = orden;
-    }else{
-      this.ordenimg = !orden;
-      this.ordenpdf = orden;
+    this.examen_save.tipo.id = id;
+    this.orden = orden;
+    if(orden){
+      if(formato=='PDF'){
+        this.ordenpdf = !orden;
+        this.ordenimg = orden;
+       }else{
+         this.ordenpdf = orden;
+         this.ordenimg = !orden;
+        }
+    }   
+    else{
+      this.ordenimg = true;
+      this.ordenpdf = true;
     }
   }
 

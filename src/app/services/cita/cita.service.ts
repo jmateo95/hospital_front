@@ -23,7 +23,6 @@ export class CitaService extends ExceptionHandlerApi{
     }
 
     public getCita(id: any):Observable<any> {
-        console.log(this.apiServerUrl+"/"+id)
         return this.http
             .get(this.apiServerUrl+"/"+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
@@ -38,6 +37,24 @@ export class CitaService extends ExceptionHandlerApi{
 
     public deletePatient(citaId: number): Observable<void> {
         return this.http.delete<void>(`${this.apiServerUrl}/Patient/delete/${citaId}`);
+    }
+    public getUpcomingCitas(id:any):Observable<any> {
+        console.log(this.apiServerUrl+'/filter/upcoming/'+id)
+        return this.http.get(this.apiServerUrl+'/filter/upcoming/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+    public getRecordCitas(id:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/records/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+
+    public filterCitasDate(id:any,start:any,end:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/date/patient/'+id+'/'+start+'/'+end).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+    public filterCitasDateDoctor(id:any,start:any,end:any,doctor:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/date/patient/doctor/'+id+'/'+start+'/'+end+'/'+doctor).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+
+    public filterCitasDoctor(id:any,doctor:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/patient/doctor/'+id+'/'+doctor).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
 
 }
