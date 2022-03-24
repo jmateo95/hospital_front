@@ -6,6 +6,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Router} from '@angular/router';
 import { UsuarioService } from '../services/usuario/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import { first } from 'rxjs';
 
 
 
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
 
   loginForm(){
     console.log(this.profileForm.value);
-    this.usuarioService.Login(this.profileForm.value).subscribe(
+    this.usuarioService.Login(this.profileForm.value).pipe(first()).subscribe(
       Response=>{
         if(Response.id){
           this.toastrSvc.success(`Bienvenido: `+Response.nombre);
