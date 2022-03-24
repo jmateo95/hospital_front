@@ -48,7 +48,24 @@ export class LoginComponent implements OnInit {
   }
 
 
-  loginForm(){}
+  loginForm(){
+    console.log(this.profileForm.value);
+    this.usuarioService.Login(this.profileForm.value).subscribe(
+      Response=>{
+        if(Response.id){
+          this.toastrSvc.success(`Bienvenido: `+Response.nombre);
+          this.usuarioService.setUser(Response);
+          this.ngOnInit();
+        }else{
+          this.toastrSvc.error(`Usuario o contraseña incorrectos`);
+        }
+      },
+      error=>{
+        this.toastrSvc.error(`Error al iniciar sesión`);
+        console.error(error);
+      }
+    );
+  }
 
 
   redirectsUser(id_rol:Number){
