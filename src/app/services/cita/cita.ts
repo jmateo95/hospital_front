@@ -14,6 +14,7 @@ export class Cita {
         this.doctor = new Doctor();
         this.especialidad = new Especialidad();
         this.paciente = new Patient();
+        this.fecha = new Date();
     }
 
 }

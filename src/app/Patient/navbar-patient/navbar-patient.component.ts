@@ -4,7 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { delay } from 'rxjs/operators';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -14,11 +14,17 @@ import { Router} from '@angular/router';
 export class NavbarPatientComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+  usuario: any;
 
   constructor(private observer: BreakpointObserver,
     private usuarioService: UsuarioService,
-    private toastrSvc:ToastrService,
-    private router : Router) { }
+    private toastrSvc: ToastrService,
+    private router: Router,
+    private userService: UsuarioService) { }
+
+
+  ngOnInit() {
+    }
 
   ngAfterViewInit() {
     this.observer
@@ -33,9 +39,10 @@ export class NavbarPatientComponent {
           this.sidenav.open();
         }
       });
+
   }
 
-  Logout(){
+  Logout() {
     this.usuarioService.logout();
     this.toastrSvc.success(`Adios`);
     this.router.navigate(['/login']);

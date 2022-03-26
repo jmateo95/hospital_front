@@ -22,7 +22,7 @@
 
               <mat-form-field appearance="outline">
                 <mat-label>Selecciona una fecha</mat-label>
-                <input required matInput [matDatepicker]="picker" [(ngModel)]="cita_save.fecha" name="fecha" >
+                <input required matInput [matDatepicker]="picker" value="{{cita_save.fecha}}"  [(ngModel)]="cita_save.fecha" name="fecha" >
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -40,9 +40,9 @@
               <mat-form-field appearance="outline">
                 <mat-label>Especialidad</mat-label>
                 <input type="text" placeholder="Seleccione una" aria-label="Especialidad" matInput value="{{cita_save.especialidad.nombre}}"
-                  [formControl]="especialidadFilter"  [matAutocomplete]="autoEspecialidad">
+                  [formControl]="especialidadFilter" (change)="updateIdEspecialidad(null)"  [matAutocomplete]="autoEspecialidad">
                   <mat-autocomplete autoActiveFirstOption #autoEspecialidad="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredEspecialidades " (onSelectionChange)="updateIdEspecialidad(option.id)" [value]="option.nombre">
+                    <mat-option *ngFor="let option of filteredEspecialidades "  (onSelectionChange)="updateIdEspecialidad(option.id)" [value]="option.nombre">
                       {{option.nombre}}
                     </mat-option>
                   </mat-autocomplete>
@@ -52,7 +52,7 @@
               <mat-form-field appearance="outline">
                 <mat-label>Doctor</mat-label>
                 <input type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput matInput
-                [formControl]="doctorFilter"  [matAutocomplete]="autoDoctor">
+                [formControl]="doctorFilter" (change)="updateIdDoctor(null)"  [matAutocomplete]="autoDoctor">
                 <mat-autocomplete autoActiveFirstOption #autoDoctor="matAutocomplete">
                   <mat-option *ngFor="let option of filteredDoctores" (onSelectionChange)="updateIdDoctor(option.id)" [value]="option.nombre">
                     {{option.nombre}}

@@ -74,7 +74,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 
-
 FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin, listPlugin]);
 
 @NgModule({
@@ -139,7 +138,7 @@ FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin, listPlugin
     HomeDoctorComponent,
     homeLabComponent,
     editProfileDoctorComponent,
-    EditProfileLabComponent,
+    EditProfileLabComponent
 
   ],
   imports: [

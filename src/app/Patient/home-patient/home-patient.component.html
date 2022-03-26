@@ -3,11 +3,11 @@
             <div class="d-flex justify-content-between greeting-card content mat-elevation-z8">
                 <div class="greeting">
                     <label style="color: #3B2965; padding: 5px; ">Hola, </label>
-                    <label style="color: #447DEF;font-weight: 500;"> Nombre Paciente</label>
+                    <label style="color: #447DEF;font-weight: 500;"> {{usuario.nombre}}</label>
                     
               <mat-divider></mat-divider>
                     <p>
-                        Ten un buen día, no olvides de tus citas y examenes agendados
+                        Ten un buen día, no te olvides de tus citas y examenes agendados
                     </p>
                     <button mat-stroked-button [hidden]="hidepicture" color="primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight"><i  class="fal fa-calendar-alt"></i> Calendario</button>
                    
@@ -27,7 +27,7 @@
                 <div class="text-card">
                     <label class="box">Tipo de sangre </label>
                     <br>
-                    <label class="box2">O+ </label>
+                    <label class="box2">{{usuario.tipo_sangre}} </label>
     
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="text-card">
                 <label class="box">Peso</label>
                 <br>
-                <label class="box2">18 Kg </label>
+                <label class="box2">{{usuario.peso}} Kg </label>
 
             </div>
         </div>

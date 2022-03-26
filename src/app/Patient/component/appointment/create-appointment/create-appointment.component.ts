@@ -10,6 +10,7 @@ import { Cita } from 'src/app/services/cita/cita';
 import { CitaService } from 'src/app/services/cita/cita.service';
 import { ToastrService } from 'ngx-toastr';
 import { EspecialidadesService } from 'src/app/services/especialidades/especialidades.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 
 
@@ -29,7 +30,9 @@ export class CreateAppointmentComponent implements OnInit {
   errorMsg: string;
   isLoading = false;
   cita_save = new Cita();
+
   constructor(
+    private user: UsuarioService,
     private location: Location,
     private observer: BreakpointObserver,
     private dateAdapter: DateAdapter<Date>,
@@ -48,6 +51,8 @@ export class CreateAppointmentComponent implements OnInit {
     var params = (this.route.snapshot.params);
     this.speciality = params['speciality'];
     this.doctor_name = params['doctor'];
+
+
     if(this.speciality!=null){
       if(this.speciality!=0){
         this.especialidadService.getEspecialidad(this.speciality).subscribe(
@@ -135,11 +140,11 @@ export class CreateAppointmentComponent implements OnInit {
   }
 
 
-  updateIdDoctor(id: number) {
+  updateIdDoctor(id: any) {
     this.cita_save.doctor.id = id;
   }
 
-  updateIdEspecialidad(id: number) {
+  updateIdEspecialidad(id: any) {
     this.cita_save.especialidad.id = id;
   }
 
