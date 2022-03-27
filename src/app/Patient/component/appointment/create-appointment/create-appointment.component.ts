@@ -10,6 +10,7 @@ import { Cita } from 'src/app/services/cita/cita';
 import { CitaService } from 'src/app/services/cita/cita.service';
 import { ToastrService } from 'ngx-toastr';
 import { EspecialidadesService } from 'src/app/services/especialidades/especialidades.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 
 
@@ -29,7 +30,9 @@ export class CreateAppointmentComponent implements OnInit {
   errorMsg: string;
   isLoading = false;
   cita_save = new Cita();
+
   constructor(
+    private user: UsuarioService,
     private location: Location,
     private observer: BreakpointObserver,
     private dateAdapter: DateAdapter<Date>,
@@ -38,7 +41,8 @@ export class CreateAppointmentComponent implements OnInit {
     private doctorService: DoctorService,
     private citaService: CitaService,
     private toastrSvc:ToastrService,
-    private router : Router) {
+    private router : Router,
+    private userService: UsuarioService) {
     this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 
   }
@@ -48,6 +52,8 @@ export class CreateAppointmentComponent implements OnInit {
     var params = (this.route.snapshot.params);
     this.speciality = params['speciality'];
     this.doctor_name = params['doctor'];
+
+
     if(this.speciality!=null){
       if(this.speciality!=0){
         this.especialidadService.getEspecialidad(this.speciality).subscribe(
@@ -73,7 +79,7 @@ export class CreateAppointmentComponent implements OnInit {
         this.isLoading = true;
       }),
       switchMap(value =>
-        this.especialidadService.filterEspecialidad(value).pipe(
+        this.especialidadService.filterEspecialidad(this.cita_save.doctor.id,value).pipe(
           finalize(() => {
             this.isLoading = false;
           }),
@@ -85,7 +91,14 @@ export class CreateAppointmentComponent implements OnInit {
           this.filteredEspecialidades = []
 
         } else {
-          console.log(data);
+          data.forEach((element: any) => {
+            if(element.nombre==undefined){
+              element.nombre = element.especialidadNombre;
+            }
+            if(element.id==undefined){
+              element.id = element.especialidadId;
+            }
+            });
           this.errorMsg = ""
           this.filteredEspecialidades = data;
         }
@@ -99,7 +112,7 @@ export class CreateAppointmentComponent implements OnInit {
         this.isLoading = true;
       }),
       switchMap(value =>
-        this.doctorService.filterDoctor(value).pipe(
+        this.doctorService.filterDoctor(value,this.cita_save.especialidad.id).pipe(
           finalize(() => {
             this.isLoading = false;
           }),
@@ -110,7 +123,14 @@ export class CreateAppointmentComponent implements OnInit {
           this.filteredDoctores = []
 
         } else {
-          console.log(data);
+          data.forEach((element: any) => {
+          if(element.nombre==undefined){
+            element.nombre = element.doctorNombre;
+          }
+          if(element.id==undefined){
+            element.id = element.doctorId;
+          }
+          });
           this.errorMsg = ""
           this.filteredDoctores = data;
         }
@@ -121,7 +141,7 @@ export class CreateAppointmentComponent implements OnInit {
   }
 
   public onAddCita(): void {
-    this.cita_save.paciente.id = 2
+    this.cita_save.paciente.id = this.userService.getUserId()+"" ;
     this.cita_save.hora = this.cita_save.hora+":00"
     this.citaService.addCita(this.cita_save).subscribe(
       (response) => {
@@ -135,13 +155,14 @@ export class CreateAppointmentComponent implements OnInit {
   }
 
 
-  updateIdDoctor(id: number) {
+  updateIdDoctor(id: any) {
     this.cita_save.doctor.id = id;
   }
 
-  updateIdEspecialidad(id: number) {
+  updateIdEspecialidad(id: any) {
     this.cita_save.especialidad.id = id;
   }
+
 
 
   ngAfterViewInit() {

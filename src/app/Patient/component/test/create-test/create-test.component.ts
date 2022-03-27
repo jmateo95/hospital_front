@@ -8,6 +8,7 @@ import { Examen } from 'src/app/services/examenes/examen';
 import { TipoExamenService } from 'src/app/services/tipoExamenes/tipo-examenes.service';
 import { ExamenService } from 'src/app/services/examenes/examen.service';
 import { ToastrService } from 'ngx-toastr';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-create-test',
@@ -34,7 +35,8 @@ export class CreateTestComponent implements OnInit {
     private tipoExamenService: TipoExamenService,
     private examenService: ExamenService,
     private toastrSvc: ToastrService,
-    private router : Router
+    private router : Router,
+    private userService: UsuarioService
   ) {
     this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
   }
@@ -115,7 +117,7 @@ export class CreateTestComponent implements OnInit {
   }
 
   public onAddExamen(): void {
-    this.examen_save.paciente.id = 2
+    this.examen_save.paciente.id = this.userService.getUserId()+"";
     this.examen_save.hora = this.examen_save.hora+":00"
     console.log(this.examen_save.ordenDoc)
 

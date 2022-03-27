@@ -12,8 +12,11 @@ export class Cita {
 
     constructor(){
         this.doctor = new Doctor();
+        this.doctor.id = -1;
         this.especialidad = new Especialidad();
+        this.especialidad.id = -1;
         this.paciente = new Patient();
+        this.fecha = new Date();
     }
 
 }

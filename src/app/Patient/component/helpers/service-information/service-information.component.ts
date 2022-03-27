@@ -1,9 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CitaService } from 'src/app/services/cita/cita.service';
-import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ExamenService } from 'src/app/services/examenes/examen.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-service-information',
@@ -14,23 +16,33 @@ export class ServiceInformationComponent implements OnInit {
   type = "";
   id = 0;
   isExam = false;
-  displayedColumns = ['position', 'name','pdf'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns = ['position','name', 'url'];
+  data: Files[] = []
+  dataSource:any;
   dataInformation: any;
-  
-  constructor(
-    private route: ActivatedRoute, 
-    private location:Location, 
-    private citaService : CitaService) { }
+  cita = true;
+  navigationSubscription;
+  index = 1;
 
-  ngOnInit(): void {
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private citaService: CitaService,
+    private examenService: ExamenService,
+    private router: Router) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        this.initialiseInvites();
+      }
+    });
+  }
+  initialiseInvites() {
     var params = (this.route.snapshot.params);
     this.id = params['id'];
     this.type = params['type'];
-    if(this.type == 'appointment'){
+    if (this.type == 'appointment') {
       this.type = 'Consulta';
       this.isExam = false;
-      console.log(this.id)
       this.citaService.getCita(this.id).subscribe(resp => {
         this.dataInformation = resp;
       },
@@ -38,10 +50,27 @@ export class ServiceInformationComponent implements OnInit {
           console.error(error);
         }
       );
-    }else{
+    } else {
       this.type = 'Examen';
       this.isExam = true;
+      this.examenService.getExamen(this.id).subscribe(resp => {
+        this.dataInformation = resp;
+        if (this.dataInformation.ordenDoc) {
+          this.data.push({name: 'Orden Doctor',position:this.index,url:this.dataInformation.ordenDoc})
+          this.index++
+        }
+        
+        this.dataSource = new MatTableDataSource<Files>(this.data);
+      },
+        error => {
+          console.error(error);
+        }
+      );
     }
+  }
+
+  ngOnInit(): void {
+
   }
 
   back(): void {
@@ -54,14 +83,10 @@ export class ServiceInformationComponent implements OnInit {
 export interface Files {
   name: string;
   position: number;
-  pdf: string;
+  url: string;
 }
 
-const ELEMENT_DATA: Files[] = [
-  {position: 1, name: 'Resultado Examen de Sangre' , pdf:'si' },
-  {position: 2, name: 'Receta Medica', pdf:'si' },
-  {position: 3, name: 'Orden de Examen Rayos X', pdf:'si'}
-];
+
 
 export const MY_FORMATS = {
   parse: {

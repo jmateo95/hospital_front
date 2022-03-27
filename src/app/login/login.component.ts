@@ -57,8 +57,7 @@ export class LoginComponent implements OnInit {
         if(Response.id){
           this.toastrSvc.success(`Bienvenido: `+Response.nombre);
           this.usuarioService.setUser(Response);
-          console.log(Response.id);
-          this.redirectsUser(Response.id);          
+          this.redirectsUser(Response.rol.id);
         }else{
           this.toastrSvc.error(`Usuario o contraseña incorrectos`);
         }
@@ -72,13 +71,18 @@ export class LoginComponent implements OnInit {
 
 
   redirectsUser(id_rol:Number){
+    console.log(id_rol);
     if (id_rol == 1) {
+      console.log('admin');
       this.router.navigate(['/administrator']);
     } else if (id_rol == 2) {
+      console.log('doctor');
       this.router.navigate(['/doctor']);
     } else if (id_rol == 3) {
+      console.log('lab');
       this.router.navigate(['/lab'])
     } else if (id_rol == 4) {
+      console.log('patient');
       this.router.navigate(['/patient'])
     }
 

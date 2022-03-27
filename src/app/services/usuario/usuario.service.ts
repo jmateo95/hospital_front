@@ -59,7 +59,7 @@ export class UsuarioService {
     return this.httpClient.get(this.API_SERVER+"/"+id);
   }
 
-  getUserLogged2() {
+  public getUserLogged2() {
     const id_user = this.getUserId();
     if(id_user){
       return this.httpClient.get(this.API_SERVER+"/"+id_user);

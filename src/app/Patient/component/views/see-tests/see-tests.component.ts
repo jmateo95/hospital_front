@@ -5,6 +5,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay, map, startWith } from 'rxjs/operators';
 import { ExamenService } from 'src/app/services/examenes/examen.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-see-tests',
@@ -24,7 +25,8 @@ export class SeeTestsComponent implements OnInit {
     private observer: BreakpointObserver,
     private router: Router, 
     private route: ActivatedRoute,
-    private testService: ExamenService
+    private testService: ExamenService,
+    private usuarioService: UsuarioService
     ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
@@ -40,10 +42,24 @@ export class SeeTestsComponent implements OnInit {
     if(this.title == 'history'){
       this.title = 'Examenes Realizados';
       this.image = "assets/img/Test2.png";
+      this.testService.getRecordTest(this.usuarioService.getUserId()).subscribe(resp => {
+        this.tests = resp;
+      },
+        error => {
+          console.error(error);
+        }
+      );
       
     }else if (this.title == 'upcoming'){
       this.title = 'Proximos Examenes';
       this.image = "assets/img/Test.png";
+      this.testService.getUpcomingTest(this.usuarioService.getUserId()).subscribe(resp => {
+        this.tests = resp;
+      },
+        error => {
+          console.error(error);
+        }
+      );
     }
   }
 
@@ -56,14 +72,7 @@ export class SeeTestsComponent implements OnInit {
       start: new FormControl(new Date(year, month, 13)),
       end: new FormControl(new Date(year, month, 16)),
     });
-    this.testService.getExamenes().subscribe(resp => {
-      console.log(resp.content);
-      this.tests = resp.content;
-    },
-      error => {
-        console.error(error);
-      }
-    );
+   
   }
   
   ngOnDestroy() {
