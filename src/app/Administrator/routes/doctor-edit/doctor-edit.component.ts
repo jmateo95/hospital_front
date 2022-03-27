@@ -135,7 +135,7 @@ export class DoctorEditComponent implements OnInit {
         this.ngOnInit();
       },
       error=>{
-        this.toastrSvc.error(`Hubo un error al eliminar al usuario`);
+        this.toastrSvc.error(`Hubo un error al eliminar al eliminar la especialidad medica`);
         console.error(error);
       }
     );
