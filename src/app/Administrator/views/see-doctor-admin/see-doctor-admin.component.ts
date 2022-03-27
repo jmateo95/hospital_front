@@ -24,11 +24,8 @@ export class SeeDoctorAdminComponent implements OnInit {
   constructor(private observer: BreakpointObserver, private doctorService: DoctorService,) { }
 
   ngOnInit() {
-
     this.doctorService.getAllDoctor().subscribe(resp=>{
-      console.log(resp.content);
       this.doctors=resp.content;
-     
     },
     error=>{
       console.error(error);

@@ -1,6 +1,8 @@
 import { Component, ViewChild,OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute , Router, ParamMap} from '@angular/router';
+import { EspecialidadesService } from '../../../services/especialidades/especialidades.service';
 
 @Component({
   selector: 'app-cons-list',
@@ -9,17 +11,42 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ConsListComponent implements OnInit {
   columnas: string[] = ['codigo', 'nombre', 'precio', 'editar'];
-  datos: Articulo[] = [];
+  datos: any[] = [];
   dataSource:any;
+  
+  constructor(
+    private especialidadesService: EspecialidadesService,
+    private toastrSvc:ToastrService,
+    private route : ActivatedRoute, private router : Router
+  ){}
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   
   ngOnInit() {
-    for (let x = 1; x <= 100; x++)
-      this.datos.push(new Articulo(x, `Consulta ${x}`, Math.trunc(Math.random() * 1000)));
-    this.dataSource = new MatTableDataSource<Articulo>(this.datos);
-    this.dataSource.paginator = this.paginator;
+    this.especialidadesService.getAllEspecialidad().subscribe(
+      resp=>{
+        this.dataSource=(resp.content);
+      },
+      error=>{
+        console.error(error);
+      }
+     );
   }
+
+  deleteconsulta(id:any){
+    this.especialidadesService.deleteEspecialidad(id).subscribe(
+      res=>{
+        this.toastrSvc.success(`Se elimino el tipo de consulta`);
+        this.ngOnInit();
+      },
+      error=>{
+        this.toastrSvc.error(`Hubo un error al eliminar la consulta`);
+        console.error(error);
+      }
+    );
+  }
+
+
 }
 
 export class Articulo {
