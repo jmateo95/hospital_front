@@ -22,7 +22,6 @@ describe('DashAdminComponent', () => {
         MaterialModule,
         BrowserAnimationsModule,
         ToastrModule.forRoot()
-        
       ],
       declarations: [ DashAdminComponent ]
     })
