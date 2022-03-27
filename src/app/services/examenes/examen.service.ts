@@ -23,7 +23,6 @@ export class ExamenService extends ExceptionHandlerApi{
     }
 
     public getExamen(id: any):Observable<any> {
-        console.log(this.apiServerUrl+"/"+id)
         return this.http
             .get(this.apiServerUrl+"/"+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
@@ -38,6 +37,16 @@ export class ExamenService extends ExceptionHandlerApi{
 
     public deletePatient(examenId: number): Observable<void> {
         return this.http.delete<void>(`${this.apiServerUrl}/Patient/delete/${examenId}`);
+    }
+
+    public getUpcomingTest(id:any):Observable<any> {
+        return this.http
+            .get(this.apiServerUrl+'/filter/upcoming/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+
+    public getRecordTest(id:any):Observable<any> {
+        return this.http
+            .get(this.apiServerUrl+'/filter/records/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
 
 }

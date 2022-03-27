@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, delay, finalize, map, startWith, switchMap, tap } from 'rxjs/operators';
 import { CitaService } from 'src/app/services/cita/cita.service';
 import { DoctorService } from 'src/app/services/doctores/doctor.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 @Component({
   selector: 'app-see-appointments',
   templateUrl: './see-appointments.component.html',
@@ -40,6 +41,7 @@ export class SeeAppointmentsComponent implements OnInit {
     private route: ActivatedRoute,
     private citaService: CitaService,
     private doctorService: DoctorService,
+    private userService: UsuarioService
     ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
          if (e instanceof NavigationEnd) {
@@ -54,7 +56,7 @@ export class SeeAppointmentsComponent implements OnInit {
     if(this.title == 'history'){
       this.title = 'Consultas Realizadas';
       this.url = 'assets/img/Consult2.png';
-      this.citaService.getRecordCitas(2).subscribe(resp => {
+      this.citaService.getRecordCitas(this.userService.getUserId()).subscribe(resp => {
         console.log(resp);
         this.appointments = resp;
   
@@ -67,7 +69,7 @@ export class SeeAppointmentsComponent implements OnInit {
     }else if (this.title == 'upcoming'){
       this.title = 'Proximas Consultas';
       this.url = 'assets/img/Consult4.png';
-      this.citaService.getUpcomingCitas(2).subscribe(resp => {
+      this.citaService.getUpcomingCitas(this.userService.getUserId()).subscribe(resp => {
         console.log(resp);
         this.appointments = resp;
   
@@ -97,7 +99,7 @@ export class SeeAppointmentsComponent implements OnInit {
         this.isLoading = true;
       }),
       switchMap(value =>
-        this.doctorService.filterDoctor(value).pipe(
+        this.doctorService.filterDoctor(value,0).pipe(
           finalize(() => {
             this.isLoading = false;
           }),
@@ -108,7 +110,8 @@ export class SeeAppointmentsComponent implements OnInit {
           this.filteredDoctores = []
 
         } else {
-          console.log(data);
+         
+          
           this.errorMsg = ""
           this.filteredDoctores = data;
         }

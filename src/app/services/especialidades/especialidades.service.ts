@@ -14,37 +14,44 @@ export class EspecialidadesService extends ExceptionHandlerApi {
   constructor(
     private httpClient: HttpClient) {
     super()
-   
-   }
+
+  }
 
 
-  public getAllEspecialidad():Observable<any>{
+  public getAllEspecialidad(): Observable<any> {
     return this.httpClient.get(this.API_SERVER);
   }
 
 
-  public saveEspecialidad(especialidad:any): Observable<any>{
-    return this.httpClient.post(this.API_SERVER,especialidad);
+  public saveEspecialidad(especialidad: any): Observable<any> {
+    return this.httpClient.post(this.API_SERVER, especialidad);
   }
 
 
 
-  public filterEspecialidad(name: string): Observable<Especialidad[]> {
-    return this.httpClient.get<Especialidad[]>(this.API_SERVER + '/findname/' + name).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+  public filterEspecialidad(doctor: any, especialidad: any): Observable<any> {
+    if (doctor != -1) {
+      if (especialidad == "") {
+        especialidad = "%20";
+      }
+      return this.httpClient.get("http://localhost:8080/DoctorEspecialidad/find/doctors/" + doctor + "/" + especialidad);
+    } else {
+      return this.httpClient.get("http://localhost:8080/Especialidad/findname/" + especialidad).pipe(catchError(err => this.errorHandler(err, 'ver')),)
+    }
   }
-  
- 
 
-  
 
-  public getEspecialidades():Observable<any> {
+
+
+
+  public getEspecialidades(): Observable<any> {
     return this.httpClient
-        .get(this.API_SERVER ).pipe(catchError(err => this.errorHandler(err,'ver')),);
-}
+      .get(this.API_SERVER).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+  }
 
-public getEspecialidad(id:any):Observable<any>{
-  return this.httpClient
-  .get(this.API_SERVER+'/'+id ).pipe(catchError(err => this.errorHandler(err,'ver')),);
-}
+  public getEspecialidad(id: any): Observable<any> {
+    return this.httpClient
+      .get(this.API_SERVER + '/' + id).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+  }
 
 }

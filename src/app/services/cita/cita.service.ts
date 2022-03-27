@@ -39,7 +39,6 @@ export class CitaService extends ExceptionHandlerApi{
         return this.http.delete<void>(`${this.apiServerUrl}/Patient/delete/${citaId}`);
     }
     public getUpcomingCitas(id:any):Observable<any> {
-        console.log(this.apiServerUrl+'/filter/upcoming/'+id)
         return this.http.get(this.apiServerUrl+'/filter/upcoming/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
     public getRecordCitas(id:any):Observable<any> {

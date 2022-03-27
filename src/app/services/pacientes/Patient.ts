@@ -1,7 +1,7 @@
 
 
 export class Patient {
-    public id: number;
+    public id: string;
     public sexo: number;
     public fecha_nacimiento: Date;
     public telefono: string;
