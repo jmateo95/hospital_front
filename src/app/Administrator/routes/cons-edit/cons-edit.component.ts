@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
-import {FormControl, Validators} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EspecialidadesService } from '../../../services/especialidades/especialidades.service';
+import { DateAdapter } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cons-edit',
@@ -9,11 +12,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./cons-edit.component.css']
 })
 export class ConsEditComponent implements OnInit {
-  id_cons: string;
+  id="";
+  especialidad:any;
+  
+  constructor(
+    private route:ActivatedRoute,
+    private especialidadesService:EspecialidadesService,
+    private formBuilder:FormBuilder, 
+    private toastrSvc:ToastrService,
+    private router : Router,
+    
+    ) {
 
-  constructor(private formBuilder:FormBuilder, private route: ActivatedRoute) { }
+     }
 
-  profileForm = this.formBuilder.group({
+  especialidadForm=this.formBuilder.group({
+    id:[''],
     codigo:[''],
     nombre:[''],
     costo:[''],
@@ -21,12 +35,54 @@ export class ConsEditComponent implements OnInit {
 
   ngOnInit(): void {
     var params=(this.route.snapshot.params);
-      this.id_cons = params['id_cons'];
-      console.log(this.id_cons);
+    this.id = params['id_cons'];
+
+
+    this.especialidadesService.getEspecialidadId(this.id).subscribe(res=>{
+      this.especialidad=res;
+
+      this.especialidadForm.patchValue({
+        id:this.especialidad.id,
+        nombre:this.especialidad.nombre,
+        codigo:this.especialidad.codigo,
+        costo:this.especialidad.costo
+      });
+    },
+    error=>{
+      console.error(error);
+     }
+    );
   }
 
+
+  pipe = new DatePipe('en-US');
   saveForm(){
-    console.log('Form data is ', this.profileForm.value);
+    this.especialidadForm.value.id=this.especialidad.id;
+    console.log(this.especialidadForm.value);
+    this.especialidadesService.editEspecialidad(this.especialidadForm.value).subscribe(
+      resp=>{
+        this.toastrSvc.success(`Consulta agregada exitosamente`);
+        this.router.navigate(['/administrator/cons/list'])
+      },
+      error=>{
+        this.toastrSvc.error(`Hubo un error al editar la Consulta`);
+        console.error(error);
+      }
+     );
+  }
+
+
+  deleteespecialidad(id:any){
+    this.especialidadesService.deleteEspecialidad(id).subscribe(
+      res=>{
+        this.toastrSvc.success(`Se elimino la Consulta medica`);
+        this.ngOnInit();
+      },
+      error=>{
+        this.toastrSvc.error(`Hubo un error al Consulta al usuario`);
+        console.error(error);
+      }
+    );
   }
 
 }

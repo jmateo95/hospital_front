@@ -18,7 +18,6 @@ export class CardLabComponent implements OnInit {
   test:any
   ngOnInit(): void {   
     this.test = this.lab.tipoExamen
-    console.log(this.test.nombre);
   }
 
 }
