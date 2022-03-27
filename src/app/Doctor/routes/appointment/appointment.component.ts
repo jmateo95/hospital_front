@@ -9,6 +9,7 @@ import { CitaExamenesService } from 'src/app/services/CitaExamenes/cita-examenes
 import { DoctorService } from 'src/app/services/doctores/doctor.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute , Router, ParamMap} from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -41,6 +42,7 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
   private citaExamen: CitaExamenesService,
   private doctorService : DoctorService,
   private route : ActivatedRoute, private router : Router,
+  private usuarioService: UsuarioService
   ){
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 }
@@ -53,17 +55,14 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
    fecha:[''],
    hora:[''],
  });
-   
- ngOnInit(): void {      
-     var id_doctor = 80;
-   /*   this.doctorService.getDoctorId(id_doctor).subscribe(
-        res=>{
-          this.doctor = res;
-          console.log(res);
-        },eror=>{
 
-        }
-      )*/
+ getId() {
+  return Number(this.usuarioService.getUserId());
+}
+
+ ngOnInit(): void {      
+     var id_doctor = this.getId();
+
      this.laboratoristaService.getAllLaboratoristas().subscribe(
        res=>{
         this.labs = res.content;         

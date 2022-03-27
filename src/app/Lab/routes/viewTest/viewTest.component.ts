@@ -1,21 +1,9 @@
-import { Component } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { Time } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { ExamenService } from 'src/app/services/examenes/examen.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
-
-export interface Patient {
-  name: string;
-  hour: string;
-}
-
-const ELEMENT_DATA: Patient[] = [
-  {hour: '14:00', name: 'Paciente 1'},
-  {hour: '15:00', name: 'Paciente 2'},
-  {hour: '16:00', name: 'Paciente 3'},
-  {hour: '17:00', name: 'Paciente 4'},
-  {hour: '18:00', name: 'Paciente 5'},
-  {hour: '19:00', name: 'Paciente 6'},
-  {hour: '20:00', name: 'Paciente 7'},
-];
 
 @Component({
   selector: 'app-createReport',
@@ -23,13 +11,39 @@ const ELEMENT_DATA: Patient[] = [
   styleUrls: ['./viewTest.component.css']
 })
 
-export class ViewTestComponent {
- 
-  displayedColumns: string[] = ['hour', 'demo-name'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class ViewTestComponent implements OnInit {
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue;
+  constructor(private examenService: ExamenService,
+    private usuarioService: UsuarioService) { }
+
+  columnas: string[] = ['hora', 'nombre'];
+  examenes: Examen[] = [];
+  dataSource: any;
+
+
+  getId() {
+    return Number(this.usuarioService.getUserId());
   }
+
+  ngOnInit(): void {
+    var id_doctor = this.getId();
+
+    this.examenService.getTestToday(id_doctor).subscribe(
+      res => {
+        this.examenes = res;
+        this.dataSource = new MatTableDataSource<Examen>(this.examenes);
+        console.log(this.examenes);
+      }, error => {
+
+      }
+    )
+  }
+}
+
+export class Patients {
+  constructor(public id: number, public codigo: string, public nombre: string) { }
+}
+
+export class Examen {
+  constructor(public id: number, public codigo: string, public costo: number, public orden: boolean, public description: string, public formatoInforma: string, public nombre: string) { }
 }

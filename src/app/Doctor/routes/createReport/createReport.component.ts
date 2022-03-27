@@ -7,6 +7,7 @@ import { CitaService } from 'src/app/services/cita/cita.service';
 import { InformeService } from 'src/app/services/Informe/informe.service';
 import { ActivatedRoute , Router, ParamMap} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -33,6 +34,7 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
   private informeService: InformeService,
   private route : ActivatedRoute, private router : Router,
   private toastrSvc: ToastrService,
+  private usuarioService: UsuarioService
   ){
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 }
@@ -43,9 +45,12 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
    descripcion:[''],
  });
    
+ getId() {
+  return Number(this.usuarioService.getUserId());
+}
 
  ngOnInit(): void {
-  let id_doctor = 80;
+  let id_doctor = this.getId();
   this.citasService.getTodayDoctorAppoiment(id_doctor).subscribe(
     res=>{         
        this.citas = res;

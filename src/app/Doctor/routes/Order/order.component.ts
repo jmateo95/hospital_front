@@ -8,6 +8,7 @@ import { LaboratoristaService } from 'src/app/services/laboratoristas/laboratori
 import { ToastrService } from 'ngx-toastr';
 import { OrdenService } from 'src/app/services/Orden/orden.service';
 import { ActivatedRoute , Router, ParamMap} from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -38,6 +39,7 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
   private ordenService: OrdenService,
   private toastrSvc: ToastrService,  
   private route : ActivatedRoute, private router : Router,
+  private usuarioService: UsuarioService
   ){
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 }
@@ -50,9 +52,13 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
    fecha:[''],
    hora:[''],
  });
-   
+
+ getId() {
+  return Number(this.usuarioService.getUserId());
+}
+
  ngOnInit(): void {      
-  var id_doctor = 80;
+  var id_doctor = this.getId();
   this.laboratoristaService.getAllLaboratoristas().subscribe(
     res=>{
      this.labs = res.content;         

@@ -57,7 +57,8 @@ export class LoginComponent implements OnInit {
         if(Response.id){
           this.toastrSvc.success(`Bienvenido: `+Response.nombre);
           this.usuarioService.setUser(Response);
-          this.redirectsUser(Response.id);
+          console.log(Response.id);
+          this.redirectsUser(Response.id);          
         }else{
           this.toastrSvc.error(`Usuario o contraseña incorrectos`);
         }

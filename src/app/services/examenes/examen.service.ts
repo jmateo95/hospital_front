@@ -40,4 +40,7 @@ export class ExamenService extends ExceptionHandlerApi{
         return this.http.delete<void>(`${this.apiServerUrl}/Patient/delete/${examenId}`);
     }
 
+    public getTestToday(examenId: number): Observable<any>{
+        return this.http.get<any>(`${this.apiServerUrl}/today/${examenId}`);
+    }
 }
