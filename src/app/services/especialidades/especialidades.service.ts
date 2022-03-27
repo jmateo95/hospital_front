@@ -53,13 +53,7 @@ export class EspecialidadesService extends ExceptionHandlerApi {
     return this.httpClient.delete(this.API_SERVER+"/"+id);
   }
 
- 
-
-
-
-
-
-  public getEspecialidades(): Observable<any> {
+   public getEspecialidades(): Observable<any> {
     return this.httpClient
       .get(this.API_SERVER).pipe(catchError(err => this.errorHandler(err, 'ver')),);
   }
