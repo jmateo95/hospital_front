@@ -103,4 +103,10 @@ export class ExamenService extends ExceptionHandlerApi{
     public getDaysWithMoreTest(id:any): Observable<any>{
         return this.http.get<any>(`${this.apiServerUrl}/moreTest/${id}`);
     }
+
+    public getTestCosto(start:any,end:any): Observable<any>{        
+        return this.http.get<any>(`${this.apiServerUrl}/testcosto/${start}/${end}`);
+    }
+
+
 }
