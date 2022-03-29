@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
 import { CitaService } from 'src/app/services/cita/cita.service';
 import { InformeService } from 'src/app/services/Informe/informe.service';
-import { ActivatedRoute , Router, ParamMap} from '@angular/router';
+import { ActivatedRoute , Router} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 

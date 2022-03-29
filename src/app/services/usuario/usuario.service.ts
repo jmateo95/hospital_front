@@ -55,7 +55,7 @@ export class UsuarioService {
   }
   
   
-  public getUserById(id:any):Observable<any>{
+  public getUserById(id:any):Observable<any>{    
     return this.httpClient.get(this.API_SERVER+"/"+id);
   }
 

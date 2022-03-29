@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
-import {FormControl, Validators} from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
+import { PatientService } from 'src/app/services/pacientes/Patient.service';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -14,21 +15,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
-export interface Patient {
-  name: string;
-  hour: string;
-  reports: number;
-}
-
-const ELEMENT_DATA: Patient[] = [
-  {hour: '14:00', name: 'Paciente 1', reports:5},
-  {hour: '15:00', name: 'Paciente 2', reports:3},
-  {hour: '16:00', name: 'Paciente 3', reports:8},
-  {hour: '17:00', name: 'Paciente 4', reports:7},
-  {hour: '18:00', name: 'Paciente 5', reports:2},
-  {hour: '19:00', name: 'Paciente 6', reports:15},
-  {hour: '20:00', name: 'Paciente 7', reports:5},
-];
 
 @Component({
   selector: 'app-patientReports',
@@ -36,19 +22,36 @@ const ELEMENT_DATA: Patient[] = [
   styleUrls: ['./patientReports.component.css']
 })
 
-export class PatientReportsComponent {
-hide = true;
- 
+export class PatientReportsComponent implements OnInit {
+  hide = true;
+  patient: ListaPacientes[]=[]
+  columnas: string[] = ['dato', 'contador'];
+  dataSource: any;
 
-constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>){
-  this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
-}
-  
-  displayedColumns: string[] = ['name', 'reports'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  constructor(private formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>,
+    private pacienteService: PatientService) {
+    this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
+  }
+
+
+  ngOnInit(): void {
+    this.pacienteService.top10PatientAppoiment().subscribe(
+      res=>{
+        console.log(res);
+        this.patient = res;
+        this.dataSource = new MatTableDataSource<ListaPacientes>(this.patient);
+      }
+    )
+
+  }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue;
   }
+}
+
+export class ListaPacientes{
+  constructor(public dato:String, public contador:number){}
 }

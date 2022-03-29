@@ -100,4 +100,7 @@ export class ExamenService extends ExceptionHandlerApi{
     public getTodayTipoAppoiment(TipoId: number): Observable<any>{        
         return this.http.get<any>(`${this.apiServerUrl}/today/${TipoId}`);
     }    
+    public getDaysWithMoreTest(id:any): Observable<any>{
+        return this.http.get<any>(`${this.apiServerUrl}/moreTest/${id}`);
+    }
 }

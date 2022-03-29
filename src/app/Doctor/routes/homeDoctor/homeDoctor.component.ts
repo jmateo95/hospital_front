@@ -1,6 +1,8 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { delay } from 'rxjs/operators';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+
 @Component({
   selector: 'app-homeDoctor',
   templateUrl: './homeDoctor.component.html',
@@ -9,9 +11,17 @@ import { delay } from 'rxjs/operators';
 export class HomeDoctorComponent implements OnInit {
   breakpoint = 4;
   hidepicture = false;
-  constructor(private observer: BreakpointObserver) { }
+  nombreDoctor: any;
+  constructor(private observer: BreakpointObserver,
+    private userService: UsuarioService) { }
 
   ngOnInit(): void {
+    this.userService.getUserById(this.userService.getUserId()).subscribe(
+      res=>{
+        this.nombreDoctor = res.nombre;
+        console.log(this.nombreDoctor);
+      }
+    );
     
   }
 

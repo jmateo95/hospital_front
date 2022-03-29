@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { TipoExamenService } from 'src/app/services/tipoExamenes/tipo-examenes.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute , Router, ParamMap} from '@angular/router';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-test-create',
@@ -15,7 +15,7 @@ export class TestCreateComponent implements OnInit {
     private formBuilder:FormBuilder,
     private tipoExamenService:TipoExamenService,
     private toastrSvc: ToastrService,
-    private route : ActivatedRoute, private router : Router
+    private router : Router
     ) { }
 
   profileForm = this.formBuilder.group({

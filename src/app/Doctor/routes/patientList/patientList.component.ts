@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { delay, map, startWith } from 'rxjs/operators';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { PatientService } from 'src/app/services/pacientes/Patient.service';
 
 export interface Patient {
   name: string;
@@ -123,9 +124,7 @@ export class PatientListComponent implements OnInit{
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    console.log(filterValue);
   }
 
   private _filter_doctors(value: string): string[] {

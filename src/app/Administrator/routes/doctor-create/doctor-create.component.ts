@@ -6,7 +6,7 @@ import { DateAdapter } from '@angular/material/core';
 import { DoctorService } from '../../../services/doctores/doctor.service'
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute , Router, ParamMap} from '@angular/router';
+import { Router} from '@angular/router';
 
 
 
