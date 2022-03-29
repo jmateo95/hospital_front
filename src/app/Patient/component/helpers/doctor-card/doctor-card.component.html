@@ -5,7 +5,7 @@
     </mat-card-header>
 
     <mat-card-actions>
-      <a *ngIf="pacient" mat-button [routerLink]="['/patient/appointment/create',doctor.especialidad,doctor.nombre]" > Agendar Consulta </a>
+      <a *ngIf="pacient" mat-button [routerLink]="['/patient/appointment/create',0,doctor.id]" > Agendar Consulta </a>
       <a *ngIf="pacient" mat-button [routerLink]="['/patient/doctor/',doctor.id,'view-profile']" > Ver Perfil </a>
       <a *ngIf="admin" mat-button [routerLink]="['edit', id]"> Editar Informacion </a>
     </mat-card-actions>

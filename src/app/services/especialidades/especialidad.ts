@@ -1,5 +1,5 @@
 export class Especialidad {
-    public id: number;
+    public id: any;
     public nombre: string;
     public costo: number;
 

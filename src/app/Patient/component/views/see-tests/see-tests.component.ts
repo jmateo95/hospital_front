@@ -1,10 +1,12 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { delay, map, startWith } from 'rxjs/operators';
+import { debounceTime, delay, finalize, map, startWith, switchMap, tap } from 'rxjs/operators';
 import { ExamenService } from 'src/app/services/examenes/examen.service';
+import { TipoExamenService } from 'src/app/services/tipoExamenes/tipo-examenes.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
@@ -12,7 +14,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
   templateUrl: './see-tests.component.html',
   styleUrls: ['./see-tests.component.css']
 })
-export class SeeTestsComponent implements OnInit {
+export class SeeTestsComponent implements OnInit, AfterViewInit {
   title = "";
   breakpoint = 3;
   hidepicture = false;
@@ -20,13 +22,28 @@ export class SeeTestsComponent implements OnInit {
   filtroFecha!: FormGroup;
   navigationSubscription : any;
   tests : any;
+  fecha = new Date();
+  upcoming:boolean;
+  start_date= null;
+  end_date=null;
+  tipo_id=null;
+  filteredTipoExamen: any;
+  tipoExamenFilter = new FormControl();
+  errorMsg: string;
+  isLoading = false;
+  tests_lenght: number;
+  formatYmd = (date: { toISOString: () => string | any[]; }) => date.toISOString().slice(0, 10);
+  
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
  
   constructor(
     private observer: BreakpointObserver,
     private router: Router, 
     private route: ActivatedRoute,
     private testService: ExamenService,
-    private usuarioService: UsuarioService
+    private userService: UsuarioService,
+    private tipoTestService: TipoExamenService
     ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
@@ -42,8 +59,16 @@ export class SeeTestsComponent implements OnInit {
     if(this.title == 'history'){
       this.title = 'Examenes Realizados';
       this.image = "assets/img/Test2.png";
-      this.testService.getRecordTest(this.usuarioService.getUserId()).subscribe(resp => {
+      this.upcoming=false;
+      this.testService.getRecordTest(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.tests = resp;
+      },
+        error => {
+          console.error(error);
+        }
+      );
+      this.testService.countRecordTests(this.userService.getUserId()).subscribe(resp => {
+        this.tests_lenght = resp
       },
         error => {
           console.error(error);
@@ -53,8 +78,16 @@ export class SeeTestsComponent implements OnInit {
     }else if (this.title == 'upcoming'){
       this.title = 'Proximos Examenes';
       this.image = "assets/img/Test.png";
-      this.testService.getUpcomingTest(this.usuarioService.getUserId()).subscribe(resp => {
+      this.upcoming=true;
+      this.testService.getUpcomingTest(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.tests = resp;
+      },
+        error => {
+          console.error(error);
+        }
+      );
+      this.testService.countUpcomingTests(this.userService.getUserId()).subscribe(resp => {
+        this.tests_lenght = resp
       },
         error => {
           console.error(error);
@@ -65,13 +98,33 @@ export class SeeTestsComponent implements OnInit {
 
   ngOnInit() {
     
-    const today = new Date();
-    const month = today.getMonth();
-    const year = today.getFullYear();
-    this.filtroFecha = new FormGroup({
-      start: new FormControl(new Date(year, month, 13)),
-      end: new FormControl(new Date(year, month, 16)),
-    });
+
+    this.tipoExamenFilter.valueChanges.pipe(
+      debounceTime(50),
+      tap(() => {
+        this.filteredTipoExamen = [];
+        this.errorMsg = "";
+        this.isLoading = true;
+      }),
+      switchMap(value =>
+        this.tipoTestService.filterTipoExamen(value).pipe(
+          finalize(() => {
+            this.isLoading = false;
+          }),
+        )))
+      .subscribe(data => {
+        if (data == undefined) {
+          console.log("error");
+          this.errorMsg = "Error";
+          this.filteredTipoExamen = []
+
+        } else {
+          console.log(data);
+          this.errorMsg = ""
+          this.filteredTipoExamen = data;
+        }
+      }
+    )
    
   }
   
@@ -81,7 +134,18 @@ export class SeeTestsComponent implements OnInit {
     }
   }
 
+  updateIdTipo(id:any){
+    this.tipo_id = id;
+  }
+
   ngAfterViewInit() {
+    this.paginator.page.
+      pipe(
+        tap(() => {
+          this.filtrar()
+        }
+        ))
+      .subscribe();
     this.observer
       .observe(['(min-width: 1200px)'])
       .pipe(delay(1))
@@ -132,6 +196,97 @@ export class SeeTestsComponent implements OnInit {
 
 
   }
+
+  filtrar(){
+    if(this.start_date!=null && this.end_date!=null && this.tipo_id!=null){
+      var start_date_aux = this.formatYmd(this.start_date)
+      var end_date_aux = this.formatYmd(this.end_date)
+      this.testService.filterTestsDateTipo(this.userService.getUserId(),start_date_aux,end_date_aux,this.tipo_id, this.paginator?.pageIndex ?? 0).subscribe(resp => {
+        this.tests = resp;
+      },
+        error => {
+          console.error(error);
+        }
+      );
+    }else if(this.start_date!=null && this.end_date!=null && this.tipo_id==null){
+      var start_date_aux = this.formatYmd(this.start_date)
+      var end_date_aux = this.formatYmd(this.end_date)
+      this.testService.filterTestsDate(this.userService.getUserId(),start_date_aux,end_date_aux, this.paginator?.pageIndex ?? 0).subscribe(resp => {
+        this.tests = resp;
+      },
+        error => {
+          console.error(error);
+        }
+      );
+    }else if(this.start_date==null && this.end_date==null && this.tipo_id!=null){
+      if(this.upcoming){
+        this.testService.filterTestsTipoUpcoming(this.userService.getUserId(),this.tipo_id, this.paginator?.pageIndex ?? 0).subscribe(resp => {
+          console.log(resp);
+          this.tests = resp;
+    
+        },
+          error => {
+            console.error(error);
+          }
+        );
+      }else{
+        this.testService.filterTestsTipoRecord(this.userService.getUserId(),this.tipo_id, this.paginator?.pageIndex ?? 0).subscribe(resp => {
+          console.log(resp);
+          this.tests = resp;
+    
+        },
+          error => {
+            console.error(error);
+          }
+        );
+        this.testService.countfilterTestsTipoRecord(this.userService.getUserId(),this.tipo_id).subscribe(resp => {
+          this.tests_lenght = resp
+        },
+          error => {
+            console.error(error);
+          }
+        );
+      }
+    }else{
+      if(this.upcoming){
+        this.testService.getUpcomingTest(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
+          console.log(resp);
+          this.tests = resp;
+    
+        },
+          error => {
+            console.error(error);
+          }
+        );
+        this.testService.countUpcomingTests(this.userService.getUserId()).subscribe(resp => {
+          this.tests_lenght = resp
+        },
+          error => {
+            console.error(error);
+          }
+        );
+      }else{
+        this.testService.getRecordTest(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
+          console.log(resp);
+          this.tests = resp;
+    
+        },
+          error => {
+            console.error(error);
+          }
+        );
+        this.testService.countRecordTests(this.userService.getUserId()).subscribe(resp => {
+          this.tests_lenght = resp
+        },
+          error => {
+            console.error(error);
+          }
+        );
+      }
+      
+    }
+  }
+
   
 
 }

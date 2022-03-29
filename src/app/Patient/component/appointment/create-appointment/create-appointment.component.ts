@@ -21,8 +21,8 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 })
 export class CreateAppointmentComponent implements OnInit {
   hidepicture = false;
-  doctor_name :number;
-  speciality :number;
+  doctorID :any;
+  speciality :any;
   filteredEspecialidades: any;
   especialidadFilter = new FormControl();
   filteredDoctores: any;
@@ -51,32 +51,64 @@ export class CreateAppointmentComponent implements OnInit {
   ngOnInit(): void {
     var params = (this.route.snapshot.params);
     this.speciality = params['speciality'];
-    this.doctor_name = params['doctor'];
+    this.doctorID = params['doctor'];
 
 
     if(this.speciality!=null){
       if(this.speciality!=0){
         this.especialidadService.getEspecialidad(this.speciality).subscribe(
           (response) => {
-           this.cita_save.especialidad.id = +this.speciality;
-           this.cita_save.especialidad.nombre = response.nombre;
+           if (response!=null) {
+             this.cita_save.especialidad.id = +this.speciality;
+             this.cita_save.especialidad.nombre = response.nombre;
+           }
           },
           (error) => {
             this.toastrSvc.error(error);
           }
         );
-        if(this.doctor_name!=null){
+        if(this.doctorID!=null){
+          if(this.doctorID!=0){
+            this.doctorService.getDoctorId(this.doctorID).subscribe(
+              (response) => {
+               if(response!=null){
+                this.cita_save.doctor.id = +this.doctorID;
+                this.cita_save.doctor.nombre = response.nombre;
+              
+               }
+                },
+              (error) => {
+                this.toastrSvc.error(error);
+              }
+            );
+          }
           
         }
+      }else{
+          if(this.doctorID!=null){
+            if(this.doctorID!=0){
+              this.doctorService.getDoctorId(this.doctorID).subscribe(
+                (response) => {
+                 this.cita_save.doctor.id = +this.doctorID;
+                 this.cita_save.doctor.nombre = response.nombre;
+                },
+                (error) => {
+                  this.toastrSvc.error(error);
+                }
+              );
+            }
+            
+          }
+        
       }
     }
-
     this.especialidadFilter.valueChanges.pipe(
       debounceTime(50),
       tap(() => {
         this.filteredEspecialidades = [];
         this.errorMsg = "";
         this.isLoading = true;
+        
       }),
       switchMap(value =>
         this.especialidadService.filterEspecialidad(this.cita_save.doctor.id,value).pipe(
@@ -86,7 +118,6 @@ export class CreateAppointmentComponent implements OnInit {
         )))
       .subscribe(data => {
         if (data == undefined) {
-          console.log("error");
           this.errorMsg = "Error";
           this.filteredEspecialidades = []
 
@@ -136,6 +167,7 @@ export class CreateAppointmentComponent implements OnInit {
         }
       }
     )
+    
 
 
   }
@@ -157,10 +189,18 @@ export class CreateAppointmentComponent implements OnInit {
 
   updateIdDoctor(id: any) {
     this.cita_save.doctor.id = id;
+    if(this.cita_save.especialidad.id==null){
+      this.cita_save.especialidad.nombre=""
+      this.filteredEspecialidades = []
+    }
   }
 
   updateIdEspecialidad(id: any) {
     this.cita_save.especialidad.id = id;
+    if(this.cita_save.doctor.id==null){
+      this.cita_save.doctor.nombre=""
+      this.filteredDoctores = []
+    }
   }
 
 

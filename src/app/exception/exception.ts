@@ -12,6 +12,7 @@ export abstract class ExceptionHandlerApi {
         errorHandler(error: HttpErrorResponse, accion: String) {
         if (error.status >= 500) {
             return throwError("Error en el servidor, intente mas tarde");
+        
         }else if(error.status == 0){
             return throwError("No se pudo establecer una conexion, intente mas tarde");
         }

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, Observable, throwError } from "rxjs";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { catchError, Observable } from "rxjs";
 import { Cita } from "./cita";
 import { environment } from "src/environments/environment";
 import { ExceptionHandlerApi } from "../../exception/exception";
@@ -27,8 +27,8 @@ export class CitaService extends ExceptionHandlerApi{
             .get(this.apiServerUrl+"/"+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
 
-    public addCita(cita: Cita): Observable<Cita> {
-        return this.http.post<Cita>(`${this.apiServerUrl}`, cita).pipe(catchError(err => this.errorHandler(err,'registrar')),);
+    public addCita(cita: any): Observable<any> {
+        return this.http.post<any>(`${this.apiServerUrl}`, cita).pipe(catchError(err => this.errorHandler(err,'registrar')),);
     }
 
     public updatePatient(cita: Cita): Observable<Cita> {
@@ -38,22 +38,49 @@ export class CitaService extends ExceptionHandlerApi{
     public deletePatient(citaId: number): Observable<void> {
         return this.http.delete<void>(`${this.apiServerUrl}/Patient/delete/${citaId}`);
     }
-    public getUpcomingCitas(id:any):Observable<any> {
-        return this.http.get(this.apiServerUrl+'/filter/upcoming/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    public getUpcomingCitas(id:any, page:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/upcoming/'+id+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
-    public getRecordCitas(id:any):Observable<any> {
-        return this.http.get(this.apiServerUrl+'/filter/records/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
-    }
-
-    public filterCitasDate(id:any,start:any,end:any):Observable<any> {
-        return this.http.get(this.apiServerUrl+'/filter/date/patient/'+id+'/'+start+'/'+end).pipe(catchError(err => this.errorHandler(err,'ver')),);
-    }
-    public filterCitasDateDoctor(id:any,start:any,end:any,doctor:any):Observable<any> {
-        return this.http.get(this.apiServerUrl+'/filter/date/patient/doctor/'+id+'/'+start+'/'+end+'/'+doctor).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    public getRecordCitas(id:any,page:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/records/'+id+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
 
-    public filterCitasDoctor(id:any,doctor:any):Observable<any> {
-        return this.http.get(this.apiServerUrl+'/filter/patient/doctor/'+id+'/'+doctor).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    public filterCitasDate(id:any,start:any,end:any,page:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/date/patient/'+id+'/'+start+'/'+end+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+    public filterCitasDateDoctor(id:any,start:any,end:any,doctor:any,page:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/date/patient/doctor/'+id+'/'+start+'/'+end+'/'+doctor+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+
+    public filterCitasDoctorUpcoming(id:any,doctor:any,page:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/upcoming/patient/doctor/'+id+'/'+doctor+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+
+    public filterCitasDoctorRecord(id:any,doctor:any,page:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/record/patient/doctor/'+id+'/'+doctor+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+
+
+    public countUpcomingCitas(id:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/count/upcoming/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+    public countRecordCitas(id:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/count/records/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+
+    public countfilterCitasDate(id:any,start:any,end:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/count/date/patient/'+id+'/'+start+'/'+end).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+    public countfilterCitasDateDoctor(id:any,start:any,end:any,doctor:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/count/date/patient/doctor/'+id+'/'+start+'/'+end+'/'+doctor).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+
+    public countfilterCitasDoctorUpcoming(id:any,doctor:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/count/upcoming/patient/doctor/'+id+'/'+doctor).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+
+    public countfilterCitasDoctorRecord(id:any,doctor:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/count/record/patient/doctor/'+id+'/'+doctor).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
 
     public getTodayDoctorAppoiment(DoctorId: number): Observable<any>{        

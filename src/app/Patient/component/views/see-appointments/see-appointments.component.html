@@ -12,21 +12,33 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Doctor</mat-label>
                   <input type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput matInput
-                  [formControl]="doctorFilter"  [matAutocomplete]="autoDoctor">
+                    [formControl]="doctorFilter" (change)="updateIdDoctor(null)" [matAutocomplete]="autoDoctor">
                   <mat-autocomplete autoActiveFirstOption #autoDoctor="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredDoctores" (onSelectionChange)="updateIdDoctor(option.id)" [value]="option.nombre">
-                       {{option.nombre}}
+                    <mat-option *ngFor="let option of filteredDoctores" (onSelectionChange)="updateIdDoctor(option.id)"
+                      [value]="option.nombre">
+                      {{option.nombre}}
                     </mat-option>
                   </mat-autocomplete>
-  
+
                 </mat-form-field>
               </div>
-              <div class="col-md-6">
-                <mat-form-field  appearance="outline" style="width: 100%;">
+              <div class="col-md-6" *ngIf="upcoming">
+                <mat-form-field appearance="outline" style="width: 100%;">
                   <mat-label>Fecha</mat-label>
-                  <mat-date-range-input  [rangePicker]="campaignOnePicker">
-                    <input matStartDate placeholder="Start date"  [(ngModel)]="start_date" name="start_date">
-                    <input matEndDate placeholder="End date"  [(ngModel)]="end_date" name="end_date">
+                  <mat-date-range-input [rangePicker]="campaigntwoPicker" [min]="fecha">
+                    <input matStartDate placeholder="Start date" [(ngModel)]="start_date" name="start_date">
+                    <input matEndDate placeholder="End date" [(ngModel)]="end_date" name="end_date">
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle matSuffix [for]="campaigntwoPicker"></mat-datepicker-toggle>
+                  <mat-date-range-picker #campaigntwoPicker></mat-date-range-picker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="!upcoming">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                  <mat-label>Fecha</mat-label>
+                  <mat-date-range-input [rangePicker]="campaignOnePicker" [max]="fecha">
+                    <input matStartDate placeholder="Start date" [(ngModel)]="start_date" name="start_date">
+                    <input matEndDate placeholder="End date" [(ngModel)]="end_date" name="end_date">
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
                   <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
@@ -38,18 +50,24 @@
             <button mat-stroked-button [hidden]="hidepicture" color="primary" data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight"><i
                 class="fal fa-calendar-alt"></i> Calendario</button>
-                <button mat-stroked-button style="margin-left: 2px;" [hidden]="hidepicture" color="primary" (click)="filtrar()" ><i class="fal fa-filter"></i> Filtrar</button>
+            <button mat-stroked-button style="margin-left: 2px;" [hidden]="hidepicture" color="primary"
+              (click)="filtrar()"><i class="fal fa-filter"></i> Filtrar</button>
 
           </div>
           <div class="col-4" style="align-self: center;" [hidden]="hidepicture">
             <img width="200rem" [src]="url">
           </div>
         </div>
-
       </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list [cols]="breakpoint" rowHeight="10rem">                
       <mat-grid-tile *ngFor="let card of appointments">
         <app-appointment-card [appointment]="card"></app-appointment-card>
       </mat-grid-tile>
+      <mat-grid-tile [colspan]="breakpoint" >
+        <mat-paginator [length]="appointments_lenght" [pageSize]="6">
+        </mat-paginator>
+      </mat-grid-tile>        
     </mat-grid-list>
   </div>
 </div>

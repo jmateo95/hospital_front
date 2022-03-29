@@ -4,7 +4,7 @@
       <mat-grid-tile [colspan]="breakpoint" rowspan="2">
         <div class="d-flex justify-content-between greeting-card content mat-elevation-z8">
           <div *ngIf="image" class="col-4" style="align-self: center;" [hidden]="hidepicture">
-            <img  width="200rem"  [src]="image">
+            <img width="200rem" [src]="image">
           </div>
           <div class="greeting">
             <h1>{{title}}</h1>
@@ -13,18 +13,35 @@
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <mat-form-field appearance="outline">
-                  <mat-label>Tipo de Examen</mat-label>
-                  <input type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput
-                   >
-                  
+                  <mat-label>Tipo</mat-label>
+                  <input type="text" placeholder="Seleccione una" (change)="updateIdTipo(null)"
+                    aria-label="Especialidad" matInput [formControl]="tipoExamenFilter"
+                    [matAutocomplete]="autoEspecialidad">
+                  <mat-autocomplete autoActiveFirstOption #autoEspecialidad="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredTipoExamen " (onSelectionChange)="updateIdTipo(option.id)"
+                      [value]="option.nombre">
+                      {{option.nombre}}
+                    </mat-option>
+                  </mat-autocomplete>
                 </mat-form-field>
               </div>
-              <div class="col-md-6">
-                <mat-form-field  appearance="outline" style="width: 100%;">
+              <div class="col-md-6" *ngIf="upcoming">
+                <mat-form-field appearance="outline" style="width: 100%;">
                   <mat-label>Fecha</mat-label>
-                  <mat-date-range-input [formGroup]="filtroFecha" [rangePicker]="campaignOnePicker">
-                    <input matStartDate placeholder="Start date" formControlName="start">
-                    <input matEndDate placeholder="End date" formControlName="end">
+                  <mat-date-range-input [min]="fecha" [rangePicker]="campaignOnePicker">
+                    <input matStartDate [(ngModel)]="start_date" name="start_date" placeholder="Start date">
+                    <input matEndDate [(ngModel)]="end_date" name="end_date" placeholder="End date">
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                  <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="!upcoming">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                  <mat-label>Fecha</mat-label>
+                  <mat-date-range-input [max]="fecha" [rangePicker]="campaignOnePicker">
+                    <input matStartDate [(ngModel)]="start_date" name="start_date" placeholder="Start date">
+                    <input matEndDate [(ngModel)]="end_date" name="end_date" placeholder="End date">
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
                   <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
@@ -36,14 +53,23 @@
             <button mat-stroked-button [hidden]="hidepicture" color="primary" data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight"><i
                 class="fal fa-calendar-alt"></i> Calendario</button>
+            <button mat-stroked-button style="margin-left: 2px;" [hidden]="hidepicture" color="primary"
+              (click)="filtrar()"><i class="fal fa-filter"></i> Filtrar</button>
+
 
           </div>
         </div>
 
       </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list [cols]="breakpoint" rowHeight="10rem">
       <mat-grid-tile *ngFor="let card of tests">
         <app-tests-card [test]="card"></app-tests-card>
       </mat-grid-tile>
+      <mat-grid-tile [colspan]="breakpoint" >
+        <mat-paginator [length]="tests_lenght" [pageSize]="6">
+        </mat-paginator>
+      </mat-grid-tile>   
     </mat-grid-list>
   </div>
 </div>

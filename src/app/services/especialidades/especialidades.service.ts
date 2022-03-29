@@ -30,13 +30,16 @@ export class EspecialidadesService extends ExceptionHandlerApi {
 
 
   public filterEspecialidad(doctor: any, especialidad: any): Observable<any> {
-    if (doctor != -1) {
+    if (doctor != null) {
       if (especialidad == "") {
         especialidad = "%20";
+      }else{
+        especialidad = encodeURIComponent(especialidad)
       }
-      return this.httpClient.get("http://localhost:8080/DoctorEspecialidad/find/doctors/" + doctor + "/" + especialidad);
+      return this.httpClient.get(`http://localhost:8080/DoctorEspecialidad/find/doctors/${doctor}/${especialidad}`).pipe(catchError(err => this.errorHandler(err, 'ver')),);
     } else {
-      return this.httpClient.get("http://localhost:8080/Especialidad/findname/" + especialidad).pipe(catchError(err => this.errorHandler(err, 'ver')),)
+      especialidad = encodeURIComponent(especialidad)
+      return this.httpClient.get(`http://localhost:8080/Especialidad/findname/${especialidad}`).pipe(catchError(err => this.errorHandler(err, 'ver')),)
     }
   }
   

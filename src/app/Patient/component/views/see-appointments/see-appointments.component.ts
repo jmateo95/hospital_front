@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { debounceTime, delay, finalize, map, startWith, switchMap, tap } from 'rxjs/operators';
@@ -12,67 +13,79 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
   templateUrl: './see-appointments.component.html',
   styleUrls: ['./see-appointments.component.css']
 })
-export class SeeAppointmentsComponent implements OnInit {
+export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
+  
+  navigationSubscription;
   breakpoint = 3;
-  doctor_id :number;
+  doctor_id = null;
+  start_date = null;
+  end_date = null;
   hidepicture = false;
+  fecha = new Date();
   filtroFecha!: FormGroup;
   title = "";
-  navigationSubscription;
   url = "";
-  appointments: any; 
-  start_date:any;
-  end_date: any;
+  appointments: any[];
   filteredDoctores: any;
   doctorFilter = new FormControl();
-  errorMsg: string;
-  isLoading = false;
+  upcoming: boolean;
+  appointments_lenght: number;
   formatYmd = (date: { toISOString: () => string | any[]; }) => date.toISOString().slice(0, 10);
-   
-  cards = [
-    { code: '1',date: '12/05/2021', doctor: 'Dr. Fernado Rojas',type:'Pediatria' },
-    { code: '2',date: '14/04/2021', doctor: 'Dr. Luis Juarez',type:'Odontologia' },
-    { code: '3',date: '18/03/2021', doctor: 'Dra. Camila Estrada',type:'Consulta General' },
-    { code: '4',date: '19/02/2021', doctor: 'Dra. Fernanda Carrillo',type:'Neurologia' }
-  ];
+  
+
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
+
   constructor(
     private observer: BreakpointObserver,
-    private router: Router, 
+    private router: Router,
     private route: ActivatedRoute,
     private citaService: CitaService,
     private doctorService: DoctorService,
     private userService: UsuarioService
-    ) {
+  ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
-         if (e instanceof NavigationEnd) {
+      if (e instanceof NavigationEnd) {
         this.initialiseInvites();
       }
     });
 
-   }
-   initialiseInvites() {
+  }
+  initialiseInvites() {
     var params = (this.route.snapshot.params);
     this.title = params['type'];
-    if(this.title == 'history'){
+    if (this.title == 'history') {
       this.title = 'Consultas Realizadas';
       this.url = 'assets/img/Consult2.png';
-      this.citaService.getRecordCitas(this.userService.getUserId()).subscribe(resp => {
-        console.log(resp);
-        this.appointments = resp;
-  
+      this.upcoming = false;
+      this.citaService.getRecordCitas(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
+        this.appointments = resp.content
+      },
+        error => {
+          console.error(error);
+        }
+      );
+      this.citaService.countRecordCitas(this.userService.getUserId()).subscribe(resp => {
+        this.appointments_lenght = resp
       },
         error => {
           console.error(error);
         }
       );
 
-    }else if (this.title == 'upcoming'){
+    } else if (this.title == 'upcoming') {
       this.title = 'Proximas Consultas';
       this.url = 'assets/img/Consult4.png';
-      this.citaService.getUpcomingCitas(this.userService.getUserId()).subscribe(resp => {
-        console.log(resp);
-        this.appointments = resp;
-  
+      this.upcoming = true;
+      this.citaService.getUpcomingCitas(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
+        this.appointments = resp.content;
+      },
+        error => {
+          console.error(error);
+        }
+      );
+      this.citaService.countUpcomingCitas(this.userService.getUserId()).subscribe(resp => {
+        this.appointments_lenght = resp
       },
         error => {
           console.error(error);
@@ -80,63 +93,151 @@ export class SeeAppointmentsComponent implements OnInit {
       );
     }
   }
-
-
   ngOnInit() {
-    const today = new Date();
-    const month = today.getMonth();
-    const year = today.getFullYear();
-
-    this.filtroFecha = new FormGroup({
-      start: new FormControl(new Date(year, month, 13)),
-      end: new FormControl(new Date(year, month, 16)),
-    });
     this.doctorFilter.valueChanges.pipe(
       debounceTime(50),
       tap(() => {
         this.filteredDoctores = [];
-        this.errorMsg = "";
-        this.isLoading = true;
       }),
       switchMap(value =>
-        this.doctorService.filterDoctor(value,0).pipe(
+        this.doctorService.filterDoctor(value, this.doctor_id).pipe(
           finalize(() => {
-            this.isLoading = false;
           }),
         )))
       .subscribe(data => {
         if (data == undefined) {
-          this.errorMsg = "Error";
           this.filteredDoctores = []
-
         } else {
-         
-          
-          this.errorMsg = ""
           this.filteredDoctores = data;
         }
       }
-    )
-
-    
+      )
   }
-  updateIdDoctor(id: number) {
+  updateIdDoctor(id: any) {
     this.doctor_id = id;
   }
 
-  filtrar(){
-    if(this.start_date!=null || this.end_date!=null || this.doctor_id!=null){
-      this.start_date = this.formatYmd(this.start_date)
-    }
-    if(this.end_date!=null){
-      this.end_date = this.formatYmd(this.end_date)
-    }
-    if(this.doctor_id!=null){
+  filtrar() {
+    if (this.start_date != null && this.end_date != null && this.doctor_id != null) {
+      var start_date_aux = this.formatYmd(this.start_date)
+      var end_date_aux = this.formatYmd(this.end_date)
+      this.citaService.filterCitasDateDoctor(this.userService.getUserId(), start_date_aux, end_date_aux, this.doctor_id, this.paginator?.pageIndex ?? 0).subscribe(resp => {
+        this.appointments = resp.content;
+      },
+        error => {
+          console.error(error);
+        }
+      );
+      this.citaService.countfilterCitasDateDoctor(this.userService.getUserId(), start_date_aux, end_date_aux, this.doctor_id).subscribe(resp => {
+        this.appointments_lenght = resp
+      },
+        error => {
+          console.error(error);
+        }
+      );
+    } else if (this.start_date != null && this.end_date != null && this.doctor_id == null) {
+      var start_date_aux = this.formatYmd(this.start_date)
+      var end_date_aux = this.formatYmd(this.end_date)
+      this.citaService.filterCitasDate(this.userService.getUserId(), start_date_aux, end_date_aux, this.paginator?.pageIndex ?? 0).subscribe(resp => {
+        this.appointments = resp.content;
+      },
+        error => {
+          console.error(error);
+        }
+      );
+      this.citaService.countfilterCitasDate(this.userService.getUserId(), start_date_aux, end_date_aux).subscribe(resp => {
+        this.appointments_lenght = resp;
+      },
+        error => {
+          console.error(error);
+        }
+      );
+    } else if (this.start_date == null && this.end_date == null && this.doctor_id != null) {
+      if (this.upcoming) {
+        this.citaService.filterCitasDoctorUpcoming(this.userService.getUserId(), this.doctor_id, this.paginator?.pageIndex ?? 0).subscribe(resp => {
+          this.appointments = resp.content;
+
+        },
+          error => {
+            console.error(error);
+          }
+        );
+        this.citaService.countfilterCitasDoctorUpcoming(this.userService.getUserId(), this.doctor_id).subscribe(resp => {
+          this.appointments_lenght = resp;
+
+        },
+          error => {
+            console.error(error);
+          }
+        );
+      } else {
+        this.citaService.filterCitasDoctorRecord(this.userService.getUserId(), this.doctor_id,this.paginator?.pageIndex ?? 0).subscribe(resp => {
+          this.appointments = resp.content;
+
+        },
+          error => {
+            console.error(error);
+          }
+        );
+        this.citaService.countfilterCitasDoctorRecord(this.userService.getUserId(), this.doctor_id).subscribe(resp => {
+          this.appointments_lenght = resp;
+
+        },
+          error => {
+            console.error(error);
+          }
+        );
+      }
+    } else {
+      if (this.upcoming) {
+        this.citaService.getUpcomingCitas(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
+          this.appointments = resp.content;
+
+        },
+          error => {
+            console.error(error);
+          }
+        );
+        this.citaService.countUpcomingCitas(this.userService.getUserId()).subscribe(resp => {
+          this.appointments_lenght = resp;
+
+        },
+          error => {
+            console.error(error);
+          }
+        );
+      } else {
+        this.citaService.getRecordCitas(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
+          this.appointments = resp.content;
+
+        },
+          error => {
+            console.error(error);
+          }
+        );
+        this.citaService.countRecordCitas(this.userService.getUserId()).subscribe(resp => {
+          this.appointments_lenght = resp;
+
+        },
+          error => {
+            console.error(error);
+          }
+        );
+      }
 
     }
   }
 
   ngAfterViewInit() {
+
+    this.paginator.page.
+      pipe(
+        tap(() => {
+          this.filtrar()
+        }
+        ))
+      .subscribe();
+
     this.observer
       .observe(['(min-width: 1200px)'])
       .pipe(delay(1))
@@ -171,7 +272,7 @@ export class SeeAppointmentsComponent implements OnInit {
       .subscribe((res) => {
         if (res.matches) {
           this.breakpoint = 2;
-          
+
           this.hidepicture = true;
         }
       });
@@ -187,5 +288,5 @@ export class SeeAppointmentsComponent implements OnInit {
 
   }
 
-  
+
 }

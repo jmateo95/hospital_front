@@ -35,12 +35,16 @@ export class DoctorService extends ExceptionHandlerApi {
   }
 
   public filterDoctor(doctor: any, especialidad: any): Observable<any> {
-    if (especialidad != -1) {
+    console.log(especialidad)
+    if (especialidad != null) {
       if (doctor == "") {
         doctor = "%20";
+      }else{
+        doctor = encodeURIComponent(doctor)
       }
       return this.httpClient.get("http://localhost:8080/DoctorEspecialidad" + "/find/speciality/" + especialidad + "/" + doctor);
     } else {
+      doctor = encodeURIComponent(doctor)
       return this.httpClient.get(`${this.API_SERVER}/findname/` + doctor).pipe(catchError(err => this.errorHandler(err, 'ver')),)
     }
 

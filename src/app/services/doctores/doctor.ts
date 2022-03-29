@@ -1,5 +1,5 @@
 export class Doctor {
-    public id: number;
+    public id: any;
     public sexo: number;
     public fecha_nacimiento: Date;
     public telefono: string;
@@ -12,6 +12,7 @@ export class Doctor {
     public dpi: number;
     constructor(){
         this.codigo = "DOC"
+        this.nombre = ""
     }
 
 }
