@@ -53,4 +53,7 @@ export class ExamenService extends ExceptionHandlerApi{
             .get(this.apiServerUrl+'/filter/records/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
 
+    public getDaysWithMoreTest(id:any): Observable<any>{
+        return this.http.get<any>(`${this.apiServerUrl}/moreTest/${id}`);
+    }
 }
