@@ -14,7 +14,7 @@
                           <h1 class="text-right">Codigo Doctor: {{doctor.codigo}}</h1>
                       </div>
 
-                        <form [formGroup]="profileForm">
+                        <form [formGroup]="profileForm" *ngIf="this.profileForm">
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="input-style" appearance="outline">
