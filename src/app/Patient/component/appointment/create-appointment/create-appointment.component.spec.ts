@@ -1,7 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAppointmentComponent } from './create-appointment.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MaterialModule } from '../../../../material/material.module'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('CreateAppointmentComponent', () => {
   let component: CreateAppointmentComponent;
@@ -12,7 +16,11 @@ describe('CreateAppointmentComponent', () => {
       imports: [
         ReactiveFormsModule,
         FormsModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        RouterTestingModule,
+        MaterialModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot()
       ],
       declarations: [ CreateAppointmentComponent ]
     })

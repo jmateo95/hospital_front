@@ -16,10 +16,22 @@ describe('AppointmentCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppointmentCardComponent);
     component = fixture.componentInstance;
+    
+    component.appointment = {
+      doctor:{
+        nombre:'juan'
+      },
+      especialidad:{
+        nombre:'Pediatria'
+      },
+      fecha: '12/12/2022',
+      hora:'07:00',
+    };
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });

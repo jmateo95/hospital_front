@@ -16,6 +16,9 @@ describe('TestsCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestsCardComponent);
     component = fixture.componentInstance;
+    component.test = {
+      tipo: 'Docotor'
+    };
     fixture.detectChanges();
   });
 
