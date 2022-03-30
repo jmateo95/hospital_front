@@ -11,18 +11,22 @@
                 <mat-form-field  appearance="outline" style="max-width: 45vw;">
                   <mat-label>Fecha</mat-label>
                   <mat-date-range-input [formGroup]="filtroFecha" [rangePicker]="campaignOnePicker">
-                    <input matStartDate placeholder="Start date" formControlName="start">
+                    <input matStartDate placeholder="Start date" formControlName="start" >
                     <input matEndDate placeholder="End date" formControlName="end">
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
                   <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
                 </mat-form-field>
               </div>
-            </div>            
+            </div> 
+            
+             <button mat-stroked-button style="margin-left: 2px;" [hidden]="hidepicture" color="primary"
+              (click)="filtrar()"><i class="fal fa-filter"></i> Filtrar</button>
           </div>
           <div class="col-12" style="align-self: center;" [hidden]="hidepicture">
             <img width="150vh" src="assets/img/Consult2.png">
           </div>
+          
         </div>
 
       </mat-grid-tile>
@@ -36,7 +40,7 @@
     <div class="col-md-12">
       <mat-card style="border-radius: 25px; padding: 5vh!important; min-width:40vw; ">
         <mat-card-header>
-        <mat-card-title>Doctores que generan mas ganancias</mat-card-title>
+        <mat-card-title>Doctores que generan mas citas</mat-card-title>
         </mat-card-header>
         <mat-card-content>
     
@@ -45,17 +49,17 @@
               
                   <ng-container matColumnDef="codigo">
                     <th mat-header-cell *matHeaderCellDef> Código </th>
-                    <td mat-cell *matCellDef="let articulo"> {{articulo.codigo}} </td>
+                    <td mat-cell *matCellDef="let articulo"> {{articulo.codigoUser}} </td>
                   </ng-container>
               
                   <ng-container matColumnDef="descripcion">
                     <th mat-header-cell *matHeaderCellDef> Doctor </th>
-                    <td mat-cell *matCellDef="let articulo"> {{articulo.descripcion}} </td>
+                    <td mat-cell *matCellDef="let articulo"> {{articulo.nombreUser}} </td>
                   </ng-container>
               
                   <ng-container matColumnDef="total">
                     <th mat-header-cell *matHeaderCellDef> Total </th>
-                    <td mat-cell *matCellDef="let articulo"> {{articulo.total}} </td>
+                    <td mat-cell *matCellDef="let articulo"> {{articulo.totalCitas}} </td>
                   </ng-container>
     
                   
@@ -72,8 +76,3 @@
         </mat-card-actions>
     </mat-card>
     </div>
-  
-  
-  
-  
-  
