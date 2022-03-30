@@ -43,7 +43,7 @@ export class DoctorService extends ExceptionHandlerApi {
       }else{
         doctor = encodeURIComponent(doctor)
       }
-      return this.httpClient.get("http://localhost:8080/DoctorEspecialidad" + "/find/speciality/" + especialidad + "/" + doctor);
+      return this.httpClient.get(this.API_SERVER+"Especialidad" + "/find/speciality/" + especialidad + "/" + doctor);
     } else {
       doctor = encodeURIComponent(doctor)
       return this.httpClient.get(`${this.API_SERVER}/findname/` + doctor).pipe(catchError(err => this.errorHandler(err, 'ver')),)

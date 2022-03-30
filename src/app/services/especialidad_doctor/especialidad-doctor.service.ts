@@ -9,6 +9,7 @@ import { environment } from "src/environments/environment";
 })
 export class EspecialidadDoctorService extends ExceptionHandlerApi{
   private API_SERVER = environment.apiBaseUrl+"/DoctorEspecialidad";
+  private API_SERVER1 = environment.apiBaseUrl;
 
   constructor(
     private httpClient: HttpClient,
@@ -35,9 +36,9 @@ export class EspecialidadDoctorService extends ExceptionHandlerApi{
       if (especialidad == "") {
         especialidad = "%20";
       }
-      return this.httpClient.get("http://localhost:8080/DoctorEspecialidad/find/doctors/" + doctor + "/" + especialidad);
+      return this.httpClient.get(this.API_SERVER+"/find/doctors/" + doctor + "/" + especialidad);
     } else {
-      return this.httpClient.get("http://localhost:8080/Especialidad/findname/" + especialidad).pipe(catchError(err => this.errorHandler(err, 'ver')),)
+      return this.httpClient.get(this.API_SERVER1+"/Especialidad/findname/" + especialidad).pipe(catchError(err => this.errorHandler(err, 'ver')),)
     }
   }
 

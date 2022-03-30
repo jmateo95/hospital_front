@@ -12,6 +12,7 @@ import { environment } from "src/environments/environment";
 export class EspecialidadesService extends ExceptionHandlerApi {
 
   private API_SERVER = environment.apiBaseUrl+"/Especialidad";
+  private API_SERVER1 = environment.apiBaseUrl;
   constructor(
     private httpClient: HttpClient) {
     super()
@@ -37,10 +38,10 @@ export class EspecialidadesService extends ExceptionHandlerApi {
       }else{
         especialidad = encodeURIComponent(especialidad)
       }
-      return this.httpClient.get(`http://localhost:8080/DoctorEspecialidad/find/doctors/${doctor}/${especialidad}`).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      return this.httpClient.get(`${this.API_SERVER1}/DoctorEspecialidad/find/doctors/${doctor}/${especialidad}`).pipe(catchError(err => this.errorHandler(err, 'ver')),);
     } else {
       especialidad = encodeURIComponent(especialidad)
-      return this.httpClient.get(`http://localhost:8080/Especialidad/findname/${especialidad}`).pipe(catchError(err => this.errorHandler(err, 'ver')),)
+      return this.httpClient.get(`${this.API_SERVER1}/Especialidad/findname/${especialidad}`).pipe(catchError(err => this.errorHandler(err, 'ver')),)
     }
   }
   

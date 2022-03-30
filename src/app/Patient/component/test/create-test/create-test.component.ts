@@ -9,6 +9,7 @@ import { TipoExamenService } from 'src/app/services/tipoExamenes/tipo-examenes.s
 import { ExamenService } from 'src/app/services/examenes/examen.service';
 import { ToastrService } from 'ngx-toastr';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'app-create-test',
@@ -26,6 +27,9 @@ export class CreateTestComponent implements OnInit {
   ordenpdf = true;
   ordenimg = true;
   orden = false;
+
+
+  private apiServerUrl = environment.apiBaseUrl+"/ordenTest";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,7 +50,7 @@ export class CreateTestComponent implements OnInit {
   afuConfig = {
     formatsAllowed: '.pdf',
     uploadAPI: {
-      url: "http://localhost:8080/Files/upload/ordenTest"
+      url: this.apiServerUrl
     },
     theme: "dragNDrop",
     hideProgressBar: true,
@@ -66,7 +70,7 @@ export class CreateTestComponent implements OnInit {
   afuConfig2 = {
     formatsAllowed: '.jpg, .png',
     uploadAPI: {
-      url: "http://localhost:8080/Files/upload/ordenTest"
+      url: this.apiServerUrl
     },
     theme: "dragNDrop",
     hideProgressBar: true,
