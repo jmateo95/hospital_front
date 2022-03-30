@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { ExceptionHandlerApi } from 'src/app/exception/exception';
 import { EspecialidadDoctorService } from '../especialidad_doctor/especialidad-doctor.service';
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { EspecialidadDoctorService } from '../especialidad_doctor/especialidad-d
 
 
 export class DoctorService extends ExceptionHandlerApi {
-  private API_SERVER = "http://localhost:8080/Doctor";
+  private API_SERVER = environment.apiBaseUrl+"/Doctor";
   constructor(
     private httpClient: HttpClient,
     private especialidadDoctor: EspecialidadDoctorService

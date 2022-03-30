@@ -4,13 +4,14 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { ExceptionHandlerApi } from 'src/app/exception/exception';
 import { Especialidad } from './especialidad';
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EspecialidadesService extends ExceptionHandlerApi {
 
-  private API_SERVER = "http://localhost:8080/Especialidad";
+  private API_SERVER = environment.apiBaseUrl+"/Especialidad";
   constructor(
     private httpClient: HttpClient) {
     super()

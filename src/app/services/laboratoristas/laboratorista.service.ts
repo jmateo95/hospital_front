@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from "src/environments/environment";
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class LaboratoristaService {
 
-  private API_SERVER = "http://localhost:8080/Laboratorista"
+  private API_SERVER = environment.apiBaseUrl+"/Laboratorista"
   constructor(
     private httpClient: HttpClient
   ) { }

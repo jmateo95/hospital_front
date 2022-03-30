@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { ExceptionHandlerApi } from 'src/app/exception/exception';
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipoExamenService extends ExceptionHandlerApi {
 
-  private API_SERVER = "http://localhost:8080/tipo-examen"
+  private API_SERVER = environment.apiBaseUrl+"/tipo-examen"
   constructor(
     private httpClient: HttpClient
   ) { 
