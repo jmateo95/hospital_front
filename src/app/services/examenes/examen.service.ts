@@ -61,7 +61,7 @@ export class ExamenService extends ExceptionHandlerApi{
     }
 
     public filterTestsDate(id:any,start:any,end:any,page:any):Observable<any> {
-        return this.http.get(this.apiServerUrl+'/filter/date/patient/'+id+'/'+start+'/'+end+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);
+        return this.http.get(this.apiServerUrl+'/filter/patient/date/'+id+'/'+start+'/'+end+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
     public filterTestsDateTipo(id:any,start:any,end:any,tipo:any,page:any):Observable<any> {
         return this.http.get(this.apiServerUrl+'/filter/date/patient/tipo/'+id+'/'+start+'/'+end+'/'+tipo+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);

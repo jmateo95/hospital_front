@@ -1,14 +1,14 @@
 <div class="rounded bg-white mat-elevation-z8">
     <div class="row">
         <div class="col-md-4 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
-                    src="/assets/img/icons/user.png" width="90"><span class="font-weight-bold font-style">Nombre del Paciente</span><span
-                    class="text-black-50">correo</span></div>
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5" *ngIf="usuario"><img class="rounded-circle mt-5"
+                    src="/assets/img/icons/user.png" width="90"><span class="font-weight-bold font-style">{{usuario.nombre}}</span><span
+                    class="text-black-50">{{usuario.email}}</span></div>
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                         <button mat-raised-button color="primary" (click)="back()" >Regresar</button>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8" *ngIf="usuario">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     
@@ -18,13 +18,13 @@
                     <div class="col-md-6">
                         <mat-form-field class="input-style" appearance="outline">
                             <mat-label><i class="fal fa-user"></i> Nombre</mat-label>
-                            <input matInput class="font-style" placeholder="Nombre">
+                            <input matInput class="font-style" placeholder="Nombre" [(ngModel)]="usuario.nombre" name="nombre">
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <mat-form-field class="input-style" appearance="outline">
                             <mat-label><i class="fal fa-id-card-alt"></i> DPI</mat-label>
-                            <input class="font-style" matInput type="number" placeholder="DPI">
+                            <input class="font-style" matInput type="number" [(ngModel)]="usuario.dpi" name="dpi" placeholder="DPI">
                         </mat-form-field>
                     </div>
                 </div>
@@ -32,13 +32,13 @@
                     <div class="col-md-6">
                         <mat-form-field class="input-style" appearance="outline">
                             <mat-label><i class="fal fa-at"></i> Correo Electronico</mat-label>
-                            <input matInput class="font-style" type="email" placeholder="Correo Electronico">
+                            <input matInput class="font-style" type="email" [(ngModel)]="usuario.email" name="email" placeholder="Correo Electronico">
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <mat-form-field class="input-style" appearance="outline">
                             <mat-label><i class="fal fa-phone"></i> Telefono</mat-label>
-                            <input matInput class="font-style" type="tel" placeholder="Telefono">
+                            <input matInput class="font-style" [(ngModel)]="usuario.telefono" name="telefono" type="tel" placeholder="Telefono">
                         </mat-form-field>
                     </div>
                 </div>
@@ -55,9 +55,9 @@
                     <div class="col-md-6">
                         <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
                             <mat-label>Fecha de Nacimiento</mat-label>
-                            <input class="font-style" matInput [matDatepicker]="picker">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
+                            <input class="font-style" [(ngModel)]="usuario.fecha_nacimiento" name="fecha_nacimiento" [value]="usuario.fecha_nacimiento" matInput  [matDatepicker]="picker">
+                            <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker  ></mat-datepicker>
                         </mat-form-field>
                     </div>
                 </div>

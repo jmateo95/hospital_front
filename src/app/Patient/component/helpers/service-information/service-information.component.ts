@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-service-information',
   templateUrl: './service-information.component.html',
-  styleUrls: ['./service-information.component.css'],
+  styleUrls: ['./service-information.component.css']
 })
 export class ServiceInformationComponent implements OnInit {
   type = "";
