@@ -29,7 +29,7 @@ export class CreateTestComponent implements OnInit {
   orden = false;
 
 
-  private apiServerUrl = environment.apiBaseUrl+"/ordenTest";
+  private apiServerUrl = environment.apiBaseUrl+"/Files/upload/ordenTest";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -143,6 +143,7 @@ export class CreateTestComponent implements OnInit {
   }
 
   docUpload(e:any){
+    console.log(e);
     this.examen_save.ordenDoc = ""+e.body.message;
     console.log( this.examen_save.ordenDoc)
   }
