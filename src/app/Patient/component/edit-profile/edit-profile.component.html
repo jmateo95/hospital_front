@@ -46,35 +46,40 @@
                     <div class="col-md-6">
                         <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
                             <mat-label>Sexo</mat-label>
-                            <select class="font-style" matNativeControl required>
-                                <option value="hombre">Hombre</option>
-                                <option value="mujer">Mujer</option>
+                            <select class="font-style" matNativeControl  [(ngModel)]="usuario.sexo">
+                                <option value="0">Hombre</option>
+                                <option value="1">Mujer</option>
                             </select>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <mat-form-field class="input-style" appearance="outline" style="width: 100%;">
                             <mat-label>Fecha de Nacimiento</mat-label>
-                            <input class="font-style" [(ngModel)]="usuario.fecha_nacimiento" name="fecha_nacimiento" [value]="usuario.fecha_nacimiento" matInput  [matDatepicker]="picker">
-                            <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker  ></mat-datepicker>
+                            <input class="font-style" [(ngModel)]="usuario.fecha_nacimiento" name="fecha_nacimiento" [value]="usuario.fecha_nacimiento" matInput  type="date">
+                           
                         </mat-form-field>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-md-6"><mat-form-field class="input-style" style="width: 100%;" appearance="outline">
                         <mat-label><i class="fal fa-weight"></i> Peso Kg</mat-label>
-                        <input class="font-style" matInput type="number" placeholder="Peso">
+                        <input class="font-style" matInput type="number" name="peso" [(ngModel)]="usuario.peso" placeholder="Peso">
                       </mat-form-field></div>
                     <div class="col-md-6"><mat-form-field class="input-style" appearance="outline"  style="width: 100%;">
                         <mat-label>Tipo Sangre</mat-label>
-                        <select class="font-style" matNativeControl required>
-                          <option value="O+">O+</option>
-                          <option value="O-">O-</option>
-                        </select>
+                        <select matNativeControl  class="font-style"  [(ngModel)]="usuario.tipo_sangre" name="tipo_sangre">
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                          </select>
                       </mat-form-field></div>
                 </div>
-                <button mat-raised-button color="primary">Guardar Cambios</button>
+                <button (click)="editPatient()" mat-raised-button color="primary">Guardar Cambios</button>
             </div>
         </div>
     </div>

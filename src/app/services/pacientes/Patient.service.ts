@@ -27,11 +27,7 @@ export class PatientService extends ExceptionHandlerApi{
     }
 
     public updatePatient(Patient: Patient): Observable<Patient> {
-        return this.http.put<Patient>(`${this.apiServerUrl}/Patient/update`, Patient);
-    }
-
-    public deletePatient(PatientId: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiServerUrl}/Patient/delete/${PatientId}`);
+        return this.http.put<Patient>(`${this.apiServerUrl}/paciente`, Patient);
     }
 
     public top10PatientAppoiment(): Observable<any>{
