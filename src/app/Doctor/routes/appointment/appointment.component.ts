@@ -87,7 +87,8 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
      "paciente": this.profileForm.value.paciente.paciente,     
      "fecha":this.profileForm.value.fecha,
      "hora":this.profileForm.value.hora+":00",
-     "cita": this.profileForm.value.paciente
+     "cita": this.profileForm.value.paciente,
+     "tipo": this.profileForm.value.laboratorista.tipoExamen
    }
 
    console.log("CITA:")

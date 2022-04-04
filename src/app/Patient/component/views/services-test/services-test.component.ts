@@ -15,13 +15,9 @@ export class ServicesTestComponent implements OnInit {
   hidepicture = false;
   filtroFecha!: FormGroup;
   tipoExamenes:any;
-   
-  cards = [
-    { name: 'Tomografia', cost: 'Q. 300', orden:'Si' },
-    { name: 'Rayos X', cost: 'Q.150', orden:'No' },
-    { name: 'Ultrasonido', cost: 'Q.150', orden:'Si' },
-    { name: 'Examen de la Glucosa', cost: 'Q.200', orden:'No' }
-  ];
+  test_length: any;
+  testN="";
+  costo="";
   constructor(
     private observer: BreakpointObserver, 
     private route:ActivatedRoute,
@@ -41,8 +37,7 @@ export class ServicesTestComponent implements OnInit {
 
   ngOnInit() {
 
-    this.tipoExamenesService.getAllTiposExamen().subscribe(resp => {
-      console.log(resp.content);
+    this.tipoExamenesService.getTiposExamen().subscribe(resp => {
       this.tipoExamenes = resp.content;
       this.tipoExamenes.forEach((element: { orden: any; orden_:any }) => {
         if(element.orden){
@@ -51,6 +46,40 @@ export class ServicesTestComponent implements OnInit {
           element.orden_ = "No";
         }
       });
+
+    },
+      error => {
+        console.error(error);
+      }
+    );
+    this.tipoExamenesService.countAll().subscribe(resp => {
+      this.test_length = resp;
+    },
+      error => {
+        console.error(error);
+      }
+    );
+
+  }
+
+  filtrar(){
+    this.tipoExamenesService.filter(this.testN,this.costo).subscribe(resp => {
+      this.tipoExamenes = resp.content;
+      this.tipoExamenes.forEach((element: { orden: any; orden_:any }) => {
+        if(element.orden){
+          element.orden_ = "Si";
+        }else{
+          element.orden_ = "No";
+        }
+      });
+
+    },
+      error => {
+        console.error(error);
+      }
+    );
+    this.tipoExamenesService.count(this.testN,this.costo).subscribe(resp => {
+      this.test_length = resp;
 
     },
       error => {

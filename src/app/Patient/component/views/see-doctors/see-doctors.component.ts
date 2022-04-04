@@ -121,14 +121,23 @@ export class SeeDoctorsComponent implements OnInit {
         }
       );
     }else if(this.doctor_id==null && this.speciality!=null){
-      this.doctorEspecialidadService.finddoctorsByEspecialidad(this.speciality).subscribe(resp => {
+      this.doctorEspecialidadService.finddoctorsByEspecialidad(this.speciality,this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.doctors = resp.content;
+        
+        this.doctors.forEach((element: { doctorId: any; id: any; doctorNombre: any; nombre: any; }) => {
+          if(element.doctorId){
+            element.id = element.doctorId;
+          }if (element.doctorNombre) {
+            element.nombre = element.doctorNombre;
+          }
+        });
+        console.log(this.doctors)
       },
         error => {
           console.error(error);
         }
       );
-      this.doctorService.countDoctors().subscribe(resp => {
+      this.doctorEspecialidadService.countDoctorByEspecialidad(this.speciality).subscribe(resp => {
         this.doctors_length = resp;
   
       },

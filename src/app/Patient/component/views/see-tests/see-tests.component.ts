@@ -114,12 +114,10 @@ export class SeeTestsComponent implements OnInit, AfterViewInit {
         )))
       .subscribe(data => {
         if (data == undefined) {
-          console.log("error");
           this.errorMsg = "Error";
           this.filteredTipoExamen = []
 
         } else {
-          console.log(data);
           this.errorMsg = ""
           this.filteredTipoExamen = data;
         }

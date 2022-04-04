@@ -42,8 +42,8 @@ export class CitaService extends ExceptionHandlerApi{
         return this.http.get(this.apiServerUrl+'/filter/upcoming/'+id+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
 
-    public getWeekCitas(id:any):Observable<any> {
-        return this.http.get(this.apiServerUrl+'/filter/week/'+id).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    public getWeekCitas(id:any, semana:any):Observable<any> {
+        return this.http.get(this.apiServerUrl+'/filter/week/'+id+'/'+semana).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
 
     public getRecordCitas(id:any,page:any):Observable<any> {
