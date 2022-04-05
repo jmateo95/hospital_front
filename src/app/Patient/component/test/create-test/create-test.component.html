@@ -11,7 +11,7 @@
 
             <mat-form-field appearance="outline">
               <mat-label>Selecciona una fecha</mat-label>
-              <input matInput [matDatepicker]="picker" [(ngModel)]="examen_save.fecha" name="fecha">
+              <input required matInput  [matDatepicker]="picker" [(ngModel)]="examen_save.fecha" [min]="examen_save.fecha" name="fecha">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>

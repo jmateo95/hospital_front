@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { CalendarOptions, EventApi } from '@fullcalendar/angular';
+import { Calendar, CalendarOptions, EventApi, FullCalendarComponent } from '@fullcalendar/angular';
 import esLocale from '@fullcalendar/core/locales/es';
 import { MatSidenav } from '@angular/material/sidenav';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
@@ -15,6 +15,8 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSidenav)
   calendarnav!: MatSidenav;
 
+  @ViewChild('fullcalendar') fullcalendar: FullCalendarComponent;
+  
   events: any[] = [];
   tests: any;
   appointments: any;
@@ -34,6 +36,7 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.id = this.userService.getUserId();
+    this.loadEventsBack();
 
 
   }
@@ -46,7 +49,7 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
         this.appointments = response;
         this.appointments.forEach((element: { especialidad: { nombre: string; }; fecha: string; hora: string; }) => {
           let aux = JSON.parse('{"title":"Cita ' + element.especialidad.nombre + '","start":"' + element.fecha + 'T' + element.hora + '","end":"' + element.fecha + '"}');
-          this.events.push(aux)          
+          this.events.push(aux)
         });
       },
       (error) => {
@@ -74,7 +77,9 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
         locale: esLocale,
         events: this.events
       }
-    }, 200);
+      this.fullcalendar.getApi().refetchEvents();
+  }, 500);
+
   }
 
   loadEventsPrev() {
@@ -95,7 +100,6 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-    this.loadEventsBack();
     var botonToday = document.getElementsByClassName("fc-today-button");
     if (botonToday) {
       botonToday[0].addEventListener('click', (e) => {
