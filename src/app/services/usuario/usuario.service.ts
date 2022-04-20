@@ -9,7 +9,7 @@ import { environment } from "src/environments/environment";
   providedIn: 'root'
 })
 export class UsuarioService {
-  private API_SERVER = environment.apiBaseUrl+"/usuario";
+  private API_SERVER = environment.MicroSession+"/usuario";
   constructor(private httpClient: HttpClient) { }
 
   setUser(user: any) {
