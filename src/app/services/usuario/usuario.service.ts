@@ -10,7 +10,7 @@ import { environment } from "src/environments/environment";
 })
 export class UsuarioService {
   private API_SERVER = environment.apiBaseUrl+"/usuario";
-  constructor(private cookies: CookieService, private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   setUser(user: any) {
     localStorage.setItem('id_user', user.id);

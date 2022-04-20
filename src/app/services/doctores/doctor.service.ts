@@ -14,7 +14,6 @@ export class DoctorService extends ExceptionHandlerApi {
   private API_SERVER = environment.apiBaseUrl+"/Doctor";
   constructor(
     private httpClient: HttpClient,
-    private especialidadDoctor: EspecialidadDoctorService
   ) {
     super()
   }
