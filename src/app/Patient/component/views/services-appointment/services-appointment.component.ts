@@ -16,13 +16,9 @@ export class ServicesAppointmentComponent implements OnInit {
   hidepicture = false;
   filtroFecha!: FormGroup;
   tipoEspecialidad:any;
-   
-  cards = [
-    { name: 'Pediatria', cost: 'Q. 350' },
-    { name: 'Odontologia', cost: 'Q. 150' },
-    { name: 'Ginecologia', cost: 'Q. 180' },
-    { name: 'Medicina General', cost: 'Q. 260' }
-  ];
+  especialidad_length: any;
+  especialidadN="";
+  costo="";
   constructor(
     private observer: BreakpointObserver, 
     private route:ActivatedRoute,
@@ -45,8 +41,15 @@ export class ServicesAppointmentComponent implements OnInit {
     });
 
     this.especialidad.getEspecialidades().subscribe(resp => {
-      console.log(resp.content);
       this.tipoEspecialidad = resp.content;
+
+    },
+      error => {
+        console.error(error);
+      }
+    );
+    this.especialidad.countAll().subscribe(resp => {
+      this.especialidad_length = resp;
 
     },
       error => {
@@ -55,6 +58,25 @@ export class ServicesAppointmentComponent implements OnInit {
     );
 
     
+  }
+
+  filtrar(){
+    this.especialidad.filter(this.especialidadN,this.costo).subscribe(resp => {
+      this.tipoEspecialidad = resp.content;
+
+    },
+      error => {
+        console.error(error);
+      }
+    );
+    this.especialidad.count(this.especialidadN,this.costo).subscribe(resp => {
+      this.especialidad_length = resp;
+
+    },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
   ngAfterViewInit() {

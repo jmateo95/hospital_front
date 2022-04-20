@@ -1,4 +1,4 @@
-<mat-grid-list [cols]="breakpoint" rowHeight="fit" style="height: 80vh;" >
+<mat-grid-list [cols]="breakpoint" rowHeight="fit" style="height: 80vh;" *ngIf="usuario">
     <mat-grid-tile [colspan]="breakpoint" rowspan="1" >
             <div class="d-flex justify-content-between greeting-card content mat-elevation-z8">
                 <div class="greeting">
@@ -53,12 +53,12 @@
                 <img width="50rem" src="assets/img/icons/medicalappointment.png">
             </div>
             <div class="text-card">
-                <a routerLink="../appointment/see-all" style="text-decoration: none;">
+                <a routerLink="../services/upcoming/appointments" style="text-decoration: none;">
 
                     <span class="box">Proximas Consultas</span>
                   </a>
                 <br>
-                <label class="box2">2 </label>
+                <label class="box2">{{next_appoint}} </label>
 
             </div>
         </div>
@@ -69,12 +69,12 @@
                 <img width="50rem" src="assets/img/icons/tests.png">
             </div>
             <div class="text-card">
-                <a routerLink="../tests/see-all" style="text-decoration: none;">
+                <a routerLink="../services/upcoming/tests" style="text-decoration: none;">
 
                     <span class="box">Proximos Examenes</span>
                   </a>
                 <br>
-                <label class="box2">5 </label>
+                <label class="box2">{{next_test}} </label>
 
             </div>
         </div>

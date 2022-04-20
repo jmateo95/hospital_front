@@ -42,4 +42,12 @@ export class EspecialidadDoctorService extends ExceptionHandlerApi{
     }
   }
 
+  public finddoctorsByEspecialidad(id:any,page:any):Observable<any>{
+    return this.httpClient.get(this.API_SERVER+"/find/specialityP/"+id+"?page="+page);
+  }
+
+  public countDoctorByEspecialidad(id:any):Observable<any>{
+    return this.httpClient.get(this.API_SERVER+"/find/specialityCount/"+id)
+  }
+
 }

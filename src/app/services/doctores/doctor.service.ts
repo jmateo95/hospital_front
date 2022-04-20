@@ -21,6 +21,9 @@ export class DoctorService extends ExceptionHandlerApi {
   public getAllDoctor(): Observable<any> {
     return this.httpClient.get(this.API_SERVER);
   }
+  public getAllDoctorsP(page:any): Observable<any> {
+    return this.httpClient.get(this.API_SERVER+"?page="+page);
+  }
 
   public saveDoctor(doctor: any): Observable<any> {
     return this.httpClient.post(this.API_SERVER, doctor);
@@ -34,8 +37,11 @@ export class DoctorService extends ExceptionHandlerApi {
     return this.httpClient.put(this.API_SERVER, doctor)
   }
 
+  public countDoctors(): Observable<any> {
+    return this.httpClient.get(this.API_SERVER+"/count/", )
+  }
+
   public filterDoctor(doctor: any, especialidad: any): Observable<any> {
-    console.log(especialidad)
     if (especialidad != null) {
       if (doctor == "") {
         doctor = "%20";

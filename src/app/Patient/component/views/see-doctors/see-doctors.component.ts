@@ -1,8 +1,11 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
-import { delay, map, startWith } from 'rxjs/operators';
+import { debounceTime, delay, finalize, map, startWith, switchMap, tap } from 'rxjs/operators';
+import { EspecialidadesService } from 'src/app/services/especialidades/especialidades.service';
+import { EspecialidadDoctorService } from 'src/app/services/especialidad_doctor/especialidad-doctor.service';
 import { DoctorService } from '../../../../services/doctores/doctor.service'
 
 @Component({
@@ -13,29 +16,34 @@ import { DoctorService } from '../../../../services/doctores/doctor.service'
 export class SeeDoctorsComponent implements OnInit {
   breakpoint = 3;
   hidepicture = false;
-  filtroFecha = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl()
-  });
+  doctor_id = null;
+  start_date = null;
+  end_date = null;
   doctors:any;
-  constructor(private observer: BreakpointObserver, private doctorService: DoctorService) {
-    const today = new Date();
-    const month = today.getMonth();
-    const year = today.getFullYear();
+  filtroFecha!: FormGroup;
+  filteredDoctores: any;
+  doctorFilter = new FormControl();
+  doctors_length: number;
+  speciality :any;
+  filteredEspecialidades: any;
+  especialidadFilter = new FormControl();
 
-    this.filtroFecha = new FormGroup({
-      start: new FormControl(new Date(year, month, 13)),
-      end: new FormControl(new Date(year, month, 16)),
-    });
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
 
+  constructor(
+    private observer: BreakpointObserver, 
+    private doctorService: DoctorService,
+    private especialidadService: EspecialidadesService,
+    private doctorEspecialidadService: EspecialidadDoctorService) {
+ 
 
   }
 
 
 
   ngOnInit() {
-    this.doctorService.getAllDoctor().subscribe(resp => {
-      console.log(resp.content);
+    this.doctorService.getAllDoctorsP(this.paginator?.pageIndex ?? 0).subscribe(resp => {
       this.doctors = resp.content;
 
     },
@@ -43,7 +51,126 @@ export class SeeDoctorsComponent implements OnInit {
         console.error(error);
       }
     );
+    this.doctorService.countDoctors().subscribe(resp => {
+      this.doctors_length = resp;
 
+    },
+      error => {
+        console.error(error);
+      }
+    );
+
+    this.doctorFilter.valueChanges.pipe(
+      debounceTime(50),
+      tap(() => {
+        this.filteredDoctores = [];
+      }),
+      switchMap(value =>
+        this.doctorService.filterDoctor(value, this.doctor_id).pipe(
+          finalize(() => {
+          }),
+        )))
+      .subscribe(data => {
+        if (data == undefined) {
+          this.filteredDoctores = []
+        } else {
+          this.filteredDoctores = data;
+        }
+      }
+      )
+      this.especialidadFilter.valueChanges.pipe(
+        debounceTime(50),
+        tap(() => {
+          this.filteredEspecialidades = [];
+          
+        }),
+        switchMap(value =>
+          this.especialidadService.filterEspecialidad(this.doctor_id,value).pipe(
+            finalize(() => {
+            }),
+          )))
+        .subscribe(data => {
+          if (data == undefined) {
+            this.filteredEspecialidades = []
+  
+          } else {
+            data.forEach((element: any) => {
+              if(element.nombre==undefined){
+                element.nombre = element.especialidadNombre;
+              }
+              if(element.id==undefined){
+                element.id = element.especialidadId;
+              }
+              });
+            this.filteredEspecialidades = data;
+          }
+        }
+        )
+  }
+
+  filtrar(){
+    if(this.doctor_id!=null && this.speciality==null){
+      this.doctorService.getDoctorId(this.doctor_id).subscribe(resp => {
+        this.doctors = [];
+        this.doctors.push(resp)
+        this.doctors_length = 1;
+  
+      },
+        error => {
+          console.error(error);
+        }
+      );
+    }else if(this.doctor_id==null && this.speciality!=null){
+      this.doctorEspecialidadService.finddoctorsByEspecialidad(this.speciality,this.paginator?.pageIndex ?? 0).subscribe(resp => {
+        this.doctors = resp.content;
+        
+        this.doctors.forEach((element: { doctorId: any; id: any; doctorNombre: any; nombre: any; }) => {
+          if(element.doctorId){
+            element.id = element.doctorId;
+          }if (element.doctorNombre) {
+            element.nombre = element.doctorNombre;
+          }
+        });
+        console.log(this.doctors)
+      },
+        error => {
+          console.error(error);
+        }
+      );
+      this.doctorEspecialidadService.countDoctorByEspecialidad(this.speciality).subscribe(resp => {
+        this.doctors_length = resp;
+  
+      },
+        error => {
+          console.error(error);
+        }
+      );
+
+    }else{
+      this.doctorService.getAllDoctorsP(this.paginator?.pageIndex ?? 0).subscribe(resp => {
+        this.doctors = resp.content;
+      },
+        error => {
+          console.error(error);
+        }
+      );
+      this.doctorService.countDoctors().subscribe(resp => {
+        this.doctors_length = resp;
+  
+      },
+        error => {
+          console.error(error);
+        }
+      );
+    }
+  }
+
+  updateIdDoctor(id: any) {
+    this.doctor_id = id;
+  }
+
+  updateIdEspecialidad(id: any) {
+    this.speciality = id;
   }
 
   ngAfterViewInit() {

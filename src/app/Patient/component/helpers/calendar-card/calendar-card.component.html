@@ -12,8 +12,9 @@
 
    
             <div class='demo-app-main'>
-              <full-calendar style="height: 300px;"
-                *ngIf='calendarVisible'
+              <full-calendar  style="height: 300px;"
+              #fullcalendar  
+              *ngIf='calendarVisible'
                 [options]='calendarOptions'
               ></full-calendar>
             </div>

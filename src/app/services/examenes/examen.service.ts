@@ -48,6 +48,11 @@ export class ExamenService extends ExceptionHandlerApi{
             .get(this.apiServerUrl+'/filter/upcoming/'+id+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);
     }
 
+    public getWeekTest(id:any,semana:any):Observable<any> {
+        return this.http
+            .get(this.apiServerUrl+'/filter/week/'+id+'/'+semana).pipe(catchError(err => this.errorHandler(err,'ver')),);
+    }
+
     public getRecordTest(id:any,page:any):Observable<any> {
         return this.http
             .get(this.apiServerUrl+'/filter/records/'+id+'?page='+page).pipe(catchError(err => this.errorHandler(err,'ver')),);

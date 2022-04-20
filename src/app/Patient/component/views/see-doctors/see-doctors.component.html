@@ -11,44 +11,66 @@
               <div class="col-md-6 col-sm-12">
                 <mat-form-field appearance="outline">
                   <mat-label>Doctor</mat-label>
-                  <input type="text" placeholder="Escriba uno" aria-label="Doctor" matInput
-                   >
-
+                  <input  type="text" placeholder="Seleccione uno" aria-label="Doctor" matInput
+                  [formControl]="doctorFilter" (change)="updateIdDoctor(null)"    [matAutocomplete]="autoDoctor">
+                  <mat-autocomplete autoActiveFirstOption #autoDoctor="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredDoctores" (onSelectionChange)="updateIdDoctor(option.id)" [value]="option.nombre">
+                      {{option.nombre}}
+                    </mat-option>
+                  </mat-autocomplete>
+  
                 </mat-form-field>
               </div>
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <mat-form-field  appearance="outline" style="width: 100%;">
                   <mat-label>Fecha</mat-label>
                   <mat-date-range-input [formGroup]="filtroFecha" [rangePicker]="campaignOnePicker">
-                    <input matStartDate placeholder="Start date" formControlName="start">
-                    <input matEndDate placeholder="End date" formControlName="end">
+                    <input matStartDate placeholder="Start date" [(ngModel)]="start_date" name="start_date">
+                    <input matEndDate placeholder="End date" [(ngModel)]="end_date" name="end_date">
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
                   <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
                 </mat-form-field>
-              </div>
+              </div> -->
               <div class="col-md-6">
-                <mat-form-field  appearance="outline">
-                <mat-label>Especialidad</mat-label>
-                <input type="text" placeholder="Escriba" aria-label="Especialidad" matInput 
-                   >
- 
-              </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Especialidad</mat-label>
+                  <input  type="text" placeholder="Seleccione una" aria-label="Especialidad" matInput
+                    [formControl]="especialidadFilter" (change)="updateIdEspecialidad(null)"  [matAutocomplete]="autoEspecialidad">
+                    <mat-autocomplete autoActiveFirstOption #autoEspecialidad="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredEspecialidades "  (onSelectionChange)="updateIdEspecialidad(option.id)" [value]="option.nombre">
+                        {{option.nombre}}
+                      </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
             </div>
             </div>
 
-
+            <button mat-stroked-button [hidden]="hidepicture" color="primary" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight" data-bs-backdrop="false" aria-controls="offcanvasRight"><i
+              class="fal fa-calendar-alt"></i> Calendario</button>
+          <button mat-stroked-button style="margin-left: 2px;" [hidden]="hidepicture" color="primary"
+           
+          (click)="filtrar()" ><i class="fal fa-filter"></i> Filtrar</button>
             
           </div>
           <div class="col-4" style="align-self: center;" [hidden]="hidepicture">
             <img width="200rem" src="assets/img/Doctors.png">
           </div>
+          
         </div>
+        
 
       </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list [cols]="breakpoint" rowHeight="10rem">
       <mat-grid-tile *ngFor="let card of doctors">
         <app-doctor-card [pacient]="true" id="{{card.id}}" [doctor]="card" ></app-doctor-card>
       </mat-grid-tile>
+      <mat-grid-tile [colspan]="breakpoint" >
+        <mat-paginator [length]="doctors_length" [pageSize]="6">
+        </mat-paginator>
+      </mat-grid-tile>  
     </mat-grid-list>
   </div>
 </div>

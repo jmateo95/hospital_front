@@ -1,7 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ToastrService } from 'ngx-toastr';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { PatientService } from '../../../services/pacientes/Patient.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,7 +16,11 @@ export class EditProfileComponent implements OnInit {
   usuario:any;
   formatYmd = (date: { toISOString: () => string | any[]; }) => date.toISOString().slice(0, 10);
 
-  constructor(private location:Location,private userService: UsuarioService) { }
+  constructor(
+    private location:Location,
+    private userService: UsuarioService,
+    private patientService: PatientService,
+    private toastrSvc:ToastrService) { }
 
   ngOnInit(): void {
     var id = this.userService.getUserId();
@@ -30,6 +36,17 @@ export class EditProfileComponent implements OnInit {
 
   back(): void {
     this.location.back()
+  }
+
+  editPatient(){
+    this.patientService.updatePatient(this.usuario).subscribe(
+      response =>{
+        this.toastrSvc.success(`Actualizacion Exitosa`);
+      },
+      error =>{
+        this.toastrSvc.error(`No se pudo realizar la actualizacion`);
+      }
+    )
   }
 }
 export const MY_FORMATS = {

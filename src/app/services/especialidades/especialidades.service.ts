@@ -60,12 +60,50 @@ export class EspecialidadesService extends ExceptionHandlerApi {
 
    public getEspecialidades(): Observable<any> {
     return this.httpClient
-      .get(this.API_SERVER).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"?page=0&size=6").pipe(catchError(err => this.errorHandler(err, 'ver')),);
   }
 
   public getEspecialidad(id: any): Observable<any> {
     return this.httpClient
       .get(this.API_SERVER + '/' + id).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+  }
+
+
+  public countAll(): Observable<any> {
+    return this.httpClient.get(this.API_SERVER+"/count");
+  }
+
+
+
+  public filter(especialidad:any,cost:any): Observable<any>{
+    if (especialidad!="" && cost!="") {
+      return this.httpClient
+      .get(this.API_SERVER+"/filterbynameandcost/"+especialidad+"/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+    }else if(especialidad!=""){
+      return this.httpClient
+      .get(this.API_SERVER+"/filterbyname/"+especialidad).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+    }else if(cost!=""){
+      return this.httpClient
+      .get(this.API_SERVER+"/filterbycost/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+    }else{
+      return this.httpClient
+      .get(this.API_SERVER+"?page=0&size=6").pipe(catchError(err => this.errorHandler(err, 'ver')),);
+    }
+  }
+
+  public count(especialidad:any,cost:any): Observable<any>{
+    if (especialidad!="" && cost!="") {
+      return this.httpClient
+      .get(this.API_SERVER+"/count/filterbynameandcost/"+especialidad+"/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+    }else if(especialidad!=""){
+      return this.httpClient
+      .get(this.API_SERVER+"/count/filterbyname/"+especialidad).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+    }else  if(cost!=""){
+      return this.httpClient
+      .get(this.API_SERVER+"/count/filterbycost/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+    }else{
+      return this.httpClient.get(this.API_SERVER+"/count");
+    }
   }
 
 }
