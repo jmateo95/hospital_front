@@ -30,6 +30,7 @@ export class CreateAppointmentComponent implements OnInit {
   errorMsg: string;
   isLoading = false;
   cita_save = new Cita();
+  fecha_min = new Date();
 
   constructor(
     private user: UsuarioService,

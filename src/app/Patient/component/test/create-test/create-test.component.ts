@@ -27,6 +27,7 @@ export class CreateTestComponent implements OnInit {
   ordenpdf = true;
   ordenimg = true;
   orden = false;
+  fecha_min = new Date();
 
 
   private apiServerUrl = environment.apiBaseUrl+"/Files/upload/ordenTest";
