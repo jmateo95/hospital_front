@@ -6,9 +6,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MaterialModule } from '../../material/material.module';
 import { UsuarioService } from './usuario.service';
+import { of, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('UsuarioService', () => {
   let service: UsuarioService;
+  let httpClientSpy: { post: jasmine.Spy };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -23,9 +26,83 @@ describe('UsuarioService', () => {
       ],
     });
     service = TestBed.inject(UsuarioService);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
+    service = new UsuarioService(httpClientSpy as any);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it ('Revisar el get usuario', ()=>{
+    localStorage.setItem('id_user', '1');
+    expect(service.getUserId()).toEqual('1');   
+  });
+
+  it ('Revisar el get rol', ()=>{
+    localStorage.setItem('id_rol', '1');
+    expect(service.getRolId()).toEqual('1');   
+  });
+
+
+  it ('Revisar login', (done: DoneFn)=>{
+
+    const mockUserCredentials = {
+      "email": "admin@admin.com",
+      "password": "1234"
+    }
+
+    const mockResultLogin = {
+      "id": 1,
+      "nombre": "Administrador",
+      "codigo": "ADMIN1",
+      "email": "admin@admin.com",
+      "password": "$2a$10$1fD84mhSCniXN5bpQnV5SusvxadcG9ngqdTrOKsj8mDKfukGbtJmq",
+      "dpi": 12345,
+      "rol": {
+        "id": 1,
+        "nombre": "Admin",
+        "descripcion": "Administrador del sistema"
+      }
+    }
+
+    httpClientSpy.post.and.returnValue(of(mockResultLogin))
+
+
+    service.Login(mockUserCredentials)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(mockResultLogin)
+        done()
+      })
+
+    
+  });
+
+
+  it(`Error usuario invalido 409`, (done: DoneFn) => {
+    //TODO: Mock de datos!
+
+    const mockUserCredentials = {
+      email: 'admin1@admin1.com',
+      password: ''
+    }
+
+    const error409 = new HttpErrorResponse({
+      error: "Invalid user",
+      status: 409, statusText: 'Not Found'
+    });
+
+    httpClientSpy.post.and.returnValue(throwError(error409))
+    service.Login(mockUserCredentials)
+      .subscribe(res => {
+
+      },
+        error => {
+          expect(error.status).toEqual(409);
+          done()
+        })
+  })
+
+
+
 });
