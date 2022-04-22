@@ -11,7 +11,8 @@ import { ExceptionHandlerApi } from "../../exception/exception";
 })
 
 export class ExamenService extends ExceptionHandlerApi{
-    private apiServerUrl = environment.apiBaseUrl+"/Examen";
+
+    private apiServerUrl = environment.MicroCita+"/Examen";
 
     constructor(private http: HttpClient) {
         super()

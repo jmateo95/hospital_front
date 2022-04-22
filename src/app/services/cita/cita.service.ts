@@ -11,7 +11,8 @@ import { ExceptionHandlerApi } from "../../exception/exception";
 })
 
 export class CitaService extends ExceptionHandlerApi{
-    private apiServerUrl = environment.apiBaseUrl+"/Cita";
+
+    private apiServerUrl = environment.MicroCita+"/Cita";
 
     constructor(private http: HttpClient) {
         super()
