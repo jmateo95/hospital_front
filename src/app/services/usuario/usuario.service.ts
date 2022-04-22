@@ -9,8 +9,8 @@ import { environment } from "src/environments/environment";
   providedIn: 'root'
 })
 export class UsuarioService {
-  private API_SERVER = environment.apiBaseUrl+"/usuario";
-  constructor(private cookies: CookieService, private httpClient: HttpClient) { }
+  private API_SERVER = environment.MicroSession+"/usuario";
+  constructor(private httpClient: HttpClient) { }
 
   setUser(user: any) {
     localStorage.setItem('id_user', user.id);
