@@ -6,9 +6,9 @@ export const environment = {
   production: false,
 
   apiBaseUrl: 'http://localhost:8080',
-  MicroSession: 'http://localhost:8080',
-  MicroEntities: 'http://localhost:8081',
-  MicroCita: 'http://localhost:8090',
+  MicroSession: 'http://38e9-181-209-236-59.ngrok.io',
+  MicroEntities: 'https://7733-190-148-50-128.ngrok.io',
+  MicroCita: 'http://202a-186-151-158-83.ngrok.io',
 };
 
 /*
