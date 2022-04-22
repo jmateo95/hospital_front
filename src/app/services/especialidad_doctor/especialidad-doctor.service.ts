@@ -8,8 +8,8 @@ import { environment } from "src/environments/environment";
   providedIn: 'root'
 })
 export class EspecialidadDoctorService extends ExceptionHandlerApi{
-  private API_SERVER = environment.apiBaseUrl+"/DoctorEspecialidad";
-  private API_SERVER1 = environment.apiBaseUrl;
+  private API_SERVER = environment.MicroEntities+"/DoctorEspecialidad";
+  private API_SERVER1 = environment.MicroEntities;
 
   constructor(
     private httpClient: HttpClient,

@@ -11,8 +11,8 @@ import { environment } from "src/environments/environment";
 })
 export class EspecialidadesService extends ExceptionHandlerApi {
 
-  private API_SERVER = environment.apiBaseUrl+"/Especialidad";
-  private API_SERVER1 = environment.apiBaseUrl;
+  private API_SERVER = environment.MicroEntities+"/Especialidad";
+  private API_SERVER1 = environment.MicroEntities;
   constructor(
     private httpClient: HttpClient) {
     super()

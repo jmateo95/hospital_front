@@ -9,7 +9,7 @@ import { environment } from "src/environments/environment";
 })
 export class LaboratoristaService {
 
-  private API_SERVER = environment.apiBaseUrl+"/Laboratorista"
+  private API_SERVER = environment.MicroEntities+"/Laboratorista"
   constructor(
     private httpClient: HttpClient
   ) { }

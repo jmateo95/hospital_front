@@ -9,7 +9,7 @@ import { environment } from "src/environments/environment";
 })
 export class TipoExamenService extends ExceptionHandlerApi {
 
-  private API_SERVER = environment.apiBaseUrl+"/tipo-examen"
+  private API_SERVER = environment.MicroEntities+"/tipo-examen"
   constructor(
     private httpClient: HttpClient
   ) { 

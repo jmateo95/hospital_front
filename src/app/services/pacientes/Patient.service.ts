@@ -11,7 +11,7 @@ import { ExceptionHandlerApi } from "../../exception/exception";
 })
 
 export class PatientService extends ExceptionHandlerApi{
-    private apiServerUrl = environment.apiBaseUrl;
+    private apiServerUrl = environment.MicroEntities;
 
     constructor(private http: HttpClient) {
         super()

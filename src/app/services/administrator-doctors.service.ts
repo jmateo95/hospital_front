@@ -6,7 +6,7 @@ import { environment } from "src/environments/environment";
   providedIn: 'root'
 })
 export class AdministratorDoctorsService {
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.MicroEntities;
 
   constructor(private http: HttpClient) {
     console.log("Servicio http administrador-doctor")

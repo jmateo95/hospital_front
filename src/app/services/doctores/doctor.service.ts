@@ -11,7 +11,7 @@ import { environment } from "src/environments/environment";
 
 
 export class DoctorService extends ExceptionHandlerApi {
-  private API_SERVER = environment.apiBaseUrl+"/Doctor";
+  private API_SERVER = environment.MicroEntities+"/Doctor";
   constructor(
     private httpClient: HttpClient,
   ) {
