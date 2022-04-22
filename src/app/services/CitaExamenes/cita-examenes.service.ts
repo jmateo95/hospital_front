@@ -8,7 +8,7 @@ import { environment } from "src/environments/environment";
 })
 export class CitaExamenesService {
 
-  private API_SERVER = environment.apiBaseUrl+"/Examen";
+  private API_SERVER = environment.MicroCita+"/Examen";
   constructor( private httpClient: HttpClient) { }
 
   public saveAppimentTest(test:any): Observable<any>{

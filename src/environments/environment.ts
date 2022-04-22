@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://1baa-186-151-158-25.ngrok.io'
+  apiBaseUrl: 'http://localhost:8080',
+  MicroCita: 'http://localhost:8090'
 };
 
 /*

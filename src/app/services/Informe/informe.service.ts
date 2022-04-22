@@ -8,7 +8,7 @@ import { environment } from "src/environments/environment";
 })
 export class InformeService {
 
-  private API_SERVER = environment.apiBaseUrl+"/informe";
+  private API_SERVER = environment.MicroCita+"/informe";
   constructor( private httpClient: HttpClient) { }
 
   public saveReport(informe:any): Observable<any>{
