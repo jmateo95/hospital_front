@@ -103,4 +103,8 @@ export class CitaService extends ExceptionHandlerApi{
         return this.http.get<any>(`${this.apiServerUrl}/pacientecosto/${start}/${end}`);
     }
 
+    public getDoctorCosto(start:any,end:any): Observable<any>{        
+        return this.http.get<any>(`${this.apiServerUrl}/doctorcosto/${start}/${end}`);
+    }
+
 }
