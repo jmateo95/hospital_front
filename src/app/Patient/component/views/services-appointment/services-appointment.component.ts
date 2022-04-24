@@ -1,8 +1,9 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
-import { delay } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
 import { EspecialidadesService } from 'src/app/services/especialidades/especialidades.service';
 
 @Component({
@@ -27,7 +28,8 @@ export class ServicesAppointmentComponent implements OnInit {
   
     
   }
-
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
 
 
   ngOnInit() {
@@ -40,7 +42,7 @@ export class ServicesAppointmentComponent implements OnInit {
       end: new FormControl(new Date(year, month, 16)),
     });
 
-    this.especialidad.getEspecialidades().subscribe(resp => {
+    this.especialidad.getEspecialidades(this.paginator?.pageIndex ?? 0).subscribe(resp => {
       this.tipoEspecialidad = resp.content;
 
     },
@@ -61,7 +63,7 @@ export class ServicesAppointmentComponent implements OnInit {
   }
 
   filtrar(){
-    this.especialidad.filter(this.especialidadN,this.costo).subscribe(resp => {
+    this.especialidad.filter(this.especialidadN,this.costo,this.paginator?.pageIndex ?? 0).subscribe(resp => {
       this.tipoEspecialidad = resp.content;
 
     },
@@ -80,6 +82,13 @@ export class ServicesAppointmentComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.paginator.page.
+    pipe(
+      tap(() => {
+        this.filtrar()
+      }
+      ))
+    .subscribe();
     this.observer
       .observe(['(min-width: 1200px)'])
       .pipe(delay(1))

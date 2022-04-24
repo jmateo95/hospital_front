@@ -40,14 +40,14 @@ export class TipoExamenService extends ExceptionHandlerApi {
     return this.httpClient.get(this.API_SERVER+"/count");
   }
 
-  public getTiposExamen(): Observable<any>{
+  public getTiposExamen(page:any): Observable<any>{
     return this.httpClient
-      .get(this.API_SERVER+"?page=0&size=6").pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe(catchError(err => this.errorHandler(err, 'ver')),);
   }
 
 
 
-  public filter(tipoExamen:any,cost:any): Observable<any>{
+  public filter(tipoExamen:any,cost:any,page:any): Observable<any>{
     console.log(tipoExamen)
     if (tipoExamen!="" && cost!="") {
       return this.httpClient
@@ -60,7 +60,7 @@ export class TipoExamenService extends ExceptionHandlerApi {
       .get(this.API_SERVER+"/filterbycost/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
     }else{
       return this.httpClient
-      .get(this.API_SERVER+"?page=0&size=6").pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe(catchError(err => this.errorHandler(err, 'ver')),);
     }
   }
 

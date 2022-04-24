@@ -9,7 +9,7 @@
                         <button mat-raised-button color="primary" (click)="back()" >Regresar</button>
                     </div>
         </div>
-        <mat-tab-group class="col-md-8"  >
+        <mat-tab-group class="col-md-8" dynamicHeight >
             <mat-tab label="Descripcion" *ngIf="isExam===false">
                 <div class="contenido" *ngIf="dataInformation!==undefined">
                     <div class="p-3 py-5">
@@ -92,6 +92,12 @@
                     </div>
                 </div>
             </mat-tab>
+            <mat-tab label="Informe" *ngIf="isExam===false" >
+                <div class="example-large-box mat-elevation-z4">
+                    <p> {{informe}}</p>
+                  </div>
+                    
+            </mat-tab>
             <mat-tab label="Archivos" >
                 <div class="contenido" style="padding: 2rem;">
 
@@ -128,6 +134,7 @@
 
                 </div>
             </mat-tab>
+            
         </mat-tab-group>
 
     </div>

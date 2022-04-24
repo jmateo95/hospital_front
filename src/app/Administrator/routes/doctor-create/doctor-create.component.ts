@@ -3,7 +3,7 @@ import { FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import {FormControl, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
-import { DoctorService } from '../../../services/doctores/doctor.service'
+import { DoctorService } from '../../../services/doctores/doctor.service';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { Router} from '@angular/router';

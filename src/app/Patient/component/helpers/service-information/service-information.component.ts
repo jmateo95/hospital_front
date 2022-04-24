@@ -6,6 +6,7 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mat
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ExamenService } from 'src/app/services/examenes/examen.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { InformeService } from 'src/app/services/Informe/informe.service';
 
 @Component({
   selector: 'app-service-information',
@@ -20,6 +21,7 @@ export class ServiceInformationComponent implements OnInit {
   data: Files[] = []
   dataSource:any;
   dataInformation: any;
+  informe:any;
   cita = true;
   navigationSubscription;
   index = 1;
@@ -29,6 +31,7 @@ export class ServiceInformationComponent implements OnInit {
     private location: Location,
     private citaService: CitaService,
     private examenService: ExamenService,
+    private informeService: InformeService,
     private router: Router) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -50,6 +53,17 @@ export class ServiceInformationComponent implements OnInit {
           console.error(error);
         }
       );
+      this.informeService.getInformeCita(this.id).subscribe(resp => {
+        if(resp){
+          if(resp.descripcion){
+            this.informe = resp.descripcion
+          }
+        }
+      },
+        error => {
+          console.error(error);
+        }
+      );
     } else {
       this.type = 'Examen';
       this.isExam = true;
@@ -66,6 +80,7 @@ export class ServiceInformationComponent implements OnInit {
           console.error(error);
         }
       );
+      
     }
   }
 

@@ -8,7 +8,7 @@ import { environment } from "src/environments/environment";
 })
 export class UploadFilesService {
 
-  baseUrl = environment.apiBaseUrl;
+  baseUrl = environment.MicroCita;
 
   constructor(private http: HttpClient) { }
 
