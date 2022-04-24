@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { delay } from 'rxjs/operators';
 import { TipoExamenService } from 'src/app/services/tipoExamenes/tipo-examenes.service';
@@ -33,11 +34,12 @@ export class ServicesTestComponent implements OnInit {
     
   }
 
-
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
 
   ngOnInit() {
 
-    this.tipoExamenesService.getTiposExamen().subscribe(resp => {
+    this.tipoExamenesService.getTiposExamen(this.paginator?.pageIndex ?? 0).subscribe(resp => {
       this.tipoExamenes = resp.content;
       this.tipoExamenes.forEach((element: { orden: any; orden_:any }) => {
         if(element.orden){
@@ -63,7 +65,7 @@ export class ServicesTestComponent implements OnInit {
   }
 
   filtrar(){
-    this.tipoExamenesService.filter(this.testN,this.costo).subscribe(resp => {
+    this.tipoExamenesService.filter(this.testN,this.costo,this.paginator?.pageIndex ?? 0).subscribe(resp => {
       this.tipoExamenes = resp.content;
       this.tipoExamenes.forEach((element: { orden: any; orden_:any }) => {
         if(element.orden){

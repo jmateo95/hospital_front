@@ -78,7 +78,7 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
         events: this.events
       }
       this.fullcalendar.getApi().refetchEvents();
-  }, 500);
+  }, 1000);
 
   }
 

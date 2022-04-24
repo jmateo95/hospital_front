@@ -13,5 +13,9 @@ export class InformeService {
 
   public saveReport(informe:any): Observable<any>{
     return this.httpClient.post(this.API_SERVER, informe);
-  }  
+  }
+    
+  public getInformeCita(id:any): Observable<any>{
+    return this.httpClient.get(this.API_SERVER+"/Cita/"+id)
+  }
 }

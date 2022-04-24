@@ -58,9 +58,9 @@ export class EspecialidadesService extends ExceptionHandlerApi {
     return this.httpClient.delete(this.API_SERVER+"/"+id);
   }
 
-   public getEspecialidades(): Observable<any> {
+   public getEspecialidades(page:any): Observable<any> {
     return this.httpClient
-      .get(this.API_SERVER+"?page=0&size=6").pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe(catchError(err => this.errorHandler(err, 'ver')),);
   }
 
   public getEspecialidad(id: any): Observable<any> {
@@ -75,7 +75,7 @@ export class EspecialidadesService extends ExceptionHandlerApi {
 
 
 
-  public filter(especialidad:any,cost:any): Observable<any>{
+  public filter(especialidad:any,cost:any,page:any): Observable<any>{
     if (especialidad!="" && cost!="") {
       return this.httpClient
       .get(this.API_SERVER+"/filterbynameandcost/"+especialidad+"/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
@@ -87,7 +87,7 @@ export class EspecialidadesService extends ExceptionHandlerApi {
       .get(this.API_SERVER+"/filterbycost/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
     }else{
       return this.httpClient
-      .get(this.API_SERVER+"?page=0&size=6").pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe(catchError(err => this.errorHandler(err, 'ver')),);
     }
   }
 
