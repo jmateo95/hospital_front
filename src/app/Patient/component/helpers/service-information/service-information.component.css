@@ -185,7 +185,6 @@ input{
 }
 
 .example-small-box, .example-large-box {
-  display: flex;
   align-items: center;
   justify-content: center;
   margin: 16px;

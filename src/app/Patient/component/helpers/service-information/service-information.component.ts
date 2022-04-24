@@ -21,7 +21,7 @@ export class ServiceInformationComponent implements OnInit {
   data: Files[] = []
   dataSource:any;
   dataInformation: any;
-  informe:any;
+  informe:string[]=[];
   cita = true;
   navigationSubscription;
   index = 1;
@@ -55,9 +55,11 @@ export class ServiceInformationComponent implements OnInit {
       );
       this.informeService.getInformeCita(this.id).subscribe(resp => {
         if(resp){
-          if(resp.descripcion){
-            this.informe = resp.descripcion
-          }
+          resp.forEach((element: { descripcion: string; }) => {
+            if(element.descripcion){
+              this.informe.push(element.descripcion);
+            }
+          });          
         }
       },
         error => {
