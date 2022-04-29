@@ -39,4 +39,13 @@ describe('ConsEditComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Guardar Informacion',()=>{
+    component.especialidad.id=1;
+    component.saveForm()
+    expect(component.especialidadForm.value.id).toBe(1);
+
+  });
+
+
 });
