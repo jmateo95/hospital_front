@@ -6,10 +6,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from '../../../material/material.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { EspecialidadesService } from 'src/app/services/especialidades/especialidades.service';
 
 describe('ConsEditComponent', () => {
   let component: ConsEditComponent;
   let fixture: ComponentFixture<ConsEditComponent>;
+  let especialidadesService:EspecialidadesService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,6 +27,8 @@ describe('ConsEditComponent', () => {
       declarations: [ ConsEditComponent ]
     })
     .compileComponents();
+    especialidadesService = TestBed.inject(EspecialidadesService);
+
   });
 
   beforeEach(() => {
@@ -40,12 +44,24 @@ describe('ConsEditComponent', () => {
     expect(component).toBeTruthy();
   });
 
+
+
+
   it('Guardar Informacion',()=>{
     component.especialidad.id=1;
     component.saveForm()
     expect(component.especialidadForm.value.id).toBe(1);
 
   });
+
+
+  // it('Prueba void',()=>{
+  //   let spy=spyOn(especialidadesService, 'deleteEspecialidad').withArgs(1);
+  //   component.deleteespecialidad(1);
+  //   expect(spy).toHaveBeenCalled();
+  // });
+
+
 
 
 });

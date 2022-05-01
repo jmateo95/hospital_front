@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 describe('TipoExamenesService', () => {
   let service: TipoExamenService;
-  let httpClientSpy: { post: jasmine.Spy };
+  let httpClientSpy: { post: jasmine.Spy, get:jasmine.Spy, put:jasmine.Spy };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,7 +26,8 @@ describe('TipoExamenesService', () => {
       ],
     });
     service = TestBed.inject(TipoExamenService);
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
+    //httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
     service = new TipoExamenService(httpClientSpy as any);
   });
 
@@ -67,6 +68,101 @@ describe('TipoExamenesService', () => {
     
   });
 
+  it ('getAllTiposExamen', (done: DoneFn)=>{
+    const mockResultCreateTipoExamen = {
+      "id":1,
+      "nombre": "Urologia",
+      "costo": 150,
+      "orden": false,
+      "codigo": "EXA01",
+      "descripcion": "examen de urologia",
+      "formatoInforme": "si"
+    }
+    httpClientSpy.get.and.returnValue(of(mockResultCreateTipoExamen));
+    service.getAllTiposExamen()
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(mockResultCreateTipoExamen)
+        done()
+      })
+  });
+
+
+  
+
+  it ('filterTipoExamen', (done: DoneFn)=>{
+    const mockResultCreateTipoExamen = {
+      "id":1,
+      "nombre": "Urologia",
+      "costo": 150,
+      "orden": false,
+      "codigo": "EXA01",
+      "descripcion": "examen de urologia",
+      "formatoInforme": "si"
+    }
+    httpClientSpy.get.and.returnValue(of([mockResultCreateTipoExamen]));
+    service.filterTipoExamen('urologia')
+      .subscribe(resultado => { 
+        expect(resultado).toEqual([mockResultCreateTipoExamen])
+        done()
+      })
+  });
+
+
+
+  it ('filter', (done: DoneFn)=>{
+    const mockResultCreateTipoExamen = {
+      "id":1,
+      "nombre": "Urologia",
+      "costo": 150,
+      "orden": false,
+      "codigo": "EXA01",
+      "descripcion": "examen de urologia",
+      "formatoInforme": "si"
+    }
+    httpClientSpy.get.and.returnValue(of(mockResultCreateTipoExamen));
+    service.filter('urologia',1,1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(mockResultCreateTipoExamen)
+        done()
+      });
+    
+      service.filter('','10','10')
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(mockResultCreateTipoExamen)
+        done()
+      }
+      );
+  });
+
+
+  it ('count', (done: DoneFn)=>{
+    const mockResultCreateTipoExamen = {
+      "id":1,
+      "nombre": "Urologia",
+      "costo": 150,
+      "orden": false,
+      "codigo": "EXA01",
+      "descripcion": "examen de urologia",
+      "formatoInforme": "si"
+    }
+    httpClientSpy.get.and.returnValue(of(mockResultCreateTipoExamen));
+    service.count('urologia',1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(mockResultCreateTipoExamen)
+        done()
+      });
+    
+      service.count('','10')
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(mockResultCreateTipoExamen)
+        done()
+      }
+      );
+  });
+
+
+
+
 
   it(`Error al guardar el TipoExamen`, (done: DoneFn) => {
     //TODO: Mock de datos!
@@ -88,6 +184,13 @@ describe('TipoExamenesService', () => {
           expect(error.status).toEqual(409);
           done()
         })
-  })
+  });
+
+
+
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 
 });

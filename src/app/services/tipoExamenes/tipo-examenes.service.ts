@@ -33,7 +33,7 @@ export class TipoExamenService extends ExceptionHandlerApi {
   }
 
   public filterTipoExamen(name: string): Observable<any[]> {
-    return this.httpClient.get<any[]>(this.API_SERVER + '/findname/' + name).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+    return this.httpClient.get<any[]>(this.API_SERVER + '/findname/' + name).pipe();
   }
 
   public countAll(): Observable<any> {
@@ -42,7 +42,7 @@ export class TipoExamenService extends ExceptionHandlerApi {
 
   public getTiposExamen(page:any): Observable<any>{
     return this.httpClient
-      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe();
   }
 
 
@@ -51,29 +51,29 @@ export class TipoExamenService extends ExceptionHandlerApi {
     console.log(tipoExamen)
     if (tipoExamen!="" && cost!="") {
       return this.httpClient
-      .get(this.API_SERVER+"/filterbynameandcost/"+tipoExamen+"/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/filterbynameandcost/"+tipoExamen+"/"+cost).pipe();
     }else if(tipoExamen!=""){
       return this.httpClient
-      .get(this.API_SERVER+"/filterbyname/"+tipoExamen).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/filterbyname/"+tipoExamen).pipe();
     }else if(cost!=""){
       return this.httpClient
-      .get(this.API_SERVER+"/filterbycost/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/filterbycost/"+cost).pipe();
     }else{
       return this.httpClient
-      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe();
     }
   }
 
   public count(tipoExamen:any,cost:any): Observable<any>{
     if (tipoExamen!="" && cost!="") {
       return this.httpClient
-      .get(this.API_SERVER+"/count/filterbynameandcost/"+tipoExamen+"/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/count/filterbynameandcost/"+tipoExamen+"/"+cost).pipe();
     }else if(tipoExamen!=""){
       return this.httpClient
-      .get(this.API_SERVER+"/count/filterbyname/"+tipoExamen).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/count/filterbyname/"+tipoExamen).pipe();
     }else  if(cost!=""){
       return this.httpClient
-      .get(this.API_SERVER+"/count/filterbycost/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/count/filterbycost/"+cost).pipe();
     }else{
       return this.httpClient.get(this.API_SERVER+"/count");
     }

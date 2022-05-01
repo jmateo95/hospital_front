@@ -15,6 +15,7 @@ export class UsuarioService {
   setUser(user: any) {
     localStorage.setItem('id_user', user.id);
     localStorage.setItem('id_rol', user.rol.id);
+    return 1;
     //this.cookies.set('id_user', user.id, 4, '/');
     //this.cookies.set('id_rol', user.rol.id, 4, '/');
   }

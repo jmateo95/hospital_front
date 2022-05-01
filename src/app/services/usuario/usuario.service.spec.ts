@@ -34,6 +34,39 @@ describe('UsuarioService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('setUser', () => {
+    let user={
+        'id':1,
+        'rol':{
+          'id':1
+        }
+    }
+    expect(service.setUser(user)).toEqual(1);
+    
+  });
+
+
+  it('getUserId',() =>{
+    localStorage.setItem('id_user', '1');
+    expect(service.getUserId()).toEqual('1');
+
+  });
+
+  it('getRolId',() =>{
+    localStorage.setItem('id_rol', '1');
+    expect(service.getRolId()).toEqual('1');
+
+  });
+
+  it('GetUserLoges', () => {
+    const user={ id_user: 1, id_rol: 1 };
+    localStorage.setItem('id_user', '1');
+    localStorage.setItem('id_rol', '1');
+    expect(service.getUserLogged()).toEqual(user);
+    
+  });
+
+  
   it ('Revisar el get usuario', ()=>{
     localStorage.setItem('id_user', '1');
     expect(service.getUserId()).toEqual('1');   
@@ -45,6 +78,7 @@ describe('UsuarioService', () => {
   });
 
 
+  
   it ('Revisar login', (done: DoneFn)=>{
 
     const mockUserCredentials = {
@@ -101,7 +135,22 @@ describe('UsuarioService', () => {
           expect(error.status).toEqual(409);
           done()
         })
-  })
+  });
+
+
+  it('logout', () => {
+    // spyOn(service, 'logout').and.callThrough(); 
+    // expect(service.logout()).toHaveBeenCalled();
+    expect(service.logout()).toEqual();
+    
+  });
+
+  it('getUserLogged2', () => {
+    localStorage.removeItem('id_user');
+    localStorage.removeItem('id_rol');
+    expect(service.getUserLogged2()).toEqual(null);
+    
+  });
 
 
 

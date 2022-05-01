@@ -85,4 +85,8 @@ export class ConsEditComponent implements OnInit {
     );
   }
 
+  prueba(){
+    console.log("hola");
+  }
+
 }

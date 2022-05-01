@@ -19,11 +19,11 @@ export class PatientService extends ExceptionHandlerApi{
 
     public getPatient(): Observable<Patient[]> {
         return this.http
-            .get<Patient[]>(`${this.apiServerUrl}/paciente/all`).pipe(catchError(err => this.errorHandler(err,'ver')),);
+            .get<Patient[]>(`${this.apiServerUrl}/paciente/all`).pipe();
     }
 
     public addPatient(Patient: Patient): Observable<Patient> {
-        return this.http.post<Patient>(`${this.apiServerUrl}/paciente`, Patient).pipe(catchError(err => this.errorHandler(err,'registrar')),);
+        return this.http.post<Patient>(`${this.apiServerUrl}/paciente`, Patient).pipe();
     }
 
     public updatePatient(Patient: Patient): Observable<Patient> {
