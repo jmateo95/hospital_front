@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 describe('EspecialidadesService', () => {
   let service: EspecialidadesService;
-  let httpClientSpy: { post: jasmine.Spy };
+  let httpClientSpy: { post: jasmine.Spy, get:jasmine.Spy, put:jasmine.Spy };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,7 +26,7 @@ describe('EspecialidadesService', () => {
       ],
     });
     service = TestBed.inject(EspecialidadesService);
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
     service = new EspecialidadesService(httpClientSpy as any);
   });
 
@@ -83,7 +83,105 @@ describe('EspecialidadesService', () => {
           expect(error.status).toEqual(409);
           done()
         })
-  })
+  });
+
+
+  it ('getAllEspecialidad', (done: DoneFn)=>{
+    const lpat={'id': 'id',};
+    httpClientSpy.get.and.returnValue(of(lpat));
+    service.getAllEspecialidad()
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+      })
+  });
+
+  it ('filterEspecialidad', (done: DoneFn)=>{
+    const lpat={'id': 'id',};
+    httpClientSpy.get.and.returnValue(of(lpat));
+    service.filterEspecialidad(1,1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    })
+  });
+
+  it ('getEspecialidad', (done: DoneFn)=>{
+    const lpat={'id': 'id',};
+    httpClientSpy.get.and.returnValue(of(lpat));
+    service.getEspecialidad(1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    })
+  });
+
+  it ('filter', (done: DoneFn)=>{
+    const lpat={'id': 'id',};
+    httpClientSpy.get.and.returnValue(of(lpat));
+    service.filter(1,1,1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+    service.filter("",1,1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+    service.filter(1,"",1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+    service.filter(1,1,"")
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+    service.filter("","","")
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+  });
+  
+
+  it ('count', (done: DoneFn)=>{
+    const lpat={'id': 'id',};
+    httpClientSpy.get.and.returnValue(of(lpat));
+    service.count(1,1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+    service.count("",1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+    service.count(1,"")
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+    service.count("","")
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
 
 });
 

@@ -28,8 +28,8 @@ export class ExamenService extends ExceptionHandlerApi{
             .get(this.apiServerUrl+"/"+id).pipe();
     }
 
-    public addExamen(examen: Examen): Observable<Examen> {
-        return this.http.post<Examen>(`${this.apiServerUrl}`, examen).pipe();
+    public addExamen(examen: any): Observable<any> {
+        return this.http.post<any>(`${this.apiServerUrl}`, examen).pipe();
     }
 
     public updatePatient(examen: Examen): Observable<Examen> {

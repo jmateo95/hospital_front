@@ -38,10 +38,10 @@ export class EspecialidadesService extends ExceptionHandlerApi {
       }else{
         especialidad = encodeURIComponent(especialidad)
       }
-      return this.httpClient.get(`${this.API_SERVER1}/DoctorEspecialidad/find/doctors/${doctor}/${especialidad}`).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      return this.httpClient.get(`${this.API_SERVER1}/DoctorEspecialidad/find/doctors/${doctor}/${especialidad}`).pipe();
     } else {
       especialidad = encodeURIComponent(especialidad)
-      return this.httpClient.get(`${this.API_SERVER1}/Especialidad/findname/${especialidad}`).pipe(catchError(err => this.errorHandler(err, 'ver')),)
+      return this.httpClient.get(`${this.API_SERVER1}/Especialidad/findname/${especialidad}`).pipe()
     }
   }
   
@@ -60,12 +60,12 @@ export class EspecialidadesService extends ExceptionHandlerApi {
 
    public getEspecialidades(page:any): Observable<any> {
     return this.httpClient
-      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe();
   }
 
   public getEspecialidad(id: any): Observable<any> {
     return this.httpClient
-      .get(this.API_SERVER + '/' + id).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER + '/' + id).pipe();
   }
 
 
@@ -78,29 +78,29 @@ export class EspecialidadesService extends ExceptionHandlerApi {
   public filter(especialidad:any,cost:any,page:any): Observable<any>{
     if (especialidad!="" && cost!="") {
       return this.httpClient
-      .get(this.API_SERVER+"/filterbynameandcost/"+especialidad+"/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/filterbynameandcost/"+especialidad+"/"+cost).pipe();
     }else if(especialidad!=""){
       return this.httpClient
-      .get(this.API_SERVER+"/filterbyname/"+especialidad).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/filterbyname/"+especialidad).pipe();
     }else if(cost!=""){
       return this.httpClient
-      .get(this.API_SERVER+"/filterbycost/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/filterbycost/"+cost).pipe();
     }else{
       return this.httpClient
-      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"?page="+page+"&size=6&enablePagination=true").pipe();
     }
   }
 
   public count(especialidad:any,cost:any): Observable<any>{
     if (especialidad!="" && cost!="") {
       return this.httpClient
-      .get(this.API_SERVER+"/count/filterbynameandcost/"+especialidad+"/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/count/filterbynameandcost/"+especialidad+"/"+cost).pipe();
     }else if(especialidad!=""){
       return this.httpClient
-      .get(this.API_SERVER+"/count/filterbyname/"+especialidad).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/count/filterbyname/"+especialidad).pipe();
     }else  if(cost!=""){
       return this.httpClient
-      .get(this.API_SERVER+"/count/filterbycost/"+cost).pipe(catchError(err => this.errorHandler(err, 'ver')),);
+      .get(this.API_SERVER+"/count/filterbycost/"+cost).pipe();
     }else{
       return this.httpClient.get(this.API_SERVER+"/count");
     }

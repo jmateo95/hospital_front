@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 describe('DoctorService', () => {
   let service: DoctorService;
-  let httpClientSpy: { post: jasmine.Spy };
+  let httpClientSpy: { post: jasmine.Spy, get:jasmine.Spy, put:jasmine.Spy };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,7 +26,7 @@ describe('DoctorService', () => {
       ],
     });
     service = TestBed.inject(DoctorService);
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
     service = new DoctorService(httpClientSpy as any);
   });
 
@@ -102,6 +102,21 @@ describe('DoctorService', () => {
           expect(error.status).toEqual(409);
           done()
         })
-  })
+  });
+
+  it ('filterDoctor', (done: DoneFn)=>{
+    const lpat={'id': 'id',};
+    httpClientSpy.get.and.returnValue(of(lpat));
+    service.filterDoctor("",1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+    service.filterDoctor(1,1)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(lpat)
+        done()
+    });
+  });
 
 });

@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 describe('PatientService', () => {
   let service: ExamenService;
-  let httpClientSpy: { post: jasmine.Spy, get:jasmine.Spy, put:jasmine.Spy };
+  let httpClientSpy: { post: jasmine.Spy, get:jasmine.Spy, put:jasmine.Spy, delete:jasmine.Spy };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -27,12 +27,39 @@ describe('PatientService', () => {
     });
     service = TestBed.inject(ExamenService);
     //httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post','delete']);
     service = new ExamenService(httpClientSpy as any);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+
+  it ('Crear Doctor', (done: DoneFn)=>{
+
+    const examen= {
+      "nombre": "Doctor 1",
+      "codigo": "DOC2",
+      "email": "docot@docotr.com",
+      "password": "1234",
+    }
+
+    const mockResultCreateDoctor = {
+      "id": 1,
+      "nombre": "Doctor 1",
+      "codigo": "DOC2",
+      "email": "docot@docotr.com",
+      "password": "1234",
+      "dpi": 0
+    }
+
+    httpClientSpy.post.and.returnValue(of(mockResultCreateDoctor))
+    service.addExamen(examen)
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(mockResultCreateDoctor)
+        done()
+      });
   });
 
 
@@ -280,5 +307,8 @@ describe('PatientService', () => {
         done()
       })
   });
+
+
+  
   
 });

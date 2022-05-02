@@ -9,9 +9,10 @@ import { UsuarioService } from './usuario.service';
 import { of, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
+
 describe('UsuarioService', () => {
   let service: UsuarioService;
-  let httpClientSpy: { post: jasmine.Spy };
+  let httpClientSpy: { post: jasmine.Spy, get:jasmine.Spy, put:jasmine.Spy };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,7 +27,7 @@ describe('UsuarioService', () => {
       ],
     });
     service = TestBed.inject(UsuarioService);
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
     service = new UsuarioService(httpClientSpy as any);
   });
 
@@ -63,6 +64,9 @@ describe('UsuarioService', () => {
     localStorage.setItem('id_user', '1');
     localStorage.setItem('id_rol', '1');
     expect(service.getUserLogged()).toEqual(user);
+    localStorage.removeItem('id_user');
+    expect(service.getUserLogged()).toEqual(null);
+    localStorage.setItem('id_rol', '1');
     
   });
 
@@ -142,13 +146,6 @@ describe('UsuarioService', () => {
     // spyOn(service, 'logout').and.callThrough(); 
     // expect(service.logout()).toHaveBeenCalled();
     expect(service.logout()).toEqual();
-    
-  });
-
-  it('getUserLogged2', () => {
-    localStorage.removeItem('id_user');
-    localStorage.removeItem('id_rol');
-    expect(service.getUserLogged2()).toEqual(null);
     
   });
 

@@ -38,7 +38,7 @@ export class EspecialidadDoctorService extends ExceptionHandlerApi{
       }
       return this.httpClient.get(this.API_SERVER+"/find/doctors/" + doctor + "/" + especialidad);
     } else {
-      return this.httpClient.get(this.API_SERVER1+"/Especialidad/findname/" + especialidad).pipe(catchError(err => this.errorHandler(err, 'ver')),)
+      return this.httpClient.get(this.API_SERVER1+"/Especialidad/findname/" + especialidad).pipe()
     }
   }
 
