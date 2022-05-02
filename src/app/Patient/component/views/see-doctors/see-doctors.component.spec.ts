@@ -37,4 +37,16 @@ describe('SeeDoctorsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it("updateDoctor ", () => {
+    let id = 1;
+    component.updateIdDoctor(id);
+    fixture.detectChanges();
+    expect(component.doctor_id).not.toBeNull();
+  });
+  it("UpdateEspecialidad ", () => {
+    let id = 1;
+    component.updateIdEspecialidad(id);
+    fixture.detectChanges();
+    expect(component.speciality).not.toBeNull();
+  });
 });

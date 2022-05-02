@@ -37,4 +37,10 @@ describe('SeeTestsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it("updateTipo ", () => {
+    let id = 1;
+    component.updateIdTipo(id);
+    fixture.detectChanges();
+    expect(component.tipo_id).not.toBeNull();
+  });
 });

@@ -36,4 +36,11 @@ describe('SeeAppointmentsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("UpdateIdTipo ", () => {
+    let id = 1;
+    component.updateIdDoctor(id);
+    fixture.detectChanges();
+    expect(component.doctor_id).not.toBeNull();
+  });
 });

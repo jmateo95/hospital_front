@@ -21,8 +21,8 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 })
 export class CreateAppointmentComponent implements OnInit {
   hidepicture = false;
-  doctorID :any;
-  speciality :any;
+  doctorID: any;
+  speciality: any;
   filteredEspecialidades: any;
   especialidadFilter = new FormControl();
   filteredDoctores: any;
@@ -41,9 +41,9 @@ export class CreateAppointmentComponent implements OnInit {
     private especialidadService: EspecialidadesService,
     private doctorService: DoctorService,
     private citaService: CitaService,
-    private toastrSvc:ToastrService,
-    private router : Router,
-    private userService: UsuarioService) {
+    private toastrSvc: ToastrService,
+    private router: Router,
+    public userService: UsuarioService) {
     this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 
   }
@@ -54,65 +54,19 @@ export class CreateAppointmentComponent implements OnInit {
     this.speciality = params['speciality'];
     this.doctorID = params['doctor'];
 
+    this.getEspecialidad(this.speciality,this.doctorID);
 
-    if(this.speciality!=null){
-      if(this.speciality!=0){
-        this.especialidadService.getEspecialidad(this.speciality).subscribe(
-          (response) => {
-           if (response!=null) {
-             this.cita_save.especialidad.id = +this.speciality;
-             this.cita_save.especialidad.nombre = response.nombre;
-           }
-          },
-          (error) => {
-            this.toastrSvc.error(error);
-          }
-        );
-        if(this.doctorID!=null){
-          if(this.doctorID!=0){
-            this.doctorService.getDoctorId(this.doctorID).subscribe(
-              (response) => {
-               if(response!=null){
-                this.cita_save.doctor.id = +this.doctorID;
-                this.cita_save.doctor.nombre = response.nombre;
-              
-               }
-                },
-              (error) => {
-                this.toastrSvc.error(error);
-              }
-            );
-          }
-          
-        }
-      }else{
-          if(this.doctorID!=null){
-            if(this.doctorID!=0){
-              this.doctorService.getDoctorId(this.doctorID).subscribe(
-                (response) => {
-                 this.cita_save.doctor.id = +this.doctorID;
-                 this.cita_save.doctor.nombre = response.nombre;
-                },
-                (error) => {
-                  this.toastrSvc.error(error);
-                }
-              );
-            }
-            
-          }
-        
-      }
-    }
+    
     this.especialidadFilter.valueChanges.pipe(
       debounceTime(50),
       tap(() => {
         this.filteredEspecialidades = [];
         this.errorMsg = "";
         this.isLoading = true;
-        
+
       }),
       switchMap(value =>
-        this.especialidadService.filterEspecialidad(this.cita_save.doctor.id,value).pipe(
+        this.especialidadService.filterEspecialidad(this.cita_save.doctor.id, value).pipe(
           finalize(() => {
             this.isLoading = false;
           }),
@@ -124,13 +78,13 @@ export class CreateAppointmentComponent implements OnInit {
 
         } else {
           data.forEach((element: any) => {
-            if(element.nombre==undefined){
+            if (element.nombre == undefined) {
               element.nombre = element.especialidadNombre;
             }
-            if(element.id==undefined){
+            if (element.id == undefined) {
               element.id = element.especialidadId;
             }
-            });
+          });
           this.errorMsg = ""
           this.filteredEspecialidades = data;
         }
@@ -144,7 +98,7 @@ export class CreateAppointmentComponent implements OnInit {
         this.isLoading = true;
       }),
       switchMap(value =>
-        this.doctorService.filterDoctor(value,this.cita_save.especialidad.id).pipe(
+        this.doctorService.filterDoctor(value, this.cita_save.especialidad.id).pipe(
           finalize(() => {
             this.isLoading = false;
           }),
@@ -156,26 +110,77 @@ export class CreateAppointmentComponent implements OnInit {
 
         } else {
           data.forEach((element: any) => {
-          if(element.nombre==undefined){
-            element.nombre = element.doctorNombre;
-          }
-          if(element.id==undefined){
-            element.id = element.doctorId;
-          }
+            if (element.nombre == undefined) {
+              element.nombre = element.doctorNombre;
+            }
+            if (element.id == undefined) {
+              element.id = element.doctorId;
+            }
           });
           this.errorMsg = ""
           this.filteredDoctores = data;
         }
       }
-    )
-    
+      )
+
 
 
   }
 
+  public getEspecialidad(id:any, doctor:any){
+    if (id != null) {
+      if (id != 0) {
+        this.especialidadService.getEspecialidad(id).subscribe(
+          (response) => {
+            if (response != null) {
+              this.cita_save.especialidad.id = +id;
+              this.cita_save.especialidad.nombre = response.nombre;
+            }
+          },
+          (error) => {
+            this.toastrSvc.error(error);
+          }
+        );
+        if (doctor != null) {
+          if (doctor != 0) {
+            this.doctorService.getDoctorId(doctor).subscribe(
+              (response) => {
+                if (response != null) {
+                  this.cita_save.doctor.id = +doctor;
+                  this.cita_save.doctor.nombre = response.nombre;
+
+                }
+              },
+              (error) => {
+                this.toastrSvc.error(error);
+              }
+            );
+          }
+
+        }
+      } else {
+        if (doctor != null) {
+          if (doctor != 0) {
+            this.doctorService.getDoctorId(doctor).subscribe(
+              (response) => {
+                this.cita_save.doctor.id = +doctor;
+                this.cita_save.doctor.nombre = response.nombre;
+              },
+              (error) => {
+                this.toastrSvc.error(error);
+              }
+            );
+          }
+
+        }
+
+      }
+    }
+  }
+
   public onAddCita(): void {
-    this.cita_save.paciente.id = this.userService.getUserId()+"" ;
-    this.cita_save.hora = this.cita_save.hora+":00"
+    this.cita_save.paciente.id = this.userService.getUserId() + "";
+    this.cita_save.hora = this.cita_save.hora + ":00"
     this.citaService.addCita(this.cita_save).subscribe(
       (response) => {
         this.toastrSvc.success(`Registro Exitoso`);
@@ -190,16 +195,16 @@ export class CreateAppointmentComponent implements OnInit {
 
   updateIdDoctor(id: any) {
     this.cita_save.doctor.id = id;
-    if(this.cita_save.especialidad.id==null){
-      this.cita_save.especialidad.nombre=""
+    if (this.cita_save.especialidad.id == null) {
+      this.cita_save.especialidad.nombre = ""
       this.filteredEspecialidades = []
     }
   }
 
   updateIdEspecialidad(id: any) {
     this.cita_save.especialidad.id = id;
-    if(this.cita_save.doctor.id==null){
-      this.cita_save.doctor.nombre=""
+    if (this.cita_save.doctor.id == null) {
+      this.cita_save.doctor.nombre = ""
       this.filteredDoctores = []
     }
   }
@@ -253,10 +258,6 @@ export class CreateAppointmentComponent implements OnInit {
   }
   back(): void {
     this.location.back()
-  }
-
-  save(): void {
-    console.log(this.cita_save);
   }
 
 }

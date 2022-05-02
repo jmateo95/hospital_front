@@ -6,10 +6,12 @@ import { MaterialModule } from '../../../../material/material.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DoctorProfileComponent } from './doctor-profile.component';
+import { SpyLocation } from '@angular/common/testing';
 
 describe('DoctorProfileComponent', () => {
   let component: DoctorProfileComponent;
-  let fixture: ComponentFixture<DoctorProfileComponent>;
+  let fixture: ComponentFixture<DoctorProfileComponent>;  
+  let location: SpyLocation; 
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,14 +24,18 @@ describe('DoctorProfileComponent', () => {
         BrowserAnimationsModule,
         ToastrModule.forRoot()
       ],
-      declarations: [ DoctorProfileComponent ]
+      declarations: [ DoctorProfileComponent ],      
+      providers: [
+        { provide: Location, useClass: SpyLocation }
+      ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DoctorProfileComponent);
-    component = fixture.componentInstance;
+    component = fixture.componentInstance;    
+    location = TestBed.get(Location);
     component.doctor = {
       nombre: 'Juan'
     };
@@ -38,5 +44,10 @@ describe('DoctorProfileComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('return back', ()=>{
+    spyOn(location, 'back').and.callFake(() => console.log("Test"));
+    component.back();
+    expect(component.back).toBeDefined();
   });
 });

@@ -18,7 +18,7 @@ export class EditProfileComponent implements OnInit {
 
   constructor(
     private location:Location,
-    private userService: UsuarioService,
+    public userService: UsuarioService,
     private patientService: PatientService,
     private toastrSvc:ToastrService) { }
 
@@ -35,7 +35,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   back(): void {
-    this.location.back()
+    this.location.back();
   }
 
   editPatient(){
