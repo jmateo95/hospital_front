@@ -49,9 +49,7 @@ export class ServiceInformationComponent implements OnInit {
       this.citaService.getCita(this.id).subscribe(resp => {
         this.dataInformation = resp;
       },
-        error => {
-          console.error(error);
-        }
+        
       );
       this.informeService.getInformeCita(this.id).subscribe(resp => {
         if(resp){
@@ -62,9 +60,7 @@ export class ServiceInformationComponent implements OnInit {
           });          
         }
       },
-        error => {
-          console.error(error);
-        }
+        
       );
     } else {
       this.type = 'Examen';
@@ -78,9 +74,7 @@ export class ServiceInformationComponent implements OnInit {
         
         this.dataSource = new MatTableDataSource<Files>(this.data);
       },
-        error => {
-          console.error(error);
-        }
+        
       );
       
     }

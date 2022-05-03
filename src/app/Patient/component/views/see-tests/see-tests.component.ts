@@ -63,16 +63,12 @@ export class SeeTestsComponent implements OnInit, AfterViewInit {
       this.testService.getRecordTest(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.tests = resp.content;
       },
-        error => {
-          console.error(error);
-        }
+        
       );
       this.testService.countRecordTests(this.userService.getUserId()).subscribe(resp => {
         this.tests_lenght = resp
       },
-        error => {
-          console.error(error);
-        }
+        
       );
 
     } else if (this.title == 'upcoming') {
@@ -82,16 +78,12 @@ export class SeeTestsComponent implements OnInit, AfterViewInit {
       this.testService.getUpcomingTest(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.tests = resp.content;
       },
-        error => {
-          console.error(error);
-        }
+        
       );
       this.testService.countUpcomingTests(this.userService.getUserId()).subscribe(resp => {
         this.tests_lenght = resp
       },
-        error => {
-          console.error(error);
-        }
+        
       );
     }
   }
@@ -202,9 +194,7 @@ export class SeeTestsComponent implements OnInit, AfterViewInit {
       this.testService.filterTestsDateTipo(this.userService.getUserId(), start_date_aux, end_date_aux, this.tipo_id, this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.tests = resp.content;
       },
-        error => {
-          console.error(error);
-        }
+        
       );
     } else if (this.start_date != null && this.end_date != null && this.tipo_id == null) {
       var start_date_aux = this.formatYmd(this.start_date)
@@ -212,48 +202,32 @@ export class SeeTestsComponent implements OnInit, AfterViewInit {
       this.testService.filterTestsDate(this.userService.getUserId(), start_date_aux, end_date_aux, this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.tests = resp.content;
       },
-        error => {
-          console.error(error);
-        }
+        
       ); this.testService.countfilterTestsDate(this.userService.getUserId(), start_date_aux, end_date_aux).subscribe(resp => {
         this.tests_lenght = resp
       },
-        error => {
-          console.error(error);
-        }
+        
       );
     } else if (this.start_date == null && this.end_date == null && this.tipo_id != null) {
       if (this.upcoming) {
         this.testService.filterTestsTipoUpcoming(this.userService.getUserId(), this.tipo_id, this.paginator?.pageIndex ?? 0).subscribe(resp => {
           this.tests = resp.content;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
         this.testService.countfilterTestsTipoUpcoming(this.userService.getUserId(), this.tipo_id).subscribe(resp => {
           this.tests_lenght = resp
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
       } else {
         this.testService.filterTestsTipoRecord(this.userService.getUserId(), this.tipo_id, this.paginator?.pageIndex ?? 0).subscribe(resp => {
           this.tests = resp.content;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
         this.testService.countfilterTestsTipoRecord(this.userService.getUserId(), this.tipo_id).subscribe(resp => {
           this.tests_lenght = resp
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
       }
     } else {
@@ -261,33 +235,21 @@ export class SeeTestsComponent implements OnInit, AfterViewInit {
         this.testService.getUpcomingTest(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
           this.tests = resp.content;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
         this.testService.countUpcomingTests(this.userService.getUserId()).subscribe(resp => {
           this.tests_lenght = resp
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
       } else {
         this.testService.getRecordTest(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
           this.tests = resp.content;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
         this.testService.countRecordTests(this.userService.getUserId()).subscribe(resp => {
           this.tests_lenght = resp
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
       }
 

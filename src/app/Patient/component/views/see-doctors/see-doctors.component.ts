@@ -116,9 +116,7 @@ export class SeeDoctorsComponent implements OnInit {
         this.doctors_length = 1;
   
       },
-        error => {
-          console.error(error);
-        }
+        
       );
     }else if(this.doctor_id==null && this.speciality!=null){
       this.doctorEspecialidadService.finddoctorsByEspecialidad(this.speciality,this.paginator?.pageIndex ?? 0).subscribe(resp => {
@@ -133,34 +131,26 @@ export class SeeDoctorsComponent implements OnInit {
         });
         console.log(this.doctors)
       },
-        error => {
-          console.error(error);
-        }
+        
       );
       this.doctorEspecialidadService.countDoctorByEspecialidad(this.speciality).subscribe(resp => {
         this.doctors_length = resp;
   
       },
-        error => {
-          console.error(error);
-        }
+        
       );
 
     }else{
       this.doctorService.getAllDoctorsP(this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.doctors = resp.content;
       },
-        error => {
-          console.error(error);
-        }
+        
       );
       this.doctorService.countDoctors().subscribe(resp => {
         this.doctors_length = resp;
   
       },
-        error => {
-          console.error(error);
-        }
+        
       );
     }
   }

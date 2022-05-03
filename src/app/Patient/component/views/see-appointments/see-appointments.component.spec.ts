@@ -147,6 +147,7 @@ describe('SeeAppointmentsComponent', () => {
     spyOn(citaService, 'countfilterCitasDateDoctor').and.returnValue(of(response2));
     component.filtrar()
     fixture.detectChanges();
+    expect(component.appointments_lenght).toEqual(1);
   });
 
 

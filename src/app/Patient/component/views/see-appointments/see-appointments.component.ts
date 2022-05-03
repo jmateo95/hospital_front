@@ -61,16 +61,12 @@ export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
       this.citaService.getRecordCitas(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.appointments = resp.content
       },
-        error => {
-          console.error(error);
-        }
+        
       );
       this.citaService.countRecordCitas(this.userService.getUserId()).subscribe(resp => {
         this.appointments_lenght = resp
       },
-        error => {
-          console.error(error);
-        }
+        
       );
 
     } else if (this.title == 'upcoming') {
@@ -80,16 +76,12 @@ export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
       this.citaService.getUpcomingCitas(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.appointments = resp.content;
       },
-        error => {
-          console.error(error);
-        }
+        
       );
       this.citaService.countUpcomingCitas(this.userService.getUserId()).subscribe(resp => {
         this.appointments_lenght = resp
       },
-        error => {
-          console.error(error);
-        }
+        
       );
     }
   }
@@ -124,16 +116,12 @@ export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
       this.citaService.filterCitasDateDoctor(this.userService.getUserId(), start_date_aux, end_date_aux, this.doctor_id, this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.appointments = resp.content;
       },
-        error => {
-          console.error(error);
-        }
+        
       );
       this.citaService.countfilterCitasDateDoctor(this.userService.getUserId(), start_date_aux, end_date_aux, this.doctor_id).subscribe(resp => {
         this.appointments_lenght = resp
       },
-        error => {
-          console.error(error);
-        }
+        
       );
     } else if (this.start_date != null && this.end_date != null && this.doctor_id == null) {
       var start_date_aux = this.formatYmd(this.start_date)
@@ -141,51 +129,35 @@ export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
       this.citaService.filterCitasDate(this.userService.getUserId(), start_date_aux, end_date_aux, this.paginator?.pageIndex ?? 0).subscribe(resp => {
         this.appointments = resp.content;
       },
-        error => {
-          console.error(error);
-        }
+        
       );
       this.citaService.countfilterCitasDate(this.userService.getUserId(), start_date_aux, end_date_aux).subscribe(resp => {
         this.appointments_lenght = resp;
       },
-        error => {
-          console.error(error);
-        }
+        
       );
     } else if (this.start_date == null && this.end_date == null && this.doctor_id != null) {
       if (this.upcoming) {
         this.citaService.filterCitasDoctorUpcoming(this.userService.getUserId(), this.doctor_id, this.paginator?.pageIndex ?? 0).subscribe(resp => {
           this.appointments = resp.content;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
         this.citaService.countfilterCitasDoctorUpcoming(this.userService.getUserId(), this.doctor_id).subscribe(resp => {
           this.appointments_lenght = resp;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
       } else {
         this.citaService.filterCitasDoctorRecord(this.userService.getUserId(), this.doctor_id,this.paginator?.pageIndex ?? 0).subscribe(resp => {
           this.appointments = resp.content;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
         this.citaService.countfilterCitasDoctorRecord(this.userService.getUserId(), this.doctor_id).subscribe(resp => {
           this.appointments_lenght = resp;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
       }
     } else {
@@ -193,35 +165,23 @@ export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
         this.citaService.getUpcomingCitas(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
           this.appointments = resp.content;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
         this.citaService.countUpcomingCitas(this.userService.getUserId()).subscribe(resp => {
           this.appointments_lenght = resp;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
       } else {
         this.citaService.getRecordCitas(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
           this.appointments = resp.content;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
         this.citaService.countRecordCitas(this.userService.getUserId()).subscribe(resp => {
           this.appointments_lenght = resp;
 
-        },
-          error => {
-            console.error(error);
-          }
+        }
         );
       }
 
