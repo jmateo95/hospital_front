@@ -46,18 +46,12 @@ export class SeeDoctorsComponent implements OnInit {
     this.doctorService.getAllDoctorsP(this.paginator?.pageIndex ?? 0).subscribe(resp => {
       this.doctors = resp.content;
 
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
     this.doctorService.countDoctors().subscribe(resp => {
       this.doctors_length = resp;
 
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
 
     this.doctorFilter.valueChanges.pipe(

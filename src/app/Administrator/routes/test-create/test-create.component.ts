@@ -47,10 +47,6 @@ export class TestCreateComponent implements OnInit {
       resp=>{
         this.toastrSvc.success('Examen creado con exito'); 
         this.router.navigate(['/administrator/test/list'])     
-      },
-      error=>{
-        this.toastrSvc.error('Error al crear el examen');
-        console.log(error)
       }
     )
   }

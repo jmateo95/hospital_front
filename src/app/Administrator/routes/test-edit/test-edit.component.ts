@@ -35,9 +35,6 @@ export class TestEditComponent implements OnInit {
       res=>{
         console.log(res);       
         this.Build(res);
-      },
-      error=>{
-        console.log(error);
       }
     )          
     
@@ -72,10 +69,6 @@ export class TestEditComponent implements OnInit {
       resp=>{
         this.toastrSvc.success('Examen creado con exito');
         this.router.navigate(['/administrator/test/list'])        
-      },
-      error=>{
-        this.toastrSvc.error('Error al crear el examen');
-        console.log(error)
       }
     )
   }  

@@ -32,9 +32,6 @@ export class ViewTestComponent implements OnInit {
       res => {
         this.examenes = res;
         this.dataSource = new MatTableDataSource<Examen>(this.examenes);
-        console.log(this.examenes);
-      }, error => {
-
       }
     )
   }

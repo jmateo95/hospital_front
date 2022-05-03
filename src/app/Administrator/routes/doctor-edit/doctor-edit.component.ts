@@ -57,18 +57,12 @@ export class DoctorEditComponent implements OnInit {
     this.especialidadesService.getAllEspecialidad().subscribe(res=>{
       this.especialidades = res["content"];
     },
-    error=>{
-      console.error(error);
-     }
     );
 
 
     this.especialidadDoctorService.findDoctor(this.id).subscribe(res=>{
       this.doctorespecialidad=res;
-    },
-    error=>{
-      console.error(error);
-     }
+    }
     );
 
 
@@ -99,10 +93,7 @@ export class DoctorEditComponent implements OnInit {
         horaFin:this.doctor.horaFin,
         fecha:this.doctor.fecha
       });
-    },
-    error=>{
-      console.error(error);
-     }
+    }
     );
   }
 
@@ -119,10 +110,6 @@ export class DoctorEditComponent implements OnInit {
       resp=>{
         this.toastrSvc.success(`Medico editado exitosamente`);
         this.router.navigate(['/administrator/doctor/see'])
-      },
-      error=>{
-        this.toastrSvc.error(`Hubo un error al editar al medico`);
-        console.error(error);
       }
      );
   }
@@ -133,10 +120,6 @@ export class DoctorEditComponent implements OnInit {
       res=>{
         this.toastrSvc.success(`Se elimino la especialidad medica`);
         this.ngOnInit();
-      },
-      error=>{
-        this.toastrSvc.error(`Hubo un error al eliminar al eliminar la especialidad medica`);
-        console.error(error);
       }
     );
   }
@@ -148,10 +131,6 @@ export class DoctorEditComponent implements OnInit {
         this.toastrSvc.success(`Se agrego la especialidad medica`);
         this.ngOnInit();
 
-      },
-      error=>{
-        this.toastrSvc.error(`Hubo un error al añadir al usuario`);
-        console.error(error);
       }
     );
 

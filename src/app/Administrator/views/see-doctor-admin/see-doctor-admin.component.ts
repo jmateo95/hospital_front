@@ -26,10 +26,7 @@ export class SeeDoctorAdminComponent implements OnInit {
   ngOnInit() {
     this.doctorService.getAllDoctor().subscribe(resp=>{
       this.doctors=resp.content;
-    },
-    error=>{
-      console.error(error);
-     }
+    }
     );
 
 

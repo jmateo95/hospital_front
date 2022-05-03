@@ -27,9 +27,6 @@ export class TestListComponent {
         this.data = res["content"];  
         this.dataSource = new MatTableDataSource<Examen>(this.data);
         this.dataSource.paginator = this.paginator;      
-      },
-      error=>{
-        
       }
     )       
   }

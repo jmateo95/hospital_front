@@ -59,9 +59,6 @@ export class LabCreateComponent  implements OnInit{
     this.tipoExamenService.getAllTiposExamen().subscribe(
       res=>{        
         this.examenes = res["content"];                  
-      },
-      error=>{
-        console.log(error);
       }
     )
    }
@@ -92,10 +89,6 @@ export class LabCreateComponent  implements OnInit{
        res=>{
         this.toastrSvc.success(`Medico agregado exitosamente`);
         this.router.navigate(['/administrator/lab/see'])
-       },
-       error=>{
-        this.toastrSvc.error(`Hubo un error al añadir al medico`);
-        console.error(error);
        }
      )
    }

@@ -34,10 +34,6 @@ export class ConsCreateComponent implements OnInit {
       resp=>{
         this.toastrSvc.success(`Especialidad agregada exitosamente`);
         this.router.navigate(['/administrator/home']);
-      },
-      error=>{
-        this.toastrSvc.error(`Hubo un error al añadir la Especialidad`);
-        console.error(error);
       }
      );
   }

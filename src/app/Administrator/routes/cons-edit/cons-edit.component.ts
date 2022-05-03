@@ -47,10 +47,7 @@ export class ConsEditComponent implements OnInit {
         codigo:this.especialidad.codigo,
         costo:this.especialidad.costo
       });
-    },
-    error=>{
-      console.error(error);
-     }
+    }
     );
   }
 
@@ -63,10 +60,6 @@ export class ConsEditComponent implements OnInit {
       resp=>{
         this.toastrSvc.success(`Consulta agregada exitosamente`);
         this.router.navigate(['/administrator/cons/list'])
-      },
-      error=>{
-        this.toastrSvc.error(`Hubo un error al editar la Consulta`);
-        console.error(error);
       }
      );
   }
@@ -77,10 +70,6 @@ export class ConsEditComponent implements OnInit {
       res=>{
         this.toastrSvc.success(`Se elimino la Consulta medica`);
         this.ngOnInit();
-      },
-      error=>{
-        this.toastrSvc.error(`Hubo un error al Consulta al usuario`);
-        console.error(error);
       }
     );
   }

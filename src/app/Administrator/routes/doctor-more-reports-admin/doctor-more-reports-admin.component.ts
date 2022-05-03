@@ -49,8 +49,6 @@ export class DoctorReportsAdminComponent implements OnInit {
         this.datos=res;
         this.dataSource = new MatTableDataSource<Articulo>(this.datos);
         this.dataSource.paginator = this.paginator;
-      },error=>{
-
       }
     );
 

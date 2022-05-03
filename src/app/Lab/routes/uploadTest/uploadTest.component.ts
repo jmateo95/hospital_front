@@ -55,9 +55,6 @@ ngOnInit(): void {
   this.examenService.getTestToday(id_doctor).subscribe(
     res => {
       this.patients = res;      
-      console.log(this.patients);
-    }, error => {
-
     }
   )
 }

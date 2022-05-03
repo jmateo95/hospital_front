@@ -61,10 +61,6 @@ export class LoginComponent implements OnInit {
         }else{
           this.toastrSvc.error(`Usuario o contraseña incorrectos`);
         }
-      },
-      error=>{
-        this.toastrSvc.error(`Error al iniciar sesión`);
-        console.error(error);
       }
     );
   }

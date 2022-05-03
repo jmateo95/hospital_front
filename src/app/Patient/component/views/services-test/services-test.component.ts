@@ -49,17 +49,11 @@ export class ServicesTestComponent implements OnInit {
         }
       });
 
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
     this.tipoExamenesService.countAll().subscribe(resp => {
       this.test_length = resp;
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
 
   }
@@ -75,18 +69,12 @@ export class ServicesTestComponent implements OnInit {
         }
       });
 
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
     this.tipoExamenesService.count(this.testN,this.costo).subscribe(resp => {
       this.test_length = resp;
 
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
   }
 

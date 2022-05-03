@@ -26,9 +26,6 @@ export class ConsListComponent implements OnInit {
     this.especialidadesService.getAllEspecialidad().subscribe(
       resp=>{
         this.dataSource=(resp.content);
-      },
-      error=>{
-        console.error(error);
       }
      );
   }
@@ -38,18 +35,8 @@ export class ConsListComponent implements OnInit {
       res=>{
         this.toastrSvc.success(`Se elimino el tipo de consulta`);
         this.ngOnInit();
-      },
-      error=>{
-        this.toastrSvc.error(`Hubo un error al eliminar la consulta`);
-        console.error(error);
       }
     );
   }
 
-
-}
-
-export class Articulo {
-  constructor(public codigo: number, public descripcion: string, public precio: number) {
-  }
 }

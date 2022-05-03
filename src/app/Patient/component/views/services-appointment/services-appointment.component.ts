@@ -45,18 +45,12 @@ export class ServicesAppointmentComponent implements OnInit {
     this.especialidad.getEspecialidades(this.paginator?.pageIndex ?? 0).subscribe(resp => {
       this.tipoEspecialidad = resp.content;
 
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
     this.especialidad.countAll().subscribe(resp => {
       this.especialidad_length = resp;
 
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
 
     
@@ -66,18 +60,12 @@ export class ServicesAppointmentComponent implements OnInit {
     this.especialidad.filter(this.especialidadN,this.costo,this.paginator?.pageIndex ?? 0).subscribe(resp => {
       this.tipoEspecialidad = resp.content;
 
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
     this.especialidad.count(this.especialidadN,this.costo).subscribe(resp => {
       this.especialidad_length = resp;
 
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
   }
 

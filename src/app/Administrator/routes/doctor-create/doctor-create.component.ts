@@ -89,10 +89,6 @@ constructor(
     resp=>{
       this.toastrSvc.success(`Medico agregado exitosamente`);
       this.router.navigate(['/administrator/doctor/see'])
-    },
-    error=>{
-      this.toastrSvc.error(`Hubo un error al añadir al medico`);
-      console.error(error);
     }
    );
  }

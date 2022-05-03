@@ -22,9 +22,6 @@ export class SeeLabAdminComponent implements OnInit {
       res=>{
         this.cards = res["content"]                
        console.log(this.cards)
-      },
-      error=>{
-        console.log(error)
       }
     )}
   

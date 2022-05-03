@@ -47,9 +47,6 @@ export class ViewAppointmentComponent implements OnInit {
       res => {
         this.citas = res;
         this.dataSource = new MatTableDataSource<Cita>(this.citas);
-        console.log(this.citas);
-      }, error => {
-
       }
     )
   }

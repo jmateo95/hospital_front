@@ -28,10 +28,8 @@ export class EditProfileComponent implements OnInit {
       (response) => {
         this.usuario = response;
         this.usuario.fecha_nacimiento = this.formatYmd(this.usuario.fecha_nacimiento)
-      },
-      (error) => {
       }
-    );;
+    );
   }
 
   back(): void {
@@ -42,9 +40,6 @@ export class EditProfileComponent implements OnInit {
     this.patientService.updatePatient(this.usuario).subscribe(
       response =>{
         this.toastrSvc.success(`Actualizacion Exitosa`);
-      },
-      error =>{
-        this.toastrSvc.error(`No se pudo realizar la actualizacion`);
       }
     )
   }

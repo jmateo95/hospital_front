@@ -55,8 +55,6 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
     res=>{         
        this.citas = res;
        console.log(this.citas);
-    },error=>{
-
     }
   )
  }
@@ -72,10 +70,6 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
      res=>{
       this.toastrSvc.success(`Informe guardado exitosamente`);
       this.router.navigate(['/doctor/home'])
-     },
-     error=>{
-      this.toastrSvc.error(`Hubo un error al crear el informe`);
-      console.error(error);
      }
    )
  }

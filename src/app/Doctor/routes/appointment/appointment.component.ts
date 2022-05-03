@@ -66,16 +66,12 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
      this.laboratoristaService.getAllLaboratoristas().subscribe(
        res=>{
         this.labs = res.content;         
-       },error=>{
-
        }
      )
      this.citasService.getTodayDoctorAppoiment(id_doctor).subscribe(
        res=>{         
           this.citas = res;
           console.log(this.citas);
-       },error=>{
-
        }
      )
  }
@@ -98,10 +94,6 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
     res=>{
       this.toastrSvc.success(`cita agregada exitosamente`);
       this.router.navigate(['/doctor/home'])
-     },
-     error=>{
-      this.toastrSvc.error(`Hubo un error al crear la cita`);
-      console.error(error);
      }
    )
  }

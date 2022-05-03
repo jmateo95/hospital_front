@@ -43,9 +43,6 @@ export class LabEditComponent implements OnInit {
     this.tipoExamenService.getAllTiposExamen().subscribe(
       res=>{        
         this.examenes = res["content"];                  
-      },
-      error=>{
-        console.log(error);
       }
     )
    
@@ -53,9 +50,6 @@ export class LabEditComponent implements OnInit {
       res=>{
         console.log(res);
         this.build(res);
-      },
-      error=>{
-        console.log(error);
       }
     )
 
@@ -123,10 +117,6 @@ export class LabEditComponent implements OnInit {
       res=>{
        this.toastrSvc.success(`Medico agregado exitosamente`);
        this.router.navigate(['/administrator/lab/see']);
-      },
-      error=>{
-       this.toastrSvc.error(`Hubo un error al añadir al medico`);
-       console.error(error);
       }
     )   
    }

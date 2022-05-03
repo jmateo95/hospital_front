@@ -34,10 +34,7 @@ export class DoctorProfileComponent implements OnInit {
   getDoctor(id: any) {
     this.doctorService.getDoctorId(id).subscribe(resp => {
       this.doctor = resp;
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
   }
   getEspecialidad(id: any) {
@@ -48,10 +45,7 @@ export class DoctorProfileComponent implements OnInit {
         element.position = i;
         i++;
       });
-    },
-      error => {
-        console.error(error);
-      }
+    }
     );
   }
 
