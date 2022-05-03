@@ -145,7 +145,24 @@ describe('UsuarioService', () => {
   it('logout', () => {
     // spyOn(service, 'logout').and.callThrough(); 
     // expect(service.logout()).toHaveBeenCalled();
-    expect(service.logout()).toEqual();
+    expect(service.logout()).toEqual();  
+  });
+
+  it(`getUserLogged`, () => {
+    localStorage.removeItem('id_user');
+    expect(service.getUserLogged2()).toEqual(null);
+  });
+
+
+  it("edit Patient  ", () => {
+    localStorage.setItem('id_user', '1');
+    let user = {
+      id :1,
+      rol : {
+        id : 1
+      }
+    }
+    spyOn(service,'getUserLogged2').and.returnValue(of(user))
     
   });
 

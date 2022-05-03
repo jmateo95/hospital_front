@@ -6,8 +6,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MaterialModule } from '../../material/material.module';
 import { ExamenService } from './examen.service';
-import { of, throwError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 describe('PatientService', () => {
   let service: ExamenService;
@@ -26,7 +25,6 @@ describe('PatientService', () => {
       ],
     });
     service = TestBed.inject(ExamenService);
-    //httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post','delete']);
     service = new ExamenService(httpClientSpy as any);
   });

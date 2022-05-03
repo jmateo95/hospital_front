@@ -126,12 +126,27 @@ describe('TipoExamenesService', () => {
         done()
       });
     
+      service.filter('10','','10')
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(mockResultCreateTipoExamen)
+        done()
+      });
+
+
       service.filter('','10','10')
       .subscribe(resultado => { 
         expect(resultado).toEqual(mockResultCreateTipoExamen)
         done()
-      }
-      );
+      });
+
+      service.filter('','','10')
+      .subscribe(resultado => { 
+        expect(resultado).toEqual(mockResultCreateTipoExamen)
+        done()
+      });
+
+
+      
   });
 
 
