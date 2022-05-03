@@ -24,9 +24,9 @@ export class SeeTestsComponent implements OnInit, AfterViewInit {
   tests: any;
   fecha = new Date();
   upcoming: boolean;
-  start_date = null;
-  end_date = null;
-  tipo_id = null;
+  start_date:any;
+  end_date:any;
+  tipo_id: any;
   filteredTipoExamen: any;
   tipoExamenFilter = new FormControl();
   errorMsg: string;

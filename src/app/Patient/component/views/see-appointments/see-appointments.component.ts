@@ -17,9 +17,9 @@ export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
   
   navigationSubscription;
   breakpoint = 3;
-  doctor_id = null;
-  start_date = null;
-  end_date = null;
+  doctor_id : any;
+  start_date : any;
+  end_date : any;
   hidepicture = false;
   fecha = new Date();
   filtroFecha!: FormGroup;
@@ -42,7 +42,7 @@ export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private citaService: CitaService,
     private doctorService: DoctorService,
-    private userService: UsuarioService
+    public userService: UsuarioService
   ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {

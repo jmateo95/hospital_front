@@ -11,8 +11,8 @@ import { EspecialidadDoctorService } from 'src/app/services/especialidad_doctor/
 })
 export class DoctorProfileComponent implements OnInit {
   id = "";
-  doctorespecialidad:any[]
- 
+  doctorespecialidad: any[]
+
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -25,15 +25,23 @@ export class DoctorProfileComponent implements OnInit {
   ngOnInit(): void {
     var params = (this.route.snapshot.params);
     this.id = params['id'];
-    this.doctorService.getDoctorId(this.id).subscribe(resp => {
+    this.getDoctor(this.id);
+    this.getEspecialidad(this.id);
+
+
+  }
+
+  getDoctor(id: any) {
+    this.doctorService.getDoctorId(id).subscribe(resp => {
       this.doctor = resp;
     },
       error => {
         console.error(error);
       }
     );
-
-    this.especialidadDoctorService.findDoctor(this.id).subscribe(res => {
+  }
+  getEspecialidad(id: any) {
+    this.especialidadDoctorService.findDoctor(id).subscribe(res => {
       this.doctorespecialidad = res;
       var i = 1;
       this.doctorespecialidad.forEach(element => {
@@ -46,11 +54,11 @@ export class DoctorProfileComponent implements OnInit {
       }
     );
   }
-  
+
   back(): void {
     this.location.back()
   }
-  
+
 
 }
 
