@@ -150,6 +150,36 @@ describe('SeeAppointmentsComponent', () => {
     expect(component.appointments_lenght).toEqual(1);
   });
 
+  it("getInitData", () => {
+    let title = 'history';
+    let reponse: any;
+    reponse = {
+      content: [
+      ]
+    }
+    let response2 = 1;
+    spyOn(citaService, 'getRecordCitas').and.returnValue(of(reponse));    
+    spyOn(citaService, 'countRecordCitas').and.returnValue(of(response2));
+    component.getData(title)
+    fixture.detectChanges();
+    expect(component.appointments_lenght).toEqual(1)
+  });
+
+  it("getInitDataUpcoming", () => {
+    let title = 'upcoming';
+    let reponse: any;
+    reponse = {
+      content: [
+      ]
+    }
+    let response2 = 1;
+    spyOn(citaService, 'getUpcomingCitas').and.returnValue(of(reponse));    
+    spyOn(citaService, 'countUpcomingCitas').and.returnValue(of(response2));
+    component.getData(title)
+    fixture.detectChanges();
+    expect(component.appointments_lenght).toEqual(1)
+  });
+
 
 
 });

@@ -136,9 +136,6 @@ export class CreateAppointmentComponent implements OnInit {
               this.cita_save.especialidad.id = +id;
               this.cita_save.especialidad.nombre = response.nombre;
             }
-          },
-          (error) => {
-            this.toastrSvc.error(error);
           }
         );
         if (doctor != null) {
@@ -150,9 +147,6 @@ export class CreateAppointmentComponent implements OnInit {
                   this.cita_save.doctor.nombre = response.nombre;
 
                 }
-              },
-              (error) => {
-                this.toastrSvc.error(error);
               }
             );
           }
@@ -165,9 +159,6 @@ export class CreateAppointmentComponent implements OnInit {
               (response) => {
                 this.cita_save.doctor.id = +doctor;
                 this.cita_save.doctor.nombre = response.nombre;
-              },
-              (error) => {
-                this.toastrSvc.error(error);
               }
             );
           }
@@ -185,9 +176,6 @@ export class CreateAppointmentComponent implements OnInit {
       (response) => {
         this.toastrSvc.success(`Registro Exitoso`);
         this.router.navigate(['/patient/services/upcoming/appointments'])
-      },
-      (error) => {
-        this.toastrSvc.error(error);
       }
     );
   }
@@ -213,32 +201,7 @@ export class CreateAppointmentComponent implements OnInit {
 
   ngAfterViewInit() {
     this.observer
-      .observe(['(min-width: 1200px)'])
-      .pipe(delay(1))
-      .subscribe((res) => {
-        if (res.matches) {
-          this.hidepicture = false;
-        }
-      });
-    this.observer
-      .observe(['(max-width: 1200px) and (min-width: 925px)'])
-      .pipe(delay(1))
-      .subscribe((res) => {
-        if (res.matches) {
-          this.hidepicture = false;
-        }
-      });
-
-    this.observer
-      .observe(['(max-width: 925px) and (min-width: 800px)'])
-      .pipe(delay(1))
-      .subscribe((res) => {
-        if (res.matches) {
-          this.hidepicture = false;
-        }
-      });
-    this.observer
-      .observe(['(max-width: 800px) and (min-width: 770px)'])
+      .observe(['(max-width: 800px) and (min-width: 770px)','(max-width: 925px) and (min-width: 800px)','(max-width: 1200px) and (min-width: 925px)','(min-width: 1200px)'])
       .pipe(delay(1))
       .subscribe((res) => {
         if (res.matches) {

@@ -7,7 +7,7 @@ import {  throwError } from "rxjs";
     providedIn: 'root'
 })
 
-export abstract class ExceptionHandlerApi {
+export class ExceptionHandlerApi {
   
         errorHandler(error: HttpErrorResponse, accion: String) {
         if (error.status >= 500) {

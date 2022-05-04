@@ -13,14 +13,14 @@ import { PatientService } from '../../../services/pacientes/Patient.service';
 })
 export class EditProfileComponent implements OnInit {
 
-  usuario:any;
+  usuario: any;
   formatYmd = (date: { toISOString: () => string | any[]; }) => date.toISOString().slice(0, 10);
 
   constructor(
-    private location:Location,
+    private location: Location,
     public userService: UsuarioService,
     private patientService: PatientService,
-    private toastrSvc:ToastrService) { }
+    private toastrSvc: ToastrService) { }
 
   ngOnInit(): void {
     var id = this.userService.getUserId();
@@ -36,9 +36,9 @@ export class EditProfileComponent implements OnInit {
     this.location.back();
   }
 
-  editPatient(){
+  editPatient() {
     this.patientService.updatePatient(this.usuario).subscribe(
-      response =>{
+      response => {
         this.toastrSvc.success(`Actualizacion Exitosa`);
       }
     )

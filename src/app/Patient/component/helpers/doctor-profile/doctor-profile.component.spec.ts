@@ -57,15 +57,24 @@ describe('DoctorProfileComponent', () => {
     component.back();
     expect(component.back).toBeDefined();
   });
-  // it("NgOnInit  ", () => {
-  //   component.id = "1";
-  //   let response2 :any;
-  //   spyOn(especialidadService,'findDoctor').and.returnValue(of(response2))
-  //   component.getEspecialidad(1)
-  //   fixture.detectChanges();    
+  it("getEspecialidad  ", () => {
+    component.id = "1";
+    const response = [
+      {
+       especialidad :{
+         nombre: "tomografia"
+       },
+       fecha: "2022/02/02",
+       hora: "10:00:00"
+     }
+   ];
+    spyOn(especialidadService,'findDoctor').and.returnValue(of(response))
+    component.getEspecialidad(1)
+    fixture.detectChanges(); 
+    expect(component.doctorespecialidad).toEqual(response)   
     
-  // });
-  it("NgOnInit  ", () => {
+  });
+  it("getDoctor  ", () => {
     let response2 :any;
     spyOn(doctorService,'getDoctorId').and.returnValue(of(response2))
     component.getDoctor(1);

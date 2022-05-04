@@ -17,11 +17,11 @@ export class ServiceInformationComponent implements OnInit {
   type = "";
   id = 0;
   isExam = false;
-  displayedColumns = ['position','name', 'url'];
+  displayedColumns = ['position', 'name', 'url'];
   data: Files[] = []
-  dataSource:any;
+  dataSource: any;
   dataInformation: any;
-  informe:string[]=[];
+  informe: string[] = [];
   cita = true;
   navigationSubscription;
   index = 1;
@@ -43,40 +43,46 @@ export class ServiceInformationComponent implements OnInit {
     var params = (this.route.snapshot.params);
     this.id = params['id'];
     this.type = params['type'];
-    if (this.type == 'appointment') {
-      this.type = 'Consulta';
+    this.verifyParams(this.type,this.id)
+
+  }
+
+
+  verifyParams(type: any, id: any): void {
+    if (type == 'appointment') {
+      type = 'Consulta';
       this.isExam = false;
-      this.citaService.getCita(this.id).subscribe(resp => {
+      this.citaService.getCita(id).subscribe(resp => {
         this.dataInformation = resp;
       },
-        
+
       );
-      this.informeService.getInformeCita(this.id).subscribe(resp => {
-        if(resp){
+      this.informeService.getInformeCita(id).subscribe(resp => {
+        if (resp) {
           resp.forEach((element: { descripcion: string; }) => {
-            if(element.descripcion){
+            if (element.descripcion) {
               this.informe.push(element.descripcion);
             }
-          });          
+          });
         }
       },
-        
+
       );
     } else {
-      this.type = 'Examen';
+      type = 'Examen';
       this.isExam = true;
-      this.examenService.getExamen(this.id).subscribe(resp => {
+      this.examenService.getExamen(id).subscribe(resp => {
         this.dataInformation = resp;
         if (this.dataInformation.ordenDoc) {
-          this.data.push({name: 'Orden Doctor',position:this.index,url:this.dataInformation.ordenDoc})
+          this.data.push({ name: 'Orden Doctor', position: this.index, url: this.dataInformation.ordenDoc })
           this.index++
         }
-        
+
         this.dataSource = new MatTableDataSource<Files>(this.data);
       },
-        
+
       );
-      
+
     }
   }
 

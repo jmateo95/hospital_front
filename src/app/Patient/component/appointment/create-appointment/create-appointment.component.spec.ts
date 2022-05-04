@@ -129,6 +129,9 @@ describe('CreateAppointmentComponent', () => {
     let response2 = new Doctor();
     spyOn(citaService,'addCita').and.returnValue(of(response2))
     component.onAddCita();
+    expect(component.cita_save.hora).toEqual("10:00:00")
     
   });
+
+  
 });

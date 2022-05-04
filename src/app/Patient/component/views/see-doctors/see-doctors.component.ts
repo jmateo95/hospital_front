@@ -16,15 +16,15 @@ import { DoctorService } from '../../../../services/doctores/doctor.service'
 export class SeeDoctorsComponent implements OnInit {
   breakpoint = 3;
   hidepicture = false;
-  doctor_id = null;
-  start_date = null;
-  end_date = null;
+  doctor_id : any = null;
+  start_date : any = null;
+  end_date : any = null;
   doctors:any;
   filtroFecha!: FormGroup;
   filteredDoctores: any;
   doctorFilter = new FormControl();
   doctors_length: number;
-  speciality :any;
+  speciality : any = null;
   filteredEspecialidades: any;
   especialidadFilter = new FormControl();
 

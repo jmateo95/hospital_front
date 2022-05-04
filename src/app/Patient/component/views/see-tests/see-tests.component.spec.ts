@@ -62,6 +62,7 @@ describe('SeeTestsComponent', () => {
     spyOn(tipoExamen, 'countUpcomingTests').and.returnValue(of(response2));
     component.filtrar()
     fixture.detectChanges();
+    expect(component.tests_lenght).toEqual(1)
   });
 
   it("filtrar todo Record", () => {
@@ -79,6 +80,7 @@ describe('SeeTestsComponent', () => {
     spyOn(tipoExamen, 'countRecordTests').and.returnValue(of(response2));
     component.filtrar()
     fixture.detectChanges();
+    expect(component.tests_lenght).toEqual(1)
   });
 
   it("filtrar Upcoming tipo", () => {
@@ -96,6 +98,7 @@ describe('SeeTestsComponent', () => {
     spyOn(tipoExamen, 'countfilterTestsTipoUpcoming').and.returnValue(of(response2));
     component.filtrar()
     fixture.detectChanges();
+    expect(component.tests_lenght).toEqual(1)
   });
 
   it("filtrar Record tipo", () => {
@@ -113,6 +116,7 @@ describe('SeeTestsComponent', () => {
     spyOn(tipoExamen, 'countfilterTestsTipoRecord').and.returnValue(of(response2));
     component.filtrar()
     fixture.detectChanges();
+    expect(component.tests_lenght).toEqual(1)
   });
 
   it("filtrar  fechas", () => {
@@ -130,6 +134,7 @@ describe('SeeTestsComponent', () => {
     spyOn(tipoExamen, 'countfilterTestsDate').and.returnValue(of(response2));
     component.filtrar()
     fixture.detectChanges();
+    expect(component.tests_lenght).toEqual(1)
   });
 
   it("filtrar fechas, tipo", () => {
@@ -147,5 +152,32 @@ describe('SeeTestsComponent', () => {
     spyOn(tipoExamen, 'filterTestsDate').and.returnValue(of(response2));
     component.filtrar()
     fixture.detectChanges();
+  });
+
+  it("getData Record", () => {
+    let reponse: any;
+    reponse = {
+      content: [
+      ]
+    }
+    let response2 = 1;
+    spyOn(tipoExamen, 'getRecordTest').and.returnValue(of(reponse));
+    spyOn(tipoExamen, 'countRecordTests').and.returnValue(of(response2));
+    component.getData('history')
+    fixture.detectChanges();
+    expect(component.tests_lenght).toEqual(1)
+  });
+  it("getData Upcoming", () => {
+    let reponse: any;
+    reponse = {
+      content: [
+      ]
+    }
+    let response2 = 1;
+    spyOn(tipoExamen, 'getUpcomingTest').and.returnValue(of(reponse));
+    spyOn(tipoExamen, 'countUpcomingTests').and.returnValue(of(response2));
+    component.getData('upcoming')
+    fixture.detectChanges();
+    expect(component.tests_lenght).toEqual(1)
   });
 });

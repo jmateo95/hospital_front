@@ -33,7 +33,6 @@ export class CreateTestComponent implements OnInit {
   private apiServerUrl = environment.apiBaseUrl+"/Files/upload/ordenTest";
 
   constructor(
-    private formBuilder: FormBuilder,
     private location: Location,
     private dateAdapter: DateAdapter<Date>,
     private route: ActivatedRoute,
@@ -41,7 +40,7 @@ export class CreateTestComponent implements OnInit {
     private examenService: ExamenService,
     private toastrSvc: ToastrService,
     private router : Router,
-    private userService: UsuarioService
+    public userService: UsuarioService
   ) {
     this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
   }
@@ -131,9 +130,6 @@ export class CreateTestComponent implements OnInit {
         (response) => {
           this.toastrSvc.success(`Registro Exitoso`);
           this.router.navigate(['/patient/services/upcoming/tests'])
-        },
-        (error) => {
-          this.toastrSvc.error(error);
         }
       );
     }else{

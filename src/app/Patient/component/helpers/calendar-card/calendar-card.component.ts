@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Calendar, CalendarOptions, EventApi, FullCalendarComponent } from '@fullcalendar/angular';
+import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
 import esLocale from '@fullcalendar/core/locales/es';
 import { MatSidenav } from '@angular/material/sidenav';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
@@ -16,7 +16,7 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
   calendarnav!: MatSidenav;
 
   @ViewChild('fullcalendar') fullcalendar: FullCalendarComponent;
-  
+
   events: any[] = [];
   tests: any;
   appointments: any;
@@ -51,8 +51,6 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
           let aux = JSON.parse('{"title":"Cita ' + element.especialidad.nombre + '","start":"' + element.fecha + 'T' + element.hora + '","end":"' + element.fecha + '"}');
           this.events.push(aux)
         });
-      },
-      (error) => {
       }
     );
     this.testService.getWeekTest(this.id, this.week).subscribe(
@@ -62,8 +60,6 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
           let aux = JSON.parse('{"title":"Examen ' + element.tipo.nombre + '","start":"' + element.fecha + 'T' + element.hora + '","end":"' + element.fecha + '"}');
           this.events.push(aux)
         });
-      },
-      (error) => {
       }
     );
     setTimeout(() => {
@@ -77,8 +73,8 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
         locale: esLocale,
         events: this.events
       }
-      this.fullcalendar.getApi().refetchEvents();
-  }, 1000);
+      //this.fullcalendar.getApi().refetchEvents();
+    }, 1000);
 
   }
 
@@ -102,21 +98,28 @@ export class CalendarCardComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     var botonToday = document.getElementsByClassName("fc-today-button");
     if (botonToday) {
-      botonToday[0].addEventListener('click', (e) => {
-        this.loadTodayEvents()
-      });
+      if (botonToday[0]) {
+        botonToday[0].addEventListener('click', (e) => {
+          this.loadTodayEvents()
+        });
+      }
     }
     var botonPrev = document.getElementsByClassName("fc-prev-button");
     if (botonPrev) {
-      botonPrev[0].addEventListener('click', (e) => {
-        this.loadEventsPrev()
-      });
+      if (botonPrev[0]) {
+        botonPrev[0].addEventListener('click', (e) => {
+          this.loadEventsPrev()
+        });
+      }
     }
     var botonAfter = document.getElementsByClassName("fc-next-button");
     if (botonAfter) {
-      botonAfter[0].addEventListener('click', (e) => {
-        this.loadEventsAfter()
-      });
+      if (botonAfter[0]) {
+        botonAfter[0].addEventListener('click', (e) => {
+          this.loadEventsAfter()
+        });
+      }
+
     }
   }
 }

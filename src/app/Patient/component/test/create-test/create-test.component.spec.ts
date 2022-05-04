@@ -7,11 +7,15 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTestComponent } from './create-test.component';
 import { SpyLocation } from '@angular/common/testing';
+import { Examen } from 'src/app/services/examenes/examen';
+import { of } from 'rxjs/internal/observable/of';
+import { ExamenService } from 'src/app/services/examenes/examen.service';
 
 describe('CreateTestComponent', () => {
   let component: CreateTestComponent;
   let fixture: ComponentFixture<CreateTestComponent>;  
   let location: SpyLocation; 
+  let examenService: ExamenService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -37,6 +41,7 @@ describe('CreateTestComponent', () => {
     fixture = TestBed.createComponent(CreateTestComponent);
     component = fixture.componentInstance;     
     location = TestBed.get(Location);
+    examenService = TestBed.get(ExamenService)
     fixture.detectChanges();
   });
 
@@ -95,4 +100,43 @@ describe('CreateTestComponent', () => {
 
   
   });
+
+  it("onAddExamen  ", () => {
+    component.examen_save = new Examen();
+    let user = {
+      id :1,
+      rol : {
+        id : 1
+      }
+    }
+    component.userService.setUser(user);
+    component.examen_save.hora = "10:00";
+    component.orden = false;
+    let response2 = new Examen();
+    spyOn(examenService,'addExamen').and.returnValue(of(response2))
+    component.onAddExamen();
+    expect(component.examen_save.hora).toEqual("10:00:00")
+    
+  });
+
+  it("onAddExamen  ", () => {
+    component.examen_save = new Examen();
+    let user = {
+      id :1,
+      rol : {
+        id : 1
+      }
+    }
+    component.userService.setUser(user);
+    component.examen_save.hora = "10:00";
+    component.orden = true;
+    let response2 = new Examen();
+    spyOn(examenService,'addExamen').and.returnValue(of(response2))
+    component.onAddExamen();
+    expect(component.examen_save.hora).toEqual("10:00:00")
+    
+  });
+
+
+
 });

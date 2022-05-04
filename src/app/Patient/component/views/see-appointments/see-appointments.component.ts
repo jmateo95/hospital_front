@@ -54,8 +54,12 @@ export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
   initialiseInvites() {
     var params = (this.route.snapshot.params);
     this.title = params['type'];
-    if (this.title == 'history') {
-      this.title = 'Consultas Realizadas';
+    
+  }
+
+  getData(title:any):void{
+    if (title == 'history') {
+      title = 'Consultas Realizadas';
       this.url = 'assets/img/Consult2.png';
       this.upcoming = false;
       this.citaService.getRecordCitas(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
@@ -69,8 +73,8 @@ export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
         
       );
 
-    } else if (this.title == 'upcoming') {
-      this.title = 'Proximas Consultas';
+    } else if (title == 'upcoming') {
+      title = 'Proximas Consultas';
       this.url = 'assets/img/Consult4.png';
       this.upcoming = true;
       this.citaService.getUpcomingCitas(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
@@ -85,6 +89,7 @@ export class SeeAppointmentsComponent implements OnInit, AfterViewInit {
       );
     }
   }
+
   ngOnInit() {
     this.doctorFilter.valueChanges.pipe(
       debounceTime(50),

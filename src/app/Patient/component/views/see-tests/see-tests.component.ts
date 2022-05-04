@@ -56,8 +56,13 @@ export class SeeTestsComponent implements OnInit, AfterViewInit {
   initialiseInvites() {
     var params = (this.route.snapshot.params);
     this.title = params['type'];
-    if (this.title == 'history') {
-      this.title = 'Examenes Realizados';
+    this.getData(this.title)
+    
+  }
+
+  getData(title:any):void{
+    if (title == 'history') {
+      title = 'Examenes Realizados';
       this.image = "assets/img/Test2.png";
       this.upcoming = false;
       this.testService.getRecordTest(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {
@@ -71,8 +76,8 @@ export class SeeTestsComponent implements OnInit, AfterViewInit {
         
       );
 
-    } else if (this.title == 'upcoming') {
-      this.title = 'Proximos Examenes';
+    } else if (title == 'upcoming') {
+      title = 'Proximos Examenes';
       this.image = "assets/img/Test.png";
       this.upcoming = true;
       this.testService.getUpcomingTest(this.userService.getUserId(), this.paginator?.pageIndex ?? 0).subscribe(resp => {

@@ -26,24 +26,18 @@ export class HomePatientComponent implements OnInit {
     this.userService.getUserById(id).subscribe(
       (response) => {
         this.usuario = response;
-      },
-      (error) => {
       }
     );;
 
     this.citasService.countUpcomingCitas(id).subscribe(
       (response) => {
         this.next_appoint = response;
-      },
-      (error) => {
       }
     );;
 
     this.examenService.countUpcomingTests(id).subscribe(
       (response) => {
         this.next_test = response;
-      },
-      (error) => {
       }
     );;
   
@@ -70,7 +64,7 @@ export class HomePatientComponent implements OnInit {
       });
 
     this.observer
-      .observe(['(max-width: 925px) and (min-width: 800px)'])
+      .observe(['((max-width: 925px) and (min-width: 800px)) or ((max-width: 625px))',])
       .pipe(delay(1))
       .subscribe((res) => {
         if (res.matches) {
@@ -85,15 +79,6 @@ export class HomePatientComponent implements OnInit {
         if (res.matches) {
           this.breakpoint = 2;
           this.hidepicture = false;
-        }
-      });
-    this.observer
-      .observe(['(max-width: 625px)'])
-      .pipe(delay(1))
-      .subscribe((res) => {
-        if (res.matches) {
-          this.breakpoint = 1;
-          this.hidepicture = true;
         }
       });
 
