@@ -36,4 +36,21 @@ describe('TestListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+  it("ngOn Init  ", () => {
+    let user = {
+      id :1,
+      rol : {
+        id : 1
+      }
+    }
+    component.tipoExamenService.setUser(user);
+    let response2 = new Patient();
+    spyOn(component.userService,'getUserById').and.returnValue(of(response2))
+    component.ngOnInit();
+    
+  });
+
+
 });
