@@ -5,11 +5,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TestListComponent } from './test-list.component';
+import { Examen, TestListComponent } from './test-list.component';
+import { TipoExamenService } from 'src/app/services/tipoExamenes/tipo-examenes.service';
+import { of } from 'rxjs/internal/observable/of';
 
 describe('TestListComponent', () => {
   let component: TestListComponent;
   let fixture: ComponentFixture<TestListComponent>;
+  let tipoExamenService: TipoExamenService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -30,6 +33,7 @@ describe('TestListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestListComponent);
     component = fixture.componentInstance;
+    tipoExamenService=TestBed.get(TipoExamenService);
     fixture.detectChanges();
   });
 
@@ -38,7 +42,25 @@ describe('TestListComponent', () => {
   });
 
 
-  
+  it("filtrar Upcoming doctor", () => {
+    let reponse: any;
+    reponse = {
+      content: [
+      ]
+    }
+    spyOn(tipoExamenService, 'getAllTiposExamen').and.returnValue(of(reponse));
+    component.ngOnInit()
+    fixture.detectChanges();
+  });
+
+
+  it('should return true from isAuthenticated when there is a token', () => { (1)
+    let examen:any;
+    expect(examen=new Examen(1,'1',1,true,'1','1','1')).toBeTruthy();
+  });
+
+
+
 
 
 });

@@ -10,16 +10,6 @@ import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 
 
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
-
 @Component({
   selector: 'app-lab-edit',
   templateUrl: './lab-edit.component.html',
@@ -48,7 +38,6 @@ export class LabEditComponent implements OnInit {
    
     this.laboratoristaService.getLaboratoristaId(params['id_lab']).subscribe(
       res=>{
-        console.log(res);
         this.build(res);
       }
     )

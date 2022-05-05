@@ -11,15 +11,6 @@ import { ActivatedRoute , Router, ParamMap} from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
-
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -80,10 +71,6 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
     "hora":this.profileForm.value.hora+":00",
     "cita": this.profileForm.value.paciente
   }
-
-  console.log("CITA:")
-  console.log(orden);
-  
   this.ordenService.getReport(orden).subscribe(
    res=>{
      this.toastrSvc.success(`cita agregada exitosamente`);

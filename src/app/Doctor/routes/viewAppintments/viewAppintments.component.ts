@@ -8,16 +8,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CitaService } from 'src/app/services/cita/cita.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
-
-
 @Component({
   selector: 'app-viewAppointment',
   templateUrl: './viewAppintments.component.html',

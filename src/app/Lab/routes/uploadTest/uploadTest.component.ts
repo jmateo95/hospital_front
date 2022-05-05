@@ -7,15 +7,6 @@ import { DateAdapter } from '@angular/material/core';
 import { ExamenService } from 'src/app/services/examenes/examen.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
 @Component({
   selector: 'app-createReport',
   templateUrl: './uploadTest.component.html',

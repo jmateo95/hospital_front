@@ -9,14 +9,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute , Router, ParamMap} from '@angular/router';
 
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
 @Component({
   selector: 'app-lab-create',
   templateUrl: './lab-create.component.html',
