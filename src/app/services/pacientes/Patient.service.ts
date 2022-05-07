@@ -33,4 +33,8 @@ export class PatientService extends ExceptionHandlerApi{
     public top10PatientAppoiment(): Observable<any>{
         return this.http.get<any>(`${this.apiServerUrl}/paciente/top10/patients`)    
     }
+
+    public allPatient(): Observable<any>{
+        return this.http.get<any>(`${this.apiServerUrl}/paciente`)    
+    }
 }    

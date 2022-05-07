@@ -6,6 +6,8 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { DateAdapter } from '@angular/material/core';
 import { ExamenService } from 'src/app/services/examenes/examen.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { ActivatedRoute , Router, ParamMap} from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -29,7 +31,9 @@ patients: Examen[] = [];
 
 constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Date>,
   private examenService: ExamenService,
-  private usuarioService: UsuarioService
+  private usuarioService: UsuarioService,
+  private toastrSvc: ToastrService,
+  private route : ActivatedRoute, private router : Router,
   ){
   this.dateAdapter.setLocale('en-GB');  //para cambiar el formato de la fecha dd/MM/yyyy
 }
@@ -42,6 +46,16 @@ constructor(private formBuilder:FormBuilder, private dateAdapter: DateAdapter<Da
  
  saveForm(){
    console.log('Form data is ', this.profileForm.value);
+   var Reporte = {    
+    "paciente": this.profileForm.value.paciente.paciente,
+   }
+
+   if(Reporte.paciente){
+    this.toastrSvc.success(`Examen enviado con exito`);
+    this.router.navigate(['/lab/home'])
+   }else{
+    this.toastrSvc.error(`Error al cargar el Examen`);
+   }
  }
  
 
